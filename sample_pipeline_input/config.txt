@@ -1,0 +1,6 @@
+pegasus_folder	PATH_TO_PEGASUS_REPO
+hg	PATH_TO_YOUR_REFERENCE_FILES/hg19.fa
+hg_fai	PATH_TO_YOUR_REFERENCE_FILES/hg19.fa.fai
+gtf_file	PATH_TO_YOUR_REFERENCE_FILES/Homo_sapiens.GRCh37.60.chr.gtf
+sge_param	" -S /bin/sh -l mem=4G,time=10:: -cwd "
+sample_type	tumor_tissue

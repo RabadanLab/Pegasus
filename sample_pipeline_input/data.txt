@@ -1,0 +1,6 @@
+# sample_path	sample_name	sample_type	fusion_program
+candidates/chimerascan_oncogenic.bedpe	patient1	tumor_tissue	chimerascan
+candidates/chimerascan_benign.bedpe	patient2	normal_tissue	chimerascan
+candidates/bellerophontes_oncogenic.txt	patient3	tumor_tissue	bellerophontes
+candidates/defuse_oncogenic.tsv	patient4	tumor_tissue	defuse
+candidates/defuse_benign.tsv	patient5	normal_tissue	defuse
