@@ -1,0 +1,15 @@
+/*
+ * $Id: errhandling.nsql 610 2008-12-22 15:54:18Z unsaved $
+ *
+ * Negative tests error handling inside of blocks and in subscripts.
+ */
+
+* if (1)
+    *if (2)
+        \i errhandlingn.isql
+    *end if
+    worse;
+* end if 
+
+\p Returned from bad script errhandlingn.isql.  Should not have.
+\q

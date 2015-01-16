@@ -1,0 +1,156 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Appendix&nbsp;C.&nbsp;HyperSQL with OpenOffice.org</title>
+<link href="../docbook.css" type="text/css" rel="stylesheet">
+<meta content="DocBook XSL-NS Stylesheets V1.76.1" name="generator">
+<meta name="keywords" content="HSQLDB, HyperSQL, OpenOffice, OpenOfficeOrg">
+<meta name="keywords" content="Hsqldb, HyperSQL, Database, JDBC, Java">
+<link rel="home" href="index.html" title="HyperSQL User Guide">
+<link rel="up" href="index.html" title="HyperSQL User Guide">
+<link rel="prev" href="building-app.html" title="Appendix&nbsp;B.&nbsp;Building HyperSQL Jars">
+<link rel="next" href="filelinks-app.html" title="Appendix&nbsp;D.&nbsp;HyperSQL File Links">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table summary="Navigation header" width="100%">
+<tr>
+<td align="left" width="30%"><a accesskey="p" href="building-app.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="40%" style="font-weight:bold;">Appendix&nbsp;C.&nbsp;HyperSQL with OpenOffice.org</td><td align="right" width="30%">&nbsp;<a accesskey="n" href="filelinks-app.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="30%">Appendix&nbsp;B.&nbsp;Building HyperSQL Jars&nbsp;</td><td align="center" width="40%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="30%">&nbsp;Appendix&nbsp;D.&nbsp;HyperSQL File Links</td>
+</tr>
+</table>
+</div>
+<HR>
+<div class="appendix" title="Appendix&nbsp;C.&nbsp;HyperSQL with OpenOffice.org">
+<div class="titlepage">
+<div>
+<div>
+<h1 class="title">
+<a name="openoffice-app"></a>HyperSQL with OpenOffice.org</h1>
+</div>
+<div>
+<h3 class="subtitle">
+<i>How to use HyperSQL with OpenOffice.org</i>
+</h3>
+</div>
+<div>
+<div class="author">
+<h3 class="author">
+<span class="firstname">Fred</span> <span class="surname">Toussi</span>
+</h3>
+<div class="affiliation">
+<span class="orgname">The HSQL Development Group<br>
+</span>
+</div>
+</div>
+</div>
+<div>
+<p class="releaseinfo">$Revision: 4910 $</p>
+</div>
+<div>
+<p class="pubdate">2012-01-15 10:12:45-0500</p>
+</div>
+</div>
+</div>
+<div class="toc">
+<p>
+<b>Table of Contents</b>
+</p>
+<dl>
+<dt>
+<span class="section"><a href="openoffice-app.html#ooa_overview">HyperSQL with OpenOffice.org</a></span>
+</dt>
+<dt>
+<span class="section"><a href="openoffice-app.html#ooa_database_tool">Using OpenOffice.org as a Database Tool</a></span>
+</dt>
+<dt>
+<span class="section"><a href="openoffice-app.html#ooa_db_files_convert">Converting .odb files to use with HyperSQL Server</a></span>
+</dt>
+</dl>
+</div>
+<div class="section" title="HyperSQL with OpenOffice.org">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="ooa_overview"></a>HyperSQL with OpenOffice.org</h2>
+</div>
+</div>
+</div>
+<p>OpenOffice.org includes HyperSQL and uses it for embedded
+    databases. Our collaboration with OpenOffice.org developers over the last
+    few years has benefited the development and maturity of HyperSQL. Before
+    integration into OOo, HSQLDB was intended solely for application-specific
+    database access. The application developer was expected to resolve any
+    integration issues. Because OpenOffice.org is used by a vast range of
+    users, from schoolchildren to corporate developers, a much higher level of
+    quality assurance has been required and we have achieved it with constant
+    help and feedback from OOo users and developers.</p>
+<p>Apart from embedded use, you may want to use OpenOffic.org with a
+    HyperSQL server instance. The typical use for this is to allow multiple
+    office users accessing the same database. There is, however, a strong case
+    for using OOo to develop your database schema and application, even if the
+    database is intended for your own application.</p>
+</div>
+<div class="section" title="Using OpenOffice.org as a Database Tool">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="ooa_database_tool"></a>Using OpenOffice.org as a Database Tool</h2>
+</div>
+</div>
+</div>
+<p>OpenOffice.org is a very powerful database front end. If you want
+    to create schemas, edit tables, edit the database contents manually,
+    design and produce well-formatted reports, then OpenOffice.org is probably
+    the best open source tools currently available.</p>
+<p>To connect from OpenOffice.org to your database, first run a
+    local server instance for the database. This is describes in the Network
+    Listeners chapter of this guide.</p>
+<p>When you connect from OpenOffice.org, you must specify connection
+    to an external database and use the URL property "default_schema=true".
+    For example, the URL to connect the local database may be like</p>
+<pre class="programlisting"> jdbc;hsqldb:hsql://localhost/mydb;default_schema=true </pre>
+<p>The only current limitation is that OpenOffice.org only works
+    with the PUBLIC schema. This limitation will hopefully removed in the
+    future versions of OOo.</p>
+<p>When using of HyperSQL with OOo, you must use the HyperSQL jar
+    that is supplied with OOo. This wil hopefuly be a version 2.0 jar in the
+    future versions of OOo.</p>
+</div>
+<div class="section" title="Converting .odb files to use with HyperSQL Server">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="ooa_db_files_convert"></a>Converting .odb files to use with HyperSQL Server</h2>
+</div>
+</div>
+</div>
+<p>You may already have an OOo database file, which you want to use
+    outside OOo, or as a server database. The file is in fact in the standard
+    ZIP format and contains the normal HyperSQL database files. Just use a
+    utility such as 7Zip to expand the .odb file. In the /db directory, there
+    are files such as .script, .data, etc. Just rename these files into
+    mydb.script, mydb.data, etc. You can now open the mydb database directly
+    with HyperSQL as an embedded database or as a server instance.</p>
+</div>
+</div>
+<HR xmlns:xi="http://www.w3.org/2001/XInclude">
+<P xmlns:xi="http://www.w3.org/2001/XInclude" class="svnrev">$Revision: 4864 $</P>
+<div class="navfooter">
+<hr>
+<table summary="Navigation footer" width="100%">
+<tr>
+<td align="left" width="40%"><a accesskey="p" href="building-app.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="20%">&nbsp;</td><td align="right" width="40%">&nbsp;<a accesskey="n" href="filelinks-app.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="40%">Appendix&nbsp;B.&nbsp;Building HyperSQL Jars&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="40%">&nbsp;Appendix&nbsp;D.&nbsp;HyperSQL File Links</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

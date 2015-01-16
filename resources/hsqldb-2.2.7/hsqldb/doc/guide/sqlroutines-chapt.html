@@ -1,0 +1,2481 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter&nbsp;8.&nbsp;SQL-Invoked Routines</title>
+<link href="../docbook.css" type="text/css" rel="stylesheet">
+<meta content="DocBook XSL-NS Stylesheets V1.76.1" name="generator">
+<meta name="keywords" content="Hsqldb, HyperSQL, SQL">
+<meta name="keywords" content="Hsqldb, HyperSQL, Database, JDBC, Java">
+<link rel="home" href="index.html" title="HyperSQL User Guide">
+<link rel="up" href="index.html" title="HyperSQL User Guide">
+<link rel="prev" href="dataaccess-chapt.html" title="Chapter&nbsp;7.&nbsp;Data Access and Change">
+<link rel="next" href="triggers-chapt.html" title="Chapter&nbsp;9.&nbsp;Triggers">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table summary="Navigation header" width="100%">
+<tr>
+<td align="left" width="30%"><a accesskey="p" href="dataaccess-chapt.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="40%" style="font-weight:bold;">Chapter&nbsp;8.&nbsp;SQL-Invoked Routines</td><td align="right" width="30%">&nbsp;<a accesskey="n" href="triggers-chapt.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="30%">Chapter&nbsp;7.&nbsp;Data Access and Change&nbsp;</td><td align="center" width="40%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="30%">&nbsp;Chapter&nbsp;9.&nbsp;Triggers</td>
+</tr>
+</table>
+</div>
+<HR>
+<div class="chapter" title="Chapter&nbsp;8.&nbsp;SQL-Invoked Routines">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title">
+<a name="sqlroutines-chapt"></a>Chapter&nbsp;8.&nbsp;SQL-Invoked Routines</h2>
+</div>
+<div>
+<div class="authorgroup">
+<div class="author">
+<h3 class="author">
+<span class="firstname">Fred</span> <span class="surname">Toussi</span>
+</h3>
+<div class="affiliation">
+<span class="orgname">The HSQL Development Group<br>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<p class="releaseinfo">$Revision: 4910 $</p>
+</div>
+<div>
+<div class="legalnotice" title="Legal Notice">
+<a name="N12B7A"></a>
+<p>Copyright 2010-2012 Fred Toussi. Permission is granted to
+      distribute this document without any alteration under the terms of the
+      HSQLDB license. Additional permission is granted to the HSQL Development
+      Group to distribute this document with or without alterations under the
+      terms of the HSQLDB license.</p>
+</div>
+</div>
+<div>
+<p class="pubdate">2012-01-15 10:12:45-0500</p>
+</div>
+</div>
+</div>
+<div class="toc">
+<p>
+<b>Table of Contents</b>
+</p>
+<dl>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_routine_definition">Routine Definition</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_routine_characteristics">Routine Characteristics</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_routines">SQL Language Routines (PSM)</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_advantages">Advantages and Disadvantages</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_statements">Routine Statements</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_compound">Compound Statement</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_table_vars">Table Variables</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_vars">Variables</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_cursors">Cursors</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_handlers">Handlers</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_assignment">Assignment Statement</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_select_single">Select Statement : Single Row</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_formal_parameters">Formal Parameters</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_iterated_statements">Iterated Statements</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_for_statement">Iterated FOR Statement</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_conditional">Conditional Statements</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_return_statement">Return Statement</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_control_statements">Control Statements</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_exceptions">Raising Exceptions</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_routine_polymorphism">Routine Polymorphism</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_returning_data">Returning Data From Procedures</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_recursive_routines">Recursive Routines</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_jrt_routines">Java Language Routines (SQL/JRT)</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_jrt_polymorphis">Polymorphism</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_jrt_procedures">Java Language Procedures</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_jrt_static_methods">Java Static Methods</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_jrt_legacy">Legacy Support</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_jrt_access_control">Securing Access to Classes</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_aggregate_functions">User Defined Aggregate Functions</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_aggregate_function_definition">Definition of Aggregate Functions</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_psm_aggregate_functions">SQL PSM Aggregate Functions</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqlroutines-chapt.html#src_jrt_aggregate_functions">Java Aggregate Functions</a></span>
+</dt>
+</dl>
+</dd>
+</dl>
+</div>
+<p>SQL-invoked routines are functions and procedures called from SQL.
+  HyperSQL 2.0 supports routines conforming to two parts of the SQL Standard.
+  Routines written in the SQL language are supported in conformance to SQL/PSM
+  (Persistent Stored Modules) specification. Routines written in Java are
+  supported in broad conformance to SQL/JRT specification. In addition,
+  HyperSQL's previous non-standard support for calling Java routines without
+  prior method definition is retained and enhanced in the latest version by
+  extending the SQL/JRT specification.</p>
+<p>HyperSQL also supports user defined aggregate functions written in the
+  SQL language or Java. This feature is an extension to the SQL
+  Standard.</p>
+<p>SQL-invoked routines are schema objects. Naming and referencing
+  follows conventions common to all schema objects. The same routine name can
+  be defined in two different schemas and used with schema-qualified
+  references.</p>
+<p>A routine is either a procedure or a function.</p>
+<p>A function:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>is defined with CREATE FUNCTION</p>
+</li>
+<li class="listitem">
+<p>always returns a single value or a single table</p>
+</li>
+<li class="listitem">
+<p>does not modify the data in the database</p>
+</li>
+<li class="listitem">
+<p>is used as part of an SQL statement</p>
+</li>
+<li class="listitem">
+<p>can have parameters</p>
+</li>
+<li class="listitem">
+<p>can be polymorphic</p>
+</li>
+</ul>
+</div>
+<p>A procedure:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>is defined with CREATE PROCEDURE</p>
+</li>
+<li class="listitem">
+<p>can return zero to multiple values or result sets</p>
+</li>
+<li class="listitem">
+<p>can modify the data in the database</p>
+</li>
+<li class="listitem">
+<p>is called separately, using the CALL statement</p>
+</li>
+<li class="listitem">
+<p>can have parameters</p>
+</li>
+<li class="listitem">
+<p>can be polymorphic</p>
+</li>
+</ul>
+</div>
+<p>Definition of routine signature and characteristics, name resolution
+  and invocation are all implemented uniformly for routines written in SQL or
+  Java.</p>
+<div class="section" title="Routine Definition">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="src_routine_definition"></a>Routine Definition</h2>
+</div>
+</div>
+</div>
+<p>SQL-Invoked Routines, whether PSM or JRT, are defined using a SQL
+    statement with the same syntax. The part that is different is the
+    &lt;routine body&gt; which consists of SQL statements in PSM routines or a
+    reference to a Java method in JRT routines.</p>
+<p>Details of Routine definition are discussed in this section. You may
+    start by reading the next two sections which provide several examples
+    before reading this section for the details.</p>
+<p>Routine definition has several mandatory or optional clauses. The
+    complete BNF supported by HyperSQL and the remaining clauses are
+    documented in this section.</p>
+<a name="N12BBB" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CREATE FUNCTION</strong></span>
+</p>
+<a name="N12BC4" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CREATE PROCEDURE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>routine definition</em></span>
+</p>
+<p>Routine definition is similar for procedures and functions. A
+    function definition has the mandatory <code class="literal">&lt;returns
+    clause&gt;</code> which is discussed later. The description given so
+    far covers the essential elements of the specification with the BNF given
+    below.</p>
+<p>
+<code class="literal">&lt;schema procedure&gt; ::= CREATE PROCEDURE &lt;schema
+    qualified routine name&gt; &lt;SQL parameter declaration list&gt;
+    &lt;routine characteristics&gt; &lt;routine body&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;schema function&gt; ::= CREATE FUNCTION &lt;schema
+    qualified routine name&gt; &lt;SQL parameter declaration list&gt;
+    &lt;returns clause&gt; &lt;routine characteristics&gt; &lt;routine
+    body&gt;</code>
+</p>
+<p>Parameter declaration list has been described above. For SQL/JRT
+    routines, the <code class="literal">&lt;SQL parameter name&gt;</code> is optional
+    while for SQL/PSM routines, it is required. If the <code class="literal">&lt;parameter
+    mode&gt;</code> of a parameter is OUT or INOUT, it must be specified.
+    The BNF is given below:</p>
+<p>
+<code class="literal">&lt;SQL parameter declaration list&gt; ::= &lt;left
+    paren&gt; [ &lt;SQL parameter declaration&gt; [ { &lt;comma&gt; &lt;SQL
+    parameter declaration&gt; }... ] ] &lt;right paren&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;SQL parameter declaration&gt; ::= [ &lt;parameter
+    mode&gt; ] [ &lt;SQL parameter name&gt; ] &lt;parameter
+    type&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;parameter mode&gt; ::= IN | OUT |
+    INOUT</code>
+</p>
+<p>
+<code class="literal">&lt;parameter type&gt; ::= &lt;data
+    type&gt;</code>
+</p>
+<p>Return Value and Table Functions</p>
+<a name="N12BF1" class="indexterm"></a>
+<p>
+<span class="bold"><strong>RETURNS</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>returns clause</em></span>
+</p>
+<p>The <code class="literal">&lt;returns clause&gt;</code> specifies the type of
+    the return value of a function (not a procedure). For all SQL/PSM
+    functions and ordinary SQL/JRT functions, this is simply a type definition
+    which can be a built-in type, a DOMAIN type or a DISTINCT type, or
+    alternatively, a TABLE definition. For example, RETURNS INTEGER.</p>
+<p>For a SQL/JRT function, it is possible to define a
+    <code class="literal">&lt;returns table type&gt;</code> for a Java method that
+    returns a <code class="classname">java.sql.ResultSet</code> object. Such SQL/JRT
+    functions are called <em class="glossterm">table functions</em>. Table
+    functions are used differently from normal functions. A table function can
+    be used in an SQL query expression exactly where a normal table or view is
+    allowed. At the time of invocation, the Java method is called and the
+    returned ResultSet is transformed into an SQL table. The column types of
+    the declared TABLE must match those of the ResultSet, otherwise an
+    exception is raised at the time of invocation.</p>
+<p>If a <code class="literal">&lt;returns table type&gt;</code> is defined for an
+    SQL/PSM function, the following expression is used inside the function to
+    return a table: <code class="literal">RETURN TABLE ( &lt;query expression&gt;
+    );</code> In the example blow, a table with two columns is
+    returned.</p>
+<pre class="programlisting">RETURN TABLE ( SELECT a, b FROM atable WHERE e = 10 );</pre>
+<p>Functions that return a table are designed to be used in SELECT
+    statements using the TABLE keyword to form a joined table.</p>
+<p>When a JDBC <code class="literal">CallableStatement</code> is used to CALL the
+    function, the table returned from the function call is returned and can be
+    accessed with the <code class="literal">getResultSet()</code> method of the
+    <code class="literal">CallableStatement</code>.</p>
+<p>
+<code class="literal">&lt;returns clause&gt; ::= RETURNS &lt;returns
+    type&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;returns type&gt; ::= &lt;returns data type&gt; |
+    &lt;returns table type&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;returns table type&gt; ::= TABLE &lt;table function
+    column list&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;table function column list&gt; ::= &lt;left
+    paren&gt; &lt;table function column list element&gt; [ { &lt;comma&gt;
+    &lt;table function column list element&gt; } ... ] &lt;right
+    paren&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;table function column list element&gt; ::=
+    &lt;column name&gt; &lt;data type&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;returns data type&gt; ::= &lt;data
+    type&gt;</code>
+</p>
+<a name="N12C36" class="indexterm"></a>
+<p>
+<span class="bold"><strong>routine body</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>routine body</em></span>
+</p>
+<p>Routine body is either one or more SQL statements or a Java
+    reference. The user that defines the routine by issuing the CREATE
+    FUNCTION or CREATE SCHEMA command must have the relevant access rights to
+    all tables, sequences, routines, etc. that are accessed by the routine. If
+    another user is given EXECUTE privilege on the routine, then there are two
+    possibilities, depending on the <code class="literal">&lt;rights clause&gt;</code>.
+    This clause refers to the access rights that are checked when a routine is
+    invoked. The default is <code class="literal">SQL SECURITY DEFINER</code>, which
+    means access rights of the definer are used; therefore no extra checks are
+    performed when the other user invokes the routine. The alternative
+    <code class="literal">SQL SECURITY INVOKER</code> means access rights on all the
+    database objects referenced by the routine are checked for the invoker.
+    This alternative is not supported by HyperSQL.</p>
+<p>
+<code class="literal">&lt;routine body&gt; ::= &lt;SQL routine spec&gt; |
+    &lt;external body reference&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;SQL routine spec&gt; ::= [ &lt;rights clause&gt; ]
+    &lt;SQL routine body&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;rights clause&gt; ::= SQL SECURITY INVOKER | SQL
+    SECURITY DEFINER</code>
+</p>
+<a name="N12C56" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SQL routine body</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>SQL routine body</em></span>
+</p>
+<p>The routine body of a an SQL routine consists of an
+    statement.</p>
+<p>
+<code class="literal">&lt;SQL routine body&gt; ::= &lt;SQL procedure
+    statement&gt;</code>
+</p>
+<a name="N12C67" class="indexterm"></a>
+<p>
+<span class="bold"><strong>EXTERNAL NAME</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>external body reference</em></span>
+</p>
+<p>External name specifies the qualified name of the Java method
+    associated with this routine. Early releases of HyperSQL 2.0 only supports
+    Java methods within the classpath. The <code class="literal">&lt;external Java
+    reference string&gt;</code> is a quoted string which starts with
+    CLASSPATH: and is followed by the Java package, class and method names
+    separated with dots. HyperSQL does not currently support the optional
+    <code class="literal">&lt;Java parameter declaration list&gt;</code>.</p>
+<p>
+<code class="literal">&lt;external body reference&gt; ::= EXTERNAL NAME
+    &lt;external Java reference string&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;external Java reference string&gt; ::= &lt;jar and
+    class name&gt; &lt;period&gt; &lt;Java method name&gt; [ &lt;Java
+    parameter declaration list&gt; ]</code>
+</p>
+<div class="section" title="Routine Characteristics">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_routine_characteristics"></a>Routine Characteristics</h3>
+</div>
+</div>
+</div>
+<p>The <code class="literal">&lt;routine characteristics&gt;</code> clause
+      covers several sub-clauses</p>
+<p>
+<code class="literal">&lt;routine characteristics&gt; ::= [ &lt;routine
+      characteristic&gt;... ]</code>
+</p>
+<p>
+<code class="literal">&lt;routine characteristic&gt; ::= &lt;language
+      clause&gt; | &lt;parameter style clause&gt; | SPECIFIC &lt;specific
+      name&gt; | &lt;deterministic characteristic&gt; | &lt;SQL-data access
+      indication&gt; | &lt;null-call clause&gt; | &lt;returned result sets
+      characteristic&gt; | &lt;savepoint level
+      indication&gt;</code>
+</p>
+<a name="N12C90" class="indexterm"></a>
+<p>
+<span class="bold"><strong>LANGUAGE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>language clause</em></span>
+</p>
+<p>The <code class="literal">&lt;language clause&gt;</code> refers to the
+      language in which the routine body is written. It is either SQL or Java.
+      The default is SQL, so JAVA must be specified for SQL/JRT
+      routines.</p>
+<p>
+<code class="literal">&lt;language clause&gt; ::= LANGUAGE &lt;language
+      name&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;language name&gt; ::= SQL |
+      JAVA</code>
+</p>
+<p>The parameter style is not allowed for SQL routines. It is
+      optional for Java routines and, in HyperSQL, the only value allowed is
+      JAVA.</p>
+<p>
+<code class="literal">&lt;parameter style&gt; ::= JAVA</code>
+</p>
+<a name="N12CAC" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SPECIFIC NAME</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>specific name</em></span>
+</p>
+<p>The <code class="literal">SPECIFIC &lt;specific name&gt;</code> clause is
+      optional but the engine will creates an automatic name if it is not
+      present. When there are several versions of the same routine, the
+      <code class="literal">&lt;specific name&gt;</code> is used in schema manipulation
+      statements to drop or alter a specific version. The
+      <code class="literal">&lt;specific name&gt;</code> is a user-defined name. It
+      applies to both functions and procedures. In the examples below, a
+      specific name is specified for each function.</p>
+<pre class="programlisting">CREATE FUNCTION an_hour_before_or_now(t TIMESTAMP)
+  RETURNS TIMESTAMP
+  NO SQL
+  LANGUAGE JAVA PARAMETER STYLE JAVA
+  SPECIFIC an_hour_before_or_now_with_timestamp
+  EXTERNAL NAME 'CLASSPATH:org.npo.lib.nowLessAnHour'
+
+CREATE FUNCTION an_hour_before_max (e_type INT)
+  RETURNS TIMESTAMP SPECIFIC an_hour_before_max_with_int
+  RETURN (SELECT MAX(event_time) FROM atable WHERE event_type = e_type) - 1 HOUR
+
+</pre>
+<a name="N12CC5" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DETERMINISTIC</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>deterministic characteristic</em></span>
+</p>
+<p>The <code class="literal">&lt;deterministic characteristic&gt;</code> clause
+      indicates that a routine is deterministic or not. Deterministic means
+      the routine does not reference random values, external variables, or
+      time of invocation. The default is <code class="literal">NOT DETERMINISTIC</code>.
+      It is essential to declare this characteristics correctly for an SQL/JRT
+      routine, as the engine does not know the contents of the Java code,
+      which could include calls to methods returning random or time sensitive
+      values.</p>
+<p>
+<code class="literal">&lt;deterministic characteristic&gt; ::= DETERMINISTIC
+      | NOT DETERMINISTIC</code>
+</p>
+<a name="N12CDC" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SQL DATA access</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>SQL DATA access characteristic</em></span>
+</p>
+<p>The <code class="literal">&lt;SQL-data access indication&gt;</code> &nbsp;clause
+      indicates the extent to which a routine interacts with the database or
+      the data stored in the database tables in different schemas (SQL
+      DATA).</p>
+<p>NO SQL means no SQL command is issued in the routine body and can
+      be used only for SQL/JRT functions.</p>
+<p>
+<code class="literal">CONTAINS SQL</code> means some SQL commands are used,
+      but they do not read or modify the SQL data. <code class="literal">READS SQL
+      DATA</code> and <code class="literal">MODIFIES SQL DATA</code> are self
+      explanatory.</p>
+<p>A <code class="literal">CREATE PROCEDURE</code> definition can use
+      <code class="literal">MODIFIES SQL DATA</code>. This is not allowed in
+      <code class="literal">CREATE FUNCTION</code>. Note that a PROCEDURE or a FUNCTION
+      may have internal tables or return a table which are populated by the
+      routine's statements. These tables are not considered SQL DATA,
+      therefore there is no need to specify <code class="literal">MODIFIES SQL
+      DATA</code> for such routines.</p>
+<p>
+<code class="literal">&lt;SQL-data access indication&gt; ::= NO SQL |
+      CONTAINS SQL | READS SQL DATA | MODIFIES SQL DATA</code>
+</p>
+<a name="N12D0A" class="indexterm"></a>
+<p>
+<span class="bold"><strong>NULL INPUT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>null call clause</em></span>
+</p>
+<p>Null Arguments</p>
+<p>The <code class="literal">&lt;null-call clause&gt;</code> is used only for
+      functions. If a function returns NULL when any of the calling arguments
+      is null, then by specifying <code class="literal">RETURNS NULL ON NULL
+      INPUT</code>, calls to the function are known to be redundant and do
+      not take place when an argument is null. This simplifies the coding of
+      the SQL/JRT Java methods and improves performance at the same
+      time.</p>
+<p>
+<code class="literal">&lt;null-call clause&gt; ::= RETURNS NULL ON NULL
+      INPUT | CALLED ON NULL INPUT</code>
+</p>
+<a name="N12D23" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SAVEPOINT LEVEL</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>transaction impact</em></span>
+</p>
+<p>The <code class="literal">&lt;savepoint level indication&gt;</code> is used
+      only for procedures and refers to the visibility of existing savepoints
+      within the body of the procedure. If <code class="literal">NEW SAVEPOINT
+      LEVEL</code> is specified, savepoints that have been declared prior
+      to calling the procedure become invisible within the body of the
+      procedure. HyperSQL&rsquo;s implementation accepts only <code class="literal">NEW SAVEPOINT
+      LEVEL</code>, which must be specified.</p>
+<p>
+<code class="literal">&lt;savepoint level indication&gt; ::= NEW SAVEPOINT
+      LEVEL | OLD SAVEPOINT LEVEL</code>
+</p>
+<a name="N12D3D" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DYNAMIC RESULT SETS</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>returned result sets
+      characteristic</em></span>
+</p>
+<p>The <code class="literal">&lt;returned result sets characteristic&gt;</code>
+      is used with SQL/PSM and SQL/JRT procedures (not with functions). The
+      maximum number of result sets that a procedure may return can be
+      specified with the clause below. The default is zero. If you want your
+      procedure to return result sets, you must specify the maximum number of
+      result sets that your procedure may return. Details are discussed in the
+      next sections.</p>
+<p>
+<code class="literal">&lt;returned result sets characteristic&gt; ::=
+      DYNAMIC RESULT SETS &lt;maximum returned result
+      sets&gt;</code>
+</p>
+</div>
+</div>
+<div class="section" title="SQL Language Routines (PSM)">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="src_psm_routines"></a>SQL Language Routines (PSM)</h2>
+</div>
+</div>
+</div>
+<p>The PSM (Persistent Stored Module) specification extends the SQL
+    language with structures and control statements such as conditional and
+    loop statements. Both SQL Function and SQL procedure bodies use the same
+    syntax, with minor exceptions.</p>
+<p>The routine body is a SQL statement. In its simplest form, the body
+    is a single SQL statement. A simple example of a function is given
+    below:</p>
+<pre class="programlisting">CREATE FUNCTION an_hour_before (t TIMESTAMP)
+  RETURNS TIMESTAMP
+  RETURN t - 1 HOUR
+
+</pre>
+<p>An example of the use of the function in an SQL statement is given
+    below:</p>
+<pre class="programlisting">SELECT an_hour_before(event_timestamp) AS notification_timestamp, event_name FROM events;</pre>
+<p>A simple example of a procedure is given below:</p>
+<pre class="programlisting">CREATE PROCEDURE new_customer(firstname VARCHAR(50), lastname VARCHAR(50))
+  MODIFIES SQL DATA
+  INSERT INTO CUSTOMERS VALUES (DEFAULT, firstname, lastname, CURRENT_TIMESTAMP)
+
+</pre>
+<p>The procedure inserts a row into an existing table with the
+    definition given below:</p>
+<pre class="programlisting">CREATE TABLE customers(id INTEGER GENERATED BY DEFAULT AS IDENTITY, firstname VARCHAR(50), lastname VARCHAR(50), added TIMESTAMP);</pre>
+<p>An example of the use of the procedure is given below:</p>
+<pre class="programlisting">CALL new_customer('JOHN', 'SMITH');</pre>
+<p>The routine body is often a compound statement. A compound statement
+    can contain one or more SQL statements, which can include control
+    statements, as well as nested compound statements.</p>
+<p>Please note carefully the use of
+    <code class="literal">&lt;semicolon&gt;</code>, which is required at the end of some
+    statements but not accepted at the end of others.</p>
+<div class="section" title="Advantages and Disadvantages">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_advantages"></a>Advantages and Disadvantages</h3>
+</div>
+</div>
+</div>
+<p>SQL Language Routines (PSM) have certain advantages over Java
+      Language Routines (SQL/JRT) and a couple of disadvantages.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>SQL language routines (PSM) do not rely on custom Java classes
+          to be present on the classpath. The databases that use them are
+          therefore more portable.</p>
+</li>
+<li class="listitem">
+<p>For a routine that accesses SQL DATA, all the SQL statements
+          in an SQL routine are known and monitored by the engine. The engine
+          will not allow a table, routine or sequence that is referenced in an
+          SQL routine to be dropped, or its structure modified in a way that
+          will break the routine execution. The engine does not keep this
+          information about a Java routine.</p>
+</li>
+<li class="listitem">
+<p>Because the statements in an SQL routine are known to the
+          engine, the execution of an SQL routine locks all the database
+          objects it needs to access before the actual execution. With Java
+          routines, locks are obtained during execution and this may cause
+          additional delays in multi threaded access to the database.</p>
+</li>
+<li class="listitem">
+<p>For routines that do not access SQL DATA, Java routines
+          (SQL/JRT) may be faster if they perform extensive
+          calculations.</p>
+</li>
+<li class="listitem">
+<p>Only Java routines can access external programs and resources
+          directly.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="Routine Statements">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_psm_statements"></a>Routine Statements</h3>
+</div>
+</div>
+</div>
+<p>The following SQL Statements can be used only in routines. These
+      statements are covered in this section.</p>
+<p>
+<code class="literal">&lt;handler declaration&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;table variable declaration&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;variable declaration&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;declare cursor&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;assignment statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;compound statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;case statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;if statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;while statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;repeat statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;for statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;loop statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;iterate statement</code>
+</p>
+<p>
+<code class="literal">&lt;leave statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;signal statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;resignal statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;return statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;select statement: single
+      row&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;open statement&gt;</code>
+</p>
+<p>The following SQL Statements can be used in procedures but not in
+      generally in functions (they can be used in functions only to change the
+      data in a local table variable) . These statements are covered in other
+      chapters of this Guide.</p>
+<p>
+<code class="literal">&lt;call statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;delete statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;insert statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;update statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;merge statement&gt;</code>
+</p>
+<p>As shown in the examples below, the formal parameters and the
+      variables of the routine can be used in statements, similar to the way a
+      column reference is used.</p>
+</div>
+<div class="section" title="Compound Statement">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_psm_compound"></a>Compound Statement</h3>
+</div>
+</div>
+</div>
+<p>A compound statement is enclosed in a BEGIN / END block with
+      optional labels. It can contain one or more <code class="literal">&lt;SQL variable
+      declaration&gt;</code>, <code class="literal">&lt;declare cursor&gt;</code> or
+      <code class="literal">&lt;handler declaration&gt;</code> before at least one SQL
+      statement. The BNF is given below:</p>
+<p>
+<code class="literal">&lt;compound statement&gt; ::= [ &lt;beginning
+      label&gt; &lt;colon&gt; ] BEGIN [[NOT] ATOMIC]</code>
+</p>
+<p>
+<code class="literal">[{&lt;SQL variable declaration&gt; &lt;semicolon&gt;}
+      ...]</code>
+</p>
+<p>
+<code class="literal">[{&lt;declare cursor&gt; &lt;semicolon&gt;}
+      ...]</code>
+</p>
+<p>
+<code class="literal">[{&lt;handler declaration&gt; &lt;semicolon&gt;}...]
+      </code>
+</p>
+<p>
+<code class="literal">{&lt;SQL procedure statement&gt; &lt;semicolon&gt;}
+      ... </code>
+</p>
+<p>
+<code class="literal">END [ &lt;ending label&gt; ]</code>
+</p>
+<p>An example of a simple compound statement body is given below. It
+      performs the common task of inserting related data into two table. The
+      IDENTITY value that is automatically inserted in the first table is
+      retrieved using the IDENTITY() function and inserted into the second
+      table.</p>
+<pre class="programlisting">CREATE PROCEDURE new_customer(firstname VARCHAR(50), lastname  VARCHAR(50), address VARCHAR(100))
+  MODIFIES SQL DATA
+    BEGIN ATOMIC
+    INSERT INTO customers VALUES (DEFAULT, firstname, lastname, CURRENT_TIMESTAMP);
+    INSERT INTO addresses VALUES (DEFAULT, IDENTITY(), address);
+  END
+
+</pre>
+</div>
+<div class="section" title="Table Variables">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_psm_table_vars"></a>Table Variables</h3>
+</div>
+</div>
+</div>
+<p>A <code class="literal">&lt;table variable declaration&gt;</code> defines
+      the name and columns of a local table, that can be used in the routine
+      body. The table cannot have constraints. Table variable declarations are
+      made before scalar variable declarations.</p>
+<pre class="programlisting">  BEGIN ATOMIC
+    DECLARE TABLE temp_table (col_a INT, col_b VARCHAR(20);
+    DECLARE temp_id INTEGER;
+    -- more statements
+  END
+
+</pre>
+</div>
+<div class="section" title="Variables">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_psm_vars"></a>Variables</h3>
+</div>
+</div>
+</div>
+<p>A <code class="literal">&lt;variable declaration&gt;</code> defines the name
+      and data type of the variable and, optionally, its default value. In the
+      next example, a variable is used to hold the IDENTITY value. In
+      addition, the formal parameters of the procedure are identified as input
+      parameters with the use of the optional IN keyword. This procedure does
+      exactly the same job as the procedure in the previous example.</p>
+<pre class="programlisting">CREATE PROCEDURE new_customer(IN firstname VARCHAR(50), IN lastname VARCHAR(50), IN address VARCHAR(100))
+  MODIFIES SQL DATA
+  BEGIN ATOMIC
+    DECLARE temp_id INTEGER;
+    INSERT INTO CUSTOMERS VALUES (DEFAULT, firstname, lastname, CURRENT_TIMESTAMP);
+    SET temp_id = IDENTITY();
+    INSERT INTO ADDRESSES VALUES (DEFAULT, temp_id, address);
+  END
+
+</pre>
+<p>The BNF for variable declaration is given below:</p>
+<a name="N12E17" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DECLARE variable</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>SQL variable declaration</em></span>
+</p>
+<p>
+<code class="literal">&lt;SQL variable declaration&gt; ::= DECLARE
+      &lt;variable name list&gt; &lt;data type&gt; [DEFAULT &lt;default
+      value&gt;]</code>
+</p>
+<p>
+<code class="literal">&lt;variable name list&gt; ::= &lt;variable name&gt; [
+      { &lt;comma&gt; &lt;variable name&gt; }... ]</code>
+</p>
+<p>Examples of variable declaration are given below. Note that in a
+      DECLARE statement with multiple comma-separated variable names, the type
+      and the default value applies to all the variables in the list:</p>
+<pre class="programlisting">  BEGIN ATOMIC
+    DECLARE temp_zero DATE;
+    DECLARE temp_one, temp_two INTEGER DEFAULT 2;
+    DECLARE temp_three VARCHAR(20) DEFAULT 'no name';
+    -- more statements ...
+    SET temp_zero = DATE '2010-03-18';
+    SET temp_two = 5;
+    -- more statements ...
+  END</pre>
+</div>
+<div class="section" title="Cursors">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_psm_cursors"></a>Cursors</h3>
+</div>
+</div>
+</div>
+<p>A <code class="literal">&lt;declare cursor&gt;</code> statement is used to
+      declare a SELECT statement. The current usage of this statement in early
+      versions of HyperSQL 2.0 is exclusively to return a result set from a
+      procedure. The result set is returned to the JDBC CallableStatement
+      object that calls the procedure. The getResultSet() method of
+      CallableStatement is then used to retrieve the JDBC ResultSet.</p>
+<p>In the <code class="literal">&lt;routine definition&gt;</code>, the
+      <code class="literal">DYNAMIC RESULT SETS</code> clause must be used to specify a
+      value above zero. The <code class="literal">DECLARE CURSOR</code> statement is
+      used after any variable declaration in compound statement block. The
+      <code class="literal">&lt;open statement&gt;</code> is then executed for the
+      cursor at the point where the result set should be populated.</p>
+<p>After the procedure is executed with a JDBC CallableStatement
+      execute() method, all the result sets that were opened are returned to
+      the JDBC CallableStatement.</p>
+<p>Calling getResultSet() will return the first ResultSet. When there
+      are multiple result sets, the getMoreResults() method of the Callable
+      statement is called to move to the next ResultSet, before getResultSet()
+      is called to return the next ResultSet. See the <a class="link" href="dataaccess-chapt.html" title="Chapter&nbsp;7.&nbsp;Data Access and Change">Data Access and Change</a> chapter
+      on the syntax for declaring the cursor.</p>
+<pre class="programlisting">  BEGIN ATOMIC
+    DECLARE temp_zero DATE;
+    DECLARE result CURSOR FOR SELECT * FROM INFORMATION_SCHEMA.TABLES WITH RETURN;
+    -- more statements ...
+    OPEN result;
+  END
+</pre>
+</div>
+<div class="section" title="Handlers">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_psm_handlers"></a>Handlers</h3>
+</div>
+</div>
+</div>
+<p>A <code class="literal">&lt;handler declaration&gt;</code> defines the
+      course of action when an exception or warning is raised during the
+      execution of the compound statement. A compound statement may have one
+      or more handler declarations. These handlers become active when code
+      execution enters the compound statement block and remain active in any
+      sub-block and statement within the block. The handlers become inactive
+      when code execution leaves the block.</p>
+<p>In the previous example, if an exception is thrown during the
+      execution of either SQL statement, the execution of the compound
+      statement is terminated and the exception is propagated and thrown by
+      the CALL statement for the procedure. A handler declaration can resolve
+      the thrown exception within the compound statement without propagating
+      it, and allow the execution of the &lt;compound statement&gt; to
+      continue.</p>
+<p>In the example below, the UNDO handler declaration catches any
+      exception that is thrown during the execution of the compound statement
+      inside the BEGIN / END block. As it is an UNDO handler, all the changes
+      to data performed within the compound statement (BEGIN / END) block are
+      rolled back. The procedure then returns without throwing an
+      exception.</p>
+<pre class="programlisting">CREATE PROCEDURE NEW_CUSTOMER(IN firstname VARCHAR(50), IN lastname VARCHAR(50), IN address VARCHAR(100))
+    MODIFIES SQL DATA
+  label_one: BEGIN ATOMIC
+    DECLARE temp_id INTEGER;
+    DECLARE UNDO HANDLER FOR SQLEXCEPTION LEAVE label_one;
+    INSERT INTO CUSTOMERS VALUES (DEFAULT, firstname, lastname, CURRENT_TIMESTAMP);
+    SET temp_id = IDENTITY();
+    INSERT INTO ADDRESSES VALUES (DEFAULT, temp_id, address);
+  END
+
+</pre>
+<p>Other types of hander are CONTINUE and EXIT handlers. A CONTINUE
+      handler ignores any exception and proceeds to the next statement in the
+      block. An EXIT handler terminates execution without undoing the data
+      changes performed by the previous (successful) statements.</p>
+<p>The conditions can be general conditions, or specific conditions.
+      Among general conditions that can be specified, SQLEXCEPTION covers all
+      exceptions, SQLWARNING covers all warnings, while NOT FOUND covers the
+      not-found condition, which is raised when a DELETE, UPDATE, INSERT or
+      MERGE statement completes without actually affecting any row.
+      Alternatively, one or more specific conditions can be specified
+      (separated with commas) which apply to specific exceptions or warnings
+      or classes or exceptions or warnings. A specific condition is specified
+      with <code class="literal">SQLSTATE &lt;value&gt;</code>, for example SQLSTATE
+      'W_01003' specifies the warning raised after a SQL statement is executed
+      which contains an aggregate function which encounters a null value
+      during execution. An example is given below which activates the handler
+      when either of the two warnings is raised:</p>
+<pre class="programlisting">DECLARE UNDO HANDLER FOR SQLSTATE 'W_01003', 'W_01004' LEAVE label_one;</pre>
+<p>The BNF for <code class="literal">&lt;handler declaration&gt;</code> is
+      given below:</p>
+<a name="N12E6B" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DECLARE HANDLER</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>declare handler statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;handler declaration&gt; ::= DECLARE {UNDO |
+      CONTINUE | EXIT} HANDLER FOR {SQLEXCEPTION | SQLWARNING | NOT FOUND} | {
+      SQLSTATE &lt;state value&gt; [, ...]} [&lt;SQL procedure
+      statement&gt;];</code>
+</p>
+<p>A handler declaration may specify an SQL procedure statement to be
+      performed when the handler is activated. When an exception occurs, the
+      example below performs the UNDO as in the previous example, then inserts
+      the (invalid) data into a separate table.</p>
+<pre class="programlisting">DECLARE UNDO HANDLER FOR SQLEXCEPTION
+    INSERT INTO invalid_customers VALUES(firstanme, lastname, address);</pre>
+<p>The <code class="literal">&lt;SQL procedure statement&gt;</code> is required
+      by the SQL Standard but is optional in HyperSQL. If the execution of the
+      <code class="literal">&lt;SQL procedure statement&gt;</code> specified in the
+      handler declaration throws an exception itself, then it is handled by
+      the handlers that are currently active. The <code class="literal">&lt;SQL procedure
+      statement&gt;</code> can itself be a compound statement with its own
+      handlers.</p>
+</div>
+<div class="section" title="Assignment Statement">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_psm_assignment"></a>Assignment Statement</h3>
+</div>
+</div>
+</div>
+<p>The SET statement is used for assignment. It can be used flexibly
+      with rows or single values. The BNF is given below:</p>
+<p>
+<code class="literal">&lt;assignment statement&gt; ::= &lt;singleton
+      variable assignment&gt; | &lt;multiple variable
+      assignment&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;singleton variable assignment&gt; ::= SET
+      &lt;assignment target&gt; &lt;equals operator&gt; &lt;assignment
+      source&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;multiple variable assignment&gt; ::= SET
+      (&lt;variable or parameter&gt;, ...) = &lt;row value
+      expression&gt;</code>
+</p>
+<p>In the example below, the result of the SELECT is assigned to two
+      OUT or INOUT arguments. The SELECT must return one row. If it returns
+      more than one, an exception is raised. If it returns no row, no change
+      is made to ARG1 and ARG2.</p>
+<pre class="programlisting">SET (arg1, arg2) = (SELECT col1, col2 FROM atable WHERE id = 10);</pre>
+<p>In the example below, the result of a function call is assigned to
+      VAR1.</p>
+<pre class="programlisting">SET var1 = SQRT(var2);</pre>
+</div>
+<div class="section" title="Select Statement : Single Row">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_psm_select_single"></a>Select Statement : Single Row</h3>
+</div>
+</div>
+</div>
+<p>A special form of SELECT can also be used for assigning values
+      from a query to one or more arguments or variables. This works similar
+      to a SET statement that has a SELECT statement as the source.</p>
+<a name="N12EA6" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SELECT : SINGLE ROW</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>select statement: single row</em></span>
+</p>
+<p>
+<code class="literal">&lt;select statement: single row&gt; ::= SELECT [
+      &lt;set quantifier&gt; ] &lt;select list&gt; INTO &lt;select target
+      list&gt; &lt;table expression&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;select target list&gt; ::= &lt;target
+      specification&gt; [ { &lt;comma&gt; &lt;target specification&gt; }...
+      ]</code>
+</p>
+<p>Retrieve values from a specified row of a table and assign the
+      fields to the specified targets. The example below has an identical
+      effect to the example of SET statement given above.</p>
+<pre class="programlisting">SELECT col1, col2 INTO arg1, arg2 FROM atable WHERE id = 10;</pre>
+</div>
+<div class="section" title="Formal Parameters">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_formal_parameters"></a>Formal Parameters</h3>
+</div>
+</div>
+</div>
+<p>Each parameter of a procedure can be defined as IN, OUT or INOUT.
+      An IN parameter is an input to the procedure and is passed by value. The
+      value cannot be modified inside the procedure body. An OUT parameter is
+      a reference for output. An INOUT parameter is a reference for both input
+      and output. An OUT or INOUT parameter argument is passed by reference,
+      therefore only a dynamic parameter argument or a variable within an
+      enclosing procedure can be passed for it. The assignment statement is
+      used to assign a value to an OUT or INOUT parameter.</p>
+<p>In the example below, the procedure is declared with an OUT
+      parameter. It assigns the auto-generated IDENTITY value from the INSERT
+      statement to the OUT argument.</p>
+<pre class="programlisting">CREATE PROCEDURE new_customer(OUT newid INT, IN firstname VARCHAR(50), IN lastname VARCHAR(50), IN address VARCHAR(100))
+  MODIFIES SQL DATA
+  BEGIN ATOMIC
+    DECLARE temp_id INTEGER;
+    INSERT INTO CUSTOMERS VALUES (DEFAULT, firstname, lastname, CURRENT_TIMESTAMP);
+    SET temp_id = IDENTITY();
+    INSERT INTO ADDRESSES VALUES (DEFAULT, temp_id, address);
+    SET newid = temp_id;
+  END
+
+</pre>
+<p>In the SQL session, or in the body of another stored procedure, a
+      variable must be assigned to the OUT parameter. After the procedure
+      call, this variable will hold the new identity value that was generated
+      inside the procedure. If the procedure is called directly, using the
+      JDBC CallableStatement interface, then the value of the first, OUT
+      argument can be retrieved with a call to
+      <code class="literal">getInt(1)</code>after calling the execute() method.</p>
+<p>In the example below, a session variable,
+      <code class="literal">the_new_id</code> is declared. After the call to
+      <code class="literal">new_customer</code>, the value for the identity is stored in
+      <code class="literal">the_new_id</code> variable. This is returned via the next
+      CALL statement. Alternatively, <code class="literal">the_new_id</code> can be used
+      as an argument to another CALL statement.</p>
+<pre class="programlisting">DECLARE the_new_id INT DEFAULT NULL;
+CALL new_customer(the_new_id, 'John', 'Smith', '10 Parliament Square'); 
+CALL the_new_id;
+
+</pre>
+</div>
+<div class="section" title="Iterated Statements">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_psm_iterated_statements"></a>Iterated Statements</h3>
+</div>
+</div>
+</div>
+<p>Various iterated statements can be used in routines. In these
+      statements, the <code class="literal">&lt;SQL statement list&gt;</code> consists
+      of one or more SQL statements. The <code class="literal">&lt;search
+      condition&gt;</code> can be any valid SQL expression of BOOLEAN
+      type.</p>
+<a name="N12EE7" class="indexterm"></a>
+<p>
+<span class="bold"><strong>LOOP</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>loop statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;loop statement&gt; ::= [ &lt;beginning label&gt;
+      &lt;colon&gt; ] LOOP &lt;SQL statement list&gt; END LOOP [ &lt;ending
+      label&gt; ]</code>
+</p>
+<a name="N12EF6" class="indexterm"></a>
+<p>
+<span class="bold"><strong>WHILE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>while statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;while statement&gt; ::= [ &lt;beginning label&gt;
+      &lt;colon&gt; ] WHILE &lt;search condition&gt; DO &lt;SQL statement
+      list&gt; END WHILE [ &lt;ending label&gt; ]</code>
+</p>
+<a name="N12F05" class="indexterm"></a>
+<p>
+<span class="bold"><strong>REPEAT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>repeat statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;repeat statement&gt; ::= [ &lt;beginning label&gt;
+      &lt;colon&gt; ]</code>
+</p>
+<p>
+<code class="literal">REPEAT &lt;SQL statement list&gt; UNTIL &lt;search
+      condition&gt; END REPEAT [ &lt;ending label&gt;</code>
+</p>
+<p>In the example below, a multiple rows are inserted into a table in
+      a WHILE loop:</p>
+<pre class="programlisting">loop_label: WHILE my_var &gt; 0 DO
+  INSERT INTO CUSTOMERS VALUES (DEFAULT, my_var);
+  SET my_var = my_var - 1;
+  IF my_var = 10 THEN SET my_var = 8; END IF;
+  IF my_var = 22 THEN LEAVE loop_label; END IF;
+END WHILE loop_label;
+
+</pre>
+</div>
+<div class="section" title="Iterated FOR Statement">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_psm_for_statement"></a>Iterated FOR Statement</h3>
+</div>
+</div>
+</div>
+<p>The <code class="literal">&lt;for statement&gt;</code> is similar to other
+      iterated statement, but it is always used with a cursor declaration to
+      iterate over the rows of the result set of the cursor and perform
+      operations using the values of each row.</p>
+<a name="N12F24" class="indexterm"></a>
+<p>
+<span class="bold"><strong>FOR</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>for statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;for statement&gt; ::= [ &lt;beginning label&gt;
+      &lt;colon&gt; ] FOR &lt;query expression&gt; DO &lt;SQL statement
+      list&gt; END FOR [ &lt;ending label&gt; ]</code>
+</p>
+<p>The &lt;query expression&gt; is a SELECT statement. When the FOR
+      statement is executed, the query expression is executed first and the
+      result set is formed. Then for each row of the result set, the
+      <code class="literal">&lt;SQL statement list&gt;</code> is executed. What is
+      special about the FOR statement is that all the columns of the current
+      row can be accessed by name in the statements in the <code class="literal">&lt;SQL
+      statement list&gt;</code>. The columns are read only and cannot be
+      updated. For example, if the column names for the select statement are
+      ID, FIRSTNAME, LASTNAME, then these can be accessed as a variable name.
+      The column names must be unique and not equivalent to any parameter or
+      variable name in scope.</p>
+<p>The FOR statement is useful for computing values over multiple
+      rows of the result set, or for calling a procedure for some row of the
+      result set. In the example below, the procedure uses a FOR statement to
+      iterate over the rows for a customer with lastname equal to name_p. No
+      action is performed for the first row, but for all the subsequent rows,
+      the row is deleted from the table.</p>
+<p>Note the following: The result set for the SELECT statement is
+      built only once, before processing the statements inside the FOR block
+      begins. For all the rows of the SELECT statement apart from the first
+      row, the row is deleted from the customer table. The WHERE condition
+      uses the automatic variable id, which holds the customer.id value for
+      the current row of the result set, to delete the row. The procedure
+      updates the val_p argument and when it returns, the val_p represents the
+      total count of rows with the given lastname before the duplicates were
+      deleted.</p>
+<pre class="programlisting">CREATE PROCEDURE test_proc(INOUT val_p INT, IN lastname_p VARCHAR(20)) 
+MODIFIES SQL DATA
+BEGIN ATOMIC
+  SET val_p = 0;
+  for_label: FOR SELECT * FROM customer WHERE lastname = lastname_p DO
+    IF  val_p &gt; 0 THEN
+      DELETE FROM customer WHERE customer.id = id;
+    END IF;
+    SET val_p = val_p + 1;
+  END FOR for_label;
+END
+</pre>
+</div>
+<div class="section" title="Conditional Statements">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_psm_conditional"></a>Conditional Statements</h3>
+</div>
+</div>
+</div>
+<p>There are two types of CASE ... WHEN statement and the IF ... THEN
+      statement.</p>
+<a name="N12F47" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CASE WHEN</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>case when statement</em></span>
+</p>
+<p>The simple case statement uses a <code class="literal">&lt;case
+      operand&gt;</code> as the predicand of one or more predicates. For
+      the right part of each predicate, it specifies one or more SQL
+      statements to execute if the predicate evaluates TRUE. If the ELSE
+      clause is not specified, at least one of the search conditions must be
+      true, otherwise an exception is raised.</p>
+<p>
+<code class="literal">&lt;simple case statement&gt; ::= CASE &lt;case
+      operand&gt; &lt;simple case statement when clause&gt;... [ &lt;case
+      statement else clause&gt; ] END CASE</code>
+</p>
+<p>
+<code class="literal">&lt;simple case statement when clause&gt; ::= WHEN
+      &lt;when operand list&gt; THEN &lt;SQL statement
+      list&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;case statement else clause&gt; ::= ELSE &lt;SQL
+      statement list&gt;</code>
+</p>
+<p>A skeletal example is given below. The variable var_one is first
+      tested for equality with 22 or 23 and if the test evaluates to TRUE,
+      then the INSERT statement is performed and the statement ends. If the
+      test does not evaluate to TRUE, the next condition test, which is an IN
+      predicate, is performed with var_one and so on. The statement after the
+      ELSE clause is performed if none the previous tests returns TRUE.</p>
+<pre class="programlisting">CASE var_one
+  WHEN 22, 23 THEN INSERT INTO t_one ...;
+  WHEN IN (2, 4, 5) THEN DELETE FROM t_one WHERE ...;
+  ELSE UPDATE t_one ...;
+  END CASE
+
+</pre>
+<p>The searched case statement uses one or more search conditions,
+      and for each search condition, it specifies one or more SQL statements
+      to execute if the search condition evaluates TRUE. An exception is
+      raised if there is no ELSE clause and none of the search conditions
+      evaluates TRUE.</p>
+<p>
+<code class="literal">&lt;searched case statement&gt; ::= CASE &lt;searched
+      case statement when clause&gt;... [ &lt;case statement else clause&gt; ]
+      END CASE</code>
+</p>
+<p>
+<code class="literal">&lt;searched case statement when clause&gt; ::= WHEN
+      &lt;search condition&gt; THEN &lt;SQL statement
+      list&gt;</code>
+</p>
+<p>The example below is partly a rewrite of the previous example, but
+      a new condition is added:</p>
+<pre class="programlisting">CASE WHEN var_one = 22 OR var_one = 23 THEN INSERT INTO t_one ...;
+  WHEN var_one IN (2, 4, 5) THEN DELETE FROM t_one WHERE ...;
+  WHEN var_two IS NULL THEN UPDATE t_one ...;
+  ELSE UPDATE t_one ...;
+  END CASE
+
+</pre>
+<a name="N12F71" class="indexterm"></a>
+<p>
+<span class="bold"><strong>IF</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>if statement</em></span>
+</p>
+<p>The if statement is very similar to the searched case statement.
+      The difference is that no exception is raised if there is no ELSE clause
+      and no search condition evaluates TRUE.</p>
+<p>
+<code class="literal">&lt;if statement&gt; ::= IF &lt;search condition&gt;
+      &lt;if statement then clause&gt; [ &lt;if statement elseif clause&gt;...
+      ] [ &lt;if statement else clause&gt; ] END IF</code>
+</p>
+<p>
+<code class="literal">&lt;if statement then clause&gt; ::= THEN &lt;SQL
+      statement list&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;if statement elseif clause&gt; ::= ELSEIF
+      &lt;search condition&gt; THEN &lt;SQL statement
+      list&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;if statement else clause&gt; ::= ELSE &lt;SQL
+      statement list&gt;</code>
+</p>
+</div>
+<div class="section" title="Return Statement">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_psm_return_statement"></a>Return Statement</h3>
+</div>
+</div>
+</div>
+<p>The RETURN statement is required and used only in functions. The
+      body of a function is either a RETURN statement, or a compound statement
+      that contains a RETURN statement.</p>
+<p>The return value of a FUNCTION can be assigned to a variable, or
+      used inside an SQL statement.</p>
+<p>An SQL/PSM function or an SQL/JRT function can return a single
+      result when the function is defined as RETURNS TABLE ( .. )</p>
+<p>To return a table from a SELECT statement, you should use a return
+      statement such as RETURN TABLE( SELECT ...) in an SQL/PSM function. For
+      an SQL/JRT function, the Java method should return a JDBCResultSet
+      instance.</p>
+<p>To call a function from JDBC, use a java.sql.CallableStatement
+      instance. The <code class="literal">getResultSet()</code> call can be used to
+      access the ResultSet returned from a function that returns a result set.
+      If the function returns a scalar value, the returned result has a single
+      column and a single row which contains the scalar returned value.</p>
+<a name="N12F9C" class="indexterm"></a>
+<p>
+<span class="bold"><strong>RETURN</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>return statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;return statement&gt; ::= RETURN &lt;return
+      value&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;return value&gt; ::= &lt;value expression&gt; |
+      NULL</code>
+</p>
+<p>Return a value from an SQL function. If the function is defined
+      as RETURNS TABLE, then the value is a TABLE expression such as RETURN
+      TABLE(SELECT ...) otherwise, the value expression can be any scalar
+      expression. In the examples below, the same function is written with or
+      without a BEGIN END block. In both versions, the RETURN value is a
+      scalar expression.</p>
+<pre class="programlisting">CREATE FUNCTION an_hour_before_max (e_type INT)
+  RETURNS TIMESTAMP
+  RETURN (SELECT MAX(event_time) FROM atable WHERE event_type = e_type) - 1 HOUR
+
+CREATE FUNCTION an_hour_before_max (e_type INT)
+  RETURNS TIMESTAMP
+  BEGIN ATOMIC
+    DECLARE max_event TIMESTAMP;
+    SET max_event = SELECT MAX(event_time) FROM atable WHERE event_type = e_type;
+    RETURN max_event - 1 HOUR;
+  END
+
+</pre>
+</div>
+<div class="section" title="Control Statements">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_psm_control_statements"></a>Control Statements</h3>
+</div>
+</div>
+</div>
+<p>In addition to the RETURN statement, the following statements can
+      be used in specific contexts.</p>
+<p>ITERATE STATEMENT</p>
+<p>The ITERATE statement can be used to cause the next iteration of a
+      labelled iterated statement (a WHILE, REPEAT or LOOP statement). It is
+      similar to the "continue" statement in C and Java.</p>
+<p>
+<code class="literal">&lt;iterate statement&gt; ::= ITERATE &lt;statement
+      label&gt;</code>
+</p>
+<p>LEAVE STATEMENT</p>
+<p>The LEAVE statement can be used to leave a labelled block. When
+      used in an iterated statement, it is similar to the "break" statement is
+      C and Java. But it can be used in compound statements as well.</p>
+<p>
+<code class="literal">&lt;leave statement&gt; ::= LEAVE &lt;statement
+      label&gt;</code>
+</p>
+</div>
+<div class="section" title="Raising Exceptions">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_psm_exceptions"></a>Raising Exceptions</h3>
+</div>
+</div>
+</div>
+<p>Signal and Resignal Statements allow the routine to throw an
+      exception. If used with the IF or CASE conditions, the exception is
+      thrown conditionally.</p>
+<a name="N12FCC" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SIGNAL</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>signal statement</em></span>
+</p>
+<p>The SIGNAL statement is used to throw an exception (or force an
+      exception). When invoked, any exception handler for the given exception
+      is in turn invoked. If there is no handler, the exception is propagated
+      to the enclosing context. In its simplest form, when there is no
+      exception handler for the given exception, routine execution is halted,
+      any change of data is rolled back and the routine throws the exception.
+      By default, the message for the exception is taken from the predefined
+      exception message for the specified SQLSTATE. A custom message can be
+      specified with the optional SET clause.</p>
+<p>
+<code class="literal">&lt;signal statement&gt; ::= SIGNAL SQLSTATE &lt;state
+      value&gt; [ SET MESSAGE_TEXT = &lt;character string literal&gt; ]
+      </code>
+</p>
+<a name="N12FDD" class="indexterm"></a>
+<p>
+<span class="bold"><strong>RESIGNAL</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>resignal statement</em></span>
+</p>
+<p>The RESIGNAL statement is used to throw an exception from an
+      exception handler's <code class="literal">&lt;SQL procedure statement&gt;</code>,
+      in effect propagating the exception to the enclosing context without
+      further action by the currently active handlers. By default, the message
+      for the exception is taken from the predefined exception message for the
+      specified SQLSTATE. A custom message can be specified with the optional
+      SET clause.</p>
+<p>
+<code class="literal">&lt;resignal statement&gt; ::= RESIGNAL SQLSTATE
+      &lt;state value&gt; [ SET MESSAGE_TEXT = &lt;character string
+      literal&gt; ]</code>
+</p>
+</div>
+<div class="section" title="Routine Polymorphism">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_routine_polymorphism"></a>Routine Polymorphism</h3>
+</div>
+</div>
+</div>
+<p>More than one version of a routine can be created.</p>
+<p>For procedures, the different versions must have different
+      parameter counts. When the procedure is called, the parameter count
+      determines which version is called.</p>
+<p>For functions, the different versions can have the same or
+      different parameter counts. When the parameter count of two versions of
+      a function is the same, the type of parameters must be different. When
+      the function is called, the best matching version of the function is
+      used, according to both the parameter count and parameter types. The
+      return type of different versions of a function can be the same or
+      different.</p>
+<p>Two versions of an overloaded function are given below. One
+      version accepts TIMESTAMP while the other accepts TIME arguments.</p>
+<pre class="programlisting">CREATE FUNCTION an_hour_before_or_now(t TIMESTAMP)
+  RETURNS TIMESTAMP
+  IF t &gt; CURRENT_TIMESTAMP THEN
+    RETURN CURRENT_TIMESTAMP;
+  ELSE
+    RETURN t - 1 HOUR;
+  END IF
+
+CREATE FUNCTION an_hour_before_or_now(t TIME)
+  RETURNS TIME
+  CASE t
+    WHEN &gt; CURRENT_TIME THEN
+      RETURN CURRENT_TIME;
+    WHEN &gt;= TIME'01:00:00' THEN
+      RETURN t - 1 HOUR;
+    ELSE
+      RETURN CURRENT_TIME;
+  END CASE
+
+</pre>
+<p>It is perfectly possible to have different versions of the routine
+      as SQL/JRT or SQL/PSM routines.</p>
+</div>
+<div class="section" title="Returning Data From Procedures">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_returning_data"></a>Returning Data From Procedures</h3>
+</div>
+</div>
+</div>
+<p>The OUT or INOUT parameters of a PROCEDURE are used to assign
+      simple values to dynamic parameters or to variables in the calling
+      context.</p>
+<p>According to the Standard, an SQL/PSM or SQL/JRT procedure may
+      also return result sets to the calling context. These result sets are
+      dynamic in the sense that a procedure may return a different number of
+      result sets or none at all in different invocations. The SQL Standard
+      uses a mechanism called CURSORS for accessing and modifying rows of a
+      result set one by one. This mechanism is necessary when the database is
+      accessed from an external application program. The JDBC ResultSet
+      interface allows this method of access from Java programs and is
+      supported by HyperSQL.</p>
+<p>HyperSQL support this method of returning single or multiple
+      result sets from SQL/PSM procedures only via the JDBC CallableStatement
+      interface. Cursors are declared and opened within the body of the
+      procedure. No further operation is performed on the cursors within the
+      procedure. When the execution of the procedure is complete, the cursors
+      become available as Java ResultSet objects via the CallableStatement
+      instance that called the SQL/PSM procedure.</p>
+<p>The JDBC CallableStatement class is used with the SQL statement
+      <code class="literal">CALL &lt;routine name&gt; ( &lt;argument 1&gt;, ... )</code>
+      to call procedures (also to call functions). After the call to
+      execute(), the <code class="literal">getXXX()</code> methods can be used to
+      retrieve INOUT or OUT arguments after the call. The getMoreResults()
+      method and the <code class="literal">getResultSet()</code> method can be used to
+      access the ResultSet(s) returned by a procedure that returns one or more
+      results. If the procedure returns more than one result set, the
+      <code class="literal">getMoreResults()</code> call moves to the next
+      result.</p>
+<p>In the example below, the procedure inserts a row into the
+      customer table. It then performs the SELECT statement to return the
+      latest inserted row as a result set. Therefore the definition includes
+      the <code class="code">DYNAMIC RESULT SETS 1</code> clause. You must specify
+      correctly the maximum number of result sets that the procedure may
+      return.</p>
+<pre class="programlisting">CREATE PROCEDURE new_customer(firstname VARCHAR(50), lastname VARCHAR(50))
+  MODIFIES SQL DATA DYNAMIC RESULT SETS 1
+  BEGIN ATOMIC
+    DECLARE result CURSOR FOR SELECT * FROM CUSTOMERS WHERE ID = IDENTITY();
+    INSERT INTO CUSTOMERS VALUES (DEFAULT, firstname, lastname, CURRENT_TIMESTAMP);
+    OPEN result;    
+  END
+
+</pre>
+<p>The above procedure is called in Java using a
+      CallableStatement</p>
+<pre class="programlisting">Connection conn = ...;
+CallableStatement call = conn.prepareCall("call new_customer(?, ?)");
+call.setString(1, "Paul");
+call.setString(2, "Smith");
+call.execute();
+if (call.getMoreResults())
+    ResultSet result = call.getResultSet();
+
+</pre>
+<p>In the example below a procedure has one IN argument and two OUT
+      arguments. The JDBC CallableStatement is used to retrieve the values
+      returned in the OUT arguments.</p>
+<pre class="programlisting">CREATE PROCEDURE get_customer(IN id INT, OUT firstname VARCHAR(50), OUT lastname VARCHAR(50)) 
+  READS SQL DATA
+  BEGIN ATOMIC
+    -- this statement uses the id to get firstname and lastname
+    SELECT first_name, last_name INTO firstname, lastname FROM customers WHERE cust_id = id;
+  END
+
+Connection conn = ...;
+CallableStatement call = conn.prepareCall("call get_customer(?, ?, ?)");
+call.setInt(1, 121); // only the IN (or INOUT) arguments should be set before the call
+call.execute();
+String firstname = call.getString(2); // the OUT (or INOUT) arguments are retrieved after the call
+String lastname = call.getString(3);
+
+</pre>
+<p>SQL/JRT procedures are discussed in the Java Language Procedures
+      section below. Those routines are called exactly the same way as SQL/PSM
+      procedures, using the JDBC CallableStatement interface.</p>
+<p>It is also possible to use a JDBC Statement or PreparedStatement
+      object to call a procedure if the procedure arguments are constant. If
+      the procedure returns one or more result sets, the
+      Statement#getMoreResults() method should be called before retrieving the
+      ResultSet.</p>
+<p>Java functions are called from JDBC similar to procedures. With
+      functions, the getMoreResuls() method should not be called at
+      all.</p>
+</div>
+<div class="section" title="Recursive Routines">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_psm_recursive_routines"></a>Recursive Routines</h3>
+</div>
+</div>
+</div>
+<p>Routines can be recursive. Recursive functions are often functions
+      that return arrays or tables. To create a recursive routine, the routine
+      definition must be created first with a dummy body. Then the ALTER
+      ROUTINE statement is used to define the routine body.</p>
+<p>In the example below, the table contains a tree of rows each with
+      a parent. The routine returns an array containing the id list of all the
+      direct and indirect children of the given parent. The routine appends
+      the array variable id_list with the id of each direct child and for each
+      child appends the array with the id array of its children by calling the
+      routine recursively.</p>
+<p>The routine can be used in a SELECT statement as the example
+      shows.</p>
+<pre class="programlisting">CREATE TABLE ptree (pid INT, id INT);
+INSERT INTO ptree VALUES (NULL, 1) ,(1,2), (1,3),(2,4),(4,5),(3,6),(3,7);
+
+-- the function is created and always throws an exception when used
+CREATE FUNCTION child_arr(p_pid INT) RETURNS INT ARRAY
+  SPECIFIC child_arr_one
+  READS SQL DATA
+  SIGNAL SQLSTATE '45000'
+
+-- the actual body of the function is defined, replacing the statement that throws the exception
+ALTER SPECIFIC ROUTINE child_arr_one
+  BEGIN ATOMIC
+    DECLARE id_list INT ARRAY DEFAULT ARRAY[];
+    for_loop:
+    FOR SELECT id FROM ptree WHERE pid = p_pid DO
+      SET id_list[CARDINALITY(id_list) + 1] = id;
+      SET id_list = id_list || child_arr(id);
+    END FOR for_loop;
+    RETURN id_list;
+  END
+
+-- the function can now be used in SQL statements
+SELECT * FROM TABLE(child_arr(2))
+</pre>
+<p>In the next example, a table with two columns is returned instead
+      of an array. In this example, a local table variable is declared and
+      filled with the children and the children's children.</p>
+<pre class="programlisting">CREATE FUNCTION child_table(p_pid INT) RETURNS TABLE(r_pid INT, r_id INT)
+  SPECIFIC child_table_one
+  READS SQL DATA
+  SIGNAL SQLSTATE '45000'
+
+ALTER SPECIFIC ROUTINE child_table_one
+  BEGIN ATOMIC
+    DECLARE TABLE child_tree (pid INT, id INT);
+    for_loop:
+    FOR SELECT pid, id FROM ptree WHERE pid = p_pid DO
+      INSERT INTO child_tree VALUES pid, id;
+      INSERT INTO child_tree SELECT r_pid, r_id FROM TABLE(child_table(id));
+    END FOR for_loop;
+    RETURN TABLE(SELECT * FROM child_tree);
+  END
+
+SELECT * FROM TABLE(child_table(1))
+</pre>
+<p>Infinite recursion is not possible as the routine is terminated
+      when a given depth is reached.</p>
+</div>
+</div>
+<div class="section" title="Java Language Routines (SQL/JRT)">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="src_jrt_routines"></a>Java Language Routines (SQL/JRT)</h2>
+</div>
+</div>
+</div>
+<p>The general features of SQL-Invoked Routines are shared between PSM
+    and JRT routines. These features are covered in the previous section. This
+    section deals with specific aspects of JRT routines.</p>
+<p>The body of a Java language routine is a static method of a Java
+    class, specified with a fully qualified method name in the routine
+    definition. A simple CREATE FUNCTION example is given below, which defines
+    the function to call the <code class="literal">java.lang.Math.sinh(double d)</code>
+    Java method. The function can be called in SQL statements just like any
+    built-in function.</p>
+<pre class="programlisting">CREATE FUNCTION sinh(v DOUBLE) RETURNS DOUBLE
+  LANGUAGE JAVA DETERMINISTIC NO SQL
+  EXTERNAL NAME 'CLASSPATH:java.lang.Math.sinh'
+
+SELECT sinh(doublecolumn) FROM mytable
+</pre>
+<p>In the example below, the static method named
+    <code class="methodname">toZeroPaddedString</code> is specified to be called when
+    the function is invoked.</p>
+<pre class="programlisting">CREATE FUNCTION zero_pad(x BIGINT, digits INT, maxsize INT)
+  RETURNS CHAR VARYING(100)
+  LANGUAGE JAVA DETERMINISTIC NO SQL
+  EXTERNAL NAME 'CLASSPATH:org.hsqldb.lib.StringUtil.toZeroPaddedString'
+</pre>
+<p>The signature of the Java method (used in the Java code but not in
+    SQL code to create the function) is given below:</p>
+<pre class="programlisting">public static String toZeroPaddedString(long value, int precision, int maxSize)</pre>
+<p>The parameter and return types of the SQL routine definition must
+    match those of the Java method according to the table below:</p>
+<div class="informaltable">
+<table cellspacing="0" style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; ">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; ">
+<p>SMALLINT &nbsp; </p>
+</td><td style="border-bottom: 0.5pt solid ; ">
+<p>short or Short</p>
+</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; ">
+<p>INT</p>
+</td><td style="border-bottom: 0.5pt solid ; ">
+<p>int or Integer</p>
+</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; ">
+<p>BIGINT</p>
+</td><td style="border-bottom: 0.5pt solid ; ">
+<p>long or Long</p>
+</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; ">
+<p>NUMERIC &nbsp;or DECIMAL</p>
+</td><td style="border-bottom: 0.5pt solid ; ">
+<p>BigDecimal</p>
+</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; ">
+<p>FLOAT &nbsp;or DOUBLE</p>
+</td><td style="border-bottom: 0.5pt solid ; ">
+<p>double or Double</p>
+</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; ">
+<p>CHAR or VARCHAR</p>
+</td><td style="border-bottom: 0.5pt solid ; ">
+<p>String</p>
+</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; ">
+<p>DATE</p>
+</td><td style="border-bottom: 0.5pt solid ; ">
+<p>java.sql.Date</p>
+</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; ">
+<p>TIME</p>
+</td><td style="border-bottom: 0.5pt solid ; ">
+<p>java.sql.Time</p>
+</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; ">
+<p>TIMESTAMP</p>
+</td><td style="border-bottom: 0.5pt solid ; ">
+<p>java.sql.Timestamp</p>
+</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; ">
+<p>BINARY</p>
+</td><td style="border-bottom: 0.5pt solid ; ">
+<p>Byte[]</p>
+</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; ">
+<p>BOOLEAN</p>
+</td><td style="border-bottom: 0.5pt solid ; ">
+<p>boolean or Boolean</p>
+</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; ">ARRAY of any type</td><td style="border-bottom: 0.5pt solid ; ">java.sql.Array</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; ">
+<p>TABLE</p>
+</td><td style="">
+<p>java.sql.ResultSet</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>If the specified Java method is not found or its parameters and
+    return types do not match the definition, an exception is raised. If more
+    than one version of the Java method exist, then the one with matching
+    parameter and return types is found and registered. If two &ldquo;equivalent&rdquo;
+    methods exist, the first one is registered. (This situation arises only
+    when a parameter is a primitive in one version and an Object in another
+    version, e.g. <code class="classname">long</code> and
+    <code class="classname">java.lang.Long</code>.).</p>
+<p>When the Java method of an SQL/JRT routine returns a value, it
+    should be within the size and precision limits defined in the return type
+    of the SQL-invoked routine, otherwise an exception is raised. The scale
+    difference are ignored and corrected. For example, in the above example,
+    the <code class="literal">RETURNS CHAR VARYING(100)</code> clause limits the length
+    of the strings returned from the Java method to 100. But if the number of
+    digits after the decimal point (scale) of a returned BigDecimal value is
+    larger than the scale specified in the RETURNS clause, the decimal
+    fraction is silently truncated and no exception of warning is
+    raised.</p>
+<p>When the function is specified as RETURNS TABLE(...) the static Java
+    method should return a JDBCResultSet instance. For an example of how to
+    construct a JDBCResultSet for this purpose, see the source code for the
+    org.hsqldb.jdbc.JDBCArray class.</p>
+<div class="section" title="Polymorphism">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_jrt_polymorphis"></a>Polymorphism</h3>
+</div>
+</div>
+</div>
+<p>If two versions of the same SQL invoked routine with different
+      parameter types are required, they can be defined to point to the same
+      method name or different method names, or even methods in different
+      classes. In the example below, the first two definitions refer to the
+      same method name in the same class. In the Java class, the two static
+      methods are defined with corresponding method signatures.</p>
+<p>In the third example, the Java function returns a result set and
+      the SQL declaration includes RETURNS TABLE.</p>
+<pre class="programlisting">CREATE FUNCTION an_hour_before_or_now(t TIME)
+  RETURNS TIME
+  NO SQL
+  LANGUAGE JAVA PARAMETER STYLE JAVA
+  EXTERNAL NAME 'CLASSPATH:org.npo.lib.nowLessAnHour'
+
+CREATE FUNCTION an_hour_before_or_now(t TIMESTAMP)
+  RETURNS TIMESTAMP
+  NO SQL
+  LANGUAGE JAVA PARAMETER STYLE JAVA
+  EXTERNAL NAME 'CLASSPATH:org.npo.lib.nowLessAnHour'
+
+CREATE FUNCTION testquery(i INTEGER) 
+  RETURNS TABLE(n VARCHAR(20), i INT) 
+  READS SQL DATA
+  LANGUAGE JAVA
+  EXTERNAL NAME 'CLASSPATH:org.hsqldb.test.TestJavaFunctions.getQueryResult'
+
+</pre>
+<p>In the Java class the definitions are as follows. Note the
+      definition of the getQueryResult method begins with a
+      java.sql.Connection parameter. This parameter is ignored when choosing
+      the Java method. The parameter is used to pass the current JDBC
+      connection to the Java method.</p>
+<pre class="programlisting">    public static java.sql.Time nowLessAnHour(java.sql.Time value) {
+        ...
+    }
+    public static java.sql.Timestamp nowLessAnHour(java.sql.Timestamp value)
+        ...
+    }
+
+    public static ResultSet getQueryResult(Connection connection, int i) throws SQLException {
+        Statement st = connection.createStatement();
+        return st.executeQuery("SELECT * FROM T WHERE I &lt; " + i);
+    }
+
+</pre>
+</div>
+<div class="section" title="Java Language Procedures">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_jrt_procedures"></a>Java Language Procedures</h3>
+</div>
+</div>
+</div>
+<p>Java procedures are defined similarly to functions. The
+      differences are:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>The return type of the Java static method must be void.</p>
+</li>
+<li class="listitem">
+<p>If a parameter is defined as OUT or INOUT, the corresponding
+          Java static method parameter must be defined as an array of the JDBC
+          non-primitive type.</p>
+</li>
+<li class="listitem">
+<p>When the Java static method is invoked, the OUT and INOUT
+          arguments are passed as a single-element array.</p>
+</li>
+<li class="listitem">
+<p>The static method can modify the OUT or INOUT argument by
+          assigning a value to the sole element of the argument array.</p>
+</li>
+<li class="listitem">
+<p>A procedure can return one or more result sets. These are
+          instantiated as JDBC ResultSet objects by the Java static and
+          returned in array arguments of the method. The signature of the Java
+          method for a procedure that has N declared parameters and returns M
+          result sets has the following pattern. The N parameters
+          corresponding to the signature of the declared SQL procedure are
+          defined first, followed by M parameters as ResultSet arrays.</p>
+<p>When the SQL procedure is executed, the Java method is called
+          with single element array arguments passed for OUT and INOUT SQL
+          parameters, and single element arrays of ResultSet for the returned
+          ResultSet objects. The Java method may call the execute() or
+          executeQuery() methods of JDBC Statement or PreparedStatement
+          objects that are declared within the method and assign the ResultSet
+          objects to the first element of each ResultSet[] argument. For the
+          returned ResultSet objects, the Java method should not call the
+          methods of java.sql.ResultSet before returning.</p>
+<p>
+<code class="literal">void methodName(&lt;arg1&gt;, ... &lt;argN&gt;,
+          ResultSet[] r1, ..., ResultSet[] rM)</code>
+</p>
+</li>
+<li class="listitem">
+<p>If the procedure contains SQL statements, only statements for
+          data access and manipulation are allowed. The Java method should not
+          perform commit or rollback. The SQL statements should not change the
+          session settings and should not include statements that create or
+          alter tables or other database objects. These rules are generally
+          enforced by the engine, but additional enforcement may be added in
+          future versions</p>
+</li>
+</ul>
+</div>
+<p>An example of a procedure definition, together with its Java
+      signature, is given below. This procedure is the SQL/JRT version of the
+      example discussed above for SQL/PSM.</p>
+<pre class="programlisting">CREATE PROCEDURE get_customer(IN id INT, OUT firstname VARCHAR(50), OUT lastname VARCHAR(50)) 
+  READS SQL DATA
+  LANGUAGE JAVA
+  EXTERNAL NAME 'CLASSPATH:org.hsqldb.test.Test01.getCustomerProcedure'
+
+  public static void getCustomerProcedure(int id, String[] firstn, String[] lastn)
+      throws java.sql.SQLException {
+      firstn[0] = somevalue;
+      lastn[0] = somevalue;
+  }
+
+</pre>
+<p>In the next example a procedure is defined to return a result set.
+      The signature of the Java method is also given. The Java method assigns
+      a ResultSet object to the zero element of the result parameter.</p>
+<pre class="programlisting">CREATE PROCEDURE new_customer(firstname VARCHAR(50), lastname VARCHAR(50))
+  MODIFIES SQL DATA 
+  LANGUAGE JAVA
+  DYNAMIC RESULT SETS 1
+  EXTERNAL NAME 'CLASSPATH:org.hsqldb.test.Test01.newCustomerProcedure'
+
+  public static void newCustomerProcedure(String firstn, String lastn, String addr,
+                       ResultSet[] result) throws java.sql.SQLException {
+      result[0] = someresultset;
+  }
+
+</pre>
+<p>Java language procedures SQL/JRT are used in an identical manner
+      to SQL/PSM routines. See the section under SQL/PSM routines, Returning
+      Data From Procedures, on how to use the JDBC CallableStatement interface
+      to call the procedure and to get the OUT and INOUT arguments and to use
+      the ResultSet objects returned by the procedure.</p>
+</div>
+<div class="section" title="Java Static Methods">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_jrt_static_methods"></a>Java Static Methods</h3>
+</div>
+</div>
+</div>
+<p>The static methods that are used for procedures and functions must
+      be declared in a public class. The methods must be declared as public
+      static. For functions, the method return type must be one of the JDBC
+      supported types. The IN parameters of the method must be declared as one
+      of the supported types. The OUT and INOUT parameters must be declared as
+      Java arrays of supported types. If the SQL definition of a function
+      includes RETURNS NULL ON NULL INPUT, then the IN parameters of the Java
+      static function can be int or long primitives, otherwise, they must be
+      Integer or Long. The declared Java arrays for OUT and INOUT parameters
+      for SQL INTEGER or BIGINT must be Integer[] or Long[]
+      respectively.</p>
+<p>If the SQL definition of the routine includes NO SQL, then no JDBC
+      method call is allowed to execute in the method body. Otherwise, a JDBC
+      Connection can be used within the Java method to access the database. If
+      the definition includes CONTAINS SQL, then no table data can be read. If
+      the definition includes READS SQL DATA, then no table data can be
+      modified. If the definition includes MODIFIES SQL DATA, then data can be
+      modified. In all modes, it is not allowed to execute DDL statements that
+      change the schema definition.</p>
+<p>It is possible to use DECLARE LOCAL TEMPORARY TABLE in a Java
+      method, as this is in the session scope.</p>
+<p>There are two ways to use the JDBC Connection object.</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>Define the Java method with a Connection parameter as the
+          first parameter. This parameter is "hidden" and only visible to the
+          engine. The rest of the parameters, if any, are used to choose the
+          method according to the required types of parameters.</p>
+</li>
+<li class="listitem">
+<p>Use the SQL/JRT Standard
+          <code class="literal">"jdbc:default:connection"</code> method. With this
+          approach, the Java method does not include a Connection parameter.
+          In the method body, the connection is established with a method call
+          to DriverManager, as in the example below:</p>
+<p>
+<code class="literal">Connection con =
+          DriverManager.getConnection("jdbc:default:connection");</code>
+</p>
+</li>
+</ol>
+</div>
+<p>Both methods return a connection that is based on the current
+      session. This connection has some extra properties, for example, the
+      Close() method does not actually close it.</p>
+<p>An example of an SQL PROCEDURE with its Java method definition is
+      given below. The CREATE PROCEDURE statement is the same with or without
+      the Connection parameter:</p>
+<pre class="programlisting">CREATE PROCEDURE proc1(IN P1 INT, IN P2 INT, OUT P3 INT)
+SPECIFIC P2 LANGUAGE JAVA DETERMINISTIC MODIFIES SQL DATA EXTERNAL NAME 'CLASSPATH:org.hsqldb.test.TestStoredProcedure.procTest2'");
+</pre>
+<p>In the first example, the
+      <code class="literal">"jdbc:default:connection"</code> method is used. In the
+      second example, a connection parameter is used</p>
+<pre class="programlisting">    public static void procTest2(int p1, int p2,
+                       Integer[] p3) throws java.sql.SQLException {
+
+        Connection conn =
+            DriverManager.getConnection("jdbc:default:connection");
+        java.sql.Statement stmt = conn.createStatement();
+
+        stmt.execute("INSERT INTO MYTABLE VALUES(" + p1 + ",'test1')");
+        stmt.execute("INSERT INTO MYTABLE VALUES(" + p2 + ",'test2')");
+
+        java.sql.ResultSet rs = stmt.executeQuery("select * from MYTABLE");
+        java.sql.ResultSetMetaData meta = rs.getMetaData();
+
+        int cols  = meta.getColumnCount();
+        p3[0] = Integer.valueOf(cols);
+
+        rs.close();
+        stmt.close();
+    }
+
+//  alternative declaration with Connection parameter
+//  public static void procTest2(Connection conn, int p1, int p2,
+//                    Integer[] p3) throws java.sql.SQLException {
+</pre>
+<p>When the stored procedure is called by the user's program, the
+      value of the OUT parameter can be read after the call.</p>
+<pre class="programlisting">    // a CallableStatement is used to prepare the call
+    // the OUT parameter contains the return value
+    CallableStatement c = conn.prepareCall("call proc1(1,2,?)");
+    c.execute();
+    int value = c.getInt(1);
+</pre>
+</div>
+<div class="section" title="Legacy Support">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_jrt_legacy"></a>Legacy Support</h3>
+</div>
+</div>
+</div>
+<p>The legacy HyperSQL statement, <code class="literal">CREATE ALIAS &lt;name&gt;
+      FOR &lt;fully qualified Java method name&gt;</code> is no longer
+      supported directly. It is supported when importing databases and
+      translates to a special <code class="literal">CREATE FUNCTION &lt;name&gt;</code>
+      statement that creates the function in the PUBLIC schema.</p>
+<p>The direct use of a Java method as a function is still supported
+      but deprecated. It is internally translated to a special <code class="literal">CREATE
+      FUNCTION</code> statement where the name of the function is the
+      double quoted, fully qualified name of the Java method used.</p>
+</div>
+<div class="section" title="Securing Access to Classes">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_jrt_access_control"></a>Securing Access to Classes</h3>
+</div>
+</div>
+</div>
+<p>By default, the static methods of any class that is on the
+      classpath are available to be used. This can compromise security in some
+      systems. The optional Java system property
+      <code class="literal">hsqldb.method_class_names</code> allows preventing access to
+      classes other than <code class="literal">java.lang.Math</code> or specifying a
+      semicolon-separated list of allowed classes. A property value that ends
+      with .* is treated as a wild card and allows access to all class or
+      method names formed by substitution of the * (asterisk).</p>
+<p>In the example below, the property has been included as an
+      argument to the Java command.</p>
+<pre class="programlisting">    java -Dhsqldb.method_class_names="org.me.MyClass;org.you.YourClass;org.you.lib.*" [the rest of the command line]
+</pre>
+<p>The above example allows access to the methods in the two classes:
+      <code class="classname">org.me.MyClass</code> and
+      <code class="classname">org.you.YourClass</code> together with all the classes
+      in the <code class="classname">org.you.lib</code> package. Note that if the
+      property is not defined, no access control is performed at this
+      level.</p>
+<p>Once the routine has been defined, the normal database access
+      control still applies. The routine can be executed only by the users who
+      have been granted EXECUTE privileges on it. The user who executes a Java
+      routine must also have the relevant access privileges on the tables that
+      are used inside the Java method.</p>
+</div>
+</div>
+<div class="section" title="User Defined Aggregate Functions">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="src_aggregate_functions"></a>User Defined Aggregate Functions</h2>
+</div>
+</div>
+</div>
+<p>HyperSQL adds an extension to the SQL Standard to allow user-defined
+    aggregate functions. A user-defined aggregate function has a single
+    parameter when it is used in SQL statements. Unlike the predefined
+    aggregate functions, the keyword DISTINCT cannot be used when a user
+    defined aggregate function is invoked. Like all user-defined functions, an
+    aggregate function belongs to a schema and can be polymorphic (using
+    multiple function definitions with the same name but different parameter
+    types).</p>
+<p>A user defined aggregate function can be used in SQL statements
+    where a predefined aggregate function is allowed.</p>
+<div class="section" title="Definition of Aggregate Functions">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_aggregate_function_definition"></a>Definition of Aggregate Functions</h3>
+</div>
+</div>
+</div>
+<p>An aggregate function is always defined with 4 parameters. The
+      first parameter is the parameter that is used when the function is
+      invoked in SQL statements, the rest of the parameter are invisible to
+      the invoking SQL statement. The type of the first parameter is user
+      defined. The type of the second parameter must be BOOLEAN. The third and
+      fourth parameters have user defined types and must be defined as INOUT
+      parameters. The defined return type of the function determines the type
+      of the value returned when the function is invoked.</p>
+<a name="N13163" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CREATE AGGREGATE
+      FUNCTION</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>user defined aggregate function
+      definition</em></span>
+</p>
+<p>Aggregate function definition is similar to normal function
+      definition and has the mandatory <code class="literal">&lt;returns
+      clause&gt;</code>. The BNF is given below.</p>
+<p>
+<code class="literal">&lt;user defined aggregate function&gt; ::= CREATE
+      AGGREGATE FUNCTION &lt;schema qualified routine name&gt; &lt;SQL
+      aggregate parameter declaration list&gt; &lt;returns clause&gt;
+      &lt;routine characteristics&gt; &lt;routine body&gt;</code>
+</p>
+<p>The parameter declaration list BNF is given below. The type of the
+      first parameter is used when the function is invoked as part of an SQL
+      statement. When multiple versions of a function are required, each
+      version will have the first parameter of a different type.</p>
+<p>
+<code class="literal">&lt;SQL aggregate declaration list&gt; ::= &lt;left
+      paren&gt; [IN] [ &lt;SQL parameter name&gt; ] &lt;parameter type&gt;
+      &lt;comma&gt; [IN] [ &lt;SQL parameter name&gt; ] BOOLEAN &lt;comma&gt;
+      INOUT [ &lt;SQL parameter name&gt; ] &lt;parameter type&gt;
+      &lt;comma&gt; INOUT [ &lt;SQL parameter name&gt; ] &lt;parameter
+      type&gt; &lt;right paren&gt;</code>
+</p>
+<p>The return type is user defined. This is the type of the resulting
+      value when the function is called. Usually an aggregate function is
+      defined with CONTAINS SQL, as it normally does not read the data in
+      database tables, but it is possible to define the function with READS
+      SQL DATA and access the database tables.</p>
+<p>When a SQL statement that uses the aggregate function is executed,
+      HyperSQL invokes the aggregate function, with all the arguments set,
+      once per each row in order to compute the values. Finally, it invokes
+      the function once more to return the final result.</p>
+<p>In the computation phase, the first argument is the value of the
+      user argument as specified in the SQL statement, computed for the
+      current row. The second argument is the boolean FALSE. The third and
+      fourth argument values can have any type and are initially null, but
+      they can be updated in the body of the function during each invocation.
+      The third and fourth arguments act as registers and hold their values
+      between invocations. The return value of the function is ignored during
+      the computation phase (when the second parameter is FALSE).</p>
+<p>After the computation phase, the function is invoked once more to
+      get the final result. In this invocation, the first argument is NULL and
+      the second argument is boolean TRUE. The third and fourth arguments hold
+      the values they held at the end of the last invocation. The value
+      returned by the function in this invocation is used as the result of the
+      aggregate function computation in the invoking SQL statement. In SQL
+      queries with GROUP BY, the call sequence is repeated separately for each
+      separate group.</p>
+</div>
+<div class="section" title="SQL PSM Aggregate Functions">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_psm_aggregate_functions"></a>SQL PSM Aggregate Functions</h3>
+</div>
+</div>
+</div>
+<p>The example below features a user defined version of the Standard
+      <code class="literal">AVG(&lt;value expression&gt;)</code> aggregate function for
+      INTEGER input and output types. This function behaves differently from
+      the Standard AVG function as it returns 0 when all the input values are
+      null.</p>
+<pre class="programlisting">CREATE AGGREGATE FUNCTION udavg(IN x INTEGER, IN flag BOOLEAN, INOUT addup BIGINT, INOUT counter INT)
+  RETURNS INTEGER
+  CONTAINS SQL
+  BEGIN ATOMIC
+    IF flag THEN
+      RETURN addup / counter;
+    ELSE
+      SET counter = COALESCE(counter, 0) + 1;
+      SET addup = COALESCE(addup, 0) || COALESCE(x, 0);
+      RETURN NULL;
+    END IF;
+  END
+
+</pre>
+<p>The user defined aggregate function is used in a select statement
+      in the example below. Only the first parameter is visible and utilised
+      in the select statement.</p>
+<pre class="programlisting">SELECT udavg(id) FROM customers GROUP BY lastname;</pre>
+<p>In the example below, the function returns an array that contains
+      all the values passed for the aggregated column. For use with longer
+      arrays, you can optimise the function by defining a larger array in the
+      first iteration, and using the TRIM_ARRAY function on the RETURN to cut
+      the array to size. This function is similar to the built-in ARRAY_AGG
+      function</p>
+<pre class="programlisting">CREATE AGGREGATE FUNCTION array_aggregate(IN val VARCHAR(100), IN flag boolean, INOUT buffer VARCHAR(100) ARRAY, INOUT counter INT)
+  RETURNS VARCHAR(100) ARRAY
+  CONTAINS SQL
+  BEGIN ATOMIC
+    IF flag THEN
+      RETURN buffer;
+    ELSE
+      IF val IS NULL THEN RETURN NULL; END IF;
+      IF counter IS NULL THEN SET counter = 0; END IF;
+      SET counter = counter + 1;
+      IF counter = 1 THEN SET buffer = ARRAY[val];
+      ELSE SET buffer[counter] = val; END IF;
+      RETURN NULL;
+    END IF;
+  END
+</pre>
+<p>The tables and data for the select statement below are created
+      with the DatabaseManager or DatabaseManagerSwing GUI apps. (You can find
+      the SQL in the TestSelf.txt file in the zip). Part of the output is
+      shown. Each row of the output includes an array containing the values
+      for the invoices for each customer.</p>
+<pre class="programlisting">SELECT ID, FIRSTNAME, LASTNAME, ARRAY_AGGREGATE(CAST(INVOICE.TOTAL AS VARCHAR(100))) 
+  FROM customer JOIN INVOICE ON ID =CUSTOMERID
+  GROUP BY ID, FIRSTNAME, LASTNAME
+
+11 Susanne   Karsen    ARRAY['3988.20']                               
+12 John      Peterson  ARRAY['2903.10','4382.10','4139.70','3316.50'] 
+13 Michael   Clancy    ARRAY['6525.30']                               
+14 James     King      ARRAY['3665.40','905.10','498.00']             
+18 Sylvia    Clancy    ARRAY['634.20','4883.10']                      
+20 Bob       Clancy    ARRAY['3414.60','744.60']
+</pre>
+<p>In the example below, the function returns a string that contains
+      the comma-separated list of all the values passed for the aggregated
+      column. This function is similar to the built in GROUP_CONCAT
+      function.</p>
+<pre class="programlisting">CREATE AGGREGATE FUNCTION group_concatenate(IN val VARCHAR(100), IN flag BOOLEAN, INOUT buffer VARCHAR(1000), INOUT counter INT
+ RETURNS VARCHAR(1000)
+ CONTAINS SQL
+ BEGIN ATOMIC
+ IF FLAG THEN
+  RETURN BUFFER;
+ ELSE
+  IF val IS NULL THEN RETURN NULL; END IF;
+  IF buffer IS NULL THEN SET BUFFER = ''; END IF;
+  IF counter IS NULL THEN SET COUNTER = 0; END IF;
+  IF counter &gt; 0 THEN SET buffer = buffer || ','; END IF;
+  SET buffer = buffer + val;
+  SET counter = counter + 1;
+  RETURN NULL;
+ END IF;
+ END
+</pre>
+<p>The same tables and data as for the previous example is used. Part
+      of the output is shown. Each row of the output is a comma-separated list
+      of names.</p>
+<pre class="programlisting">SELECT group_concatenate(firstname || ' ' || lastname) FROM customer GROUP BY lastname
+  
+Laura Steel,John Steel,John Steel,Robert Steel                                   
+Robert King,Robert King,James King,George King,Julia King,George King            
+Robert Sommer,Janet Sommer                                                       
+Michael Smith,Anne Smith,Andrew Smith                                            
+Bill Fuller,Anne Fuller                                                          
+Laura White,Sylvia White                                                         
+Susanne Clancy,Michael Clancy,Sylvia Clancy,Bob Clancy,Susanne Clancy,John Clancy
+</pre>
+</div>
+<div class="section" title="Java Aggregate Functions">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="src_jrt_aggregate_functions"></a>Java Aggregate Functions</h3>
+</div>
+</div>
+</div>
+<p>A Java aggregate function is defined similarly to PSM functions,
+      apart from the routine body, which is defined as <code class="literal">EXTERNAL NAME
+      ...</code> The Java function signature must follow the rules for both
+      nullable and INOUT parameters, therefore:</p>
+<p>No argument is defined as a primitive or primitive array type.
+      This allows nulls to be passed to the function. The second and third
+      arguments must be defined as arrays of the JDBC non-primitive types
+      listed in the table in the previous section.</p>
+<p>In the example below, a user-defined aggregate function for
+      geometric mean is defined.</p>
+<pre class="programlisting">CREATE AGGREGATE FUNCTION geometric_mean(IN val DOUBLE, IN flag BOOLEAN, INOUT register DOUBLE, INOUT counter INT)
+  RETURNS DOUBLE
+  NO SQL
+  LANGUAGE JAVA
+  EXTERNAL NAME 'CLASSPATH:org.hsqldb.test.Test01.geometricMean'
+</pre>
+<p>The Java function definition is given below:</p>
+<pre class="programlisting">    public static Double geometricMean(Double in, Boolean flag,
+            Double[] register, Integer[] counter) {
+        if (flag) {
+            if (register[0] == null) { return null; }
+            double a = register[0].doubleValue();
+            double b = 1 / (double) counter[0];
+            return Double.valueOf(java.lang.Math.pow(a, b));
+        }
+        if (in == null) { return null; }
+        if (in.doubleValue() == 0) { return null; }
+        if (register[0] == null) {
+            register[0] = in;
+            counter[0]  = Integer.valueOf(1);
+        } else {
+            register[0] = Double.valueOf(register[0].doubleValue() * in.doubleValue());
+            counter[0] = Integer.valueOf(counter[0].intValue() + 1);
+        }
+        return null;
+    }
+</pre>
+<p>In a select statement, the function is used exactly like the
+      built-in aggregate functions:</p>
+<pre class="programlisting">SELECT geometric_mean(age) FROM  FROM customer
+</pre>
+</div>
+</div>
+</div>
+<HR xmlns:xi="http://www.w3.org/2001/XInclude">
+<P xmlns:xi="http://www.w3.org/2001/XInclude" class="svnrev">$Revision: 4864 $</P>
+<div class="navfooter">
+<hr>
+<table summary="Navigation footer" width="100%">
+<tr>
+<td align="left" width="40%"><a accesskey="p" href="dataaccess-chapt.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="20%">&nbsp;</td><td align="right" width="40%">&nbsp;<a accesskey="n" href="triggers-chapt.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="40%">Chapter&nbsp;7.&nbsp;Data Access and Change&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="40%">&nbsp;Chapter&nbsp;9.&nbsp;Triggers</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

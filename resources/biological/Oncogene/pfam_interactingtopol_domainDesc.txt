@@ -1,0 +1,72 @@
+	
+PF00001	7 transmembrane receptor (rhodopsin family)
+PF00004	ATPase family associated with various cellular activities (AAA)
+PF00008	EGF-like domain
+PF00017	SH2 domain
+PF00018	SH3 domain
+PF00023	Ankyrin repeat
+PF00027	Cyclic nucleotide-binding domain
+PF00028	Cadherin domain
+PF00036	EF hand
+PF00041	Fibronectin type III domain
+PF00045	Hemopexin
+PF00047	Immunoglobulin domain
+PF00048	Small cytokines (intecrine/chemokine), interleukin-8 like
+PF00057	Low-density lipoprotein receptor domain class A
+PF00058	Low-density lipoprotein receptor repeat class B
+PF00059	Lectin C-type domain
+PF00069	Protein kinase domain
+PF00071	Ras family
+PF00076	RNA recognition motif. (a.k.a. RRM, RBD, or RNP domain)
+PF00084	Sushi domain (SCR repeat)
+PF00090	Thrombospondin type 1 domain
+PF00092	von Willebrand factor type A domain
+PF00097	Zinc finger, C3HC4 type (RING finger)
+PF00102	Protein-tyrosine phosphatase
+PF00106	short chain dehydrogenase
+PF00109	Beta-ketoacyl synthase, N-terminal domain
+PF00128	Alpha amylase, catalytic domain
+PF00129	Class I Histocompatibility antigen, domains alpha 1 and 2
+PF00147	Fibrinogen beta and gamma chains, C-terminal globular domain
+PF00169	PH domain
+PF00171	Aldehyde dehydrogenase family
+PF00433	Protein kinase C terminal domain
+PF00503	G-protein alpha subunit
+PF00514	Armadillo/beta-catenin-like repeat
+PF00515	Tetratricopeptide repeat
+PF00531	Death domain
+PF00554	Rel homology domain (RHD)
+PF00560	Leucine Rich Repeat
+PF00595	PDZ domain (Also known as DHR or GLGF)
+PF00612	IQ calmodulin-binding motif
+PF00615	Regulator of G protein signaling domain
+PF00631	GGL domain
+PF00640	Phosphotyrosine interaction domain (PTB/PID)
+PF00646	F-box domain
+PF00651	BTB/POZ domain
+PF00686	Starch binding domain
+PF00704	Glycosyl hydrolases family 18
+PF00757	Furin-like cysteine rich region
+PF00850	Histone deacetylase domain
+PF00856	SET domain
+PF00969	Class II histocompatibility antigen, beta domain
+PF00993	Class II histocompatibility antigen, alpha domain
+PF01030	Receptor L domain
+PF01049	Cadherin cytoplasmic region
+PF01403	Sema domain
+PF01404	Ephrin receptor ligand binding domain
+PF01412	Putative GTPase activating protein for Arf
+PF01437	Plexin repeat
+PF01462	Leucine rich repeat N-terminal domain
+PF01575	MaoC like domain
+PF01582	TIR domain
+PF01833	IPT/TIG domain
+PF01992	ATP synthase (C/AC39) subunit
+PF02189	Immunoreceptor tyrosine-based activation motif
+PF02801	Beta-ketoacyl synthase, C-terminal domain
+PF02806	Alpha amylase, C-terminal all-beta domain
+PF02816	Alpha-kinase family
+PF02839	Carbohydrate binding domain
+PF07679	Immunoglobulin I-set domain
+PF07686	Immunoglobulin V-set domain
+PF07714	Protein tyrosine kinase

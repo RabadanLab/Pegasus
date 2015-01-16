@@ -1,0 +1,1070 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter&nbsp;13.&nbsp;HyperSQL Network Listeners (Servers)</title>
+<link href="../docbook.css" type="text/css" rel="stylesheet">
+<meta content="DocBook XSL-NS Stylesheets V1.76.1" name="generator">
+<meta name="keywords" content="Hsqldb, HyperSQL, Server, Listener">
+<meta name="keywords" content="Hsqldb, HyperSQL, Database, JDBC, Java">
+<link rel="home" href="index.html" title="HyperSQL User Guide">
+<link rel="up" href="index.html" title="HyperSQL User Guide">
+<link rel="prev" href="dbproperties-chapt.html" title="Chapter&nbsp;12.&nbsp;Properties">
+<link rel="next" href="unix-chapt.html" title="Chapter&nbsp;14.&nbsp;HyperSQL on UNIX">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table summary="Navigation header" width="100%">
+<tr>
+<td align="left" width="30%"><a accesskey="p" href="dbproperties-chapt.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="40%" style="font-weight:bold;">Chapter&nbsp;13.&nbsp;HyperSQL Network Listeners
+    (Servers)</td><td align="right" width="30%">&nbsp;<a accesskey="n" href="unix-chapt.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="30%">Chapter&nbsp;12.&nbsp;Properties&nbsp;</td><td align="center" width="40%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="30%">&nbsp;Chapter&nbsp;14.&nbsp;HyperSQL on UNIX</td>
+</tr>
+</table>
+</div>
+<HR>
+<div class="chapter" title="Chapter&nbsp;13.&nbsp;HyperSQL Network Listeners (Servers)">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title">
+<a name="listeners-chapt"></a>Chapter&nbsp;13.&nbsp;HyperSQL Network Listeners
+    (Servers)</h2>
+</div>
+<div>
+<h3 class="subtitle">
+<i>Server, WebServer, and Servlet</i>
+</h3>
+</div>
+<div>
+<div class="authorgroup">
+<div class="author">
+<h3 class="author">
+<span class="firstname">Fred</span> <span class="surname">Toussi</span>
+</h3>
+<div class="affiliation">
+<span class="orgname">The HSQL Development Group<br>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<p class="releaseinfo">$Revision: 4903 $</p>
+</div>
+<div>
+<div class="legalnotice" title="Legal Notice">
+<a name="N15581"></a>
+<p>Copyright 2002-2012 Fred Toussi. Permission is granted to
+      distribute this document without any alteration under the terms of the
+      HSQLDB license. Additional permission is granted to the HSQL Development
+      Group to distribute this document with or without alterations under the
+      terms of the HSQLDB license.</p>
+</div>
+</div>
+<div>
+<p class="pubdate">2012-01-15 10:12:45-0500</p>
+</div>
+</div>
+</div>
+<div class="toc">
+<p>
+<b>Table of Contents</b>
+</p>
+<dl>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_listener_types">Listeners</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_hsql_server">HyperSQL Server</a></span>
+</dt>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_http_server">HyperSQL HTTP Server</a></span>
+</dt>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_servlet">HyperSQL HTTP Servlet</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_server_props">Server and Web Server Properties</a></span>
+</dt>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_app_start">Starting a Server from your Application</a></span>
+</dt>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_remote_open">Allowing a Connection to Open or Create a Database</a></span>
+</dt>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_db_props_startup">Specifying Database Properties at Server Start</a></span>
+</dt>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_tls">TLS Encryption</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_tls_rquirements">Requirements</a></span>
+</dt>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_ssl_connection">Encrypting your JDBC connection</a></span>
+</dt>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_jsse">JSSE</a></span>
+</dt>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_privatekey">Making a Private-key Keystore</a></span>
+</dt>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_auto_server_unix">Automatic Server or WebServer startup on UNIX</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="listeners-chapt.html#lsc_acl">Network Access Control</a></span>
+</dt>
+</dl>
+</div>
+<div class="section" title="Listeners">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="lsc_listener_types"></a>Listeners</h2>
+</div>
+</div>
+</div>
+<p>As described in the <a class="link" href="running-chapt.html" title="Chapter&nbsp;1.&nbsp;Running and Using HyperSQL">Running and Using HyperSQL</a> chapter, network listeners (servers)
+    provide connectivity to catalogs from different JVM processes. The
+    HyperSQL listeners support both ipv4 and ipv6 network
+    addressing.</p>
+<div class="section" title="HyperSQL Server">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="lsc_hsql_server"></a>HyperSQL Server</h3>
+</div>
+</div>
+</div>
+<p>This is the preferred way of running a database server and the
+      fastest one. This mode uses the proprietary <em class="glossterm">hsql:</em>
+      communications protocol. The following example of the command for
+      starting the server starts the server with one (default) database with
+      files named "mydb.*" and the public name (alias) of "xdb".</p>
+<div class="informalexample">
+<pre class="screen">    java -cp ../lib/hsqldb.jar org.hsqldb.server.Server --database.0 file:mydb --dbname.0 xdb</pre>
+</div>
+<p>Alternatively, a server.properties file can be used for passing
+      the arguments to the server. This file must be located in the directory
+      where the command is issued.</p>
+<pre class="screen">    java -cp ../lib/hsqldb.jar org.hsqldb.server.Server</pre>
+<p>Alternatively, you can specify the path of the server.properties
+      file on the command line. In this case, the properties file can have any
+      name or extension, but it should be a valid properties file.</p>
+<pre class="screen">    java -cp ../lib/hsqldb.jar org.hsqldb.server.Server --props myserver.props</pre>
+<p>Use the --help argument to see the list of available
+      arguments.</p>
+<pre class="screen">    java -cp ../lib/hsqldb.jar org.hsqldb.server.Server --help</pre>
+<p>The contents of the server.properties file is described in the
+      next section.</p>
+</div>
+<div class="section" title="HyperSQL HTTP Server">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="lsc_http_server"></a>HyperSQL HTTP Server</h3>
+</div>
+</div>
+</div>
+<p>This method of access is used when the computer hosting the
+      database server is restricted to the HTTP protocol. The only reason for
+      using this method of access is restrictions imposed by firewalls on the
+      client or server machines and it should not be used where there are no
+      such restrictions. The HyperSQL HTTP Server is a special web server that
+      allows JDBC clients to connect via HTTP. The server can also act as a
+      small general-purpose web server for static pages.</p>
+<p>To run an HTTP server, replace the main class for the server in
+      the example command line above with the following:</p>
+<div class="informalexample">
+<pre class="screen">    java -cp ../lib/hsqldb.jar org.hsqldb.server.WebServer</pre>
+</div>
+<p>The contents of the server.properties file is described in the
+      next section.</p>
+</div>
+<div class="section" title="HyperSQL HTTP Servlet">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="lsc_servlet"></a>HyperSQL HTTP Servlet</h3>
+</div>
+</div>
+</div>
+<p>This method of access also uses the HTTP protocol. It is used when
+      a separate servlet engine (or application server) such as Tomcat or
+      Resin provides access to the database. The Servlet Mode cannot be
+      started independently from the servlet engine. The
+      <code class="filename">Servlet</code> class, in the HSQLDB jar, should be
+      installed on the application server to provide the connection. The
+      database is specified using an application server property. Refer to the
+      source file <code class="filename"><a class="filename" href="filelinks-app.html#Servlet.java-link">
+      src/org/hsqldb/server/Servlet.java</a></code> to see the details.</p>
+<p>Both HTTP Server and Servlet modes can only be accessed using the
+      JDBC driver at the client end. They do not provide a web front end to
+      the database. The Servlet mode can serve only a single database.</p>
+<p>Please note that you do not normally use this mode if you are
+      using the database engine in an application server. In this situation,
+      connections to a catalog are usually made
+      <em class="glossterm">in-process</em>, or using an external HSQL Server
+      instance.</p>
+</div>
+</div>
+<div class="section" title="Server and Web Server Properties">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="lsc_server_props"></a>Server and Web Server Properties</h2>
+</div>
+</div>
+</div>
+<p>Properties files for running the servers are not created
+    automatically. You should create your own files that contain
+    <span class="property">server.property</span>=<code class="literal">value</code> pairs for
+    each property. The <code class="filename">server.properties</code> or
+    <code class="filename">webserver.properties</code> files must be located in the
+    directory where the command to run the
+    <code class="classname">org.hsqldb.server.Server</code> class is issued.</p>
+<p>In all properties files, values are case-sensitive. All values apart
+    from names of files or pages are required in lowercase (e.g.
+    <span class="property">server.silent</span>=<code class="literal">FALSE</code> will have no
+    effect, but <span class="property">server.silent</span>=<code class="literal">false</code>
+    will work). Supported properties and their default values (if any) are as
+    follows:</p>
+<div class="table">
+<a name="N155EC"></a>
+<p class="title">
+<b>Table&nbsp;13.1.&nbsp;common server and webserver properties</b>
+</p>
+<div class="table-contents">
+<table summary="common server and webserver properties" cellspacing="0" width="100%" style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; ">
+<colgroup>
+<col width="4cm" align="left">
+<col width="4cm" align="left">
+<col align="left">
+</colgroup>
+<thead>
+<tr>
+<th style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left">Value</th><th style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left">Default</th><th style="border-bottom: 0.5pt solid ; " align="left">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><span class="property">server.database.0</span></td><td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><code class="literal">file:test</code></td><td style="border-bottom: 0.5pt solid ; " align="left" valign="top">the catalog type, path and file name of the first database
+            file to use</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><span class="property">server.dbname.0</span></td><td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><code class="literal">""</code></td><td style="border-bottom: 0.5pt solid ; " align="left" valign="top">lowercase server alias for the first database file</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><span class="property">server.database.n</span></td><td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><code class="literal">NO DEFAULT</code></td><td style="border-bottom: 0.5pt solid ; " align="left" valign="top">the catalog type, path and file name of the n'th database
+            file in use</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><span class="property">server.dbname.n</span></td><td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><code class="literal">NO DEFAULT</code></td><td style="border-bottom: 0.5pt solid ; " align="left" valign="top">lowercase server alias for the n'th database file</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><span class="property">server.silent</span></td><td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><code class="literal">true</code></td><td style="border-bottom: 0.5pt solid ; " align="left" valign="top">no extensive messages displayed on console</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><span class="property">server.trace</span></td><td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><code class="literal">false</code></td><td style="border-bottom: 0.5pt solid ; " align="left" valign="top">JDBC trace messages displayed on console</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><span class="property">server.address</span></td><td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><code class="literal">NO DEFAULT</code></td><td style="border-bottom: 0.5pt solid ; " align="left" valign="top">IP address of server</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><span class="property">server.tls</span></td><td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><code class="literal">false</code></td><td style="border-bottom: 0.5pt solid ; " align="left" valign="top">Whether to encrypt network stream. If this is set to
+            <code class="literal">true</code>, then in normal situations you will also
+            need to set properties
+            <code class="varname">system.javax.net.ssl.keyStore</code> and
+            <code class="varname">system.javax.net.ssl.keyStorePassword</code>, as
+            documented elsewhere. The value of <code class="varname">server.tls</code>
+            impacts the default value of
+            <code class="varname">server.port</code>.</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><span class="property">server.daemon</span></td><td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><code class="literal">false</code></td><td style="border-bottom: 0.5pt solid ; " align="left" valign="top">Whether the server is run as a daemon</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; " align="left" valign="top"><span class="property">server.remote_open</span></td><td style="border-right: 0.5pt solid ; " align="left" valign="top"><code class="literal">false</code></td><td style="" align="left" valign="top">Allows opening a database path remotely when the first
+            connection is made</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<br class="table-break">
+<p>In HyperSQL version 2.0, each server can serve an unlimited number
+    of databases simultaneously. The <span class="property">server.database.0</span>
+    property defines the filename / path whereas the
+    <span class="property">server.dbname.0</span> defines the lowercase alias used by
+    clients to connect to that database. The digit 0 is incremented for the
+    second database and so on. Values for the
+    <span class="property">server.database.n</span> property can use the
+    <em class="glossterm">mem:</em>, <em class="glossterm">file:</em> or
+    <em class="glossterm">res:</em> prefixes and connection properties as
+    discussed under CONNECTIONS. For example, </p>
+<div class="informalexample">
+<pre class="programlisting">    database.0=mem:temp;sql.enforce_strict_size=true;</pre>
+</div>
+<p>Properties or default values specific to
+    <code class="filename">server.properties</code> are:</p>
+<div class="table">
+<a name="N15689"></a>
+<p class="title">
+<b>Table&nbsp;13.2.&nbsp;server properties</b>
+</p>
+<div class="table-contents">
+<table summary="server properties" cellspacing="0" width="100%" style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; ">
+<colgroup>
+<col width="4cm" align="left">
+<col width="4cm" align="left">
+<col align="left">
+</colgroup>
+<thead>
+<tr>
+<th style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left">Value</th><th style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left">Default</th><th style="border-bottom: 0.5pt solid ; " align="left">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><span class="property">server.port</span></td><td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><code class="literal">9001 (normal) or 554 (if TLS
+            encrypted)</code></td><td style="border-bottom: 0.5pt solid ; " align="left" valign="top">TCP/IP port used for talking to clients. All databases are
+            served on the same port.</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; " align="left" valign="top"><span class="property">server.no_system_exit</span></td><td style="border-right: 0.5pt solid ; " align="left" valign="top"><code class="literal">true</code></td><td style="" align="left" valign="top">no <code class="literal">System.exit()</code> call when the database
+            is closed</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<br class="table-break">
+<p>Properties or default values specific to
+    <code class="filename">webserver.properties</code> are:</p>
+<div class="table">
+<a name="N156BB"></a>
+<p class="title">
+<b>Table&nbsp;13.3.&nbsp;webserver properties</b>
+</p>
+<div class="table-contents">
+<table summary="webserver properties" cellspacing="0" width="100%" style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; ">
+<colgroup>
+<col width="4cm" align="left">
+<col width="4cm" align="left">
+<col align="left">
+</colgroup>
+<thead>
+<tr>
+<th style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left">Value</th><th style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left">Default</th><th style="border-bottom: 0.5pt solid ; " align="left">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><span class="property">server.port</span></td><td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><code class="literal">80 (normal) or 443 (if TLS
+            encrypted)</code></td><td style="border-bottom: 0.5pt solid ; " align="left" valign="top">TCP/IP port used for talking to clients</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><span class="property">server.default_page</span></td><td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><code class="literal">index.html</code></td><td style="border-bottom: 0.5pt solid ; " align="left" valign="top">the default web page for server</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><span class="property">server.root</span></td><td style="border-right: 0.5pt solid ; border-bottom: 0.5pt solid ; " align="left" valign="top"><code class="literal">./</code></td><td style="border-bottom: 0.5pt solid ; " align="left" valign="top">the location of served pages</td>
+</tr>
+<tr>
+<td style="border-right: 0.5pt solid ; " align="left" valign="top"><span class="property">.&lt;extension&gt;</span></td><td style="border-right: 0.5pt solid ; " align="left" valign="top"><code class="literal">NO DEFAULT</code></td><td style="" align="left" valign="top">multiple entries such as <code class="literal">.html=text/html</code>
+            define the mime types of the static files served by the web
+            server. See the source for <code class="filename"><a class="filename" href="filelinks-app.html#WebServer.java-link">
+            src/org/hsqldb/server/WebServer.java</a></code> for a
+            list.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<br class="table-break">
+<p>An example of the contents of a
+    <code class="filename">server.properties</code> file is given below:</p>
+<pre class="programlisting">    server.database.0=file:/opt/db/accounts
+    server.dbname.0=accounts
+
+    server.database.1=file:/opt/db/mydb
+    server.dbname.1=enrolments
+
+    server.database.2=mem:adatabase
+    server.dbname.2=quickdb</pre>
+<p>In the above example, the <code class="filename">server.properties</code>
+    file indicates that the server provides access to 3 different databases.
+    Two of the databases are file-based, while the third is all-in-memory. The
+    aliases for the databases that the users connect to are
+    <code class="literal">accounts</code>, <code class="literal">enrolments</code> and
+    <code class="literal">quickdb</code>.</p>
+<p>All the above properties and their values can be specified on the
+    command line to start the server by omitting the
+    <code class="literal">server.</code> prefix. If a property/value pair is specified
+    on the command line, it overrides the property value specified in the
+    <code class="filename">server.properties</code> or
+    <code class="filename">webserver.properties</code> file.</p>
+<div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<table border="0" summary="Note">
+<tr>
+<td valign="top" align="center" rowspan="2" width="25"><img alt="[Note]" src="../images/db/note.png"></td><th align="left">Note</th>
+</tr>
+<tr>
+<td valign="top" align="left">
+<p>Upgrading: If you have existing custom properties files, change
+      the values to the new naming convention. Note the use of digits at the
+      end of <span class="property">server.database.n</span> and
+      <span class="property">server.dbname.n</span> properties.</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="section" title="Starting a Server from your Application">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="lsc_app_start"></a>Starting a Server from your Application</h2>
+</div>
+</div>
+</div>
+<p>If you want to start the server from within your application, as
+    opposed to the command line or batch files, you should create an instance
+    of Server or Web Server, then assign the properties and start the Server.
+    An working example of this can be found in the <code class="classname"><a class="classname" href="filelinks-app.html#TestBase.java-link"> org.hsqldb.test.TestBase</a></code>
+    source. The example below sets the same properties as in the
+    server.properties file example.</p>
+<pre class="programlisting">    HsqlProperties p = new HsqlProperties();
+    p.setProperty("server.database.0","file:/opt/db/accounts");
+    p.setProperty("server.dbname.0","an_alias");
+    // set up the rest of properties
+
+    // alternative to the above is
+    Server server = new Server();
+    server.setProperties(p);
+    server.setLogWriter(null); // can use custom writer
+    server.setErrWriter(null); // can use custom writer
+    server.start();
+</pre>
+<p>The Server object has several alternative methods for setting
+    databases and their public names. The server should be shutdown using the
+    shutdown() method.</p>
+</div>
+<div class="section" title="Allowing a Connection to Open or Create a Database">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="lsc_remote_open"></a>Allowing a Connection to Open or Create a Database</h2>
+</div>
+</div>
+</div>
+<p>If the <code class="literal">server.remote_open</code> property is true, the
+    Server works differently from the normal mode. In this mode, it is not
+    necessary to have any databases listed as server.database.0 etc. in the
+    Server startup properties. If there are databases listed, they are opened
+    as normal. The server does not shutdown when the last database is
+    closed.</p>
+<p>In this mode, a connection can be established to a database that is
+    not open or does not exist. The server will open the database or create
+    it, then return a connection to the database.</p>
+<p>The connection URL must include the path to the database, separated
+    with a semicolon from the alias. In the example below, the database path
+    specified as <code class="literal">file:C:/files/mydatabase</code> is opened and the
+    database alias <code class="literal">xdb</code> is assigned to the database. After
+    this, the next connection to the specified alias will connect to the same
+    database. The database path can also point to a mem: database. If you use
+    database properties on the URL, these properties are used when the new
+    database is created. If no database properties are used on the URL, you can
+    also specify the path with filepath=&lt;path&gt;. Examples below:</p>
+<pre class="programlisting">Connection c = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/xdb;file:C:/files/mydatabase", "SA", "");
+Connection c = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/xdb;mem:test;sql.enforce_types=true", "SA", "");
+Connection c = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/xdb;filepath=file:C:/files/mydatabase", "SA", "");
+</pre>
+<p>The path can be a file: or mem: database.</p>
+</div>
+<div class="section" title="Specifying Database Properties at Server Start">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="lsc_db_props_startup"></a>Specifying Database Properties at Server Start</h2>
+</div>
+</div>
+</div>
+<p>Each database started by a Server has its own URL. When new
+    databases are created by the server, the database properties for each of
+    the new database can be appended to the database URL. Examples
+    below:</p>
+<pre class="programlisting">// example in server.propertie file
+    server.database.0=file:/opt/db/accounts;hsqldb.default_table_type=cached;sql.enforce_names=true
+    server.dbname.0=accounts
+
+// example for setting the property programatically
+    HsqlProperties p = new HsqlProperties();
+    p.setProperty("server.database.0","file:/opt/db/accounts;hsqldb.default_table_type=cached;sql.enforce_names=true");
+</pre>
+<p>The specified properties apply only to a new database. They have no
+    effect on an existing database apart from a few properties such as
+    readonly listed in the <a class="link" href="dbproperties-chapt.html" title="Chapter&nbsp;12.&nbsp;Properties">Properties</a> chapter.</p>
+</div>
+<div class="section" title="TLS Encryption">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="lsc_tls"></a>TLS Encryption</h2>
+</div>
+<div>
+<h2 class="subtitle">Listener TLS Support (a. k. a. SSL)</h2>
+</div>
+<div>
+<div class="authorgroup">
+<div class="author">
+<h3 class="author">
+<span class="firstname">Blaine</span> <span class="surname">Simpson</span>
+</h3>
+<div class="affiliation">
+<span class="orgname">The HSQL Development Group<br>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<p class="releaseinfo">$Revision: 4903 $</p>
+</div>
+<div>
+<p class="pubdate">2012-01-15 10:12:45-0500</p>
+</div>
+</div>
+</div>
+<a name="N1577E" class="indexterm"></a>
+<p>This section explains how to encrypt the stream between JDBC network
+    clients and HyperSQL Listeners. If you are running an
+    <em class="glossterm">in-process</em> (non-Listener) setup, this chapter does
+    not apply to you.</p>
+<div class="section" title="Requirements">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="lsc_tls_rquirements"></a>Requirements</h3>
+</div>
+</div>
+</div>
+<div class="itemizedlist" title="Hsqldb TLS Support Requirements">
+<p class="title">
+<b>Hsqldb TLS Support Requirements</b>
+</p>
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Sun Java 2.x and up. (This is probably possible with IBM's
+          Java, but I don't think anybody has attempted to run HSQLDB with TLS
+          under IBM's Java, and I'm sure that nobody in the HSQLDB Development
+          Group has documented how to set up the environment).</p>
+</li>
+<li class="listitem">
+<p>If Java 2.x or 3.x, then you will need to <a class="link" href="listeners-chapt.html#lsc_jsse" title="JSSE">install JSSE</a>. Your server and/or
+          client will start up much slower than that of Java 4.x users.
+          Client-side users will not be able to use the https: JDBC protocol
+          (because the https protocol handler is not implemented in 2.x/3.x
+          Java JSSE; if there is demand, we could work around this).</p>
+</li>
+<li class="listitem">
+<p>A <a class="link" href="listeners-chapt.html#lsc_privatekey" title="Making a Private-key Keystore">JKS keystore containing a
+          private key</a>, in order to run a Listener.</p>
+</li>
+<li class="listitem">
+<p>If you are running the listener side, then you'll need to run
+          a HSQLDB Server or WebServer Listener instance. It doesn't matter if
+          the underlying database catalogs are new, and it doesn't matter if
+          you are making a new Listener configuration or encrypting an
+          existing Listener configuration. (You can turn encryption on and off
+          at will).</p>
+</li>
+<li class="listitem">
+<p>You need a HSQLDB jar file that was built with JSSE present.
+          If you obtained your HSQLDB 1.7.2-or-later distribution from us, you
+          are all set, because we build with Java 1.4 or later (which contains
+          JSSE). If you build your own jar file with Java 1.3, make sure to
+          install JSSE first.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="Encrypting your JDBC connection">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="lsc_ssl_connection"></a>Encrypting your JDBC connection</h3>
+</div>
+</div>
+</div>
+<p>At this time, only 1-way, server-cert encryption is tested.</p>
+<div class="section" title="Client-Side">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="lsc_ssl_client"></a>Client-Side</h4>
+</div>
+</div>
+</div>
+<p>Just use one of the following protocol prefixes.</p>
+<div class="itemizedlist" title="Hsqldb TLS URL Prefixes">
+<p class="title">
+<b>Hsqldb TLS URL Prefixes</b>
+</p>
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+<code class="literal">jdbc:hsqldb:hsqls://</code>
+</p>
+</li>
+<li class="listitem">
+<p>
+<code class="literal">jdbc:hsqldb:https://</code>
+</p>
+</li>
+</ul>
+</div>
+<p>At this time, the latter will only work for clients running with
+        Java 1.4 or later.</p>
+<p>If the listener you wish to connect to is using a certificate
+        approved by your default trust keystore, then there is nothing else to
+        do. If not, then you need to tell Java to "trust" the server cert.
+        (It's a slight over-simplification to say that if the server
+        certificate was purchased, then you are all set; if somebody "signed
+        their own" certificate by self-signing or using a private ca
+        certificate, then you need to set up trust).</p>
+<p>First, you need to obtain the cert (only the "public" part of
+        it). Since this cert is passed to all clients, you could obtain it by
+        writing a Java client that dumps it to file, or perhaps by using
+        <span class="emphasis"><em>openssl s_client</em></span>. Since in most cases, if you
+        want to trust a non-commercial cert, you probably have access to the
+        server keystore, I'll show an example of how to get what you need from
+        the server-side JKS keystore.</p>
+<p>You may already have an X509 cert for your server. If you have a
+        server keystore, then you can generate a X509 cert like this. </p>
+<div class="example">
+<a name="N157C6"></a>
+<p class="title">
+<b>Example&nbsp;13.1.&nbsp;Exporting certificate from the server's keystore</b>
+</p>
+<div class="example-contents">
+<pre class="screen">    keytool -export -keystore server.store -alias existing_alias -file server.cer</pre>
+</div>
+</div>
+<p>
+<br class="example-break"> In this example, <code class="filename">server.cer</code> is the
+        X509 certificate that you need for the next step.</p>
+<p>Now, you need to add this cert to one of the system trust
+        keystores or to a keystore of your own. See <a class="link" href="http://java.sun.com/javase/6/docs/technotes/guides/security/jsse/JSSERefGuide.html#CustomizingStores" target="_top">
+        the Customizing Stores section in JSSERefGuide.html</a> to see
+        where your system trust keystores are. You can put private keystores
+        anywhere you want to. The following command will add the cert to an
+        existing keystore, or create a new keystore if
+        <code class="filename">client.store</code> doesn't exist.</p>
+<div class="example">
+<a name="N157D8"></a>
+<p class="title">
+<b>Example&nbsp;13.2.&nbsp;Adding a certificate to the client keystore</b>
+</p>
+<div class="example-contents">
+<pre class="screen">    keytool -import -trustcacerts -keystore trust.store -alias new_alias -file server.cer</pre>
+</div>
+</div>
+<br class="example-break">
+<p>If you are making a new keystore, you probably want to start
+        with a copy of your system default keystore which you can find
+        somewhere under your <code class="varname">JAVA_HOME</code> directory (typically
+        <code class="filename">jre/lib/security/cacerts</code> for a JDK, but I forget
+        exactly where it is for a JRE).</p>
+<p>Unless your OS can't stop other people from writing to your
+        files, you probably do not want to set a password on the trust
+        keystore.</p>
+<p>If you added the cert to a system trust store, then you are
+        finished. Otherwise you will need to specify your custom trust
+        keystore to your client program. The generic way to set the trust
+        keystore is to set the system property
+        <code class="classname">javax.net.ssl.trustStore</code> every time that you
+        run your client program. For example </p>
+<div class="example">
+<a name="N157EC"></a>
+<p class="title">
+<b>Example&nbsp;13.3.&nbsp;Specifying your own trust store to a JDBC client</b>
+</p>
+<div class="example-contents">
+<pre class="screen">    java -Djavax.net.ssl.trustStore=/home/blaine/trust.store -jar /path/to/hsqldb.jar dest-urlid</pre>
+</div>
+</div>
+<p>
+<br class="example-break"> This example runs the program <a class="link" href="unix-chapt.html" title="Chapter&nbsp;14.&nbsp;HyperSQL on UNIX">SqlTool</a>. SqlTool has built-in TLS
+        support however, so, for SqlTool you can set
+        <code class="varname">truststore</code> on a per-urlid basis in the SqlTool
+        configuration file.</p>
+<p>Note: The hostname in your database URL must match the
+        <span class="emphasis"><em>Common Name</em></span> of the server's certificate exactly.
+        That means that if a site certificate is <code class="literal">admc.com</code>,
+        you can not use <code class="literal">jdbc:hsqldb:hsqls://localhost</code> or
+        <code class="literal">jdbc:hsqldb:hsqls://www.admc.com:1100</code> to connect to
+        it.</p>
+<p>If you want more details on anything, see JSSERefGuide.html on
+        <a class="link" href="http://java.sun.com/javase/6/docs/technotes/guides/security/jsse/JSSERefGuide.html" target="_top">
+        Sun's site</a>, or in the subdirectory
+        <code class="filename">docs/guide/security/jsse</code> of your Java SE
+        docs.</p>
+</div>
+<div class="section" title="Server-Side (Listener-Side)">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="lsc_ssl_server"></a>Server-Side (Listener-Side)</h4>
+</div>
+</div>
+</div>
+<p>Get yourself a <a class="link" href="listeners-chapt.html#lsc_privatekey" title="Making a Private-key Keystore"> JKS
+        keystore containing a private key</a>. Then set properties
+        <code class="varname">server.tls</code>,
+        <code class="varname">system.javax.net.ssl.keyStore</code> and
+        <code class="varname">system.javax.net.ssl.keyStorePassword</code> in your
+        <code class="filename">server.properties</code> or
+        <code class="filename">webserver.properties</code> file. Set
+        <code class="varname">server.tls</code> to <code class="literal">true</code>,
+        <code class="varname">system.javax.net.ssl.keyStore</code> to the path of the
+        private key JKS keystore, and
+        <code class="varname">system.javax.net.ssl.keyStorePassword</code> to the
+        password (of both the keystore and the private key record-- they must
+        be the same). If you specify relative file path values, they will be
+        resolved relative to the <code class="varname">${user.dir}</code> when the JRE
+        is started.</p>
+<div class="caution" title="Caution" style="margin-left: 0.5in; margin-right: 0.5in;">
+<table border="0" summary="Caution">
+<tr>
+<td valign="top" align="center" rowspan="2" width="25"><img alt="[Caution]" src="../images/db/caution.png"></td><th align="left"><a name="tlspassword-caution"></a>Caution</th>
+</tr>
+<tr>
+<td valign="top" align="left">
+<p>If you set any password in a .properties (or any other) file,
+          you need to restrict access to the file. On a good operating system,
+          you can do this like so: </p>
+<div class="informalexample">
+<pre class="screen">    chmod 600 path/to/server.properties</pre>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<p>The values and behavior of the <code class="literal">system.*</code>
+        settings above match the usage documented for
+        <code class="varname">javax.net.ssl.keyStorePassword</code> and
+        <code class="varname">javax.net.ssl.keyStore</code> in the JSSE docs.</p>
+<div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<table border="0" summary="Note">
+<tr>
+<td valign="top" align="center" rowspan="2" width="25"><img alt="[Note]" src="../images/db/note.png"></td><th align="left">Note</th>
+</tr>
+<tr>
+<td valign="top" align="left">
+<p>Before version 2.0, HyperSQL depended on directly setting
+          the corresponding JSSE properties. The new idiom is more secure and
+          easier to manage. If you have an old password in a UNIX init script
+          config file, you should remove it.</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="section" title="JSSE">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="lsc_jsse"></a>JSSE</h3>
+</div>
+</div>
+</div>
+<p>If you are running Java 4.x or later, then you are all set. Java
+      1.x users, you are on your own (Sun does not provide a JSSE that will
+      work with 1.x). Java 2.x and 3.x users continue...</p>
+<p>Go to <a class="link" href="http://java.sun.com/products/jsse/index-103.html" target="_top">http://java.sun.com/products/jsse/index-103.html</a> If
+      you agree to the terms and meet the requirements, download the domestic
+      or global JSSE software. All you need from the software distro is the
+      three jar files. If you have a JDK installation, then move the 3 jar
+      files into the directory <code class="filename">$JAVA_HOME/jre/lib/ext</code>. If
+      you have a JRE installation, then move the 3 jar files into the
+      directory <code class="filename">$JAVA_HOME/lib/ext</code>.</p>
+<p>Pretty painless.</p>
+</div>
+<div class="section" title="Making a Private-key Keystore">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="lsc_privatekey"></a>Making a Private-key Keystore</h3>
+</div>
+</div>
+</div>
+<p>There are two main ways to do this. Either you can use a
+      certificate signed by a certificate authority, or you can make your own.
+      One thing that you need to know in both cases is, the <span class="emphasis"><em>Common
+      Name</em></span> of the cert has to be the exact hostname that JDBC
+      clients will use in their database URL.</p>
+<div class="section" title="CA-Signed Cert">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="lsc_ssl_certificate"></a>CA-Signed Cert</h4>
+</div>
+</div>
+</div>
+<p>I'm not going to tell you how to get a CA-signed SSL
+        certificate. That is well documented at many other places.</p>
+<p>Assuming that you have a standard pem-style private key
+        certificate, here's how you can use <a class="link" href="http://www.openssl.org" target="_top">openssl</a> and the program
+        <code class="classname">DERImport</code> to get it into a JKS keystore.</p>
+<p>Because I have spent a lot of time on this document already, I
+        am just giving you an example.</p>
+<div class="example">
+<a name="N1587A"></a>
+<p class="title">
+<b>Example&nbsp;13.4.&nbsp;Getting a pem-style private key into a JKS keystore</b>
+</p>
+<div class="example-contents">
+<pre class="screen">    openssl pkcs8 -topk8 -outform DER -in Xpvk.pem -inform PEM -out Xpvk.pk8 -nocrypt
+
+    openssl x509 -in Xcert.pem -out Xcert.der -outform DER
+
+    java DERImport new.keystore NEWALIAS Xpvk.pk8 Xcert.der</pre>
+</div>
+</div>
+<br class="example-break">
+<div class="important" title="Important" style="margin-left: 0.5in; margin-right: 0.5in;">
+<table border="0" summary="Important">
+<tr>
+<td valign="top" align="center" rowspan="2" width="25"><img alt="[Important]" src="../images/db/important.png"></td><th align="left">Important</th>
+</tr>
+<tr>
+<td valign="top" align="left">
+<p>Make sure to set the password of the key exactly the same as
+          the password for the keystore!</p>
+</td>
+</tr>
+</table>
+</div>
+<p>You need the program <code class="filename">DERImport.class</code> of
+        course. Do some internet searches to find
+        <code class="filename">DERImport.java</code> or
+        <code class="filename">DERImport.class</code> and download it.</p>
+<p>If DERImport has become difficult to obtain, I can write a
+        program to do the same thing-- just let me know.</p>
+</div>
+<div class="section" title="Non-CA-Signed Cert">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="mtc_ssl_certificate_non_ca"></a>Non-CA-Signed Cert</h4>
+</div>
+</div>
+</div>
+<p>Run <code class="literal">man keytool</code> or see <a class="link" href="http://java.sun.com/javase/6/docs/technotes/guides/security/jsse/JSSERefGuide.html#CreateKeystore" target="_top">
+        the Creating a Keystore section of JSSERefGuide.html</a>.</p>
+</div>
+</div>
+<div class="section" title="Automatic Server or WebServer startup on UNIX">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="lsc_auto_server_unix"></a>Automatic Server or WebServer startup on UNIX</h3>
+</div>
+</div>
+</div>
+<p>If you are on UNIX and want to automatically start and stop a
+      Server or WebServer running with encryption, set the
+      <code class="varname">system.javax.net.ssl.keyStore</code> and
+      <code class="varname">system.javax.net.ssl.keyStorePassword</code> properties as
+      instructed above, and follow the instructions in the <a class="link" href="unix-chapt.html" title="Chapter&nbsp;14.&nbsp;HyperSQL on UNIX">HyperSQL on UNIX</a> chapter, paying
+      close attention to the TLS-related comments in the template config
+      file.</p>
+<p>If you are using a private server certificate, make sure to also
+      set the trust store filepath for relevant urlids in your RC file, as
+      explained in the sample <a class="link" href="filelinks-app.html#hsqldb.cfg-link">config
+      file</a>.</p>
+</div>
+</div>
+<div class="section" title="Network Access Control">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="lsc_acl"></a>Network Access Control</h2>
+</div>
+<div>
+<h2 class="subtitle">(Server ACLs)</h2>
+</div>
+</div>
+</div>
+<a name="N158B9" class="indexterm"></a><a name="N158BC" class="indexterm"></a>
+<p>JDBC connections will always be denied if the supplied user and
+    password are not found in the target catalog. But an HyperSQL listener can
+    also restrict access at the listener level, even protecting private
+    catalogs which have insecure (or default) passwords. If you have an
+    <em class="glossterm">in-process</em> setup, this section of the Guide doesn't
+    apply to you.</p>
+<p>Many (in fact, most) distributed database applications don't have
+    application clients connect directly to the database, but instead
+    encapsulate access in a controlling process. For example, a web app will
+    usually access the data source on behalf of users, with end-user web
+    browsers never accessing the database directly. In these cases and others,
+    the security benefits of restricting listener access to specific source
+    addresses is well worth the effort. ACLs work by restricting access
+    according to the source address of the incoming connection request. This
+    is efficient because the database engine never even gets the request until
+    it is approved by the ACL filter code.</p>
+<p>The sample file <code class="filename"><a class="filename" href="filelinks-app.html#acl.txt-link">sample/acl.txt</a></code> in your HyperSQL
+    distribution explains how to write an ACL file. </p>
+<pre class="programlisting"># $Id: acl.txt 826 2009-01-17 05:04:52Z unsaved $
+
+# Sample HyperSQL Network Listener ACL file.
+# Specify "allow" and "deny" rules
+# For address specifications, individual addresses, host names, and
+# network addresses with /bit suffix are allowed, but read the caveat about
+# host names below, under the sample "localhost" rule.
+
+# Blank lines ignored.
+   # Lines with # as the first non-whitespace character are ignored.
+
+
+allow 2001:db8::/32
+# Allow this 32-bit ipv4 subnet
+
+allow localhost
+# You should use numerical addresses in ACL files, unless you are certain that
+# the name will always be known to your network address resolution system
+# (assume that you will lose Internet connectivity at some time).
+# With a default name resolution setup on UNIX, you are safe to use names
+# defined in your /etc/hosts file.
+
+deny 192.168.101.253
+# Deny a single IP address.
+# In our example, 192.168.101.0/24 is our local, organizational network.
+# 192.168.101.253 is the IP address of our Intern's PC.
+# The Intern does not have permission to access our databases directly.
+
+allow 192.168.101.0/24
+
+# Any ipv4 or ipv6 candidate address not matched above will be denied
+</pre>
+<p>
+    You put your file wherever it is convenient for you, and specify that path
+    with the property <code class="varname">server.acl</code> or
+    <code class="varname">webserver.acl</code> in your
+    <code class="filename">server.properties</code> or
+    <code class="filename">webserver.properties</code> file (depending on whether your
+    listener instance is a <code class="classname">Server</code> or
+    <code class="classname">WebServer</code>). You can specify the ACL file path with
+    an absolute or relative path. If you use a relative path, it must be
+    relative to the <code class="filename">.properties</code> file. It's often
+    convenient to name the ACL file <code class="filename">acl.txt</code>, in the same
+    directory as your <code class="filename">.properties</code> file and specify the
+    property value as just <code class="filename">acl.txt</code>. This file name is
+    intuitive, and things will continue to work as expected if you move or
+    copy the entire directory.</p>
+<div class="warning" title="Warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<table border="0" summary="Warning">
+<tr>
+<td valign="top" align="center" rowspan="2" width="25"><img alt="[Warning]" src="../images/db/warning.png"></td><th align="left">Warning</th>
+</tr>
+<tr>
+<td valign="top" align="left">
+<p>If your <code class="classname">Server</code> or
+      <code class="classname">WebServer</code> was started with a
+      <code class="varname">*.acl</code> property, changes afterwards to the ACL file
+      will be picked up immediately by your listener instance. You are advised
+      to use the procedure below to prevent partial edits or mistakes from
+      crippling your running server.</p>
+</td>
+</tr>
+</table>
+</div>
+<p>When you edit your ACL file, it is both more convenient and more
+    secure to test it as explained here before activating it. You could, of
+    course, test an ACL file by editing it in-place, then trying to connect to
+    your listener with JDBC clients from various source addresses. Besides
+    being mightily laborious and boring, with this method it is very easy to
+    accidentally open access to all source addresses or to deny access to all
+    users until you fix incorrect ACL entries.</p>
+<p>The suggested method of creating or changing ACLs is to work with an
+    inactive file (for new ACL files, just don't enable the
+    <code class="varname">*.acl</code> property yet; for changing an existing file, just
+    copy it to a temporary file and edit the temporary file). Then use the
+    <code class="classname">ServerAcl</code> class to test it. </p>
+<div class="example">
+<a name="N15903"></a>
+<p class="title">
+<b>Example&nbsp;13.5.&nbsp;Validating and Testing an ACL file</b>
+</p>
+<div class="example-contents">
+<pre class="screen">    java -cp path/to/hsqldb.jar org.hsqldb.server.ServerAcl path/to/acl.txt</pre>
+</div>
+</div>
+<p>
+<br class="example-break"> If the specified ACL file fails validation, you will be given
+    details about the problem. Otherwise, the validated rules will be
+    displayed (including the implicit, default deny rules). You then type in
+    host names and addresses, one-per-line. Each name or address is tested as
+    if it were a HyperSQL network client address, using the same exact method
+    that the HyperSQL listener will use. (HyperSQL listeners use this same
+    <code class="classname">ServerAcl</code> class to test incoming source addresses).
+    <code class="classname">ServerAcl</code> will report the rule which matches and
+    whether access is denied or allowed to that address.</p>
+<p>If you have edited a copy of an existing ACL file (as suggested
+    above), then overwrite your live ACL file with your new, validated ACL
+    file. I.e., copy your temp file over top of your live ACL file.</p>
+<p>
+<code class="classname">ServerAcl</code> can be run in the same exact way
+    described above, to troubleshoot runtime access issues. If you use an ACL
+    file and a user or application can't get a connection to the database, you
+    can run <code class="classname">ServerAcl</code> to quickly and definitively find
+    if the client is being prohibited by an ACL rule.</p>
+</div>
+</div>
+<HR xmlns:xi="http://www.w3.org/2001/XInclude">
+<P xmlns:xi="http://www.w3.org/2001/XInclude" class="svnrev">$Revision: 4864 $</P>
+<div class="navfooter">
+<hr>
+<table summary="Navigation footer" width="100%">
+<tr>
+<td align="left" width="40%"><a accesskey="p" href="dbproperties-chapt.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="20%">&nbsp;</td><td align="right" width="40%">&nbsp;<a accesskey="n" href="unix-chapt.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="40%">Chapter&nbsp;12.&nbsp;Properties&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="40%">&nbsp;Chapter&nbsp;14.&nbsp;HyperSQL on UNIX</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,312 @@
+pf00001	7 transmembrane receptor (rhodopsin family)
+pf00004	atpase family associated with various cellular activities (aaa)
+pf00007	ctck
+pf00008	egf-like
+pf00008	egf-like domain
+pf00010	helix-loop-helix dna-binding domain
+pf00013	kh
+pf00013	kh domain
+pf00017	sh2
+pf00017	sh2 domain
+pf00018	sh3
+pf00018	sh3 domain
+pf00020	tnfr-cys repeats (2)
+pf00022	actin
+pf00023	ankyrin repeat
+pf00027	cyclic nucleotide-binding
+pf00027	cyclic nucleotide-binding domain
+pf00028	cadherin
+pf00028	cadherin domain
+pf00035	double-stranded rna binding motif
+pf00036	ef
+pf00036	ef hand
+pf00041	fibronectin type iii
+pf00041	fibronectin type iii domain
+pf00045	hemopexin
+pf00046	homeobox
+pf00046	homeobox domain
+pf00047	immunoglobulin
+pf00047	immunoglobulin domain
+pf00048	small cytokines (intecrine/chemokine), interleukin-8 like
+pf00049	insulin/igf/relaxin
+pf00050	kazal-type serine protease inhibitor
+pf00053	laminin egf-like
+pf00057	low-density lipoprotein receptor domain class a
+pf00058	low-density lipoprotein receptor repeat class b
+pf00059	lectin c-type
+pf00059	lectin c-type domain
+pf00060	ligand-gated ion channel
+pf00063	myosin
+pf00063	myosin head (motor domain)
+pf00069	protein kinase
+pf00069	protein kinase domain
+pf00071	ras
+pf00071	ras family
+pf00072	response regulator receiver
+pf00076	rna recognition motif. (a.k.a. rrm, rbd, or rnp domain)
+pf00076	rrm, rbd, rnp
+pf00084	sushi
+pf00084	sushi domain (scr repeat)
+pf00085	thioredoxin
+pf00086	thyroglobulin type-1 repeat
+pf00089	trypsin
+pf00090	thrombospondin type 1
+pf00090	thrombospondin type 1 domain
+pf00092	von willebrand factor type a
+pf00092	von willebrand factor type a domain
+pf00093	von willebrand factor type c
+pf00096	c2h2
+pf00096	zinc finger, c2h2 type
+pf00097	c3hc4
+pf00097	zinc finger, c3hc4 type (ring finger)
+pf00102	protein-tyrosine phosphatase
+pf00104	ligand-binding domain of nuclear hormone receptor
+pf00105	c4
+pf00105	zinc finger, c4 type (two domains)
+pf00106	short chain dehydrogenase
+pf00109	beta-ketoacyl synthase, n-terminal domain
+pf00125	core histone h2a/h2b/h3/h4
+pf00128	alpha amylase
+pf00128	alpha amylase, catalytic domain
+pf00129	class i histocompatibility antigen, domains alpha 1 and 2
+pf00134	cyclin
+pf00134	cyclin, n-terminal domain
+pf00147	fibrinogen beta and gamma chains, c-terminal globular domain
+pf00149	calcineurin
+pf00157	pou domain - n-terminal to homeobox domain
+pf00158	sigma-54
+pf00164	ribosomal protein s12/s23
+pf00168	c2
+pf00168	c2 domain
+pf00169	ph
+pf00169	ph domain
+pf00170	bzip transcription factor
+pf00171	aldehyde dehydrogenase family
+pf00176	snf2
+pf00178	ets
+pf00178	ets-domain
+pf00180	isocitrate/isopropylmalate dehydrogenase
+pf00198	2-oxoacid dehydrogenases acyltransferase (catalytic domain)
+pf00204	dna gyrase b
+pf00219	insulin-like growth factor binding protein
+pf00225	kinesin
+pf00226	dnaj
+pf00226	dnaj domain
+pf00227	proteasome
+pf00227	proteasome subunit
+pf00240	ubiquitin
+pf00240	ubiquitin family
+pf00249	myb
+pf00249	myb-like dna-binding domain
+pf00270	dead
+pf00292	'paired box' domain
+pf00307	calponin homology (ch) domain
+pf00307	ch
+pf00319	srf-type transcription factor (dna-binding and dimerisation domain)
+pf00373	ferm
+pf00387	phosphatidylinositol-specific phospholipase c, y domain
+pf00388	phosphatidylinositol-specific phospholipase c, x domain
+pf00389	d-isomer specific 2-hydroxyacid dehydrogenase, catalytic domain
+pf00397	ww
+pf00397	ww domain
+pf00400	wd
+pf00400	wd domain, g-beta repeat
+pf00431	cub
+pf00433	protein kinase
+pf00433	protein kinase c terminal domain
+pf00435	spectrin
+pf00435	spectrin repeat
+pf00439	bromodomain
+pf00443	ubiquitin carboxyl-terminal hydrolase
+pf00491	arginase
+pf00491	arginase family
+pf00498	fha
+pf00498	fha domain
+pf00503	g-protein alpha subunit
+pf00514	armadillo/beta-catenin-like
+pf00514	armadillo/beta-catenin-like repeat
+pf00515	tetratricopeptide repeat
+pf00531	death
+pf00531	death domain
+pf00533	brca1
+pf00538	linker histone h1 and h5 family
+pf00554	rel homology domain (rhd)
+pf00554	rhd
+pf00560	leucine rich repeat
+pf00564	pb1
+pf00564	pb1 domain
+pf00568	wh1
+pf00568	wh1 domain
+pf00583	gnat
+pf00595	pdz
+pf00595	pdz domain (also known as dhr or glgf)
+pf00612	iq calmodulin-binding motif
+pf00613	pik
+pf00614	phospholipase d active site motif
+pf00615	regulator of g protein signaling domain
+pf00616	gtpase-activator protein for ras-like gtpase
+pf00617	rasgef
+pf00617	rasgef domain
+pf00618	rasgef n-terminal
+pf00618	rasgef n-terminal motif
+pf00619	caspase recruitment domain
+pf00620	rhogap
+pf00620	rhogap domain
+pf00621	rhogef
+pf00621	rhogef domain
+pf00625	guanylate
+pf00625	guanylate kinase
+pf00627	uba/ts-n
+pf00627	uba/ts-n domain
+pf00630	filamin/abp280 repeat
+pf00631	ggl domain
+pf00632	hect
+pf00632	hect-domain (ubiquitin-transferase)
+pf00633	helix-hairpin-helix
+pf00640	phosphotyrosine interaction domain (ptb/pid)
+pf00640	ptb/pid
+pf00646	f-box
+pf00646	f-box domain
+pf00651	btb/poz
+pf00651	btb/poz domain
+pf00672	hamp
+pf00680	rna dependent rna polymerase
+pf00686	starch binding domain
+pf00704	glycosyl hydrolases family 18
+pf00754	f5/8 type c domain
+pf00757	furin-like cysteine rich region
+pf00769	ezrin/radixin/moesin family
+pf00778	dix
+pf00779	btk
+pf00779	btk motif
+pf00782	dual specificity phosphatase, catalytic domain
+pf00786	p21-rho-binding
+pf00786	p21-rho-binding domain
+pf00787	px
+pf00787	px domain
+pf00788	ralgds/af-6
+pf00788	ras association (ralgds/af-6) domain
+pf00792	c2
+pf00794	pi3-kinase family, ras-binding
+pf00795	carbon-nitrogen hydrolase
+pf00806	pumilio-family rna binding repeat
+pf00812	ephrin
+pf00850	histone deacetylase domain
+pf00856	set
+pf00856	set domain
+pf00863	c4
+pf00889	elongation factor ts
+pf00917	math
+pf00917	math domain
+pf00969	class ii histocompatibility antigen, beta domain
+pf00972	flavivirus rna-directed rna polymerase
+pf00989	pas
+pf00993	class ii histocompatibility antigen, alpha domain
+pf00998	viral rna dependent rna polymerase
+pf01006	hepatitis c virus non-structural protein ns4a
+pf01017	stat protein
+pf01017	stat protein, all-alpha domain
+pf01028	eukaryotic dna topoisomerase i, catalytic core
+pf01030	receptor l
+pf01030	receptor l domain
+pf01049	cadherin
+pf01049	cadherin cytoplasmic region
+pf01079	hint module
+pf01085	hedgehog amino-terminal signalling domain
+pf01088	ubiquitin carboxyl-terminal hydrolase, family 1
+pf01131	dna topoisomerase
+pf01158	ribosomal protein l36e
+pf01248	ribosomal protein l7ae/l30e/s12e/gadd45 family
+pf01269	fibrillarin
+pf01336	ob-fold nucleic acid binding domain
+pf01363	fyve zinc finger
+pf01369	sec7 domain
+pf01388	arid
+pf01398	jab1
+pf01399	pci
+pf01399	pci domain
+pf01403	sema
+pf01403	sema domain
+pf01404	ephrin
+pf01404	ephrin receptor ligand binding domain
+pf01412	putative gtpase activating protein for arf
+pf01421	reprolysin (m12b) family zinc metalloprotease
+pf01423	lsm
+pf01437	plexin
+pf01437	plexin repeat
+pf01451	low molecular weight phosphotyrosine protein phosphatase
+pf01459	eukaryotic porin
+pf01462	leucine rich repeat n-terminal domain
+pf01575	maoc like domain
+pf01582	tir
+pf01582	tir domain
+pf01590	gaf
+pf01627	hpt
+pf01652	eukaryotic initiation factor 4e
+pf01653	nad-dependent dna ligase adenylation domain
+pf01728	ftsj-like methyltransferase
+pf01729	quinolinate phosphoribosyl transferase, c-terminal domain
+pf01833	ipt/tig
+pf01833	ipt/tig domain
+pf01853	moz/sas
+pf01853	moz/sas family
+pf01857	retinoblastoma-associated protein b domain
+pf01858	retinoblastoma-associated protein a domain
+pf01912	eif-6
+pf01974	trna intron endonuclease, catalytic c-terminal domain
+pf01992	atp synthase (c/ac39) subunit
+pf02037	sap
+pf02136	ntf2
+pf02151	uvrb/uvrc motif
+pf02174	irs-1
+pf02174	ptb domain (irs-1 type)
+pf02185	hr1
+pf02189	immunoreceptor tyrosine-based activation motif
+pf02196	raf-like ras-binding domain
+pf02201	swib/mdm2 domain
+pf02262	cbl proto-oncogene n-terminal domain 1
+pf02291	transcription initiation factor iid, 31kd subunit
+pf02319	e2f/dp family winged-helix dna-binding domain
+pf02518	histidine kinase-, dna gyrase b-, and hsp90-like atpase
+pf02540	nad synthase
+pf02736	myosin n-terminal sh3-like domain
+pf02749	quinolinate phosphoribosyl transferase, n-terminal domain
+pf02761	cbl proto-oncogene n-terminus, ef hand-like domain
+pf02762	cbl proto-oncogene n-terminus, sh2-like domain
+pf02801	beta-ketoacyl synthase, c-terminal domain
+pf02806	alpha amylase, c-terminal all-beta domain
+pf02816	alpha-kinase family
+pf02820	mbt repeat
+pf02826	d-isomer specific 2-hydroxyacid dehydrogenase, nad binding domain
+pf02832	flavivirus glycoprotein, immunoglobulin-like domain
+pf02839	carbohydrate binding domain
+pf02852	pyridine nucleotide-disulphide oxidoreductase, dimerisation domain
+pf02854	mif4g
+pf02864	stat protein, dna binding domain
+pf02898	nitric oxide synthase, oxygenase domain
+pf02907	hepatitis c virus ns3 protease
+pf02919	eukaryotic dna topoisomerase i, dna binding fragment
+pf02954	bacterial regulatory protein, fis family
+pf02969	tata box binding protein associated factor (taf)
+pf02984	cyclin, c-terminal domain
+pf03114	bar domain
+pf03119	nad-dependent dna ligase c4 zinc finger domain
+pf03120	nad-dependent dna ligase ob-fold domain
+pf03143	elongation factor tu c-terminal domain
+pf03166	mh2 domain
+pf03366	yeats family
+pf03572	peptidase family s41
+pf03623	focal adhesion targeting region
+pf03765	cral/trio, n-terminal domain
+pf03775	septum formation inhibitor minc, c-terminal domain
+pf04421	mss4 protein
+pf04427	brix domain
+pf04719	htafii28-like protein conserved region
+pf04729	asf1 like histone chaperone
+pf05033	pre-set motif
+pf05622	hook protein
+pf06384	beta-catenin-interacting protein icat
+pf07679	immunoglobulin i-set domain
+pf07686	immunoglobulin v-set domain
+pf07714	protein tyrosine kinase
+pf07714	protein tyrosine kinase	

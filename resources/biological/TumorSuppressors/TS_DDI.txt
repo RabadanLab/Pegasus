@@ -1,0 +1,51 @@
+pf00001	7 transmembrane receptor (rhodopsin family)
+pf00004	atpase family associated with various cellular activities (aaa)
+pf00008	egf-like domain
+pf00013	kh domain
+pf00017	sh2 domain
+pf00018	sh3 domain
+pf00023	ankyrin repeat
+pf00027	cyclic nucleotide-binding domain
+pf00041	fibronectin type iii domain
+pf00047	immunoglobulin domain
+pf00057	low-density lipoprotein receptor domain class a
+pf00059	lectin c-type domain
+pf00069	protein kinase domain
+pf00071	ras family
+pf00084	sushi domain (scr repeat)
+pf00089	trypsin
+pf00096	zinc finger, c2h2 type
+pf00102	protein-tyrosine phosphatase
+pf00168	c2 domain
+pf00169	ph domain
+pf00176	snf2 family n-terminal domain
+pf00271	helicase conserved c-terminal domain
+pf00387	phosphatidylinositol-specific phospholipase c, y domain
+pf00388	phosphatidylinositol-specific phospholipase c, x domain
+pf00400	wd domain, g-beta repeat
+pf00431	cub domain
+pf00433	protein kinase c terminal domain
+pf00439	bromodomain
+pf00583	acetyltransferase (gnat) family
+pf00595	pdz domain (also known as dhr or glgf)
+pf00615	regulator of g protein signaling domain
+pf00620	rhogap domain
+pf00621	rhogef domain
+pf00640	phosphotyrosine interaction domain (ptb/pid)
+pf00754	f5/8 type c domain
+pf00757	furin-like cysteine rich region
+pf00779	btk motif
+pf01017	stat protein, all-alpha domain
+pf02174	ptb domain (irs-1 type)
+pf02185	hr1 repeat
+pf02196	raf-like ras-binding domain
+pf02262	cbl proto-oncogene n-terminal domain 1
+pf02291	transcription initiation factor iid, 31kd subunit
+pf02761	cbl proto-oncogene n-terminus, ef hand-like domain
+pf02762	cbl proto-oncogene n-terminus, sh2-like domain
+pf02816	alpha-kinase family
+pf02864	stat protein, dna binding domain
+pf02969	tata box binding protein associated factor (taf)
+pf03623	focal adhesion targeting region
+pf07686	immunoglobulin v-set domain
+pf07714	protein tyrosine kinase

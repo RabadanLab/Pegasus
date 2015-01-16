@@ -1,0 +1,921 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Appendix&nbsp;B.&nbsp;Building HyperSQL Jars</title>
+<link href="../docbook.css" type="text/css" rel="stylesheet">
+<meta content="DocBook XSL-NS Stylesheets V1.76.1" name="generator">
+<meta name="keywords" content="HSQLDB, HyperSQL, Building, Ant, Gradle">
+<meta name="keywords" content="Hsqldb, HyperSQL, Database, JDBC, Java">
+<link rel="home" href="index.html" title="HyperSQL User Guide">
+<link rel="up" href="index.html" title="HyperSQL User Guide">
+<link rel="prev" href="lists-app.html" title="Appendix&nbsp;A.&nbsp;Lists of Keywords">
+<link rel="next" href="openoffice-app.html" title="Appendix&nbsp;C.&nbsp;HyperSQL with OpenOffice.org">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table summary="Navigation header" width="100%">
+<tr>
+<td align="left" width="30%"><a accesskey="p" href="lists-app.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="40%" style="font-weight:bold;">Appendix&nbsp;B.&nbsp;Building HyperSQL Jars</td><td align="right" width="30%">&nbsp;<a accesskey="n" href="openoffice-app.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="30%">Appendix&nbsp;A.&nbsp;Lists of Keywords&nbsp;</td><td align="center" width="40%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="30%">&nbsp;Appendix&nbsp;C.&nbsp;HyperSQL with OpenOffice.org</td>
+</tr>
+</table>
+</div>
+<HR>
+<div class="appendix" title="Appendix&nbsp;B.&nbsp;Building HyperSQL Jars">
+<div class="titlepage">
+<div>
+<div>
+<h1 class="title">
+<a name="building-app"></a>Building HyperSQL Jars</h1>
+</div>
+<div>
+<h3 class="subtitle">
+<i>How to build customized or specialized jar files</i>
+</h3>
+</div>
+<div>
+<div class="author">
+<h3 class="author">
+<span class="firstname">Fred</span> <span class="surname">Toussi</span>
+</h3>
+<div class="affiliation">
+<span class="orgname">The HSQL Development Group<br>
+</span>
+</div>
+</div>
+</div>
+<div>
+<p class="releaseinfo">$Revision: 4910 $</p>
+</div>
+<div>
+<p class="pubdate">2012-01-15 10:12:45-0500</p>
+</div>
+</div>
+</div>
+<div class="toc">
+<p>
+<b>Table of Contents</b>
+</p>
+<dl>
+<dt>
+<span class="section"><a href="building-app.html#bga_overview">Purpose</a></span>
+</dt>
+<dt>
+<span class="section"><a href="building-app.html#gradle-invoke--sect">Building with Gradle</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="building-app.html#bga_gradle_gui">Invoking a Gradle Build Graphically</a></span>
+</dt>
+<dt>
+<span class="section"><a href="building-app.html#bga_gradle_cmd">Invoking a Gradle Build from the Command Line</a></span>
+</dt>
+<dt>
+<span class="section"><a href="building-app.html#bga_gradle_using">Using Gradle</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="building-app.html#building-ant-sect">Building with Ant</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="building-app.html#bga_ant_obtaining">Obtaining Ant</a></span>
+</dt>
+<dt>
+<span class="section"><a href="building-app.html#bga_ant_build">Building Hsqldb with Ant</a></span>
+</dt>
+<dt>
+<span class="section"><a href="building-app.html#bga_old_jdk">Building for Older JDKs</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="building-app.html#bga_build_ide">Building with IDE Compilers</a></span>
+</dt>
+<dt>
+<span class="section"><a href="building-app.html#bga_codeswitcher">Hsqldb CodeSwitcher</a></span>
+</dt>
+<dt>
+<span class="section"><a href="building-app.html#bga_build_docs">Building Documentation</a></span>
+</dt>
+</dl>
+</div>
+<div class="section" title="Purpose">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="bga_overview"></a>Purpose</h2>
+</div>
+</div>
+</div>
+<p>From version 2.0, the supplied <code class="filename">hsqldb.jar</code>
+    file is built with Java 1.6. If you want to run with a 1.5 or older JVM,
+    or if you want to use an alternative jar
+    (<code class="filename">hsqldb-min.jar</code>, etc.) you must build the desired jar
+    with a Java SDK.</p>
+<p>The Gradle task / Ant target <code class="literal">explainjars</code>
+    reports the versions of Java and Ant actually used.</p>
+</div>
+<div class="section" title="Building with Gradle">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="gradle-invoke--sect"></a>Building with Gradle</h2>
+</div>
+</div>
+</div>
+<p>As noted above, Java SDK 5 or later is required.</p>
+<p>Unlike most software build systems, you do not need to have the
+    Gradle system installed on your computer to use it. You don't need to
+    understand the details to use it, but this is the purpose of the
+    <code class="filename">gradlew</code> <span class="emphasis"><em>wrapper</em></span> scripts that you
+    can see in HyperSQL's <code class="filename">build</code> directory. If you want or
+    need to learn more about Gradle, you can start on the <a class="link" href="http://gradle.org/documentation" target="_top"> Gradle Documentation
+    page</a> on the <a class="link" href="http://gradle.org" target="_top"> Gradle web
+    site</a>.</p>
+<div class="note" title="Gradle honors JAVA_HOME" style="margin-left: 0.5in; margin-right: 0.5in;">
+<table border="0" summary="Note: Gradle honors JAVA_HOME">
+<tr>
+<td valign="top" align="center" rowspan="2" width="25"><img alt="[Note]" src="../images/db/note.png"></td><th align="left">Gradle honors <code class="varname">JAVA_HOME</code></th>
+</tr>
+<tr>
+<td valign="top" align="left">
+<p>Gradle can find the Java to use by finding out where
+      <code class="literal">java</code> is available from, but if environmental variable
+      <code class="varname">JAVA_HOME</code> is set, that will override. Therefore, if
+      you have multiple JREs or JDKs installed, or don't know if multiple are
+      installed, you should set environmental variable
+      <code class="varname">JAVA_HOME</code> to definitively eliminate all
+      ambiguity.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="important" title="Rare Gotcha" style="margin-left: 0.5in; margin-right: 0.5in;">
+<table border="0" summary="Important: Rare Gotcha">
+<tr>
+<td valign="top" align="center" rowspan="2" width="25"><img alt="[Important]" src="../images/db/important.png"></td><th align="left">Rare Gotcha</th>
+</tr>
+<tr>
+<td valign="top" align="left">
+<p>Depending on your operating system, version, and how you
+      installed your JDK, Gradle may not be able to find the JDK. Gradle will
+      inform you if this happens. The easiest way to fix this problem is to
+      set environmental variable <code class="varname">JAVA_HOME</code> to the root
+      directory where your Java SDK is installed. (See previous
+      <span class="emphasis"><em>note</em></span> for justification). So as not to get bogged
+      down in the details here, if you don't know how to set an environmental
+      variable, I ask you to utilize a search engine.</p>
+</td>
+</tr>
+</table>
+</div>
+<a name="N160A3" class="indexterm"></a>
+<div class="section" title="Invoking a Gradle Build Graphically">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="bga_gradle_gui"></a>Invoking a Gradle Build Graphically</h3>
+</div>
+</div>
+</div>
+<p>Whether from an IDE, a shortcut or launch icon, to run a Gradle
+      graphical build you just need to execute either the file
+      <code class="literal">gradle-gui.cmd</code> (on Windows) or
+      <code class="literal">gradle-gui</code> (all other platforms), both of which
+      reside in the <code class="filename">build</code> directory of your HyperSQL
+      distribution.</p>
+<p>I will explain how to invoke a graphical Gradle build from
+      Windows Explorer and from Eclipse IDE. Users of other operating systems
+      should be able to infer how to use their own file manager in the same
+      way as shown for Internet Explorer. Users who want a desktop shortcut,
+      quick-launch icon should first get Gradle working from a file manager
+      (like Windows Explorer), then seek out instructions for making
+      shortcuts, etc. for your operating system or desktop manager. (Try a web
+      search).</p>
+<p>Some IDEs, like IntelliJ have direct support for Gradle. The
+      Spring Framework team is working on a sophisticated plugin for using
+      Gradle with their IDE. But I'm going to document a very basic setup done
+      with Eclipse because it's serviceable and a very similar procedure is
+      likely to work with all other IDEs.</p>
+<p>If you do use and enjoy Gradle, then I urge you to make the
+      product better by registering a free account for yourself at <a class="link" href="http://issues.gradle.org/" target="_top">the Gradle Jira site</a> and
+      vote for critical usability issues like <a class="link" href="http://issues.gradle.org/browse/GRADLE-427" target="_top">GRADLE-427</a>,
+      <a class="link" href="http://issues.gradle.org/browse/GRADLE-1855" target="_top">GRADLE-1855</a>,
+      <a class="link" href="http://issues.gradle.org/browse/GRADLE-1870" target="_top">GRADLE-1870</a>,
+      <a class="link" href="http://issues.gradle.org/browse/GRADLE-1871" target="_top">GRADLE-1871</a>,
+      to help to improve the product.</p>
+<div class="procedure" title="Procedure&nbsp;B.1.&nbsp;Invoking Gradle GUI from Windows Explorer">
+<a name="N160D0"></a>
+<p class="title">
+<b>Procedure&nbsp;B.1.&nbsp;Invoking Gradle GUI from Windows Explorer</b>
+</p>
+<ol class="procedure" type="1">
+<li class="step" title="Step 1">
+<p>Start up Windows explorer. Depending on your Windows
+          version, it will be in the Start Menu, or in the menu you get when
+          you right-click <span class="guimenuitem">Start</span>.</p>
+</li>
+<li class="step" title="Step 2">
+<p>Navigate Windows Explorer to the <code class="filename">build</code>
+          directory within your HyperSQL installation.</p>
+</li>
+<li class="step" title="Step 3">
+<p>Find an icon or line (depending on your Windows Explorer
+          view) for the file <code class="filename">gradle-gui.cmd</code>. If there is
+          no listing for <code class="filename">gradle-gui.cmd</code>, but two listings
+          for <code class="filename">gradle-gui</code>, then you want the one signified
+          by text, icon, or mouse-over tooltip, as a <span class="emphasis"><em>batch or CMD
+          file</em></span>. Double-click this item.</p>
+</li>
+</ol>
+</div>
+<div class="procedure" title="Procedure&nbsp;B.2.&nbsp;Setting up Gradle Graphical Builds from Eclipse IDE">
+<a name="N160EE"></a>
+<p class="title">
+<b>Procedure&nbsp;B.2.&nbsp;Setting up Gradle Graphical Builds from Eclipse IDE</b>
+</p>
+<ol class="procedure" type="1">
+<li class="step" title="Step 1">
+<p>From Eclipse, use pulldown menu
+          <span class="guimenuitem">Run</span> / <span class="guimenuitem">External
+          Tools</span> / <span class="guimenuitem">External Tools
+          Configurations...</span>.</p>
+</li>
+<li class="step" title="Step 2">
+<p>Right-click on Program in the left navigator Right-click
+          <span class="guilabel">Project</span> in the left navigator panel and select
+          <span class="guimenuitem">New</span>. (Depending on the state of your
+          workspace, instead of <span class="guimenuitem">New</span> in the
+          context-sensitive menu, there may be a
+          <span class="guilabel">New_configuration</span> or similar item nested under
+          <span class="guilabel">Program</span>, in which case you should select
+          that).</p>
+</li>
+<li class="step" title="Step 3">
+<p>To the right, change the value in the
+          <span class="guilabel">Name:</span> field to <code class="literal">HSQLDB Gradle</code>
+          (or whatever name you want for this launcher config (this Gradle
+          launcher is only for your HSQLDB project).</p>
+</li>
+<li class="step" title="Step 4">
+<p>Make sure that the <span class="guilabel">Main</span> tab is
+          selected.</p>
+</li>
+<li class="step" title="Step 5">
+<p>For the <span class="guimenuitem">Location:</span> field, use the
+          <span class="guimenuitem">Browse Workspace...</span> button to navigate to
+          and select the <code class="filename">gradle-gui.cmd</code> (Windows) or
+          <code class="filename">gradle-gui</code> (other) file in the
+          <code class="filename">build</code> directory of your HyperSQL project.
+          </p>
+<div class="mediaobject" align="center">
+<img src="eclipse-gradle-cfg.png" align="middle"><div class="caption">
+<p>Configuring Gradle GUI Launcher in Eclipse</p>
+</div>
+</div>
+<p> Depending on your Eclipse version and workspace
+          setup, the value populated into the <span class="guilabel">Location:</span>
+          field after you select the program may appear very differently than
+          in this screen shot.</p>
+</li>
+<li class="step" title="Step 6">
+<p>Click the <span class="guilabel">Run</span> button. The Gradle Gui
+          should run. (If you just <span class="guilabel">Apply</span> and
+          <span class="guilabel">Close</span> here instead of <span class="guilabel">Run</span>,
+          the new Gradle launch item will not be added to the pulldown and
+          toolbar menus).</p>
+</li>
+</ol>
+</div>
+<p>After doing the Eclipse setup, you can use pulldown menu
+      <span class="guimenuitem">Run</span> / <span class="guimenuitem">External
+      Tools</span> or the equivalent tool bar button button to launch
+      the Gradle Gui. </p>
+<div class="mediaobject" align="center">
+<img src="eclipse-gradle-invoke.png" align="middle"><div class="caption">
+<p>Invoking Gradle GUI from Eclipse</p>
+</div>
+</div>
+<p> You can do this and close it after each use, or, to
+      avoid startup lag, minimize it when it's not in use.</p>
+</div>
+<div class="section" title="Invoking a Gradle Build from the Command Line">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="bga_gradle_cmd"></a>Invoking a Gradle Build from the Command Line</h3>
+</div>
+</div>
+</div>
+<p>You can invoke graphical and non-graphical Gradle builds from
+      the command-line.</p>
+<div class="procedure">
+<ol class="procedure" type="1">
+<li class="step" title="Step 1">
+<p>Get a command-line shell. Windows users can use either
+          <span class="guimenuitem">Start/Run...</span> or <span class="guimenuitem">Start/Start
+          Search</span>, and enter "<code class="literal">cmd</code>".
+          Non-windows users will know how to get a shell.</p>
+</li>
+<li class="step" title="Step 2">
+<p>In the shell, cd to the <code class="filename">build</code>
+          directory under the root directory where you extracted or installed
+          HyperSQL to. (Operating system search or find functions can be used
+          if you can't find it quickly by poking around on the command line or
+          with Windows Explorer, etc.).</p>
+</li>
+<li class="step" title="Step 3">
+<p>Windows users can ignore this step. UNIX shell users should
+          ensure that the current directory (<code class="literal">.</code>) is in their
+          search path, or prefix their <code class="literal">gradlew</code> or
+          <code class="literal">gradle-gui</code> command in the next step with
+          <code class="literal">./</code> (e.g., like
+          <code class="literal">./gradlew</code>).</p>
+</li>
+<li class="step" title="Step 4">
+<p>In the shell, run either <code class="literal">gradle-gui</code> for
+          a graphical build; or <code class="literal">gradlew</code> for a text-based
+          build.</p>
+</li>
+</ol>
+</div>
+<p>The <code class="filename">gradle-gui</code> file is our own wrapper
+      script for <code class="literal">gradlew --gui</code>. Be aware that both
+      <code class="filename">gradle-gui</code> and <code class="literal">gradlew --gui</code>
+      suffer from the limitation that the <code class="literal">--gui</code> switch is
+      mutually exclusive with most or all other arguments (including tasks). I
+      have registered GRADLE bugs 1861 and 1863 about this.</p>
+</div>
+<div class="section" title="Using Gradle">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="bga_gradle_using"></a>Using Gradle</h3>
+</div>
+</div>
+</div>
+<div class="section" title="Using Text-based Gradle">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="bga_gradle_text"></a>Using Text-based Gradle</h4>
+</div>
+</div>
+</div>
+<p>If you ran just <code class="literal">gradlew</code> or
+        <code class="literal">gradlew.bat</code>, then you will be presented with simple
+        instructions for how to do everything that you want to do. Basically,
+        you will run the same <code class="literal">gradlew</code> or
+        <code class="literal">gradle.bat</code> command repeatedly, with different
+        switches and arguments.</p>
+<div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<table border="0" summary="Note">
+<tr>
+<td valign="top" align="center" rowspan="2" width="25"><img alt="[Note]" src="../images/db/note.png"></td><th align="left">Note</th>
+</tr>
+<tr>
+<td valign="top" align="left">
+<p>Gradle's -v switch reports version details more directly
+          than the <code class="literal">explainjars</code> task does, from the
+          operating system version to the Groovy version (the language
+          interpreter used for Gradle instructions).</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="section" title="Using the Gradle GUI">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="bga_gradle_using_gui"></a>Using the Gradle GUI</h4>
+</div>
+</div>
+</div>
+<div class="mediaobject" align="center">
+<img src="gradle-gui.png" align="middle"><div class="caption">
+<p>Sample Gradle GUI Screen</p>
+</div>
+</div>
+<div class="procedure" title="Procedure&nbsp;B.3.&nbsp;First Time using Gradle Gui">
+<a name="N161CF"></a>
+<p class="title">
+<b>Procedure&nbsp;B.3.&nbsp;First Time using Gradle Gui</b>
+</p>
+<ol class="procedure" type="1">
+<li class="step" title="Step 1">
+<p>It takes the Gradle gui a while to start up, because,
+            similar to an IDE, it is generating a list of details about
+            available tasks.</p>
+</li>
+<li class="step" title="Step 2">
+<p>In the main window, in the top panel, with the
+            <span class="guilabel">Task Tree</span> tab selected, you have the list of
+            public tasks, sorted alphabetically. Down bottom is displayed the
+            output of the last task(s) execution. (After startup it will show
+            the output of the task <code class="literal">tasks</code>).</p>
+</li>
+<li class="step" title="Step 3">
+<p>Scroll to the <code class="literal">help</code> task and click it
+            once to select it, then click the green
+            <span class="guilabel">Execute</span> toolbar button above. (You could also
+            have double-clicked the item, but you can use the selection
+            procedure to pick multiple tasks with Control or Shift keys to
+            execute multiple tasks in a single run-- and the tasks will
+            execute in the same order that you had selected them).</p>
+</li>
+<li class="step" title="Step 4">
+<p>Scroll through and read the output of the
+            <code class="literal">help</code> task in the bottom panel. Where this help
+            screen speaks about verbosity switches, you can accomplish the
+            same thing by using the <span class="guimenuitem">Setup</span> tab.
+            Whenever Gradle output (in the bottom panel) talks about running
+            <code class="literal">gradlew &lt;sometask&gt;...</code>, you can execute
+            the specified task(s) by selecting and executing them like we just
+            did.</p>
+</li>
+</ol>
+</div>
+<div class="note" title="Gradle GUI Limitations" style="margin-left: 0.5in; margin-right: 0.5in;">
+<table border="0" summary="Note: Gradle GUI Limitations">
+<tr>
+<td valign="top" align="center" rowspan="2" width="25"><img alt="[Note]" src="../images/db/note.png"></td><th align="left">Gradle GUI Limitations</th>
+</tr>
+<tr>
+<td valign="top" align="left">
+<p>The Gradle GUI is fairly new and lacks some of the power
+          available to text-based users. Most significantly, in my opinion, is
+          the following item for which I have opened Gradle
+          <span class="emphasis"><em>issues</em></span> 1855. There is no convenient way to set
+          build properties. If you want to change Ant or Gradle build
+          settings, edit the text file <code class="filename">build.properties</code>
+          in the HyperSQL <code class="filename">build</code> directory (creating it if
+          it doesn't exist yet), and enter your properties using Java
+          properties file syntax. (You can also use
+          <code class="filename">local-docbook.properties</code> in the same way for
+          DocBook-specific properties).</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="section" title="Building with Apache Ant">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="building-ant-sect"></a>Building with Apache Ant</h2>
+</div>
+</div>
+</div>
+<a name="N1620A" class="indexterm"></a>
+<p>You should use version 1.7.x of Ant (Another Neat Tool) to do Ant
+    builds with HyperSQL.</p>
+<div class="section" title="Obtaining Ant">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="bga_ant_obtaining"></a>Obtaining Ant</h3>
+</div>
+</div>
+</div>
+<p>Ant is a part of the Jakarta/Apache Project.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<a class="link" href="http://ant.apache.org" target="_top">Home of the Apache
+          Ant project</a>
+</li>
+<li class="listitem">The <a class="link" href="http://ant.apache.org/manual/install.html#installing" target="_top">
+          Installing Ant</a> page of the <a class="link" href="http://ant.apache.org/manual" target="_top">Ant Manual</a>. Follow
+          the directions for your platform.</li>
+</ul>
+</div>
+</div>
+<div class="section" title="Building Hsqldb with Ant">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="bga_ant_build"></a>Building Hsqldb with Ant</h3>
+</div>
+</div>
+</div>
+<p>Once you have unpacked the zip package for hsqldb, under the
+      <code class="filename">/hsqldb</code> folder, in <code class="filename">/build</code>
+      there is a <code class="filename">build.xml</code> file that builds the
+      <code class="filename">hsqldb.jar</code> with Ant (Ant must be already
+      installed). To use it, change to <code class="filename">/build</code> then
+      type:</p>
+<div class="informalexample">
+<pre class="screen"> ant -projecthelp</pre>
+</div>
+<p>This displays the available ant targets, which you can supply
+      as command line arguments to ant. These include</p>
+<div class="variablelist">
+<table border="0">
+<col valign="top" align="left">
+<tbody>
+<tr>
+<td>
+<p>
+<span class="term">hsqldb</span>
+</p>
+</td><td>to build the <code class="filename">hsqldb.jar</code>
+            file</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">explainjars</span>
+</p>
+</td><td>Lists all targets which build jar files, with an
+            explanation of the purposes of the different jars.</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">clean</span>
+</p>
+</td><td>to clean up the /classes directory that is
+            created</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">clean-all</span>
+</p>
+</td><td>to remove the old jar and doc files as well</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">javadoc</span>
+</p>
+</td><td>to build javadoc</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">hsqldbmain</span>
+</p>
+</td><td>to build a smaller jar for HSQLDB that does not contain
+            utilities</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">hsqljdbc</span>
+</p>
+</td><td>to build an extremely small jar containing only the
+            client-side JDBC driver (can connect only to a HyperSQL
+            Server).</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">hsqldbmin</span>
+</p>
+</td><td>to build a small jar that supports
+            <span class="emphasis"><em>in-process</em></span> catalogs, but neither running nor
+            connecting to HyperSQL Servers.</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">sqltool</span>
+</p>
+</td><td>to build sqltool.jar, which contains only the SqlTool
+            classes.</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">...</span>
+</p>
+</td><td>Many more targets are available. Run <code class="literal">ant
+            -p</code> and <code class="literal">ant explainjars</code>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>HSQLDB can be built in any combination of two JRE (Java Runtime
+      Environment) versions and many jar file sizes.</p>
+<p>A jar built with an older JRE is compatible for use with a
+      newer JRE (you can compile with Java 1.5 and run with 1.6). But the
+      newer JDBC capabilities of the JRE will be not be available.</p>
+<p>The client jar (<code class="filename">hsqljdbc.jar</code>) contains
+      only the HSQLDB JDBC Driver client. The smallest engine jar
+      (<code class="filename">hsqldbmin.jar</code>) contains the engine and the HSQLDB
+      JDBC Driver client. The default size (<code class="filename">hsqldb.jar</code>)
+      also contains server mode support and the utilities. The largest size
+      (<code class="filename">hsqldbtest.jar</code>)includes some test classes as well.
+      Before building the <code class="filename">hsqldbtest.jar</code> package, you
+      should download the junit jar from <a class="link" href="http://www.junit.org" target="_top">http://www.junit.org</a> and put it in the
+      <code class="filename">/lib</code> directory, alongside
+      <code class="filename">servlet.jar</code>, which is included in the .zip
+      package.</p>
+<p>If you want your code built for high performance, as opposed to
+      debugging (in the same way that we make our production distributions),
+      make a file named <code class="filename">build.properties</code> in your build
+      directory with the contents </p>
+<div class="informalexample">
+<pre class="screen">build.debug: false</pre>
+</div>
+<p>The resulting Java binaries will be faster and
+      smaller, at the cost of exception stack traces not identifying source
+      code locations (which can be extremely useful for debugging).</p>
+<p>After installing Ant on your system use the following command
+      from the <code class="filename">/build</code> directory. Just run <code class="literal">ant
+      explainjars</code> for a concise list of all available jar
+      files.</p>
+<div class="informalexample">
+<pre class="screen">ant explainjars</pre>
+</div>
+<p>The command displays a list of different options for building
+      different sizes of the HSQLDB Jar. The default is built using:</p>
+<div class="example">
+<a name="N162BE"></a>
+<p class="title">
+<b>Example&nbsp;B.1.&nbsp;Buiding the standard Hsqldb jar file with Ant</b>
+</p>
+<div class="example-contents">
+<pre class="screen">ant hsqldb</pre>
+</div>
+</div>
+<br class="example-break">
+<p>The Ant method always builds a jar with the JDK that is used by
+      Ant and specified in its JAVA_HOME environment variable.</p>
+</div>
+<div class="section" title="Building for Older JDKs">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="bga_old_jdk"></a>Building for Older JDKs</h3>
+</div>
+</div>
+</div>
+<p>HyperSQL version 2.0 cannot be directly compiled or used with JDK
+      1.4. It may be possible to use the RetroTranslator tool to achieve this.
+      The suggested procedure is as follows: First use Gradle or Ant with JDK
+      1.5 and build the jar. Then translate the jar using RetroTranslator with
+      backport (which bundles replacement classes for concurrency control).
+      This translation should cover the concurrency features that are specific
+      to version 1.5 and later.</p>
+<div class="informalexample">
+<pre class="screen">ant switchtojdk14
+ant hsqldb
+-- translate the jar
+</pre>
+</div>
+</div>
+</div>
+<div class="section" title="Building with IDE Compilers">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="bga_build_ide"></a>Building with IDE Compilers</h2>
+</div>
+</div>
+</div>
+<p>All HyperSQL source files are supplied ready to compile. There is
+    no complex pre-compile stage. It is therefore possible to compile the
+    sources with an IDE, without using Gradle or Ant. Only if compilation with
+    Java 1.5 is required, you should first run the Gradle task (or Ant target)
+    before compiling and remove from the source directories a few source files
+    that are specific to Java 6 (these are listed in the build.xml
+    file).</p>
+</div>
+<div class="section" title="Hsqldb CodeSwitcher">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="bga_codeswitcher"></a>Hsqldb CodeSwitcher</h2>
+</div>
+</div>
+</div>
+<p>CodeSwitcher is a tool to manage different version of Java source
+    code. It allows to compile HyperSQL for different JDKs. It is something
+    like a precompiler in C but it works directly on the source code and does
+    not create intermediate output or extra files.</p>
+<p>CodeSwitcher is used internally in the Ant build. You do not have
+    to invoke it separately to compile HyperSQL.</p>
+<p>CodeSwitcher reads the source code of a file, removes comments
+    where appropriate and comments out the blocks that are not used for a
+    particular version of the file. This operation is done for all files of a
+    defined directory, and all subdirectories.</p>
+<div class="example">
+<a name="N162DE"></a>
+<p class="title">
+<b>Example&nbsp;B.2.&nbsp;Example source code before CodeSwitcher is run</b>
+</p>
+<div class="example-contents">
+<pre class="programlisting">
+        ...
+
+    //#ifdef JAVA2
+
+        properties.store(out,"hsqldb database");
+
+    //#else
+
+    /*
+
+        properties.save(out,"hsqldb database");
+
+    */
+
+    //#endif
+
+        ...</pre>
+</div>
+</div>
+<br class="example-break">
+<p>The next step is to run CodeSwitcher.</p>
+<div class="example">
+<a name="N162E5"></a>
+<p class="title">
+<b>Example&nbsp;B.3.&nbsp;CodeSwitcher command line invocation</b>
+</p>
+<div class="example-contents">
+<pre class="screen">
+    java org.hsqldb.util.CodeSwitcher . -JAVA2</pre>
+</div>
+</div>
+<br class="example-break">
+<p>The '.' means the program works on the current directory (all
+    subdirectories are processed recursively). <code class="literal">-JAVA2</code> means
+    the code labelled with JAVA2 must be switched off.</p>
+<div class="example">
+<a name="N162EF"></a>
+<p class="title">
+<b>Example&nbsp;B.4.&nbsp;Source code after CodeSwitcher processing</b>
+</p>
+<div class="example-contents">
+<pre class="programlisting">
+        ...
+
+    //#ifdef JAVA2
+
+    /*
+
+        pProperties.store(out,"hsqldb database");
+
+    */
+
+    //#else
+
+        pProperties.save(out,"hsqldb database");
+
+    //#endif
+
+        ...</pre>
+</div>
+</div>
+<br class="example-break">
+<p>For detailed information on the command line options run
+    <code class="classname">java org.hsqldb.util.CodeSwitcher</code>. Usage examples
+    can be found in the build.xml file in the <code class="filename">/build</code>
+    directory.</p>
+</div>
+<div class="section" title="Building Documentation">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="bga_build_docs"></a>Building Documentation</h2>
+</div>
+</div>
+</div>
+<p>The JavaDoc can be built simply by invoking the javadoc
+    task/target with Gradle or Ant.</p>
+<p>The two Guides (the one you are reading now plus the Utilities user
+    guide) are in DocBook XML source format. To rebuild to PDF or one of the
+    HTML output formats from the XML source, run the Gradle target
+    <code class="literal">gen-docs</code> (or the Ant target
+    <code class="literal">gen-docs</code>). Instructions will be displayed. In
+    particular </p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">Obtain the HyperSQL documentation source. We no longer
+          include our Guide source files in our main distribution zip file, in
+          order to keep it small. You may want to build from the trunk branch
+          or the latest release tag. You can download a static snapshot
+          tarball from
+          http://hsqldb.svn.sourceforge.net/viewvc/hsqldb/base/trunk/ or under
+          http://hsqldb.svn.sourceforge.net/viewvc/hsqldb/base/tags/ , or you
+          can export a snapshot or check out a work area using a Subversion
+          client.</li>
+<li class="listitem">You must locally install the DocBook set of image files,
+          which are available for download from Sourceforge. The
+          <code class="literal">gen-docs</code> task/target will tell you of a Gradle
+          task that you can use to download and install them automatically.
+          This Gradle task, <code class="literal">installDbImages</code>, will tell you
+          how to edit a properties text file to tell it what directory to
+          install the files into. (Command-line, as opposed to GUI, builders,
+          can use the Gradle <code class="literal">-P</code> switch to set the property,
+          instead of editing, if they prefer).</li>
+<li class="listitem">You can optionally install the entire DocBook style sheets
+          (instead of just the DocBook images within it), character entity
+          definitions, and RNG schema file, to speed up doc build times and
+          minimize dependency of future builds upon network or Internet. An
+          intermediate approach would be to install these resources onto an
+          HTTP server or shared network drive of your own. See the comments at
+          the top of the file <code class="filename">build.xml</code> in the HyperSQL
+          <code class="filename">build</code> directory about where to obtain these
+          things and how to hook them in. The same Gradle task
+          <code class="literal">installDbImages</code> explained above can download and
+          install the entire stylesheet bundle (this option is offered the
+          first time that you run the <code class="literal">installDbImages</code>
+          task).</li>
+</ul>
+</div>
+<div class="tip" title="Tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+<table border="0" summary="Tip">
+<tr>
+<td valign="top" align="center" rowspan="2" width="25"><img alt="[Tip]" src="../images/db/tip.png"></td><th align="left">Tip</th>
+</tr>
+<tr>
+<td valign="top" align="left">
+<p>If running Gradle, you probably want to turn logging up to
+      level <span class="emphasis"><em>info</em></span> for generation and validation tasks,
+      because the default <span class="emphasis"><em>warn/lifecycle</em></span> level doesn't
+      give much feedback.</p>
+</td>
+</tr>
+</table>
+</div>
+<p>The task/target <code class="literal">validate-docs</code> is also very
+    useful to DocBook builders.</p>
+<p>The documentation license does not allow you to post
+    modifications to our guides, but you can modify them for internal use by
+    your organization, and you can use our DocBook system to write new DocBook
+    documents related or unrelated to HyperSQL. To create new DocBook
+    documents, create a subdirectory off of <code class="filename">doc-src</code> for
+    each new document, with the main DocBook source file within having same
+    name as the directory plus <code class="literal">.xml</code>. See the peer directory
+    <code class="filename">util-guide</code> or <code class="filename">guide</code> as an
+    example. If you use the high-level tasks/target
+    <code class="literal">gen-docs</code> or <code class="literal">validate-docs</code>, then copy
+    and paste to add new stanzas to these targets in file
+    <code class="filename">build.xml</code>.</p>
+<p>Editors of DocBook documents (see previous paragraph for motive)
+    may find it useful to have a standalone XML validator so you can do your
+    primary editing without involvement of the build system. Use the Gradle
+    target <code class="literal">standaloneValidation</code> for this. It will tell you
+    how to set a build property to tell it where to install the validator, and
+    will give instructions on how to use it.</p>
+<p>There are several properties that can be used to dramatically
+    decrease run times for partial doc builds. Read about these properties in
+    comment at the top of the file <code class="filename">build-docbook.xml</code> in
+    the <code class="filename">build</code> directory. </p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">validation.skip</li>
+<li class="listitem">html.skip</li>
+<li class="listitem">chunk.skip</li>
+<li class="listitem">fo.skip</li>
+<li class="listitem">pdf.skip</li>
+<li class="listitem">doc.name</li>
+<li class="listitem">doc.target</li>
+</ul>
+</div>
+<p>See the file <code class="filename">doc-src/readme-docauthors.txt</code>
+    for details about our DocBook build system (though as I write this it is
+    somewhat out of date).</p>
+</div>
+</div>
+<HR xmlns:xi="http://www.w3.org/2001/XInclude">
+<P xmlns:xi="http://www.w3.org/2001/XInclude" class="svnrev">$Revision: 4864 $</P>
+<div class="navfooter">
+<hr>
+<table summary="Navigation footer" width="100%">
+<tr>
+<td align="left" width="40%"><a accesskey="p" href="lists-app.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="20%">&nbsp;</td><td align="right" width="40%">&nbsp;<a accesskey="n" href="openoffice-app.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="40%">Appendix&nbsp;A.&nbsp;Lists of Keywords&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="40%">&nbsp;Appendix&nbsp;C.&nbsp;HyperSQL with OpenOffice.org</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

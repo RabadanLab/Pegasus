@@ -1,0 +1,453 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>HyperSQL Utilities Guide</title>
+<link href="../docbook.css" type="text/css" rel="stylesheet">
+<meta content="DocBook XSL-NS Stylesheets V1.76.1" name="generator">
+<meta name="keywords" content="HyperSQL, Hsqldb, Hypersonic, Database, JDBC, Java">
+<link rel="home" href="index.html" title="HyperSQL Utilities Guide">
+<link rel="next" href="book-pref.html" title="Preface">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table summary="Navigation header" width="100%">
+<tr>
+<td align="left" width="30%">&nbsp;</td><td align="center" width="40%" style="font-weight:bold;">HyperSQL Utilities Guide</td><td align="right" width="30%">&nbsp;<a accesskey="n" href="book-pref.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="30%">&nbsp;</td><td align="center" width="40%">&nbsp;</td><td valign="top" align="right" width="30%">&nbsp;Preface</td>
+</tr>
+</table>
+</div>
+<HR>
+<div class="book" title="HyperSQL Utilities Guide">
+<div class="titlepage">
+<div>
+<div>
+<h1 class="title">
+<a name="N10002"></a>HyperSQL Utilities Guide</h1>
+</div>
+<table xmlns:xi="http://www.w3.org/2001/XInclude" class="titlead" cellspacing="0">
+<tr>
+<td>
+<div>
+<div class="authorgroup">
+<div class="editor">
+<h4 class="editedby">Edited by</h4>
+<h3 class="editor">
+<span class="orgname">The HSQLB Development Group</span>
+</h3>
+</div>
+<div class="editor">
+<h4 class="editedby">Edited by</h4>
+<h3 class="editor">
+<span class="firstname">Blaine</span> <span class="surname">Simpson</span>
+</h3>
+<div class="affiliation">
+<span class="orgname">The HSQL Development Group<br>
+</span>
+</div>
+</div>
+<div class="editor">
+<h4 class="editedby">Edited by</h4>
+<h3 class="editor">
+<span class="firstname">Fred</span> <span class="surname">Toussi</span>
+</h3>
+<div class="affiliation">
+<span class="orgname">The HSQL Development Group<br>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div class="legalnotice" title="Legal Notice">
+<a name="N10037"></a>
+<p>Copyright 2002-2011 The HSQL Development Group. Permission is
+      granted to distribute this document without any alteration under the
+      terms of the HSQLDB license.</p>
+</div>
+</div>
+<div>
+<p class="pubdate">2012-01-15 10:15:31-0500</p>
+</div>
+</td><td class="sponsorad">
+<div xml:base="../doc-src/branding-frag.xhtml" class="branding">
+<img src="../images/hypersql_logo.png"></div>
+</td>
+</tr>
+</table>
+</div>
+<hr>
+</div>
+<div class="toc">
+<p>
+<b>Table of Contents</b>
+</p>
+<dl>
+<dt>
+<span class="preface"><a href="book-pref.html">Preface</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="book-pref.html#altformats-sect">Available formats for this document</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="sqltool-chapt.html">1. SqlTool</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_tryit-sect">Try It</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_book_purpose-sect">Purpose, Coverage, Changes in Behavior</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N10128">Platforms and SqlTool versions covered</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_functional_changes-sect">Recent Functional Changes</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N1021A">New Features</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_baremin-sect">The Bare Minimum</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N10387">Quotes and Spaces</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N103A7">Embedding</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N103BC">Non-displayable Types</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N103DC">Compound commands or commands with semi-colons</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N103E5">Desktop shortcuts</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N10446">Loading sample data</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N10462">Satisfying SqlTool's CLASSPATH Requirements</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_olderaccess-sect">
+          Accessing older HSQLDB Databases with SqlTool</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N104BE">App-specific Classes, Embedding, and non-HyperSQL Databases</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N10505">Distributing SqlTool with your Apps</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N1052B">SqlTool Client PCs</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_auth-sect">RC File Authentication Setup</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_dsswitch-sect">Switching Data Sources</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_ilauth-sect">Using Inline RC Authentication</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_logging-sect">Logging</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_int-sect">Interactive Usage</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N10688">SqlTool Command-Line Editing</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N106AC">Command Types</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N106C5">Emulating Non-Interactive mode</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N106D1">Command Types</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N1071A">Special Commands</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N1081C">Edit Buffer / History Commands</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N108CD">Command History</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_interactive_pl_commands-sect">PL Commands</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_nonint-sect">Non-Interactive</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_sqlswitch-sect">Giving SQL on the Command Line</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N10A09">SQL Files</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_scripting-sect">Piping and shell scripting</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N10ABD">Automation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N10AD0">Optimally Compatible SQL Files</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N10AE3">Comments</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N10AF0">Special Commands and Edit Buffer Commands in SQL Files</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N10B6B">Getting Interactive Functionality with SQL Files</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_charencoding-sect">
+                Character Encoding</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_report-sect">Generating Text or HTML Reports</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_binary_files-sect">
+            Storing and Retrieving Binary Files</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_pl-sect">SqlTool Procedural Language</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_nullempty-sect">Nulls and Empty Strings</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_variables-sect">Variables</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_macro-sect">Macros</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N10EF8">SqlTool Functions</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N10F25">PL Sample</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_logical-sect">Logical Expressions</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N11013">Mathematical Assignments</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N11076">Flow Control</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N110B6">PL Example</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_chunk-sect">Chunking</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N110DA">Why?</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N110EB">How?</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_raw-sect">Raw Mode</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_embedded-langs-sect">SQL/PSM, SQL/JRT, and PL/SQL</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_dsv-sect">
+          Delimiter-Separated-Value Imports and Exports</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N111A9">Simple DSV exports and imports using default settings</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#N111E4">Specifying queries and options</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_csv-sect">CSV Imports and Exports</a></span>
+</dt>
+<dt>
+<span class="section"><a href="sqltool-chapt.html#sqltool_unittest-sect">Unit Testing SqlTool</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="test-utility-chapt.html">2. Hsqldb Test Utility</a></span>
+</dt>
+<dt>
+<span class="chapter"><a href="dbm-chapt.html">3. Database Manager</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="dbm-chapt.html#dbm_intro-sect">Brief Introduction</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dbm-chapt.html#dbm_tree-sect">Auto tree-update</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dbm-chapt.html#dbm-autoconn-sect">Automatic Connection</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dbm-chapt.html#dbm_rcfile-sect">RC File</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dbm-chapt.html#dbm_wold-sect">Using the current DatabaseManagers with an older HSQLDB
+      distribution.</a></span>
+</dt>
+<dt>
+<span class="section"><a href="dbm-chapt.html#dbm_applet-sect">DatabaseManagerSwing as an Applet</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="transfer-tool-chapt.html">4. Transfer Tool</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="transfer-tool-chapt.html#trantool_intro-sect">Brief Introduction</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="appendix"><a href="systempls-app.html">A. SqlTool System PL Variables</a></span>
+</dt>
+<dt>
+<span class="appendix"><a href="filelinks-app.html">B. HyperSQL File Links</a></span>
+</dt>
+</dl>
+</div>
+<div class="list-of-tables">
+<p>
+<b>List of Tables</b>
+</p>
+<dl>
+<dt>1. <a href="book-pref.html#altformats-tbl">Available formats of this document</a>
+</dt>
+</dl>
+</div>
+<div class="list-of-examples">
+<p>
+<b>List of Examples</b>
+</p>
+<dl>
+<dt>1.1. <a href="sqltool-chapt.html#N1055B">Sample RC File</a>
+</dt>
+<dt>1.2. <a href="sqltool-chapt.html#N10A9F">Piping input into SqlTool</a>
+</dt>
+<dt>1.3. <a href="sqltool-chapt.html#N10AA5">Redirecting input into SqlTool</a>
+</dt>
+<dt>1.4. <a href="sqltool-chapt.html#N10ACB">Error-handling Idiom</a>
+</dt>
+<dt>1.5. <a href="sqltool-chapt.html#N10C0F">Sample HTML Report Generation Script</a>
+</dt>
+<dt>1.6. <a href="sqltool-chapt.html#N10C44">Inserting binary data into database from a file</a>
+</dt>
+<dt>1.7. <a href="sqltool-chapt.html#N10C49">Downloading binary data from database to a file</a>
+</dt>
+<dt>1.8. <a href="sqltool-chapt.html#N10CDA">Explicit null and empty-string Tests</a>
+</dt>
+<dt>1.9. <a href="sqltool-chapt.html#sqltool_specialqplus-ex">Special values for ?, and _ (or ~) Variables</a>
+</dt>
+<dt>1.10. <a href="sqltool-chapt.html#N10F02">Creating a SqlTool Function</a>
+</dt>
+<dt>1.11. <a href="sqltool-chapt.html#N10F1F">Invoking a SqlTool Function</a>
+</dt>
+<dt>1.12. <a href="sqltool-chapt.html#N10F2A">Simple SQL file using PL</a>
+</dt>
+<dt>1.13. <a href="sqltool-chapt.html#N110B0">Inline If Statement</a>
+</dt>
+<dt>1.14. <a href="sqltool-chapt.html#N110CB">SQL File showing use of most PL features</a>
+</dt>
+<dt>1.15. <a href="sqltool-chapt.html#N1110F">Interactive Raw Mode example</a>
+</dt>
+<dt>1.16. <a href="sqltool-chapt.html#N11146">PL/SQL Example</a>
+</dt>
+<dt>1.17. <a href="sqltool-chapt.html#N11152">SQL/JRT Example</a>
+</dt>
+<dt>1.18. <a href="sqltool-chapt.html#N1115C">SQL/PSM Example</a>
+</dt>
+<dt>1.19. <a href="sqltool-chapt.html#N111B9">DSV Export Example</a>
+</dt>
+<dt>1.20. <a href="sqltool-chapt.html#N111D8">DSV Import Example</a>
+</dt>
+<dt>1.21. <a href="sqltool-chapt.html#N1124B">DSV Export of an Arbitrary Query</a>
+</dt>
+<dt>1.22. <a href="sqltool-chapt.html#N11291">Sample DSV headerswitch settings</a>
+</dt>
+<dt>1.23. <a href="sqltool-chapt.html#N11297">DSV targettable setting</a>
+</dt>
+<dt>1.24. <a href="sqltool-chapt.html#N1132F">Sample CSV export + import script</a>
+</dt>
+</dl>
+</div>
+</div>
+<HR xmlns:xi="http://www.w3.org/2001/XInclude">
+<P xmlns:xi="http://www.w3.org/2001/XInclude" class="svnrev">$Revision: 4904 $</P>
+<div class="navfooter">
+<hr>
+<table summary="Navigation footer" width="100%">
+<tr>
+<td align="left" width="40%">&nbsp;</td><td align="center" width="20%">&nbsp;</td><td align="right" width="40%">&nbsp;<a accesskey="n" href="book-pref.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="40%">&nbsp;</td><td align="center" width="20%">&nbsp;</td><td valign="top" align="right" width="40%">&nbsp;Preface</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

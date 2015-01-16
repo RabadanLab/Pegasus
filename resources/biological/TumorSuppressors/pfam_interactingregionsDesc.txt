@@ -1,0 +1,5 @@
+	
+PF00018	SH3 domain
+PF00069	Protein kinase domain
+PF00071	Ras family
+PF00621	RhoGEF domain

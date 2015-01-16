@@ -1,0 +1,184 @@
+AGC-kinase C-terminal
+AWS
+B30.2/SPRY
+BAR
+BRCT 1
+BRCT 2
+BTB
+Bromo
+Bromo%3B divergent
+C2
+C2 PI3K-type
+CH
+CRAL-TRIO
+CTCK
+CUB
+CUB 1
+CUB 2
+Cadherin
+Cbl-PTB
+Cyclin N-terminal
+DCUN1
+DH
+DHR-1
+DHR-2
+DUSP
+Death
+Dilute
+EF-hand 1
+EF-hand 2
+EGF-like 1
+EGF-like 10
+EGF-like 11%3B calcium-binding;status=Potential
+EGF-like 12%3B calcium-binding;status=Potential
+EGF-like 13%3B calcium-binding;status=Potential
+EGF-like 14%3B calcium-binding;status=Potential
+EGF-like 15%3B calcium-binding;status=Potential
+EGF-like 16
+EGF-like 17
+EGF-like 18
+EGF-like 19
+EGF-like 2
+EGF-like 20
+EGF-like 21
+EGF-like 22
+EGF-like 23
+EGF-like 24
+EGF-like 25
+EGF-like 26
+EGF-like 27
+EGF-like 28
+EGF-like 29
+EGF-like 3
+EGF-like 4
+EGF-like 5%3B calcium-binding;status=Potential
+EGF-like 6
+EGF-like 7%3B calcium-binding;status=Potential
+EGF-like 8%3B calcium-binding;status=Potential
+EGF-like 9%3B calcium-binding;status=Potential
+EH 1
+EH 2
+EH 3
+ENTH
+FCH
+FERM
+FHA
+FYR C-terminal
+FYR N-terminal
+Fibronectin type-III 1
+Fibronectin type-III 2
+Fibronectin type-III 3
+Fibronectin type-III 4
+Fibronectin type-III 5
+Fibronectin type-III 6
+Fibronectin type-III 7
+Fibronectin type-III 8
+Fibronectin type-III 9
+Follistatin-like 1
+Follistatin-like 2
+GMPS ATP-PPase
+Glutamine amidotransferase type-1
+H15
+HTH myb-type 1
+HTH myb-type 2
+HTH myb-type 3
+Helicase ATP-binding
+Helicase C-terminal
+IGFBP N-terminal
+IPT/TIG 1
+IPT/TIG 2
+IPT/TIG 3
+IQ
+Ig-like C2-type
+Ig-like C2-type 1
+Ig-like C2-type 2
+Ig-like C2-type 3
+Ig-like C2-type 4
+Ig-like C2-type 5
+KRAB
+KRAB-related
+Kazal-like 1
+Kazal-like 2
+LDL-receptor class A
+LETM1
+LIM zinc-binding 1
+LIM zinc-binding 2
+LRRCT
+MAM 1
+MAM 2
+MPN
+Myosin head-like
+N-terminal Ras-GEF
+OPR
+PAS
+PDZ
+PH
+PI3K-ABD
+PI3K-RBD
+PI3K/PI4K
+PIK helical
+PNT
+PWWP 1
+PWWP 2
+Paired
+Post-SET
+Protein kinase
+Protein kinase 1
+Protein kinase 2
+RBD
+RGSL
+RHD
+RRM
+RRM 1
+RRM 2
+RRM 3
+Rab-GAP TBC
+Ras-GAP
+Ras-GEF
+Ras-associating 1
+Ras-associating 2
+Rho-GAP
+Runt
+SAP
+SET
+SH2
+SH2 1
+SH2 2
+SH2%3B atypical
+SH3
+SH3 1
+SH3 2
+SPOC
+SRCR 1
+SRCR 10
+SRCR 11
+SRCR 12
+SRCR 13
+SRCR 14
+SRCR 2
+SRCR 3
+SRCR 4
+SRCR 5
+SRCR 6
+SRCR 7
+SRCR 8
+SRCR 9
+SWIB
+Sema
+TAFH
+TB
+TSP type-1
+Tyrosine-protein phosphatase
+UBA
+UBA-like
+UBX
+Ubiquitin-like 1
+Ubiquitin-like 2
+VWFC
+WW
+WW 1
+WW 2
+YEATS
+ZP
+bHLH
+bZIP

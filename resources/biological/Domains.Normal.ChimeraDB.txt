@@ -1,0 +1,578 @@
+Domain	ABC transmembrane
+Domain	ABC transporter
+Domain	ADD
+Domain	AGC-kinase
+Domain	AH
+Domain	ARID
+Domain	Actin-binding
+Domain	Acyl
+Domain	Anaphylatoxin
+Domain	Arf-GAP
+Domain	B30.2/SPRY
+Domain	BAR
+Domain	BEN
+Domain	BPTI/Kunitz inhibitor
+Domain	BRCT
+Domain	BRICHOS
+Domain	BTB
+Domain	Bromo
+Domain	C-CAP/cofactor
+Domain	C-type
+Domain	C1q
+Domain	C2
+Domain	C2 PI3K
+Domain	CAP-Gly
+Domain	CARD
+Domain	CBM2
+Domain	CBS
+Domain	CH
+Domain	CRAL-TRIO
+Domain	CRIB
+Domain	CTLH
+Domain	CUB
+Domain	Cadherin
+Domain	Chromo
+Domain	CobW
+Domain	Collagen
+Domain	Cytochrome
+Domain	DAD
+Domain	DAGKc
+Domain	DCUN1
+Domain	DDT
+Domain	DED
+Domain	DENN
+Domain	DFDF
+Domain	DH
+Domain	DHFR
+Domain	DOC
+Domain	DRBM
+Domain	DUSP
+Domain	DZF
+Domain	Death
+Domain	Dilute
+Domain	Disintegrin
+Domain	EF-hand
+Domain	EGF-like
+Domain	EH
+Domain	ELM2
+Domain	ELMO
+Domain	ENT
+Domain	ENTH
+Domain	Exonuclease
+Domain	F-box
+Domain	F5/8
+Domain	FAD-binding FR-type
+Domain	FAT
+Domain	FATC
+Domain	FBA
+Domain	FCH
+Domain	FCP1
+Domain	FERM
+Domain	FH
+Domain	FHA
+Domain	FYR
+Domain	Fe2OG dioxygenase
+Domain	Ferric oxidoreductase
+Domain	Fibrillar collagen
+Domain	Fibrinogen
+Domain	Fibronectin
+Domain	Flavodoxin
+Domain	Follistatin
+Domain	G
+Domain	G8
+Domain	GAR
+Domain	GBD/FH3
+Domain	GMPS
+Domain	GOLD
+Domain	GON
+Domain	GPS
+Domain	GRAM
+Domain	GRIP
+Domain	Glutamine amidotransferase
+Domain	Guanylate kinase-like
+Domain	H1
+Domain	H15
+Domain	HD
+Domain	HECT
+Domain	HMA
+Domain	HP
+Domain	HSR
+Domain	HTH
+Domain	Helicase
+Domain	Homo
+Domain	I/LWEQ
+Domain	IBB
+Domain	IGFBP
+Domain	IPT/TIG
+Domain	IQ
+Domain	IRS-type PTB
+Domain	Ig-like
+Domain	Iglike
+Domain	J
+Domain	JmjC
+Domain	KH
+Domain	KID
+Domain	KIX
+Domain	KRAB
+Domain	Kazal-like
+Domain	Kazallike
+Domain	Kinesin-motor
+Domain	Kringle
+Domain	LCCL
+Domain	LDL-receptor
+Domain	LETM1
+Domain	LIM
+Domain	LRRCT
+Domain	LRRNT
+Domain	Laminin G-like
+Domain	Laminin Glike
+Domain	Lipoxygenase
+Domain	LisH
+Domain	MACPF
+Domain	MADS
+Domain	MAM
+Domain	MARVEL
+Domain	MBD
+Domain	MENTAL
+Domain	MHD
+Domain	MHD1
+Domain	MHD2
+Domain	MIB/HERC2
+Domain	MIF4G
+Domain	MIR
+Domain	MIT
+Domain	MPN
+Domain	MSP
+Domain	MTTase
+Domain	Macro
+Domain	Myblike
+Domain	Myosin head-like
+Domain	Myosin headlike
+Domain	N-acetyltransferase
+Domain	N-terminal Ras-GEF
+Domain	NACHT
+Domain	NET
+Domain	NTF2
+Domain	NTR
+Domain	OPR
+Domain	PAC
+Domain	PARP catalytic
+Domain	PAS
+Domain	PCI
+Domain	PDZ
+Domain	PH
+Domain	PI-PLC
+Domain	PI3K-ABD
+Domain	PI3K-RBD
+Domain	PI3K/PI4K
+Domain	PID
+Domain	PIK
+Domain	PIK helical
+Domain	PINc
+Domain	PKD
+Domain	PLAC
+Domain	PLAT
+Domain	PNT
+Domain	POU-specific
+Domain	PP2C-like
+Domain	PQ-loop
+Domain	PRELI/MSF1
+Domain	PSI
+Domain	PUA
+Domain	PUM-HD
+Domain	PWWP
+Domain	PX
+Domain	Paired
+Domain	Peptidase M12B
+Domain	Peptidase S1
+Domain	Peptidase S59
+Domain	Phosphatase
+Domain	Phosphatase tensin
+Domain	Photolyase
+Domain	Plus3
+Domain	Post-SET
+Domain	Protein kinase
+Domain	R3H
+Domain	RBD
+Domain	REJ
+Domain	RGS
+Domain	RHD
+Domain	RRM
+Domain	RUN
+Domain	Rab-GAP
+Domain	Rab-GAP TBC
+Domain	RanBD1
+Domain	Ras-GAP
+Domain	Ras-GEF
+Domain	Ras-associating
+Domain	Reticulon
+Domain	Rho-GAP
+Domain	Rhodanese
+Domain	Ricin B-type
+Domain	Ricin B-type lectin
+Domain	Runt
+Domain	S1 motif
+Domain	S4
+Domain	SAC
+Domain	SAM
+Domain	SAND
+Domain	SANT
+Domain	SAP
+Domain	SARAH
+Domain	SCAN
+Domain	SEC63
+Domain	SEC7
+Domain	SEFIR
+Domain	SEP
+Domain	SET
+Domain	SH2
+Domain	SH3
+Domain	SMB
+Domain	SPAZ
+Domain	SRCR
+Domain	SSD
+Domain	START
+Domain	SUI1
+Domain	SUZ
+Domain	SWIB
+Domain	Saposin
+Domain	Sema
+Domain	Sushi
+Domain	TB
+Domain	TIR
+Domain	TLC
+Domain	TLD
+Domain	TRAM
+Domain	TROVE
+Domain	TSP
+Domain	TSP type-1 4
+Domain	TSP type-1 5
+Domain	Teneurin N-terminal
+Domain	Thioredoxin
+Domain	Thyroglobulin
+Domain	Thyroglobulin type-1
+Domain	Tudor
+Domain	Tudor 1
+Domain	Tudor 2
+Domain	Tyrosine-protein phosphatase
+Domain	U-box
+Domain	UBA
+Domain	UBA-like
+Domain	UBX
+Domain	UDENN
+Domain	Ubiquitin-like
+Domain	Ubiquitinlike
+Domain	VWFA
+Domain	VWFC
+Domain	WH1
+Domain	WH2
+Domain	WSC
+Domain	WW
+Domain	WWE
+Domain	YEATS
+Domain	YjeF
+Domain	ZP
+Domain	bHLH
+Domain	bZIP
+Domain	catalytic
+Domain	dDENN
+Domain	t-SNARE
+Domain	v-SNARE
+Domain	zinc-binding
+Region	AAA
+Region	ANK-3
+Region	ANK2
+Region	Acetyl-CoA	binding
+Region	Acetyl-CoA binding
+Region	Acidic
+Region	Actin-binding
+Region	Aldehyde dehydrogenase
+Region	Alpha
+Region	Alpha-1
+Region	Alpha-2
+Region	Antiparallel alpha-helical coiled coil region
+Region	Arm
+Region	Autoinhibitory
+Region	Autoinhibitory	domain
+Region	BATS
+Region	BID
+Region	Basic
+Region	Beta
+Region	Beta-chain	polymerization
+Region	Binding	to ABL SH2-domain
+Region	Binding to CDKN1B
+Region	Binding to CtBP
+Region	Binding to the PDZ
+Region	Binds	to FBLN1
+Region	Binds	to SNTB1
+Region	Binds to NPHS2
+Region	Binds to necdin
+Region	C-LIP
+Region	C-domain
+Region	C-tail signal
+Region	C-terminal	(CTD) region
+Region	C-terminal	tail
+Region	C-terminal VHL
+Region	C-terminal basic extension
+Region	CAP
+Region	CASP8AP2-binding
+Region	CCP
+Region	CDK5 activation
+Region	CDK5R1-binding
+Region	CH1
+Region	CH2
+Region	CH3
+Region	CLIP
+Region	CRD1%3B	mediates transcriptional repression
+Region	CTAD
+Region	CTNNB1-binding
+Region	Calmodulin-binding
+Region	Caspase
+Region	Caspaselike
+Region	Catalytic
+Region	Catalytic domain
+Region	Catalytic subdomain A
+Region	Catalytic subdomain B
+Region	Cell-attachment
+Region	Chemokine binding
+Region	Cisternal
+Region	Class	A
+Region	Coil	1A
+Region	Coil	1B
+Region	Coil	2
+Region	Coil 1A
+Region	Coil 1B
+Region	Coil 1b
+Region	Coil 2
+Region	Collagen
+Region	Connecting	peptide
+Region	Connecting peptide
+Region	Critical for tubulation
+Region	Cyclin-like
+Region	Cys-rich
+Region	Cysteine
+Region	D domain
+Region	DACHbox-C
+Region	DACHbox-N
+Region	DD1
+Region	DNA-binding
+Region	DVD domain
+Region	Dimerization
+Region	Dimerization	and phosphorylation
+Region	Dimerization and phosphorylation
+Region	Domain	III
+Region	Domain	IV
+Region	Dominant negative effect on myogenic differentiation
+Region	E1A	adenovirus
+Region	EAD
+Region	Earmuff domain
+Region	F-BAR
+Region	F-actin-binding
+Region	F-boxlike
+Region	FAD-binding
+Region	FG
+Region	FIM
+Region	Fibrin
+Region	First lumenal
+Region	Formyltetrahydrofolate
+Region	GART
+Region	GOR1-125
+Region	GRR
+Region	Glucosyltransferase
+Region	Glutamate
+Region	Golgi-targeting
+Region	Golgi\targeting	domain
+Region	Head
+Region	Heparan
+Region	Hepari
+Region	Heparin
+Region	Hinge
+Region	His-rich
+Region	Histone
+Region	Histone acetyltransferase
+Region	ID
+Region	IMP
+Region	Import sequence
+Region	Important for GINS
+Region	Important for chemokine binding
+Region	Inhibitor
+Region	Inositol
+Region	Interaction	with
+Region	Interaction with
+Region	Interaction with ANK2
+Region	Interaction with ARHGAP17%2C DAAM1%2C DIAPH1 and DIAPH2
+Region	Interaction with ATM%2C CKIP%2C IFP35 and NMI
+Region	Interaction with BCL9
+Region	Interaction with CALM
+Region	Interacts	with
+Region	Intermediate
+Region	Involved in HAX-1 binding
+Region	Involved in dimerization
+Region	J-like
+Region	K-box
+Region	Kinase
+Region	LDL
+Region	LFA-3
+Region	LIM
+Region	Leucine
+Region	Leucine-zipper
+Region	Ligand
+Region	Linker
+Region	Localized in
+Region	MAP kinase
+Region	MAP1LC3B
+Region	MARCKS
+Region	MPN-like
+Region	MPT
+Region	Makorin
+Region	Mediates
+Region	Mediates effects
+Region	Mediates interaction with
+Region	Mediates nuclear
+Region	Membrane-binding
+Region	Methylenetetrahydrofolate
+Region	Mitochondrial
+Region	Modulating
+Region	N-LIP
+Region	N-domain
+Region	N-terminal
+Region	N-terminal	region (NRD)
+Region	NAD
+Region	NES
+Region	NLS
+Region	NPS
+Region	NTAD
+Region	Necessary	and
+Region	Necessary	for
+Region	Necessary for
+Region	Negative regulator
+Region	Negatively	regulates
+Region	Nonhelical	region
+Region	Nonhelical region
+Region	Not localized in
+Region	Not proteolytically processed and involved in apoptosis inhibition
+Region	Nuclear	export signal
+Region	Nuclear	localization signal
+Region	Nuclear	targeting sequence
+Region	Nuclease
+Region	O-glycosylated	at one site
+Region	ODD
+Region	P-domain
+Region	P1
+Region	P2
+Region	PBR
+Region	PDZ-binding
+Region	PDZD11-binding
+Region	PEST
+Region	PKA-RII
+Region	POLR2J
+Region	PRAD
+Region	Phosphodiesterase
+Region	Phosphoinositide-binding
+Region	Pleckstrin
+Region	Pleckstrin	homology (PH) domain conferring phosphoinositide binding specificity
+Region	Polyphosphoinositide	(PIP2)-binding
+Region	Pore	side
+Region	Prevents interaction with
+Region	Properdin-binding
+Region	Protease
+Region	RB1 and SP1
+Region	RB1 binding
+Region	RII
+Region	RNA-binding
+Region	RS
+Region	Region II
+Region	Regulates protein turnover
+Region	Represses ARE-mediated transcription
+Region	Repressive
+Region	Required	for
+Region	Required for
+Region	Rod
+Region	S-adenosyl-L-methionine
+Region	S-adenosyl-L-methionine	binding
+Region	SNW
+Region	Second lumenal
+Region	Self-association
+Region	Small	GTPaselike
+Region	Small GTPase-like
+Region	Spacer
+Region	Spermidine binding
+Region	Stalk
+Region	Stem
+Region	Steroid-binding
+Region	Straightjacket
+Region	Substrate
+Region	Substrate	binding
+Region	Subunits
+Region	Sufficient
+Region	Sumo	interaction motif (SIM)
+Region	T-loop
+Region	TAD1
+Region	TAD2
+Region	TMD
+Region	Tail
+Region	Thiamine
+Region	Transactivation	AF-2
+Region	Transcription
+Region	Triple-helical
+Region	VEFS-box
+Region	WAVE homology domain
+Region	ZIS1
+Region	ZIS5
+Region	Zinc-binding
+Region	annexin
+Region	annexin A2
+Region	circadian rhythmicity
+Region	collagen	binding
+Region	dimerization
+Region	homodimerization
+Region	interaction
+Region	interaction	with RAE1
+Region	mRNA cap-binding
+Region	target	DNA
+Repeat	ANK
+Repeat	ARM
+Repeat	Acidic serine cluster
+Repeat	BIR
+Repeat	Calponin-like
+Repeat	Cortactin
+Repeat	Filamin
+Repeat	GRSGPLPPXP
+Repeat	Gelsolin-like
+Repeat	Gelsolinlike
+Repeat	HEAT
+Repeat	Kelch
+Repeat	LDL-receptor class B
+Repeat	LNR
+Repeat	LRR
+Repeat	LysM
+Repeat	MBT
+Repeat	NHL
+Repeat	PC
+Repeat	PEVK
+Repeat	PPR
+Repeat	PbH1
+Repeat	Plectin
+Repeat	Pumilio
+Repeat	RCC1
+Repeat	REM
+Repeat	Solcar
+Repeat	Spectrin
+Repeat	TEP1
+Repeat	TNFR-Cys
+Repeat	TPR
+Repeat	UIM
+Repeat	WD
+Repeat	YD
+Repeat	Z-repeat
+Topological domain	Cytoplasmic
+Topological domain	Extracellular
+Topological domain	Lumenal
+Topological domain 	Cytoplasmic
+Topological domain 	Extracellular
+Topological domain 	Lumenal
+Topological domain 	Mitochondrial
+Topological domain 	Nuclear
+Topological domain 	Perinuclear
+Topological domain 	Peroxisomal
+Topological domain 	Vesicular

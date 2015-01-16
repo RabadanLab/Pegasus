@@ -1,0 +1,125 @@
+	
+PF00001	7 transmembrane receptor (rhodopsin family)
+PF00004	ATPase family associated with various cellular activities (AAA)
+PF00010	Helix-loop-helix DNA-binding domain
+PF00013	KH domain
+PF00017	SH2 domain
+PF00018	SH3 domain
+PF00022	Actin
+PF00023	Ankyrin repeat
+PF00036	EF hand
+PF00041	Fibronectin type III domain
+PF00046	Homeobox domain
+PF00047	Immunoglobulin domain
+PF00063	Myosin head (motor domain)
+PF00069	Protein kinase domain
+PF00071	Ras family
+PF00076	RNA recognition motif. (a.k.a. RRM, RBD, or RNP domain)
+PF00085	Thioredoxin
+PF00096	Zinc finger, C2H2 type
+PF00097	Zinc finger, C3HC4 type (RING finger)
+PF00102	Protein-tyrosine phosphatase
+PF00104	Ligand-binding domain of nuclear hormone receptor
+PF00105	Zinc finger, C4 type (two domains)
+PF00125	Core histone H2A/H2B/H3/H4
+PF00134	Cyclin, N-terminal domain
+PF00157	Pou domain - N-terminal to homeobox domain
+PF00164	Ribosomal protein S12/S23
+PF00168	C2 domain
+PF00169	PH domain
+PF00170	bZIP transcription factor
+PF00178	Ets-domain
+PF00180	Isocitrate/isopropylmalate dehydrogenase
+PF00198	2-oxoacid dehydrogenases acyltransferase (catalytic domain)
+PF00204	DNA gyrase B
+PF00226	DnaJ domain
+PF00227	Proteasome subunit
+PF00240	Ubiquitin family
+PF00249	Myb-like DNA-binding domain
+PF00292	'Paired box' domain
+PF00307	Calponin homology (CH) domain
+PF00319	SRF-type transcription factor (DNA-binding and dimerisation domain)
+PF00387	Phosphatidylinositol-specific phospholipase C, Y domain
+PF00388	Phosphatidylinositol-specific phospholipase C, X domain
+PF00389	D-isomer specific 2-hydroxyacid dehydrogenase, catalytic domain
+PF00400	WD domain, G-beta repeat
+PF00433	Protein kinase C terminal domain
+PF00435	Spectrin repeat
+PF00439	Bromodomain
+PF00443	Ubiquitin carboxyl-terminal hydrolase
+PF00491	Arginase family
+PF00498	FHA domain
+PF00515	Tetratricopeptide repeat
+PF00538	linker histone H1 and H5 family
+PF00564	PB1 domain
+PF00568	WH1 domain
+PF00595	PDZ domain (Also known as DHR or GLGF)
+PF00612	IQ calmodulin-binding motif
+PF00616	GTPase-activator protein for Ras-like GTPase
+PF00617	RasGEF domain
+PF00618	RasGEF N-terminal motif
+PF00620	RhoGAP domain
+PF00621	RhoGEF domain
+PF00625	Guanylate kinase
+PF00627	UBA/TS-N domain
+PF00630	Filamin/ABP280 repeat
+PF00632	HECT-domain (ubiquitin-transferase)
+PF00640	Phosphotyrosine interaction domain (PTB/PID)
+PF00646	F-box domain
+PF00651	BTB/POZ domain
+PF00769	Ezrin/radixin/moesin family
+PF00779	BTK motif
+PF00786	P21-Rho-binding domain
+PF00787	PX domain
+PF00788	Ras association (RalGDS/AF-6) domain
+PF00850	Histone deacetylase domain
+PF00856	SET domain
+PF00889	Elongation factor TS
+PF00917	MATH domain
+PF01017	STAT protein, all-alpha domain
+PF01028	Eukaryotic DNA topoisomerase I, catalytic core
+PF01056	
+PF01079	Hint module
+PF01085	Hedgehog amino-terminal signalling domain
+PF01088	Ubiquitin carboxyl-terminal hydrolase, family 1
+PF01131	DNA topoisomerase
+PF01158	Ribosomal protein L36e
+PF01248	Ribosomal protein L7Ae/L30e/S12e/Gadd45 family
+PF01363	FYVE zinc finger
+PF01369	Sec7 domain
+PF01399	PCI domain
+PF01412	Putative GTPase activating protein for Arf
+PF01459	Eukaryotic porin
+PF01853	MOZ/SAS family
+PF01857	Retinoblastoma-associated protein B domain
+PF01858	Retinoblastoma-associated protein A domain
+PF01992	ATP synthase (C/AC39) subunit
+PF02174	PTB domain (IRS-1 type)
+PF02178	
+PF02189	Immunoreceptor tyrosine-based activation motif
+PF02196	Raf-like Ras-binding domain
+PF02201	SWIB/MDM2 domain
+PF02262	CBL proto-oncogene N-terminal domain 1
+PF02319	E2F/DP family winged-helix DNA-binding domain
+PF02736	Myosin N-terminal SH3-like domain
+PF02761	CBL proto-oncogene N-terminus, EF hand-like domain
+PF02762	CBL proto-oncogene N-terminus, SH2-like domain
+PF02826	D-isomer specific 2-hydroxyacid dehydrogenase, NAD binding domain
+PF02852	Pyridine nucleotide-disulphide oxidoreductase, dimerisation domain
+PF02864	STAT protein, DNA binding domain
+PF02919	Eukaryotic DNA topoisomerase I, DNA binding fragment
+PF02984	Cyclin, C-terminal domain
+PF03114	BAR domain
+PF03143	Elongation factor Tu C-terminal domain
+PF03166	MH2 domain
+PF03234	
+PF03366	YEATS family
+PF03623	Focal adhesion targeting region
+PF03775	Septum formation inhibitor MinC, C-terminal domain
+PF04421	Mss4 protein
+PF04729	ASF1 like histone chaperone
+PF05033	Pre-SET motif
+PF06384	Beta-catenin-interacting protein ICAT
+PF07679	Immunoglobulin I-set domain
+PF07686	Immunoglobulin V-set domain
+PF07714	Protein tyrosine kinase

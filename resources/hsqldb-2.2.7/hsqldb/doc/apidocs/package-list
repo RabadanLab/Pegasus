@@ -1,0 +1,9 @@
+org.hsqldb
+org.hsqldb.auth
+org.hsqldb.cmdline
+org.hsqldb.jdbc
+org.hsqldb.lib
+org.hsqldb.lib.tar
+org.hsqldb.sample
+org.hsqldb.server
+org.hsqldb.util

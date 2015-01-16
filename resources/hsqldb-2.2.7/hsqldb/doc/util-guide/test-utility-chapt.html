@@ -1,0 +1,205 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter&nbsp;2.&nbsp;Hsqldb Test Utility</title>
+<link href="../docbook.css" type="text/css" rel="stylesheet">
+<meta content="DocBook XSL-NS Stylesheets V1.76.1" name="generator">
+<meta name="keywords" content="Hsqldb, Test, Utility">
+<meta name="keywords" content="HyperSQL, Hsqldb, Hypersonic, Database, JDBC, Java">
+<link rel="home" href="index.html" title="HyperSQL Utilities Guide">
+<link rel="up" href="index.html" title="HyperSQL Utilities Guide">
+<link rel="prev" href="sqltool-chapt.html" title="Chapter&nbsp;1.&nbsp;SqlTool">
+<link rel="next" href="dbm-chapt.html" title="Chapter&nbsp;3.&nbsp;Database Manager">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table summary="Navigation header" width="100%">
+<tr>
+<td align="left" width="30%"><a accesskey="p" href="sqltool-chapt.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="40%" style="font-weight:bold;">Chapter&nbsp;2.&nbsp;Hsqldb Test Utility</td><td align="right" width="30%">&nbsp;<a accesskey="n" href="dbm-chapt.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="30%">Chapter&nbsp;1.&nbsp;SqlTool&nbsp;</td><td align="center" width="40%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="30%">&nbsp;Chapter&nbsp;3.&nbsp;Database Manager</td>
+</tr>
+</table>
+</div>
+<HR>
+<div class="chapter" title="Chapter&nbsp;2.&nbsp;Hsqldb Test Utility">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title">
+<a name="test-utility-chapt"></a>Chapter&nbsp;2.&nbsp;Hsqldb Test Utility</h2>
+</div>
+</div>
+</div>
+<p>The <code class="classname">org.hsqldb.test</code> package contains a number
+    of tests for various functions of the database engine. Among these, the
+    <code class="classname">TestUtil</code> class performs the tests that are based on
+    scripts. To run the tests, you should compile the
+    <code class="filename">hsqldbtest.jar</code> target with Ant and JUnit.</p>
+<p>The <code class="classname">TestUtil</code> class should be run in the
+    /testrun/hsqldb directory of the distributed files. It then runs the set
+    of TestSelf*.txt files in the directory. To start the application in
+    Windows, change to the directory and type:</p>
+<pre class="screen"> java org.hsqldb.test.TestUtil</pre>
+<p>All files in the working directory with names matching TestSelf*.txt
+    are processed in alphabetical order.</p>
+<p>You can add your own scripts to test different series of SQL
+    queries. The format of the TestSelf*.txt file is simple text, with some
+    indentation and prefixes in the form of Java-style comments. The prefixes
+    indicate what the expected result should be.</p>
+<p>The class <code class="classname">org.hsqldb.test.TestScriptRunner</code> is
+    a more general program which you can use to test any script files which
+    you specify (with scripts of the same exact format as described below).
+    For example, </p>
+<pre class="screen">java org.hsqldb.test.TestScriptRunner --urlid=mem script1.tsql script2.sql</pre>
+<p>
+    You must have the HSQLDB classes, including the util and test classes, in
+    your <code class="varname">CLASSPATH</code>. The urlid must be set up in an RC file
+    as explained in the <a class="link" href="sqltool-chapt.html#sqltool_auth-sect" title="RC File Authentication Setup">RC File Authentication Setup</a> section. Use the
+    <code class="literal">rcfile=</code> argument to specify an RC file other than the
+    default of <code class="filename">testscriptrunner.rc</code> in the current
+    directory. To see all invocation possibilities, just run TestScriptRunner
+    with no arguments at all. TestScriptRunner can run tests sequentially (the
+    default) or in simultaneous asynchronous threads.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Comment lines must start with -- and are ignored</p>
+</li>
+<li class="listitem">
+<p>Lines starting with spaces are the continuation of the previous
+        line (for long SQL statements)</p>
+</li>
+<li class="listitem">
+<p>SQL statements with no prefix are simply executed.</p>
+</li>
+<li class="listitem">
+<p>
+<span class="emphasis"><em>The remaining items in this list exemplify use of the
+        available command line-prefixes.</em></span>
+</p>
+</li>
+<li class="listitem">
+<div class="informalexample">
+<p>The /*s*/ option stands for silent. It is used for
+          executing queries regardless of results. Used for preparation of
+          tests, not for actual tests.</p>
+<pre class="programlisting">/*s*/ Any SQL statement - errors are ignored</pre>
+</div>
+</li>
+<li class="listitem">
+<div class="informalexample">
+<p>The /*c&lt;rows&gt;*/ option is for SELECT queries and
+          asserts the number of rows in the result matches the given
+          count.</p>
+<pre class="programlisting">/*c&lt;rows&gt;*/ SQL statement returning count of &lt;rows&gt;</pre>
+</div>
+</li>
+<li class="listitem">
+<div class="informalexample">
+<p>The /*u*/ option is for queries that return an update
+          count, such as DELETE and UPDATE. It asserts the update count
+          matches.</p>
+<pre class="programlisting">/*u&lt;count&gt;*/ SQL statement returning an update count equal to &lt;count&gt;</pre>
+</div>
+</li>
+<li class="listitem">
+<div class="informalexample">
+<p>The /*e*/ option asserts that the given query results is an
+          error. It is mainly used for testing the error detection
+          capabilities of the engine. The SQL State of the expected error can
+          be defined, for example /*e42578*/, to verify the returned error.
+          This option can be used with syntactically valid queries to assert a
+          certain state in the database. For example a CREATE TABLE can be
+          used to assert the table of the same name already exists.</p>
+<pre class="programlisting">/*e*/ SQL statement that should produce an error when executing</pre>
+</div>
+</li>
+<li class="listitem">
+<div class="informalexample">
+<p>The /*r....*/ option asserts the SELECT query returns a
+          single row containing the given set of field values.</p>
+<pre class="programlisting">/*r&lt;string1&gt;,&lt;string2&gt;*/ SQL statement returning a single row ResultSet equal to the specified value</pre>
+</div>
+</li>
+<li class="listitem">
+<div class="informalexample">
+<p>The extended /*r...*/ option asserts the SELECT query
+          returns the given rows containing the given set of field
+          values.</p>
+<pre class="programlisting">/*r
+    &lt;string1&gt;,&lt;string2&gt;
+    &lt;string1&gt;,&lt;string2&gt;
+    &lt;string1&gt;,&lt;string2&gt;
+*/ SQL statement returning a multiple row ResultSet equal to the specified values</pre>
+</div>
+<p class="simpara">(note that the result set lines are indented).</p>
+</li>
+<li class="listitem">
+<p class="simpara">The /*d*/ directive just displays the supplied
+        text.</p>
+<div class="informalexample">
+<pre class="programlisting">/*d*/ Some message</pre>
+</div>
+</li>
+<li class="listitem">
+<p class="simpara">The /*w MILLIS*/ directive causes the test to Wait for a
+        specified number of millisedonds.</p>
+<div class="informalexample">
+<pre class="programlisting">/*w 1000*/ Optional message</pre>
+</div>
+</li>
+<li class="listitem">
+<p class="simpara">The /*w ENFORCE_SEQUENCE WAITER_NAME*/ directive causes the
+        test to Wait for the specified <span class="emphasis"><em>Waiter</em></span>. A waiter
+        is just name that is used to associate a /*w*/ directive to its
+        corresponding /*p*/ directive. The ENFORCE_SEQUENCE argument must be
+        set to <code class="literal">true</code> or <code class="literal">false</code> to specify
+        whether to fail unless the /*p*/ command runs after the /*w*/ command
+        is waiting.</p>
+<div class="informalexample">
+<pre class="programlisting">/*w true script4*/ Optional message</pre>
+</div>
+</li>
+<li class="listitem">
+<p class="simpara">The /*p ENFORCE_SEQUENCE WAITER_NAME*/ directive is the peer
+        directive to /*w*/, which causes a waiting thread to
+        Proceed.</p>
+<div class="informalexample">
+<pre class="programlisting">/*p true script4*/ Optional message</pre>
+</div>
+</li>
+<li class="listitem">
+<p>All the options are lowercase letters. During development, an
+        uppercase can be used for a given test to exclude a test from the test
+        run. The utility will just report the test blocks that have been
+        excluded without running them. Once the code has been developed, the
+        option can be turned into lowercase to perform the actual test.</p>
+</li>
+</ul>
+</div>
+<p>See the TestSelf*.txt files in the /testrun/hsqldb/ directory for
+    actual examples.</p>
+<p>The String <code class="literal">${timestamp}</code> may be used in script
+    messages (like in /*d*/, /*w*/, /*p*/). It expands to the current time,
+    down to the second. For example, </p>
+<div class="informalexample">
+<pre class="programlisting">/*d*/ It is now ${timestamp}</pre>
+</div>
+</div>
+<HR xmlns:xi="http://www.w3.org/2001/XInclude">
+<P xmlns:xi="http://www.w3.org/2001/XInclude" class="svnrev">$Revision: 4904 $</P>
+<div class="navfooter">
+<hr>
+<table summary="Navigation footer" width="100%">
+<tr>
+<td align="left" width="40%"><a accesskey="p" href="sqltool-chapt.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="20%">&nbsp;</td><td align="right" width="40%">&nbsp;<a accesskey="n" href="dbm-chapt.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="40%">Chapter&nbsp;1.&nbsp;SqlTool&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="40%">&nbsp;Chapter&nbsp;3.&nbsp;Database Manager</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

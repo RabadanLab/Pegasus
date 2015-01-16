@@ -1,0 +1,4 @@
+Cytoplasmic;status=Potential
+Extracellular;status=Potential
+Lumenal;status=Potential
+Mitochondrial intermembrane;status=Potential

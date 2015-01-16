@@ -1,0 +1,3789 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter&nbsp;4.&nbsp;Schemas and Database Objects</title>
+<link href="../docbook.css" type="text/css" rel="stylesheet">
+<meta content="DocBook XSL-NS Stylesheets V1.76.1" name="generator">
+<meta name="keywords" content="Hsqldb, HyperSQL, SQL">
+<meta name="keywords" content="Hsqldb, HyperSQL, Database, JDBC, Java">
+<link rel="home" href="index.html" title="HyperSQL User Guide">
+<link rel="up" href="index.html" title="HyperSQL User Guide">
+<link rel="prev" href="sessions-chapt.html" title="Chapter&nbsp;3.&nbsp;Sessions and Transactions">
+<link rel="next" href="texttables-chapt.html" title="Chapter&nbsp;5.&nbsp;Text Tables">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table summary="Navigation header" width="100%">
+<tr>
+<td align="left" width="30%"><a accesskey="p" href="sessions-chapt.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="40%" style="font-weight:bold;">Chapter&nbsp;4.&nbsp;Schemas and Database Objects</td><td align="right" width="30%">&nbsp;<a accesskey="n" href="texttables-chapt.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="30%">Chapter&nbsp;3.&nbsp;Sessions and Transactions&nbsp;</td><td align="center" width="40%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="30%">&nbsp;Chapter&nbsp;5.&nbsp;Text Tables</td>
+</tr>
+</table>
+</div>
+<HR>
+<div class="chapter" title="Chapter&nbsp;4.&nbsp;Schemas and Database Objects">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title">
+<a name="databaseobjects-chapt"></a>Chapter&nbsp;4.&nbsp;Schemas and Database Objects</h2>
+</div>
+<div>
+<div class="authorgroup">
+<div class="author">
+<h3 class="author">
+<span class="firstname">Fred</span> <span class="surname">Toussi</span>
+</h3>
+<div class="affiliation">
+<span class="orgname">The HSQL Development Group<br>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<p class="releaseinfo">$Revision: 4903 $</p>
+</div>
+<div>
+<div class="legalnotice" title="Legal Notice">
+<a name="N10B9C"></a>
+<p>Copyright 2009-2012 Fred Toussi. Permission is granted to distribute
+      this document without any alteration under the terms of the HSQLDB
+      license. Additional permission is granted to the HSQL Development Group
+      to distribute this document with or without alterations under the terms
+      of the HSQLDB license.</p>
+</div>
+</div>
+<div>
+<p class="pubdate">2012-01-15 10:12:45-0500</p>
+</div>
+</div>
+</div>
+<div class="toc">
+<p>
+<b>Table of Contents</b>
+</p>
+<dl>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_overview">Overview</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_schemas_schema_objects">Schemas and Schema Objects</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_names_references">Names and References</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_character_sets">Character Sets</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_collations">Collations</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_distinct_types">Distinct Types</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_domains_info_schema">Domains</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_number_sequence">Number Sequences</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_tables">Tables</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_views">Views</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_constraints">Constraints</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_assertions">Assertions</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_triggers">Triggers</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_routines">Routines</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_indexes">Indexes</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_schema_def_statements">Statements for Schema Definition and Manipulation</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_common_elements">Common Elements and Statements</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_renaming">Renaming Objects</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_commenting">Commenting Objects</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_schema_creation">Schema Creation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_table_creation">Table Creation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_table_manupulation">Table Manipulation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_view_creation">View Creation and Manipulation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_domain_creation">Domain Creation and Manipulation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_trigger_creation">Trigger Creation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_routine_creation">Routine Creation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_sequence_creation">Sequence Creation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_procedure_satement">SQL Procedure Statement</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_other_object_creation">Other Schema Object Creation</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_information_schema">The Information Schema</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_char_sets_info_schema">Predefined Character Sets, Collations and Domains</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_views_info_schema">Views in INFORMATION SCHEMA</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_visibility_info_schema">Visibility of Information</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_name_info_schema">Name Information</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_data_type_info_schema">Data Type Information</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_product_info_schema">Product Information</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_operations_info_schema">Operations Information</a></span>
+</dt>
+<dt>
+<span class="section"><a href="databaseobjects-chapt.html#dbc_standard_views_info_schema">SQL Standard Views</a></span>
+</dt>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" title="Overview">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="dbc_overview"></a>Overview</h2>
+</div>
+</div>
+</div>
+<p>The persistent elements of an SQL environment are database objects.
+    The database consists of catalogs plus authorizations.</p>
+<p>A catalog contains schemas, while schemas contain the objects that
+    contain data or govern the data.</p>
+<p>Each catalog contains a special schema called INFORMATION_SCHEMA.
+    This schema is read-only and contains some views and other schema objects.
+    The views contain lists of all the database objects that exist within the
+    catalog, plus all authorizations.</p>
+<p>Each database object has a name. A name is an identifier and is
+    unique within its name-space.</p>
+</div>
+<div class="section" title="Schemas and Schema Objects">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="dbc_schemas_schema_objects"></a>Schemas and Schema Objects</h2>
+</div>
+</div>
+</div>
+<p>In HyperSQL, there is only one catalog per database. The name of the
+    catalog is PUBLIC. You can rename the catalog with the <code class="literal">ALTER
+    CATALOG RENAME TO</code> statement. All schemas belong the this
+    catalog. The catalog name has no relation to the file name of the
+    database.</p>
+<p>Each database has also an internal "unique" name which is
+    automatically generated when the database is created. This name is used
+    for event logging. You can also change this unique name.</p>
+<p>Schema objects are database objects that contain data or govern or
+    perform operations on data. By definition, each schema object belongs to a
+    specific schema.</p>
+<p>Schema objects can be divided into groups according to their
+    characteristics.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Some kinds of schema objects can exist independently from other
+        schema object. Other kinds can exist only as an element of another
+        schema object. These dependent objects are automatically destroyed
+        when the parent object is dropped.</p>
+</li>
+<li class="listitem">
+<p>Separate name-spaces exists for different kinds of schema
+        object. Some name-spaces are shared between two similar kinds of
+        schema objects.</p>
+</li>
+<li class="listitem">
+<p>There can be dependencies between various schema objects, as a
+        schema object can include references to other schema objects. These
+        references can cross schema boundaries. Interdependence and cross
+        referencing between schema objects is allowed in some circumstances
+        and disallowed in some others.</p>
+</li>
+<li class="listitem">
+<p>Schema objects can be destroyed with the DROP statement. If
+        dependent schema objects exist, a DROP statement will succeed only if
+        it has a CASCADE clause. In this case, dependent objects are also
+        destroyed in most cases. In some cases, such as dropping DOMAIN
+        objects, the dependent objects are not destroyed, but modified to
+        remove the dependency.</p>
+</li>
+</ul>
+</div>
+<p>A new HyperSQL catalog contains an empty schema called PUBLIC. By
+    default, this schema is the initial schema when a new session is started.
+    New schemas and schema objects can be defined and used in the PUBLIC
+    schema, as well as any new schema that is created by the user. You can
+    rename the PUBLIC schema.</p>
+<p>HyperSQL allows all schemas to be dropped, except the schema that is
+    the default initial schema for new sessions (by default, the PUBLIC
+    schema). For this schema, a DROP SCHEMA ... CASCADE statement will succeed
+    but will result in an empty schema, rather than no schema.</p>
+<p>The statements for setting the initial schema for users are
+    described in the <a class="link" href="accesscontrol-chapt.html" title="Chapter&nbsp;6.&nbsp;Access Control">Statements for
+    Authorization and Access Control</a> chapter.</p>
+<div class="section" title="Names and References">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_names_references"></a>Names and References</h3>
+</div>
+</div>
+</div>
+<p>The name of a schema object is an
+      <code class="literal">&lt;identifier&gt;</code>. The name belongs to the
+      name-space for the particular kind of schema object. The name is unique
+      within its name-space. For example, each schema has a separate
+      name-space for TRIGGER objects.</p>
+<p>In addition to the name-spaces in the schema. Each table has a
+      name-space for the names of its columns.</p>
+<p>Because a schema object is always in a schema and a schema always
+      in a catalog, it is possible, and sometimes necessary, to qualify the
+      name of the schema object that is being referenced in an SQL statement.
+      This is done by forming an &lt;<code class="literal">identifier chain&gt;</code>.
+      In some contexts, only a simple <code class="literal">&lt;identifier&gt;</code>
+      can be used and the <code class="literal">&lt;identifier chain&gt;</code> is
+      prohibited. While in some other contexts, the use of
+      <code class="literal">&lt;identifier chain&gt;</code> is optional. An identifier
+      chain is formed by qualifying each object with the name of the object
+      that owns its name-space. Therefore a column name is prefixed with a
+      table name, a table name is prefixed with a schema name, and a schema
+      name is prefixed with a catalog name. A fully qualified column name is
+      in the form <code class="literal">&lt;catalog name&gt;.&lt;schema name&gt;.&lt;table
+      name&gt;.&lt;column name&gt;</code>, likewise, a fully qualified
+      sequence name is in the form <code class="literal">&lt;catalog name&gt;.&lt;schema
+      name&gt;.&lt;sequence name&gt;</code>.</p>
+<p>HyperSQL extends the SQL standard to allow renaming all database
+      objects. The ALTER ... RENAME TO command has slightly different forms
+      depending on the type of object. If an object is referenced in a VIEW or
+      ROUTINE definition, it is not always possible to rename it.</p>
+</div>
+<div class="section" title="Character Sets">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_character_sets"></a>Character Sets</h3>
+</div>
+</div>
+</div>
+<p>A CHARACTER SET is the whole or a subset of the UNICODE
+      character set.</p>
+<p>A character set name can only be a <code class="literal">&lt;regular
+      identifier&gt;</code>. There is a separate name-space for character
+      sets.</p>
+<p>There are several predefined character sets. These character
+      sets belong to INFORMATION_SCHEMA. However, when they are referenced in
+      a statement, no schema prefix can be used in the statement that
+      references them.</p>
+<p>The following character sets have been specified by the SQL
+      Standard:</p>
+<p>SQL_TEXT, SQL_IDENTIFIER, SQL_CHARACTER, ASCII_GRAPHIC,
+      GRAPHIC_IRV, ASCII_FULL, ISO8BIT, LATIN1, UTF32, UTF16, UTF8.</p>
+<p>The ASCII_GRAPHIC is the same as GRAPHIC_IRV and ASCII_FULL is
+      the same as ISO8BIT.</p>
+<p>Most of the character sets are defined by well-known standards
+      such as UNICODE.</p>
+<p>The SQL_CHARACTER consists of ASCII letters, digits and the
+      symbols used in the SQL language. The SQL_TEXT, SQL_IDENTIFIER are
+      implementation defined. HyperSQL defines SQL_TEXT as the UNICODE
+      character set and SQL_IDENTIFIER as the UNICODE character set minus the
+      SQL language special characters.</p>
+<p>The character repertoire of HyperSQL is the UTF16 character
+      set, which covers all possible character sets. If a predefined character
+      set is specified for a table column, then any string stored in the
+      column must contain only characters from the specified character
+      set.</p>
+<p>Early releases of HyperSQL version 2.0 may not enforce the
+      CHARACTER SET that is specified for a column and may accept any
+      character string.</p>
+</div>
+<div class="section" title="Collations">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_collations"></a>Collations</h3>
+</div>
+</div>
+</div>
+<p>A COLLATION is the method used for ordering character strings
+      in ordered sets and to determine equivalence of two character
+      strings.</p>
+<p>There are several predefined collations. These collations
+      belong to INFORMATION_SCHEMA. However, when they are referenced in a
+      statement, no schema prefix can be used in the statement that references
+      them.</p>
+<p>There is a separate name-space for collations..</p>
+<p>Collations for a large number of languages are supported by
+      HyperSQL.</p>
+<p>HyperSQL version 2.1 support a single collation for the whole
+      database. Optionally, a different collation can be specified for each
+      table column that is defined as CHAR or VARCHAR. Also, a different
+      collation can be used in an ORDER BY clause.</p>
+</div>
+<div class="section" title="Distinct Types">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_distinct_types"></a>Distinct Types</h3>
+</div>
+</div>
+</div>
+<p>A distinct, user-defined TYPE is simply based on a built-in
+      type. A distinct TYPE is used in table definitions and in CAST
+      statements.</p>
+<p>Distinct types share a name-space with domains.</p>
+</div>
+<div class="section" title="Domains">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_domains_info_schema"></a>Domains</h3>
+</div>
+</div>
+</div>
+<p>A DOMAIN is a user-defined type, simply based on a built-in
+      type. A DOMAIN can have constraints that limit the values that the
+      DOMAIN can represent. A DOMAIN can be used in table definitions and in
+      CAST statements.</p>
+<p>Distinct types share a name-space with domains.</p>
+</div>
+<div class="section" title="Number Sequences">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_number_sequence"></a>Number Sequences</h3>
+</div>
+</div>
+</div>
+<p>A SEQUENCE object produces INTEGER values in sequence. The
+      SEQUENCE can be referenced in special contexts only within certain SQL
+      statements. For each row where the object is referenced, its value is
+      incremented.</p>
+<p>There is a separate name-space for SEQUENCE objects.</p>
+<p>IDENTITY columns are columns of tables which have an internal,
+      unnamed SEQUENCE object. HyperSQL also supports IDENTITY columns that
+      use a named SEQUENCE object.</p>
+<p>SEQUENCE objects and IDENTITY columns are supported fully
+      according to the latest SQL 2008 Standard syntax.</p>
+<p>
+<span class="bold"><strong>Sequences</strong></span>
+</p>
+<p>The SQL:2008 syntax and usage is different from what is supported
+      by many existing database engines. Sequences are created with the
+      <code class="literal">CREATE SEQUENCE</code> command and their current value can
+      be modified at any time with <code class="literal">ALTER SEQUENCE</code>. The next
+      value for a sequence is retrieved with the <code class="literal">NEXT VALUE FOR
+      &lt;name&gt;</code> expression. This expression can be used for
+      inserting and updating table rows.</p>
+<div class="example">
+<a name="N10C47"></a>
+<p class="title">
+<b>Example&nbsp;4.1.&nbsp;inserting the next sequence value into a table row</b>
+</p>
+<div class="example-contents">
+<pre class="programlisting">INSERT INTO mytable VALUES 2, 'John', NEXT VALUE FOR mysequence;</pre>
+</div>
+</div>
+<br class="example-break">
+<p>You can also use it in select statements. For example, if you want
+      to number the returned rows of a SELECT in sequential order, you can
+      use:</p>
+<div class="example">
+<a name="N10C4E"></a>
+<p class="title">
+<b>Example&nbsp;4.2.&nbsp;numbering returned rows of a SELECT in sequential order</b>
+</p>
+<div class="example-contents">
+<pre class="programlisting">SELECT NEXT VALUE FOR mysequence, col1, col2 FROM mytable WHERE ...</pre>
+</div>
+</div>
+<br class="example-break">
+<p>In version 2.0, the semantics of sequences is exactly as defined
+      by SQL:2008. If you use the same sequence twice in the same row in an
+      INSERT statement, you will get the same value as required by the
+      Standard.</p>
+<p>The correct way to use a sequence value is the NEXT VALUE FOR
+      expression.</p>
+<p>HyperSQL adds an extension to Standard SQL to return the last
+      value returned by the NEXT VALUE FOR expression in the current session.
+      After a statement containing NEXT VALUE FOR is executed, the value that
+      was returned for NEXT VALUE FOR is available using the CURRENT VALUE FOR
+      expression. In the example below, the NEXT VALUE FOR expression is used
+      to insert a new row. The value that was returned by NEXT VALUE FOR is
+      retrieved with the CURRENT VALUE FOR in the next insert statements to
+      populate two new rows in a different table that has a parent child
+      relationship with the first table. For example if the value 15 was
+      returned by the sequence, the same value 15 is inserted in the three
+      rows.</p>
+<div class="example">
+<a name="N10C5A"></a>
+<p class="title">
+<b>Example&nbsp;4.3.&nbsp;using the last value of a sequence</b>
+</p>
+<div class="example-contents">
+<pre class="programlisting">INSERT INTO mytable VALUES 2, 'John', NEXT VALUE FOR mysequence;
+INSERT INTO childtable VALUES 4, CURRENT VALUE FOR mysequence;
+INSERT INTO childtable VALUES 5, CURRENT VALUE FOR mysequence;</pre>
+</div>
+</div>
+<p>
+<br class="example-break">The INFORMATION_SCHEMA.SEQUENCES table contains the next
+      value that will be returned from any of the defined sequences. The
+      SEQUENCE_NAME column contains the name and the NEXT_VALUE column
+      contains the next value to be returned. Note that this is only for
+      getting information and you should not use it for accessing the next
+      sequence value. When multiple sessions access the same sequence, the
+      value returned from this table by one session could also be used by a
+      different session, causing a sequence value to be used twice
+      unintentionally.</p>
+<p>
+<span class="bold"><strong>Identity Auto-Increment
+      Columns</strong></span>
+</p>
+<p>Each table can contain a single auto-increment column, known as
+      the IDENTITY column. An IDENTITY column is a SMALLINT, INTEGER, BIGINT,
+      DECIMAL or NUMERIC column with its value generated by a sequence
+      generator.</p>
+<p>In HyperSQL 2.0, an IDENTITY column is not by default treated as
+      the primary key for the table (as a result, multi-column primary keys
+      are possible with an IDENTITY column present).</p>
+<p>The SQL standard syntax is used, which allows the initial value
+      and other options to be specified.</p>
+<pre class="programlisting">&lt;colname&gt; [ INTEGER | BIGINT | DECIMAL | NUMERIC ] GENERATED { BY DEFAULT | ALWAYS} AS IDENTITY [( &lt;options&gt; )]</pre>
+<p>When you add a new row to such a table using an <code class="literal">INSERT
+      INTO &lt;tablename&gt; ... </code>statement, you can use the DEFAULT
+      keyword for the IDENTITY column, which results in an auto-generated
+      value for the column.</p>
+<p>The <code class="literal">IDENTITY() </code>function returns the last value
+      inserted into any IDENTITY column by this session. Each session manages
+      this function call separately and is not affected by inserts in other
+      sessions. Use <code class="literal">CALL IDENTITY() </code>as an SQL statement to
+      retrieve this value. If you want to use the value for a field in a child
+      table, you can use <code class="literal">INSERT INTO &lt;childtable&gt; VALUES
+      (...,IDENTITY(),...);</code>. Both types of call to<code class="literal">
+      IDENTITY()</code> must be made before any additional update or insert
+      statements are issued by the session.</p>
+<p>In triggers and routines, the value returned by the
+      <code class="literal">IDENTITY()</code> function is correct for the given context.
+      For example, if a call to a stored procedure inserts a row into a table,
+      causing a new identity value to be generated, a call to
+      <code class="literal">IDENTITY()</code> inside the procedure will return the new
+      identity, but a call outside the procedure will return the last identity
+      value that was generated before a call was made to the procedure.</p>
+<p>The last inserted IDENTITY value can also be retrieved via JDBC,
+      by specifying the Statement or PreparedStatement object to return the
+      generated value.</p>
+<p>The next IDENTITY value to be used can be changed with the
+      following statement. Note that this statement is not used in normal
+      operation and is only for special purposes, for example resetting the
+      identity generator: </p>
+<pre class="programlisting">ALTER TABLE ALTER COLUMN &lt;column name&gt; RESTART WITH &lt;new value&gt;;</pre>
+<p>For
+      backward compatibility, support has been retained for <code class="literal">CREATE
+      TABLE &lt;tablename&gt;(&lt;colname&gt; IDENTITY, ...)</code> as a
+      shortcut which defines the column both as an IDENTITY column and a
+      PRIMARY KEY column. Also, for backward compatibility, it is possible to
+      use NULL as the value of an IDENTITY column in an INSERT statement and
+      the value will be generated automatically. You should avoid these
+      compatibility features as they may be removed from future versions of
+      HyperSQL.</p>
+<p>In the following example, the identity value for the first INSERT
+      statement is generated automatically using the DEFAULT keyword. The
+      second INSERT statement uses a call to the IDENTITY() function to
+      populate a row in the child table with the generated identity
+      value.</p>
+<div class="informalexample">
+<pre class="programlisting">CREATE TABLE star (id INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY, 
+   firstname VARCHAR(20),
+   lastname VARCHAR(20))
+CREATE TABLE movies (starid INTEGER, movieid INTEGER PRIMARY KEY, title VARCHAR(40)) 
+INSERT INTO star (id, firstname, lastname) VALUES (DEFAULT, 'Felix', 'the Cat')
+INSERT INTO movies (starid, movieid, title) VALUES (IDENTITY(), 10, 'Felix in Hollywood')
+</pre>
+</div>
+<p>HyperSQL 2.1 also supports IDENTITY columns that use an external,
+      named SEQUENCE object. This feature is not part of the SQL Standard. The
+      example below uses this type of IDENTITY. Note the use of CURRENT VALUE
+      FOR seq here is multi-session safe. The returned value is the last value
+      used by this session when the row was inserted into the star table. This
+      value is available until the transaction is committed. After commit,
+      NULL is returned by the CURRENT VALUE FOR expression until the SEQUENCE
+      is used again.</p>
+<div class="informalexample">
+<pre class="programlisting">CREATE SEQUENCE seq
+CREATE TABLE star (id INTEGER GENERATED BY DEFAULT AS SEQUENCE seq PRIMARY KEY, 
+   firstname VARCHAR(20),
+   lastname VARCHAR(20))
+CREATE TABLE movies (starid INTEGER, movieid INTEGER PRIMARY KEY, title VARCHAR(40)) 
+INSERT INTO star (id, firstname, lastname) VALUES (DEFAULT, 'Felix', 'the Cat')
+INSERT INTO movies (starid, movieid, title) VALUES (CURRENT VALUE FOR seq, 10, 'Felix in Hollywood')
+</pre>
+</div>
+</div>
+<div class="section" title="Tables">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_tables"></a>Tables</h3>
+</div>
+</div>
+</div>
+<p>In the SQL environment, tables are the most essential
+      components, as they hold all persistent data.</p>
+<p>If TABLE is considered as metadata (i.e. without its actual
+      data) it is called a <span class="emphasis"><em>relation</em></span> in relational theory.
+      It has one or more columns, with each column having a distinct name and
+      a data type. A table usually has one or more constraints which limit the
+      values that can potentially be stored in the TABLE. These constraints
+      are discussed in the next section.</p>
+<p>A single column of the table can be defined as IDENTITY. The
+      values stored in this column are auto-generated and are based on an
+      (unnamed) identity sequence, or optionally, a named SEQUENCE
+      object.</p>
+</div>
+<div class="section" title="Views">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_views"></a>Views</h3>
+</div>
+</div>
+</div>
+<p>A VIEW is similar to a TABLE but it does not permanently
+      contain rows of data. A view is defined as a QUERY EXPRESSION, which is
+      often a SELECT statement that references views and tables, but it can
+      also consist of a TABLE CONSTRUCTOR that does not reference any tables
+      or views.</p>
+<p>A view has many uses:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Hide the structure and column names of tables. The view can
+          represent one or more tables or views as a separate table. This can
+          include aggregate data, such as sums and averages, from other
+          tables.</p>
+</li>
+<li class="listitem">
+<p>Allow access to specific rows in a table. For example, allow
+          access to records that were added since a given date, while hiding
+          older records.</p>
+</li>
+<li class="listitem">
+<p>Allow access to specific columns. For example allow access to
+          columns that contain non-confidential information. Note that this
+          can also be achieved with the GRANT SELECT statement, using
+          column-level privileges</p>
+</li>
+</ul>
+</div>
+<p>A VIEW that returns the columns of a single ordinary TABLE is
+      <em class="glossterm">updatable</em> if the query expression of the view is
+      an updatable query expression as discussed in the <a class="link" href="dataaccess-chapt.html" title="Chapter&nbsp;7.&nbsp;Data Access and Change">Data Access and Change</a>
+      chapter. Some <em class="glossterm">updatable</em> views are
+      <em class="glossterm">insertable-into</em> because the query expression is
+      insertable-into. In these views, each column of the query expressions
+      must be a column of the underlying table and those columns of the
+      underlying table that are not in the view must have a default clause, or
+      be an IDENTITY or GENERATED column. When rows of an updatable view are
+      updated, or new rows are inserted, or rows are deleted, these changes
+      are reflected in the base table. A VIEW definition may specify that the
+      inserted or updated rows conform to the search condition of the view.
+      This is done with the CHECK OPTION clause.</p>
+<p>A view that is not updatable according to the above paragraph
+      can be made updatable or insertable-into by adding INSTEAD OF triggers
+      to the view. These triggers contain statements to use the submitted data
+      to modify the contents of the underlying tables of the view separately.
+      For example, a view that represents a SELECT statements that joins two
+      tables can have an INSTEAD OF DELETE trigger with two DELETE statements,
+      one for each table. Views that have an INSTEAD OF trigger are called
+      TRIGGER INSERTABLE, TRIGGER UPDATABLE, etc. according to the triggers
+      that have been defined.</p>
+<p>Views share a name-space with tables.</p>
+</div>
+<div class="section" title="Constraints">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_constraints"></a>Constraints</h3>
+</div>
+</div>
+</div>
+<p>A CONSTRAINT is a child schema object and can belong to a
+      DOMAIN or a TABLE. CONSTRAINT objects can be defined without specifying
+      a name. In this case the system generates a name for the new object
+      beginning with "SYS_".</p>
+<p>In a DOMAIN, CHECK constraints can be defined that limits the
+      value represented by the DOMAIN. These constraints work exactly like a
+      CHECK constraint on a single column of a table as described
+      below.</p>
+<p>In a TABLE, a constraint takes three basic forms.</p>
+<p>
+<span class="bold"><strong>CHECK</strong></span>
+</p>
+<p>A CHECK constraint consists of a <code class="literal">&lt;search
+      condition&gt;</code> that must not be false (can be unknown) for each
+      row of the table. The <code class="literal">&lt;search condition&gt;</code> can
+      reference all the columns of the current row, and if it contains a
+      <code class="literal">&lt;subquery&gt;</code>, other tables and views in the
+      database (excluding its own table).</p>
+<p>
+<span class="bold"><strong>NOT NULL</strong></span>
+</p>
+<p>A simple form of check constraint is the NOT NULL constraint,
+      which applies to a single column.</p>
+<p>
+<span class="bold"><strong>UNIQUE</strong></span>
+</p>
+<p>A UNIQUE constraint is based on an equality comparison of
+      values of specific columns (taken together) of one row with the same
+      values from each of the other rows. The result of the comparison must
+      never be true (can be false or unknown). If a row of the table has NULL
+      in any of the columns of the constraint, it conforms to the constraint.
+      A unique constraint on multiple columns (c1, c2, c3, ..) means that in
+      no two rows, the sets of values for the columns can be equal unless at
+      lease one of them is NULL. Each single column taken by itself can have
+      repeat values in different rows. The following example satisfies a
+      UNIQUE constraint on the two columns</p>
+<div class="example">
+<a name="N10CF4"></a>
+<p class="title">
+<b>Example&nbsp;4.4.&nbsp;Column values which satisfy a 2-column UNIQUE
+        constraint</b>
+</p>
+<div class="example-contents">
+<table summary="Simple list" border="0" class="simplelist">
+<tr>
+<td>1,</td><td>2</td>
+</tr>
+<tr>
+<td>2,</td><td>1</td>
+</tr>
+<tr>
+<td>2,</td><td>2</td>
+</tr>
+<tr>
+<td>NULL,</td><td>1</td>
+</tr>
+<tr>
+<td>NULL,</td><td>1</td>
+</tr>
+<tr>
+<td>1,</td><td>NULL</td>
+</tr>
+<tr>
+<td>NULL,</td><td>NULL</td>
+</tr>
+<tr>
+<td>NULL,</td><td>NULL</td>
+</tr>
+</table>
+</div>
+</div>
+<br class="example-break">
+<p>If the SET DATABASE SQL UNIQUE NULLS FALSE has been set, then if
+      not all the values set of columns are null, the not null values are
+      compared and it is disallowed to insert identical rows that contain at
+      least one not-null value.</p>
+<p>
+<span class="bold"><strong>PRIMARY KEY</strong></span>
+</p>
+<p>A PRIMARY KEY constraint is equivalent to a UNIQUE constraint
+      on one or more NOT NULL columns. Only one PRIMARY KEY can be defined in
+      each table.</p>
+<p>
+<span class="bold"><strong>FOREIGN KEY</strong></span>
+</p>
+<p>A FOREIGN key constraint is based on an equality comparison
+      between values of specific columns (taken together) of each row with the
+      values of the columns of a UNIQUE constraint on another table or the
+      same table. The result of the comparison must never be false (can be
+      unknown). A special form of FOREIGN KEY constraint, based on its CHECK
+      clause, allows the result to be unknown only if the values for all
+      columns are NULL. A FOREIGN key can be declared only if a UNIQUE
+      constraint exists on the referenced columns.</p>
+<p>Constraints share a name space with assertions.</p>
+</div>
+<div class="section" title="Assertions">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_assertions"></a>Assertions</h3>
+</div>
+</div>
+</div>
+<p>An ASSERTION is a top-level schema objects. It consists of a
+      <code class="literal">&lt;search condition&gt;</code> that must not be false (can
+      be unknown).</p>
+<p>Assertions share a name-space with constraints</p>
+</div>
+<div class="section" title="Triggers">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_triggers"></a>Triggers</h3>
+</div>
+</div>
+</div>
+<p>A TRIGGER is a child schema object that always belongs to a
+      TABLE or a VIEW.</p>
+<p>Each time a DELETE, UPDATE or INSERT is performed on the table
+      or view, additional actions are taken by the triggers that have been
+      declared on the table or view.</p>
+<p>Triggers are discussed in detail in <a class="link" href="triggers-chapt.html" title="Chapter&nbsp;9.&nbsp;Triggers">Triggers</a>
+      chapter.</p>
+</div>
+<div class="section" title="Routines">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_routines"></a>Routines</h3>
+</div>
+</div>
+</div>
+<p>Routines are user-defined functions or procedures. The names
+      and usage of functions and procedures are different. FUNCTION is a
+      routine that can be referenced in many types of statements. PROCEDURE is
+      a routine that can be referenced only in a CALL statement.</p>
+<p>There is a separate name-space for routines.</p>
+<p>Because of the possibility of overloading, each routine can
+      have more than one name. The name of the routine is the same for all
+      overloaded variants, but each variant has a <em class="glossterm">specific
+      name</em>, different from all other routine names and specific
+      names in the schema. The <em class="glossterm">specific name</em> can be
+      specified in the routine definition statement. Otherwise it is assigned
+      by the engine. The specific name is used only for schema manipulation
+      statements, which need to reference a specific variant of the routine.
+      For example, if a routine has two signatures, each signature has its own
+      <em class="glossterm">specific name</em>. This allows the user to drop one
+      of the signatures while keeping the other.</p>
+<p>Routines are discussed in detail in chapter <a class="link" href="sqlroutines-chapt.html" title="Chapter&nbsp;8.&nbsp;SQL-Invoked Routines">SQL-Invoked Routines</a> .</p>
+</div>
+<div class="section" title="Indexes">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_indexes"></a>Indexes</h3>
+</div>
+</div>
+</div>
+<p>Indexes are an implementation-defined extension to the SQL
+      Standard. HyperSQL has a dedicated name-space for indexes in each
+      schema.</p>
+</div>
+</div>
+<div class="section" title="Statements for Schema Definition and Manipulation">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="dbc_schema_def_statements"></a>Statements for Schema Definition and Manipulation</h2>
+</div>
+</div>
+</div>
+<p>Schemas and schema objects can be created, modified and dropped.
+    The SQL Standard defines a range of statements for this purpose. HyperSQL
+    supports many additional statements, especially for changing the
+    properties of existing schema objects.</p>
+<div class="section" title="Common Elements and Statements">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_common_elements"></a>Common Elements and Statements</h3>
+</div>
+</div>
+</div>
+<p>These elements and statements are used for different types of
+      object. They are described here, before the statements that can use
+      them.</p>
+<a name="N10D70" class="indexterm"></a>
+<p>
+<span class="bold"><strong>identifier</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>definition of identifier</em></span>
+</p>
+<p>
+<code class="literal">&lt;identifier&gt; ::= &lt;regular identifier&gt; |
+      &lt;delimited identifier&gt; | &lt;SQL language identifier&gt;
+      </code>
+</p>
+<p>
+<code class="literal">&lt;delimited identifier&gt; ::= &lt;double quote&gt;
+      &lt;character sequence&gt; &lt;double quote&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;regular identifier&gt; ::= &lt;special character
+      sequence&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;SQL language identifier&gt; ::= &lt;special
+      character sequence&gt;</code>
+</p>
+<p>A <code class="literal">&lt;delimited identifier&gt;</code> is a sequence
+      of characters enclosed with double-quote symbols. All characters are
+      allowed in the character sequence.</p>
+<p>A <code class="literal">&lt;regular identifier&gt;</code> is a special
+      sequence of characters. It consists of letters, digits and the
+      underscore characters. It must begin with a letter.</p>
+<p>A <code class="literal">&lt;SQL language identifier&gt;</code> is similar
+      to <code class="literal">&lt;regular identifier&gt;</code> but the letters can
+      range only from A-Z in the ASCII character set. This type of identifier
+      is used for names of CHARACTER SET objects.</p>
+<p>If the character sequence of a delimited identifier is the same
+      as an undelimited identifier, it represents the same identifier. For
+      example "JOHN" is the same identifier as JOHN. In a <code class="literal">&lt;regular
+      identifier&gt;</code> the case-normal form is considered for
+      comparison. This form consists of the upper-case of equivalent of all
+      the letters.</p>
+<p>The character sequence length of all identifiers must be
+      between 1 and 128 characters.</p>
+<p>A reserved word is one that is used by the SQL Standard for
+      special purposes. It is similar to a <code class="literal">&lt;regular
+      identifier&gt;</code> but it cannot be used as an identifier for user
+      objects. If a reserved word is enclosed in double quote characters, it
+      becomes a quoted identifier and can be used for database
+      objects.</p>
+<p>Case sensitivity rules for identifiers can be described simply
+      as follows:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>all parts of SQL statements are converted to upper case before
+          processing, <span class="emphasis"><em>except identifiers in double quotes and
+          strings in single quotes</em></span>
+</p>
+</li>
+<li class="listitem">
+<p>identifiers, both unquoted and double quoted, are then treated
+          as case-sensitive</p>
+</li>
+<li class="listitem">
+<p>most database engines follow the same rule, except MySQL, and
+          in some respects, MS SQLServer.</p>
+</li>
+</ul>
+</div>
+<a name="N10DB4" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CASCADE or RESTRICT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop behavior</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop behavior&gt; ::= CASCADE |
+      RESTRICT</code>
+</p>
+<p>The <code class="literal">&lt;drop behavior&gt;</code> is a required
+      element of statements that drop a SCHEMA or a schema object. If
+      <code class="literal">&lt;drop behavior&gt;</code> is not specified then
+      <code class="literal">RESTRICT</code> is implicit. It determines the effect of the
+      statement if there are other objects in the catalog that reference the
+      SCHEMA or the schema object. If RESTRICT is specified, the statement
+      fails if there are referencing objects. If CASCADE is specified, all the
+      referencing objects are modified or dropped with cascading effect.
+      Whether a referencing object is modified or dropped, depends on the kind
+      of schema object that is dropped.</p>
+<a name="N10DCE" class="indexterm"></a>
+<p>
+<span class="bold"><strong>IF EXISTS</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop condition (HyperSQL)</em></span>
+</p>
+<p>
+<code class="literal">&lt;if exists clause&gt; ::= IF
+      EXISTS</code>
+</p>
+<p>This clause is not part of the SQL standard and is a HyperSQL
+      extension to some commands that drop objects (schemas, tables, views,
+      sequences and indexes). If it is specified, then the statement does not
+      return an error if the drop statement is issued on a non-existent
+      object.</p>
+<a name="N10DDF" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SPECIFIC</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>specific routine designator</em></span>
+</p>
+<p>
+<code class="literal">&lt;specific routine designator&gt; ::= SPECIFIC
+      &lt;routine type&gt; &lt;specific name&gt; </code>
+</p>
+<p>
+<code class="literal">&lt;routine type&gt; ::= ROUTINE | FUNCTION |
+      PROCEDURE</code>
+</p>
+<p>This clause is used in statements that need to specify one of
+      the multiple versions of an overloaded routine. The
+      <code class="literal">&lt;specific name&gt;</code> is the one specified in the
+      <code class="literal">&lt;routine definition&gt;</code> statement.</p>
+</div>
+<div class="section" title="Renaming Objects">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_renaming"></a>Renaming Objects</h3>
+</div>
+</div>
+</div>
+<a name="N10DFD" class="indexterm"></a>
+<p>
+<span class="bold"><strong>RENAME</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>rename statement (HyperSQL)</em></span>
+</p>
+<p>
+<code class="literal">&lt;rename statement&gt; ::= ALTER &lt;object type&gt;
+      &lt;name&gt; RENAME TO &lt;new name&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;object type&gt; ::= CATALOG | SCHEMA | DOMAIN |
+      TYPE | TABLE | CONSTRAINT | INDEX | ROUTINE | SPECIFIC
+      ROUTINE</code>
+</p>
+<p>
+<code class="literal">&lt;column rename statement&gt; ::= ALTER TABLE
+      &lt;table name&gt; ALTER COLUMN &lt;name&gt; RENAME TO &lt;new
+      name&gt;</code>
+</p>
+<p>This statement is used to rename an existing object. It is not
+      part of the SQL Standard. The specified <code class="literal">&lt;name&gt;</code>
+      is the existing name, which can be qualified with a schema name, while
+      the <code class="literal">&lt;new name&gt;</code> is the new name for the
+      object.</p>
+</div>
+<div class="section" title="Commenting Objects">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_commenting"></a>Commenting Objects</h3>
+</div>
+</div>
+</div>
+<a name="N10E1E" class="indexterm"></a>
+<p>
+<span class="bold"><strong>COMMENT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>comment statement (HyperSQL)</em></span>
+</p>
+<p>
+<code class="literal">&lt;comment statement&gt; ::= COMMENT ON { TABLE |
+      COLUMN | ROUTINE } &lt;name&gt; IS &lt;character string
+      literal&gt;</code>
+</p>
+<p>Adds a comment to the object metadata, which can later be read
+      from an INFORMATION_SCHEMA view. This command is not part of the SQL
+      Standard. The strange syntax is due to compatibility with other database
+      engines that support the statement.<code class="literal"> The &lt;name&gt;</code>
+      is the name of a table, view, column or routine. The name of the column
+      consists of dot-separated<code class="literal"> &lt;table name&gt; . &lt;column
+      name&gt;</code>. The name of the table, view or routine can be a
+      simple name. All names can be qualified with a schema name. If there is
+      already a comment on the object, the new comment will replace
+      it.</p>
+<p>The comments appear in the results returned by JDBC
+      DatabaseMetaData methods, getTables() and getColumns(). The
+      INFORMATION_SCHEMA.SYSTEM_COMMENTS view contains the comments. You can
+      query this view using the schema, table, and column names to retrieve
+      the comments.</p>
+</div>
+<div class="section" title="Schema Creation">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_schema_creation"></a>Schema Creation</h3>
+</div>
+</div>
+</div>
+<a name="N10E3B" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CREATE SCHEMA</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>schema definition</em></span>
+</p>
+<p>The CREATE_SCHEMA or DBA role is required in order to create a
+      schema. A schema can be created with or without schema objects. Schema
+      objects can always be added after creating the schema, or existing ones
+      can be dropped. Within the <code class="literal">&lt;schema definition&gt;</code>
+      statement, all schema object creation takes place inside the newly
+      created schema. Therefore, if a schema name is specified for the schema
+      objects, the name must match that of the new schema. In addition to
+      statements for creating schema objects, the statement can include
+      instances of <code class="literal">&lt;grant statement&gt;</code> and
+      <code class="literal">&lt;role definition&gt;</code>. This is a curious aspect of
+      the SQL standard, as these elements do not really belong to schema
+      creation.</p>
+<p>
+<code class="literal">&lt;schema definition&gt; ::= CREATE SCHEMA &lt;schema
+      name clause&gt; [ &lt;schema character set specification&gt; ] [
+      &lt;schema element&gt;... ]</code>
+</p>
+<p>
+<code class="literal">&lt;schema name clause&gt; ::= &lt;schema name&gt; |
+      AUTHORIZATION &lt;authorization identifier&gt; | &lt;schema name&gt;
+      AUTHORIZATION &lt;authorization identifier&gt;</code>
+</p>
+<p>If the name of the schema is specified simply as
+      <code class="literal">&lt;schema name&gt;</code>, then the AUTHORIZATION is the
+      current user. Otherwise, the specified <code class="literal">&lt;authorization
+      identifier&gt;</code> is used as the AUTHORIZATION for the schema. If
+      <code class="literal">&lt;schema name&gt;</code> is omitted, then the name of the
+      schema is the same as the specified <code class="literal">&lt;authorization
+      identifier&gt;</code>.</p>
+<p>
+<code class="literal">&lt;schema element&gt; ::= &lt;table definition&gt; |
+      &lt;view definition&gt; | &lt;domain definition&gt; | &lt;character set
+      definition&gt; | &lt;collation definition&gt; | &lt;transliteration
+      definition&gt; | &lt;assertion definition&gt; | &lt;trigger
+      definition&gt; | &lt;user-defined type definition&gt; | &lt;user-defined
+      cast definition&gt; | &lt;user-defined ordering definition&gt; |
+      &lt;transform definition&gt; | &lt;schema routine&gt; | &lt;sequence
+      generator definition&gt; | &lt;grant statement&gt; | &lt;role
+      definition&gt;</code>
+</p>
+<p>An example of the command is given below. Note that a single
+      semicolon appears at the end, there should be no semicolon between the
+      statements:</p>
+<pre class="programlisting">    CREATE SCHEMA ACCOUNTS AUTHORIZATION DBA
+        CREATE TABLE AB(A INTEGER, ...)
+        CREATE TABLE CD(C CHAR(10), ...)
+        CREATE VIEW VI AS SELECT ...
+        GRANT SELECT ON AB TO PUBLIC
+        GRANT SELECT ON CD TO JOE;
+</pre>
+<p>It is not really necessary to create a schema and all its
+      objects as one command. The schema can be created first, and its objects
+      can be created one by one.</p>
+<a name="N10E6F" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP SCHEMA</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop schema statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop schema statement&gt; ::= DROP SCHEMA [ IF
+      EXISTS ] &lt;schema name&gt; [ IF EXISTS ] &lt;drop behavior&gt;
+      </code>
+</p>
+<p>This command destroys an existing schema. If <code class="literal">&lt;drop
+      behavior&gt;</code> is <code class="literal">RESTRICT</code>, the schema must
+      be empty, otherwise an error is raised. If <code class="literal">CASCADE</code> is
+      specified, then all the objects contained in the schema are destroyed
+      with a CASCADE option.</p>
+</div>
+<div class="section" title="Table Creation">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_table_creation"></a>Table Creation</h3>
+</div>
+</div>
+</div>
+<a name="N10E8D" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CREATE TABLE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>table definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;table definition&gt; ::= CREATE [ { &lt;table
+      scope&gt; | &lt;table type&gt; } ] TABLE &lt;table name&gt; &lt;table
+      contents source&gt; [ ON COMMIT { PRESERVE | DELETE } ROWS
+      ]</code>
+</p>
+<p>
+<code class="literal">&lt;table scope&gt; ::= { GLOBAL | LOCAL }
+      TEMPORARY</code>
+</p>
+<p>
+<code class="literal">&lt;table type&gt; :: = MEMORY |
+      CACHED</code>
+</p>
+<p>
+<code class="literal">&lt;table contents source&gt; ::= &lt;table element
+      list&gt; | &lt;as subquery clause&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;table element list&gt; ::= &lt;left paren&gt;
+      &lt;table element&gt; [ { &lt;comma&gt; &lt;table element&gt; }... ]
+      &lt;right paren&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;table element&gt; ::= &lt;column definition&gt; |
+      &lt;table constraint definition&gt; | &lt;like
+      clause&gt;</code>
+</p>
+<p>
+<span class="emphasis"><em>like clause</em></span>
+</p>
+<p>A <code class="literal">&lt;like clause&gt;</code> copies all column
+      definitions from another table into the newly created table. Its three
+      options indicate if the <code class="literal">&lt;default clause&gt;</code>,
+      <code class="literal">&lt;identity column specification&gt;</code> and
+      <code class="literal">&lt;generation clause&gt;</code> associated with the column
+      definitions are copied or not. If an option is not specified, it
+      defaults to <code class="literal">EXCLUDING</code>. The <code class="literal">&lt;generation
+      clause&gt;</code> refers to columns that are generated by an
+      expression but not to identity columns. All NOT NULL constraints are
+      copied with the original columns, other constraints are not. The
+      <code class="literal">&lt;like clause&gt;</code> can be used multiple times,
+      allowing the new table to have copies of the column definitions of one
+      or more other tables.</p>
+<div class="informalexample">
+<pre class="programlisting">CREATE TABLE t (id INTEGER PRIMARY KEY, LIKE atable INCLUDING DEFAULTS EXCLUDING IDENTITY)
+</pre>
+</div>
+<p>
+<code class="literal">&lt;like clause&gt; ::= LIKE &lt;table name&gt; [
+      &lt;like options&gt; ]</code>
+</p>
+<p>
+<code class="literal">&lt;like options&gt; ::= &lt;like
+      option&gt;...</code>
+</p>
+<p>
+<code class="literal">&lt;like option&gt; ::= &lt;identity option&gt; |
+      &lt;column default option&gt; | &lt;generation
+      option&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;identity option&gt; ::= INCLUDING IDENTITY |
+      EXCLUDING IDENTITY</code>
+</p>
+<p>
+<code class="literal">&lt;column default option&gt; ::= INCLUDING DEFAULTS |
+      EXCLUDING DEFAULTS</code>
+</p>
+<p>
+<code class="literal">&lt;generation option&gt; ::= INCLUDING GENERATED |
+      EXCLUDING GENERATED</code>
+</p>
+<p>
+<span class="emphasis"><em>as subquery clause</em></span>
+</p>
+<p>
+<code class="literal">&lt;as subquery clause&gt; ::= [ &lt;left paren&gt;
+      &lt;column name list&gt; &lt;right paren&gt; ] AS &lt;table subquery&gt;
+      { WITH NO DATA | WITH DATA }</code>
+</p>
+<p>An <code class="literal">&lt;as subquery clause&gt;</code> used in table
+      definition creates a table based on a <code class="literal">&lt;table
+      subquery&gt;</code>. This kind of table definition is similar to a
+      view definition. If <code class="literal">WITH DATA</code> is specified, then the
+      new table will contain the rows of data returned by the
+      <code class="literal">&lt;table subquery&gt;</code>.</p>
+<div class="informalexample">
+<pre class="programlisting">CREATE TABLE t (a, b, c) AS (SELECT * FROM atable) WITH DATA
+</pre>
+</div>
+<a name="N10EF1" class="indexterm"></a>
+<p>
+<span class="emphasis"><em>column definition</em></span>
+</p>
+<p>A column definition consists of a <code class="literal">&lt;column
+      name&gt;</code> and in most cases a <code class="literal">&lt;data
+      type&gt;</code> or <code class="literal">&lt;domain name&gt;</code> as minimum.
+      The other elements of <code class="literal">&lt;column definition&gt;</code> are
+      optional. Each <code class="literal">&lt;column name&gt;</code> in a table is
+      unique.</p>
+<p>
+<code class="literal">&lt;column definition&gt; ::= &lt;column name&gt; [
+      &lt;data type or domain name&gt; ] [ &lt;default clause&gt; |
+      &lt;identity column specification&gt; | &lt;identity column sequence
+      specification&gt; | &lt;generation clause&gt; ] [ &lt;column constraint
+      definition&gt;... ] [ &lt;collate clause&gt; ]</code>
+</p>
+<p>
+<code class="literal">&lt;data type or domain name&gt; ::= &lt;data type&gt;
+      | &lt;domain name&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;column constraint definition&gt; ::= [
+      &lt;constraint name definition&gt; ] &lt;column constraint&gt; [
+      &lt;constraint characteristics&gt; ]</code>
+</p>
+<p>
+<code class="literal">&lt;column constraint&gt; ::= NOT NULL | &lt;unique
+      specification&gt; | &lt;references specification&gt; | &lt;check
+      constraint definition&gt;</code>
+</p>
+<p>A <code class="literal">&lt;column constraint definition&gt;</code> is a
+      shortcut for a <code class="literal">&lt;table constraint definition&gt;</code>. A
+      constraint that is defined in this way is automatically turned into a
+      table constraint. A name is automatically generated for the constraint
+      and assigned to it.</p>
+<p>If a <code class="literal">&lt;collate clause&gt;</code> is specified,
+      then a UNIQUE or PRIMARY KEY constraint or an INDEX on the column will
+      use the specified collation. Otherwise the specified default collation
+      for the database is used.</p>
+<a name="N10F23" class="indexterm"></a>
+<p>
+<span class="emphasis"><em>generated columns</em></span>
+</p>
+<p>The value of a column can be autogenerated in two
+      ways.</p>
+<p>One way is specific to columns of integral types (INTEGER,
+      BIGINT, etc.) and associates a sequence generator with the column. When
+      a new row is inserted into the table, the value of the column is
+      generated as the next available value in the sequence.</p>
+<p>The SQL Standard supports the use of unnamed sequences with the
+      IDENTITY keyword. In addition, HyperSQL supports the use of a named
+      SEQUENCE object, which must be in the same schema as the
+      table.</p>
+<p>
+<code class="literal">&lt;identity column specification&gt; ::= GENERATED {
+      ALWAYS | BY DEFAULT } AS IDENTITY [ &lt;left paren&gt; &lt;common
+      sequence generator options&gt; &lt;right paren&gt; ]</code>
+</p>
+<p>
+<code class="literal">&lt;identity column sequence specification ::=
+      GENERATED BY DEFAULT AS SEQUENCE &lt;sequence name&gt;
+      </code>
+</p>
+<p>The <code class="literal">&lt;identity column specification&gt;</code> or
+      <code class="literal">&lt;identity column sequence specification&gt;</code> can be
+      specified for only a single column of the table.</p>
+<p>The <code class="literal">&lt;identity column specification&gt;</code> is
+      used for columns which represent values based on an unnamed sequence
+      generator. It is possible to insert a row into the table without
+      specifying a value for the column. The value is then generated by the
+      sequence generators according to its rules. An identity column may or
+      may not be the primary key. Example below:</p>
+<div class="informalexample">
+<pre class="programlisting">CREATE TABLE t (id INTEGER GENERATED ALWAYS AS IDENTITY(START WITH 100), name VARCHAR(20) PRIMARY KEY)
+</pre>
+</div>
+<p>The <code class="literal">&lt;identity column sequence
+      specification&gt;</code> is used when the column values are based on
+      a named SEQUENCE object (which must already exist). Example
+      below:</p>
+<div class="informalexample">
+<pre class="programlisting">CREATE TABLE t (id INTEGER GENERATED BY DEFAULT AS SEQUENCE s, name VARCHAR(20) PRIMARY KEY)
+</pre>
+</div>
+<p>Inserting rows is done in the same way for a named or unnamed
+      sequence generator. In both cases, if no value is specified to be
+      inserted, or the DEFAULT keyword is used for the column, the value is
+      generated by the sequence generator. If a value is specified, this value
+      is used if the column definition has the BY DEFAULT specification. If
+      the column definition has the ALWAYS specification, a value can be
+      specified but the OVERRIDING SYSTEM VALUES must be specified in the
+      INSERT statement.</p>
+<p>The other way in which the column value is autogenerated is by
+      using the values of other columns in the same row. This method is often
+      used to create an index on a value that is derived from other column
+      values.</p>
+<p>
+<code class="literal">&lt;generation clause&gt; ::= GENERATED ALWAYS AS
+      &lt;generation expression&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;generation expression&gt; ::= &lt;left paren&gt;
+      &lt;value expression&gt; &lt;right paren&gt;</code>
+</p>
+<p>The <code class="literal">&lt;generation clause&gt;</code> is used for
+      special columns which represent values based on the values held in other
+      columns in the same row. The <code class="literal">&lt;value expression&gt;</code>
+      must reference only other, non-generated, columns of the table in the
+      same row. Any function used in the expression must be deterministic and
+      must not access SQL-data. No <code class="literal">&lt;query expression&gt;</code>
+      is allowed. When <code class="literal">&lt;generation clause&gt;</code> is used,
+      <code class="literal">&lt;data type&gt;</code> must be specified.</p>
+<p>A generated column can be part of a foreign key or unique
+      constraints or a column of an index. This capability is the main reason
+      for using generated columns. A generated column may contain a formula
+      that computes a value based on the values of other columns. Fast
+      searches of the computed value can be performed when an index is
+      declared on the generated column. Or the computed values can be declared
+      to be unique, using a UNIQUE constraint on the table. The computed
+      column cannot be overridden by user supplied values. When a row is
+      updated and the column values change, the generated columns are computed
+      with the new values.</p>
+<p>When a row is inserted into a table, or an existing row is
+      updated, no value except DEFAULT can be specified for a generated
+      column. In the example below, data is inserted into the non-generated
+      columns and the generated column will contain 'Felix the Cat' or 'Pink
+      Panther'.</p>
+<div class="informalexample">
+<pre class="programlisting">CREATE TABLE t (id INTEGER PRIMARY KEY, 
+   firstname VARCHAR(20),
+   lastname VARCHAR(20), 
+   fullname VARCHAR(40) GENERATED ALWAYS AS (firstname || ' ' || lastname)) 
+INSERT INTO t (id, firstname, lastname) VALUES (1, 'Felix', 'the Cat')
+INSERT INTO t (id, firstname, lastname, fullname) VALUES (2, 'Pink', 'Panther', DEFAULT)
+</pre>
+</div>
+<a name="N10F71" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DEFAULT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>default clause</em></span>
+</p>
+<p>A default clause can be used if GENERATED is not specified. If
+      a column has a <code class="literal">&lt;default clause&gt;</code> then it is
+      possible to insert a row into the table without specifying a value for
+      the column.</p>
+<p>
+<code class="literal">&lt;default clause&gt; ::= DEFAULT &lt;default
+      option&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;default option&gt; ::= &lt;literal&gt; |
+      &lt;datetime value function&gt; | USER | CURRENT_USER | CURRENT_ROLE |
+      SESSION_USER | SYSTEM_USER | CURRENT_CATALOG | CURRENT_SCHEMA |
+      CURRENT_PATH | NULL</code>
+</p>
+<p>The type of the <code class="literal">&lt;default option&gt;</code> must
+      match the type of the column.</p>
+<p>In PGS (PostgreSQL) compatibility mode, a NEXTVAL function can
+      be used. Also, in MSS compatibility mode, the default value can be
+      enclosed in parentheses.</p>
+<a name="N10F8F" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CONSTRAINT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>constraint name and
+      characteristics</em></span>
+</p>
+<p>
+<code class="literal">&lt;constraint name definition&gt; ::= CONSTRAINT
+      &lt;constraint name&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;constraint characteristics&gt; ::= &lt;constraint
+      check time&gt; [ [ NOT ] DEFERRABLE [ &lt;constraint check time&gt; ]
+      ]</code>
+</p>
+<p>
+<code class="literal">&lt;constraint check time&gt; ::= INITIALLY DEFERRED |
+      INITIALLY IMMEDIATE</code>
+</p>
+<p>Specify the name of a constraint and its characteristics. By
+      default the constraint is <code class="literal">NOT DEFERRABLE</code> and
+      <code class="literal">INITIALLY IMMEDIATE</code>. This means the constraint is
+      enforced as soon as a data change statement is executed. If
+      <code class="literal">INITIALLY DEFERRED</code> is specified, then the constraint
+      is enforced when the session commits. The characteristics must be
+      compatible. The constraint check time can be changed temporarily for an
+      SQL session. HyperSQL does not support deferring constraint enforcement.
+      This feature of the SQL Standard has been criticised because it allows a
+      session to read uncommitted data that violates database integrity
+      constraints but has not yet been checked.</p>
+<a name="N10FAF" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CONSTRAINT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>table constraint definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;table constraint definition&gt; ::= [
+      &lt;constraint name definition&gt; ] &lt;table constraint&gt; [
+      &lt;constraint characteristics&gt; ]</code>
+</p>
+<p>
+<code class="literal">&lt;table constraint&gt; ::= &lt;unique constraint
+      definition&gt; | &lt;referential constraint definition&gt; | &lt;check
+      constraint definition&gt;</code>
+</p>
+<p>Three kinds of constraint can be defined on a table: UNIQUE
+      (including PRIMARY KEY), FOREIGN KEY and CHECK. Each kind has its own
+      rules to limit the values that can be specified for different columns in
+      each row of the table.</p>
+<a name="N10FC3" class="indexterm"></a><a name="N10FC8" class="indexterm"></a>
+<p>
+<span class="bold"><strong>UNIQUE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>unique constraint definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;unique constraint definition&gt; ::= &lt;unique
+      specification&gt; &lt;left paren&gt; &lt;unique column list&gt;
+      &lt;right paren&gt; | UNIQUE ( VALUE )</code>
+</p>
+<p>
+<code class="literal">&lt;unique specification&gt; ::= UNIQUE | PRIMARY
+      KEY</code>
+</p>
+<p>
+<code class="literal">&lt;unique column list&gt; ::= &lt;column name
+      list&gt;</code>
+</p>
+<p>A unique constraint is specified on a single column or on
+      multiple columns. On each set of columns taken together, only one UNIQUE
+      constraint can be specified. Each column of a PRIMARY KEY constraint has
+      an implicit NOT NULL constraint.</p>
+<p>If <code class="literal">UNIQUE( VALUE )</code> is specified, the
+      constraint created on all columns of the table.</p>
+<a name="N10FE4" class="indexterm"></a>
+<p>
+<span class="bold"><strong>FOREIGN KEY</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>referential constraint
+      definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;referential constraint definition&gt; ::= FOREIGN
+      KEY &lt;left paren&gt; &lt;referencing columns&gt; &lt;right paren&gt;
+      &lt;references specification&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;references specification&gt; ::= REFERENCES
+      &lt;referenced table and columns&gt; [ MATCH &lt;match type&gt; ] [
+      &lt;referential triggered action&gt; ]</code>
+</p>
+<p>
+<code class="literal">&lt;match type&gt; ::= FULL | PARTIAL |
+      SIMPLE</code>
+</p>
+<p>
+<code class="literal">&lt;referencing columns&gt; ::= &lt;reference column
+      list&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;referenced table and columns&gt; ::= &lt;table
+      name&gt; [ &lt;left paren&gt; &lt;reference column list&gt; &lt;right
+      paren&gt; ]</code>
+</p>
+<p>
+<code class="literal">&lt;reference column list&gt; ::= &lt;column name
+      list&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;referential triggered action&gt; ::= &lt;update
+      rule&gt; [ &lt;delete rule&gt; ] | &lt;delete rule&gt; [ &lt;update
+      rule&gt; ]</code>
+</p>
+<p>
+<code class="literal">&lt;update rule&gt; ::= ON UPDATE &lt;referential
+      action&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;delete rule&gt; ::= ON DELETE &lt;referential
+      action&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;referential action&gt; ::= CASCADE | SET NULL |
+      SET DEFAULT | RESTRICT | NO ACTION</code>
+</p>
+<p>A referential constraint allows links to be established between
+      the rows of two tables. The specified list of <code class="literal">&lt;referencing
+      columns&gt;</code> corresponds one by one to the columns of the
+      specified list of <code class="literal">&lt;referenced columns&gt;</code> in
+      another table (or sometimes in the same table). For each row in the
+      table, a row must exist in the referenced table with equivalent values
+      in the two column lists. There must exist a single unique constraint in
+      the referenced table on all the <code class="literal">&lt;referenced
+      columns&gt;</code>.</p>
+<p>The <code class="literal">[ MATCH match type ]</code> clause is optional
+      and has an effect only on multi-column foreign keys and only on rows
+      containing at least a NULL in one of the <code class="literal">&lt;referencing
+      columns&gt;</code>. If the clause is not specified, MATCH SIMPLE is
+      the default. If <code class="literal">MATCH SIMPLE</code> is specified, then any
+      NULL means the row can exist (without a corresponding row in the
+      referenced table). If <code class="literal">MATCH FULL</code> is specified then
+      either all the column values must be NULL or none of them.
+      <code class="literal">MATCH PARTIAL</code> allows any NULL but the non NULL values
+      must match those of a row in the referenced table. HyperSQL does not
+      support <code class="literal">MATCH PARTIAL</code>.</p>
+<p>Referential actions are specified with ON UPDATE and ON DELETE
+      clauses. These actions take place when a row in the referenced table
+      (the parent table) has referencing rows in the referencing table and it
+      is deleted or modified with any SQL statement. The default is NO ACTION.
+      This means the SQL statement that causes the DELETE or UPDATE is
+      terminated with an exception. The RESTRICT option is similar and works
+      exactly the same without deferrable constraints (which are not allowed
+      by HyperSQL). The other three options, CASCADE, SET NULL and SET DEFAULT
+      all allow the DELETE or UPDATE statement to complete. With DELETE
+      statements the CASCADE option results in the referencing rows to be
+      deleted. With UPDATE statements, the changes to the values of the
+      referenced columns are copied to the referencing rows. With both DELETE
+      or UPDATE statement, the SET NULL option results in the columns of the
+      referencing rows to be set to NULL. Similarly, the SET DEFAULT option
+      results in the columns of the referencing rows to be set to their
+      default values.</p>
+<a name="N1102F" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CHECK</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>check constraint definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;check constraint definition&gt; ::= CHECK &lt;left
+      paren&gt; &lt;search condition&gt; &lt;right
+      paren&gt;</code>
+</p>
+<p>A CHECK constraint can exist for a TABLE or for a DOMAIN. The
+      <code class="literal">&lt;search condition&gt;</code> evaluates to an SQL BOOLEAN
+      value for each row of the table. Within the <code class="literal">&lt;search
+      condition&gt;</code> all columns of the table row can be referenced.
+      For all rows of the table, the <code class="literal">&lt;search
+      condition&gt;</code> evaluates to TRUE or UNKNOWN. When a new row is
+      inserted, or an existing row is updated, the <code class="literal">&lt;search
+      condition&gt;</code> is evaluated and if it is FALSE, the insert or
+      update fails.</p>
+<p>A CHECK constraint for a DOMAIN is similar. In its
+      <code class="literal">&lt;search condition&gt;</code>, the term VALUE is used to
+      represents the value to which the DOMAIN applies.</p>
+<div class="informalexample">
+<pre class="programlisting">CREATE TABLE t (a VARCHAR(20) CHECK (a IS NOT NULL AND CHARACTER_LENGTH(a) &gt; 2))
+</pre>
+</div>
+<p>The search condition of a CHECK constraint cannot contain any
+      function that is not deterministic. A check constraint is a data
+      integrity constraint, therefore it must hold with respect to the rest of
+      the data in the database. It cannot use values that are temporal or
+      ephemeral. For example CURRENT_USER is a function that returns different
+      values depending on who is using the database, or CURRENT_DATE changes
+      day-to-day. Some temporal expressions are retrospectively deterministic
+      and are allowed in check constraints. For example, (CHECK VALUE &lt;
+      CURRENT_DATE) is valid, because CURRENT_DATE will not move backwards in
+      time, but (CHECK VALUE &gt; CURRENT_DATE) is not acceptable.</p>
+<p>If you want to enforce the condition that a date value that is
+      inserted into the database belongs to the future (at the time of
+      insertion), or any similar constraint, then use a TRIGGER with the
+      desired condition.</p>
+<a name="N11058" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP TABLE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop table statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop table statement&gt; ::= DROP TABLE [ IF
+      EXISTS ] &lt;table name&gt; [ IF EXISTS ] &lt;drop
+      behavior&gt;</code>
+</p>
+<p>Destroy a table. The default drop behaviour is RESTRICT and
+      will cause the statement to fail if there is any view, routine or
+      foreign key constraint that references the table. If <code class="literal">&lt;drop
+      behavior&gt;</code> is <code class="literal">CASCADE</code>, it causes all
+      schema objects that reference the table to drop. Referencing views are
+      dropped. In the case of foreign key constraints that reference the
+      table, the constraint is dropped, rather than the TABLE or DOMAIN that
+      contains it.</p>
+</div>
+<div class="section" title="Table Manipulation">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_table_manupulation"></a>Table Manipulation</h3>
+</div>
+</div>
+</div>
+<p>Table manipulation statements change the attributes of tables
+      or modify the objects such as columns and constraints.</p>
+<a name="N11075" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET TABLE CLUSTERED</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set table clustered property
+      (HyperSQL)</em></span>
+</p>
+<p>
+<code class="literal">&lt;set table clustered statement&gt; ::= SET TABLE
+      &lt;table name&gt; CLUSTERED ON &lt;left paren&gt; &lt;column name
+      list&gt; &lt;right paren&gt;</code>
+</p>
+<p>Set the row clustering property of a table. The &lt;column name
+      list&gt; is a list of column names that must correspond to the columns
+      of an existing PRIMARY KEY, UNIQUE or FOREIGN KEY index, or to the
+      columns of a user defined index. This statement is only valid for CACHED
+      or TEXT tables.</p>
+<p>Tables rows are stored in the database files as they are
+      created, sometimes at the end of the file, sometimes in the middle of
+      the file. After a CHECKPOINT DEFRAG or SHUTDOWN COMPACT, the rows are
+      reordered according to the primary key of the table, or if there is no
+      primary key, in no particular order.</p>
+<p>When several consecutive rows of a table are retrieved during
+      query execution it is more efficient to retrieve rows that are stored
+      adjacent to one another. After executing this command, nothing changes
+      until a CHECKPOINT DEFRAG or SHUTDOWN COMPACT or SHUTDOWN SCRIPT is
+      performed. After these operations, the rows are stored in the specified
+      clustered order. The property is stored in the database and applies to
+      all future reordering of rows. Note that if extensive inserts or updates
+      are performed on the tables, the rows will get out of order until the
+      next reordering.</p>
+<a name="N1108A" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET TABLE
+      writability</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set table write property
+      (HyperSQL)</em></span>
+</p>
+<p>
+<code class="literal">&lt;set table read only statement&gt; ::= SET TABLE
+      &lt;table name&gt; { READ ONLY | READ WRITE }</code>
+</p>
+<p>Set the writeability property of a table. Tables are writable
+      by default. This statement can be used to change the property between
+      <code class="literal">READ ONLY</code> and <code class="literal">READ WRITE</code>. This is
+      a feature of HyperSQL.</p>
+<a name="N110A1" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET TABLE SOURCE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set table source statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set table source statement&gt; ::= SET TABLE
+      &lt;table name&gt; SOURCE &lt;file and options&gt;
+      [DESC]</code>
+</p>
+<p>
+<code class="literal">&lt;file and options&gt;::= &lt;doublequote&gt;
+      &lt;file path&gt; [&lt;semicolon&gt; &lt;property&gt;...]
+      &lt;doublequote&gt; </code>
+</p>
+<p>Set the text source for a text table. This statement cannot be
+      used for tables that are not defined as TEXT TABLE.</p>
+<div class="variablelist" title="Supported Properties">
+<p class="title">
+<b>Supported Properties</b>
+</p>
+<table border="0">
+<col valign="top" align="left">
+<tbody>
+<tr>
+<td>
+<p>
+<span class="term">quoted = { true | false }</span>
+</p>
+</td><td>
+<p>default is true. If false, treats double quotes as normal
+            characters</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">all_quoted = { true | false }</span>
+</p>
+</td><td>
+<p>default is false. If true, adds double quotes around all
+            fields.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">encoding = &lt;encoding name&gt;</span>
+</p>
+</td><td>
+<p>character encoding for text and character fields, for
+            example, encoding=UTF-8</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">ignore_first = { true | false }</span>
+</p>
+</td><td>
+<p>default is false. If true ignores the first line of the
+            file</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">cache_scale= &lt;numeric value&gt;</span>
+</p>
+</td><td>
+<p>exponent to calculate rows of the text file in cache.
+            Default is 8, equivalent to nearly 800 rows</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">cache_size_scale = &lt;numeric value&gt;r</span>
+</p>
+</td><td>
+<p>exponent to calculate average size of each row in cache.
+            Default is 8, equivalent to 256 bytes per row.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">fs = &lt;unquoted character&gt;</span>
+</p>
+</td><td>
+<p>field separator</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">vs = &lt;unquoted character&gt;</span>
+</p>
+</td><td>
+<p>varchar separator</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="variablelist" title="Special indicators for HyperSQL Text Table separators">
+<p class="title">
+<b>Special indicators for HyperSQL Text Table separators</b>
+</p>
+<table border="0">
+<col valign="top" align="left">
+<tbody>
+<tr>
+<td>
+<p>
+<span class="term">\semi</span>
+</p>
+</td><td>
+<p>semicolon</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">\quote</span>
+</p>
+</td><td>
+<p>quote</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">\space</span>
+</p>
+</td><td>
+<p>space character</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">\apos</span>
+</p>
+</td><td>
+<p>apostrophe</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">\n</span>
+</p>
+</td><td>
+<p>newline - Used as an end anchor (like $ in regular
+            expressions)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">\r</span>
+</p>
+</td><td>
+<p>carriage return</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">\t</span>
+</p>
+</td><td>
+<p>tab</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">\\</span>
+</p>
+</td><td>
+<p>backslash</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">\u####</span>
+</p>
+</td><td>
+<p>a Unicode character specified in hexadecimal</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In the example below, the text source of the table is set to
+      "myfile", the field separator to the pipe symbol, and the long varchar
+      separator to the tilde symbol.</p>
+<pre class="programlisting">    SET TABLE mytable SOURCE 'myfile;fs=|;vs=.;lvs=~'</pre>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<a name="N11127" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET TABLE SOURCE
+      HEADER</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set table source header
+      statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set table source header statement&gt; ::= SET
+      TABLE &lt;table name&gt; SOURCE HEADER &lt;header
+      string&gt;</code>
+</p>
+<p>Set the header for the text source for a text table. If this
+      command is used, the <code class="literal">&lt;header string&gt;</code> is used as
+      the first line of the source file of the text table. This line is not
+      part of the table data. Only a user with the DBA role can execute this
+      statement.</p>
+<a name="N1113B" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET TABLE SOURCE
+      on-off</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set table source on-off
+      statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set table source on-off statement&gt; ::= SET
+      TABLE &lt;table name&gt; SOURCE { ON | OFF } </code>
+</p>
+<p>Attach or detach a text table from its text source. This
+      command does not change the properties or the name of the file that is
+      the source of a text table. When OFF is specified, the command detaches
+      the table from its source and closes the file for the source. In this
+      state, it is not possible to read or write to the table. This allows the
+      user to replace the file with a different file, or delete it. When ON is
+      specified, the source file is read. Only a user with the DBA role can
+      execute this statement</p>
+<a name="N1114C" class="indexterm"></a>
+<p>
+<span class="bold"><strong>ALTER TABLE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>alter table statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;alter table statement&gt; ::= ALTER TABLE
+      &lt;table name&gt; &lt;alter table action&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;alter table action&gt; ::= &lt;add column
+      definition&gt; | &lt;alter column definition&gt; | &lt;drop column
+      definition&gt; | &lt;add table constraint definition&gt; | &lt;drop
+      table constraint definition&gt;</code>
+</p>
+<p>Change the definition of a table. Specific types of this
+      statement are covered below.</p>
+<a name="N11160" class="indexterm"></a>
+<p>
+<span class="bold"><strong>ADD COLUMN</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>add column definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;add column definition&gt; ::= ADD [ COLUMN ]
+      &lt;column definition&gt; [ BEFORE &lt;other column name&gt;
+      ]</code>
+</p>
+<p>Add a column to an existing table. The <code class="literal">&lt;column
+      definition&gt;</code> is specified the same way as it is used in
+      <code class="literal">&lt;table definition&gt;</code>. HyperSQL allows the use of
+      <code class="literal">[ BEFORE &lt;other column name&gt; ]</code> to specify at
+      which position the new column is added to the table.</p>
+<p>If the table contains rows, the new column must have a
+      <code class="literal">&lt;default clause&gt;</code> or use one of the forms of
+      GENERATED. The column values for each row is then filled with the result
+      of the <code class="literal">&lt;default clause&gt;</code> or the generated
+      value.</p>
+<a name="N11182" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP COLUMN</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop column definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop column definition&gt; ::= DROP [ COLUMN ]
+      &lt;column name&gt; &lt;drop behavior&gt;</code>
+</p>
+<p>Destroy a column of a base table. The <code class="literal">&lt;drop
+      behavior&gt;</code> is either <code class="literal">RESTRICT</code> or
+      <code class="literal">CASCADE</code>. If the column is referenced in a table
+      constraint that references other columns as well as this column, or if
+      the column is referenced in a VIEW, or the column is referenced in a
+      TRIGGER, then the statement will fail if <code class="literal">RESTRICT</code> is
+      specified. If <code class="literal">CASCADE</code> is specified, then any
+      CONSTRAINT, VIEW or TRIGGER object that references the column is dropped
+      with a cascading effect.</p>
+<a name="N111A2" class="indexterm"></a>
+<p>
+<span class="bold"><strong>ADD CONSTRAINT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>add table constraint definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;add table constraint definition&gt; ::= ADD
+      &lt;table constraint definition&gt;</code>
+</p>
+<p>Add a constraint to a table. The existing rows of the table
+      must conform to the added constraint, otherwise the statement will not
+      succeed.</p>
+<a name="N111B3" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP CONSTRAINT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop table constraint definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop table constraint definition&gt; ::= DROP
+      CONSTRAINT &lt;constraint name&gt; &lt;drop
+      behavior&gt;</code>
+</p>
+<p>Destroy a constraint on a table. The <code class="literal">&lt;drop
+      behavior&gt;</code> has an effect only on UNIQUE and PRIMARY KEY
+      constraints. If such a constraint is referenced by a FOREIGN KEY
+      constraint, the FOREIGN KEY constraint will be dropped if
+      <code class="literal">CASCADE</code> is specified. If the columns of such a
+      constraint are used in a GROUP BY clause in the query expression of a
+      VIEW or another kind of schema object, and a functional dependency
+      relationship exists between these columns and the other columns in that
+      query expression, then the VIEW or other schema object will be dropped
+      when <code class="literal">CASCADE</code> is specified.</p>
+<a name="N111CD" class="indexterm"></a>
+<p>
+<span class="bold"><strong>ALTER COLUMN</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>alter column definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;alter column definition&gt; ::= ALTER [ COLUMN ]
+      &lt;column name&gt; &lt;alter column action&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;alter column action&gt; ::= &lt;set column default
+      clause&gt; | &lt;drop column default clause&gt; | &lt;alter column data
+      type clause&gt; | &lt;alter identity column specification&gt; |
+      &lt;alter column nullability&gt; | &lt;alter column name&gt; | &lt;add
+      column identity specification&gt; | &lt;drop column identity
+      specification&gt;</code>
+</p>
+<p>Change a column and its definition. Specific types of this
+      statement are covered below. See also the RENAME statement
+      above.</p>
+<a name="N111E1" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DEFAULT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set column default clause</em></span>
+</p>
+<p>
+<code class="literal">&lt;set column default clause&gt; ::= SET &lt;default
+      clause&gt;</code>
+</p>
+<p>Set the default clause for a column. This can be used if the
+      column is not defined as GENERATED.</p>
+<a name="N111F2" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP DEFAULT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop column default clause</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop column default clause&gt; ::= DROP
+      DEFAULT</code>
+</p>
+<p>Drop the default clause from a column.</p>
+<a name="N11203" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATA TYPE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>alter column data type clause</em></span>
+</p>
+<p>
+<code class="literal">&lt;alter column data type clause&gt; ::= SET DATA
+      TYPE &lt;data type&gt;</code>
+</p>
+<p>Change the declared type of a column. The (proposed) SQL
+      Standard allows only changes to type properties such as maximum length,
+      precision, or scale, and only changes that cause the property to
+      enlarge. HyperSQL allows changing the type if all the existing values
+      can be cast into the new type without string truncation or loss of
+      significant digits.</p>
+<a name="N11214" class="indexterm"></a>
+<p>
+<span class="bold"><strong>alter column add identity
+      generator</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>alter column add identity
+      generator</em></span>
+</p>
+<p>
+<code class="literal">&lt;add column identity generator&gt; ::= &lt;identity
+      column specification&gt;</code>
+</p>
+<p>Adds an identity specification to the column. The type of the
+      column must be an integral type and the existing values must not include
+      nulls. This option is specific to HyperSQL</p>
+<pre class="programlisting">  ALTER TABLE mytable ALTER COLUMN id GENERATED ALWAYS AS IDENTITY (START WITH 20000)</pre>
+<a name="N11227" class="indexterm"></a>
+<p>
+<span class="bold"><strong>alter column identity
+      generator</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>alter identity column
+      specification</em></span>
+</p>
+<p>
+<code class="literal">&lt;alter identity column specification&gt; ::=
+      &lt;alter identity column option&gt;...</code>
+</p>
+<p>
+<code class="literal">&lt;alter identity column option&gt; ::= &lt;alter
+      sequence generator restart option&gt; | SET &lt;basic sequence generator
+      option&gt;</code>
+</p>
+<p>Change the properties of an identity column. This command is
+      similar to the commands used for changing the properties of named
+      SEQUENCE objects discussed earlier and can use the same
+      options.</p>
+<pre class="programlisting">  ALTER TABLE mytable ALTER COLUMN id RESTART WITH 1000
+  ALTER TABLE mytable ALTER COLUMN id SET INCREMENT BY 5
+</pre>
+<a name="N1123D" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP GENERATED</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop column identity generator</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop column identity specification&gt; ::= DROP
+      GENERATED</code>
+</p>
+<p>Removes the identity generator from a column. After executing
+      this statement, the column values are no longer generated automatically.
+      This option is specific to HyperSQL</p>
+<pre class="programlisting">  ALTER TABLE mytable ALTER COLUMN id DROP GENERATED
+</pre>
+<a name="N11250" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET [ NOT ] NULL</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>alter column nullability</em></span>
+</p>
+<p>
+<code class="literal">&lt;alter column nullability&gt; ::= SET [ NOT ]
+      NULL</code>
+</p>
+<p>Adds or removes a NOT NULL constraint from a column. This
+      option is specific to HyperSQL</p>
+</div>
+<div class="section" title="View Creation and Manipulation">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_view_creation"></a>View Creation and Manipulation</h3>
+</div>
+</div>
+</div>
+<a name="N11265" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CREATE VIEW</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>view definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;view definition&gt; ::= CREATE VIEW &lt;table
+      name&gt; &lt;view specification&gt; AS &lt;query expression&gt; [ WITH [
+      CASCADED | LOCAL ] CHECK OPTION ]</code>
+</p>
+<p>
+<code class="literal">&lt;view specification&gt; ::= [ &lt;left paren&gt;
+      &lt;view column list&gt; &lt;right paren&gt; ]</code>
+</p>
+<p>
+<code class="literal">&lt;view column list&gt; ::= &lt;column name
+      list&gt;</code>
+</p>
+<p>Define a view. The <code class="literal">&lt;query expression&gt;</code>
+      is a SELECT or similar statement. The <code class="literal">&lt;view column
+      list&gt;</code> is the list of unique names for the columns of the
+      view. The number of columns in the <code class="literal">&lt;view column
+      list&gt;</code> must match the number of columns returned by the
+      <code class="literal">&lt;query expression&gt;</code>. If <code class="literal">&lt;view column
+      list&gt;</code> is not specified, then the columns of the
+      <code class="literal">&lt;query expression&gt;</code> should have unique names and
+      are used as the names of the view column.</p>
+<p>Some views are updatable. As covered elsewhere, an updatable
+      view is based on a single table or updatable view. For updatable views,
+      the optional <code class="literal">CHECK OPTION</code> clause can be specified. If
+      this option is specified, then if a row of the view is updated or a new
+      row is inserted into the view, then it should contain such values that
+      the row would be included in the view after the change. If <code class="literal">WITH
+      CASCADED CHECK OPTION</code> is specified, then if the
+      <code class="literal">&lt;query expression&gt;</code> of the view references
+      another view, then the search condition of the underlying view should
+      also be satisfied by the update or insert operation.</p>
+<a name="N11299" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP VIEW</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop view statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop view statement&gt; ::= DROP VIEW [ IF EXISTS
+      ] &lt;table name&gt; [ IF EXISTS ] &lt;drop
+      behavior&gt;</code>
+</p>
+<p>Destroy a view. The <code class="literal">&lt;drop behavior&gt;</code> is
+      similar to dropping a table.</p>
+<a name="N112AD" class="indexterm"></a>
+<p>
+<span class="bold"><strong>ALTER VIEW</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>alter view statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;alter view statement&gt; ::= ALTER VIEW &lt;table
+      name&gt; &lt;view specification&gt; AS &lt;query expression&gt; [ WITH [
+      CASCADED | LOCAL ] CHECK OPTION ]</code>
+</p>
+<p>Alter a view. The statement is otherwise identical to CREATE
+      VIEW. The new definition replaces the old. If there are database objects
+      such as routines or views that reference the view, then these objects
+      are recompiled with the new view definition. If the new definition is
+      not compatible, the statement fails.</p>
+</div>
+<div class="section" title="Domain Creation and Manipulation">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_domain_creation"></a>Domain Creation and Manipulation</h3>
+</div>
+</div>
+</div>
+<a name="N112C2" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CREATE DOMAIN</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>domain definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;domain definition&gt; ::= CREATE DOMAIN &lt;domain
+      name&gt; [ AS ] &lt;predefined type&gt; [ &lt;default clause&gt; ] [
+      &lt;domain constraint&gt;... ] [ &lt;collate clause&gt;
+      ]</code>
+</p>
+<p>
+<code class="literal">&lt;domain constraint&gt; ::= [ &lt;constraint name
+      definition&gt; ] &lt;check constraint definition&gt; [ &lt;constraint
+      characteristics&gt; ]</code>
+</p>
+<p>Define a domain. Although a DOMAIN is not strictly a type in
+      the SQL Standard, it can be informally considered as a type. A DOMAIN is
+      based on a <code class="literal">&lt;predefined type&gt;</code>, which is a base
+      type defined by the Standard. It can have a <code class="literal">&lt;default
+      clause&gt;</code>, similar to a column default clause. It can also
+      have one or more CHECK constraints which limit the values that can be
+      assigned to a column or variable that has the DOMAIN as its
+      type.</p>
+<div class="informalexample">
+<pre class="programlisting">CREATE DOMAIN valid_string AS VARCHAR(20) DEFAULT 'NO VALUE' CHECK (value IS NOT NULL AND CHARACTER_LENGTH(value) &gt; 2) 
+</pre>
+</div>
+<a name="N112DF" class="indexterm"></a>
+<p>
+<span class="bold"><strong>ALTER DOMAIN</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>alter domain statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;alter domain statement&gt; ::= ALTER DOMAIN
+      &lt;domain name&gt; &lt;alter domain action&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;alter domain action&gt; ::= &lt;set domain default
+      clause&gt; | &lt;drop domain default clause&gt; | &lt;add domain
+      constraint definition&gt; | &lt;drop domain constraint
+      definition&gt;</code>
+</p>
+<p>Change a domain and its definition.</p>
+<a name="N112F3" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DEFAULT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set domain default clause</em></span>
+</p>
+<p>
+<code class="literal">&lt;set domain default clause&gt; ::= SET &lt;default
+      clause&gt;</code>
+</p>
+<p>Set the default value in a domain.</p>
+<a name="N11304" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP DEFAULT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop domain default clause</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop domain default clause&gt; ::= DROP
+      DEFAULT</code>
+</p>
+<p>Remove the default clause of a domain.</p>
+<a name="N11315" class="indexterm"></a>
+<p>
+<span class="bold"><strong>ADD CONSTRAINT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>add domain constraint definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;add domain constraint definition&gt; ::= ADD
+      &lt;domain constraint&gt;</code>
+</p>
+<p>Add a constraint to a domain.</p>
+<a name="N11326" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP CONSTRAINT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop domain constraint
+      definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop domain constraint definition&gt; ::= DROP
+      CONSTRAINT &lt;constraint name&gt;</code>
+</p>
+<p>Destroy a constraint on a domain. If the <code class="literal">&lt;drop
+      behavior&gt;</code> is <code class="literal">CASCADE</code>, and the constraint
+      is a UNIQUE constraint which is referenced by a FOREIGN KEY constraint
+      on another table, then the FOREIGN KEY constraint is also
+      dropped.</p>
+<a name="N1133D" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP DOMAIN</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop domain statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop domain statement&gt; ::= DROP DOMAIN
+      &lt;domain name&gt; &lt;drop behavior&gt;</code>
+</p>
+<p>Destroy a domain. If <code class="literal">&lt;drop behavior&gt;</code>
+      is <code class="literal">CASCADE</code>, it works differently from most other
+      objects. If a table features a column of the specified DOMAIN, the
+      column survives and inherits the DEFAULT CLAUSE, and the CHECK
+      CONSTRAINT of the DOMAIN.</p>
+</div>
+<div class="section" title="Trigger Creation">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_trigger_creation"></a>Trigger Creation</h3>
+</div>
+</div>
+</div>
+<a name="N11358" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CREATE TRIGGER</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>trigger definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;trigger definition&gt; ::= CREATE TRIGGER
+      &lt;trigger name&gt; &lt;trigger action time&gt; &lt;trigger event&gt;
+      ON &lt;table name&gt; [ REFERENCING &lt;transition table or variable
+      list&gt; ] &lt;triggered action&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;trigger action time&gt; ::= BEFORE | AFTER |
+      INSTEAD OF</code>
+</p>
+<p>
+<code class="literal">&lt;trigger event&gt; ::= INSERT | DELETE | UPDATE [
+      OF &lt;trigger column list&gt; ]</code>
+</p>
+<p>
+<code class="literal">&lt;trigger column list&gt; ::= &lt;column name
+      list&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;triggered action&gt; ::= [ FOR EACH { ROW |
+      STATEMENT } ] [ &lt;triggered when clause&gt; ] &lt;triggered SQL
+      statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;triggered when clause&gt; ::= WHEN &lt;left
+      paren&gt; &lt;search condition&gt; &lt;right
+      paren&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;triggered SQL statement&gt; ::= &lt;SQL procedure
+      statement&gt; | BEGIN ATOMIC { &lt;SQL procedure statement&gt;
+      &lt;semicolon&gt; }... END | [QUEUE &lt;integer literal&gt;] [NOWAIT]
+      CALL &lt;HSQLDB trigger class FQN&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;transition table or variable list&gt; ::=
+      &lt;transition table or variable&gt;...</code>
+</p>
+<p>
+<code class="literal">&lt;transition table or variable&gt; ::= OLD [ ROW ] [
+      AS ] &lt;old transition variable name&gt; | NEW [ ROW ] [ AS ] &lt;new
+      transition variable name&gt; | OLD TABLE [ AS ] &lt;old transition table
+      name&gt; | NEW TABLE [ AS ] &lt;new transition table
+      name&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;old transition table name&gt; ::= &lt;transition
+      table name&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;new transition table name&gt; ::= &lt;transition
+      table name&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;transition table name&gt; ::=
+      &lt;identifier&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;old transition variable name&gt; ::=
+      &lt;correlation name&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;new transition variable name&gt; ::=
+      &lt;correlation name&gt;</code>
+</p>
+<p>Trigger definition is a relatively complex statement. The
+      combination of <code class="literal">&lt;trigger action time&gt;</code> and
+      <code class="literal">&lt;trigger event&gt;</code> determines the type of the
+      trigger. Examples include BEFORE DELETE, AFTER UPDATE, INSTEAD OF
+      INSERT. If the optional <code class="literal">[ OF &lt;trigger column list&gt;
+      ]</code> is specified for an UPDATE trigger, then the trigger is
+      activated only if one of the columns that is in the <code class="literal">&lt;trigger
+      column list&gt;</code> is specified in the UPDATE statement that
+      activates the trigger.</p>
+<p>If a trigger is <code class="literal">FOR EACH ROW</code>, which is the
+      default option, then the trigger is activated for each row of the table
+      that is affected by the execution of an SQL statement. Otherwise, it is
+      activated once only per statement execution. In the first case, there is
+      a before and after state for each row. For UPDATE triggers, both before
+      and after states exist, representing the row before the update, and
+      after the update. For DELETE, triggers, there is only a before state.
+      For INSERT triggers, there is only an after state. If a trigger is
+      <code class="literal">FOR EACH STATEMENT</code>, then a transient table is created
+      containing all the rows for the before state and another transient table
+      is created for the after state.</p>
+<p>The <code class="literal">[ REFERENCING &lt;transition table or variable&gt;
+      ]</code> is used to give a name to the before and after data row or
+      table. This name can be referenced in the <code class="literal">&lt;SQL procedure
+      statement&gt;</code> to access the data.</p>
+<p>The optional <code class="literal">&lt;triggered when clause&gt;</code>
+      is a search condition, similar to the search condition of a DELETE or
+      UPDATE statement. If the search condition is not TRUE for a row, then
+      the trigger is not activated for that row.</p>
+<p>The <code class="literal">&lt;SQL procedure statement&gt;</code> is
+      limited to INSERT, DELETE, UPDATE and MERGE statements.</p>
+<p>The <code class="literal">&lt;HSQLDB trigger class FQN&gt;</code> is a
+      delimited identifier that contains the fully qualified name of a Java
+      class that implements the <code class="classname">org.hsqldb.Trigger</code>
+      interface.</p>
+<p>Early releases of HyperSQL version 2.0 do not allow the use of
+      OLD TABLE or NEW TABLE in statement level trigger definitions.</p>
+<a name="N113C0" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP TRIGGER</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop trigger statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop trigger statement&gt; ::= DROP TRIGGER
+      &lt;trigger name&gt;</code>
+</p>
+<p>Destroy a trigger.</p>
+</div>
+<div class="section" title="Routine Creation">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_routine_creation"></a>Routine Creation</h3>
+</div>
+</div>
+</div>
+<a name="N113D5" class="indexterm"></a>
+<p>
+<span class="bold"><strong>schema routine</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>SQL-invoked routine</em></span>
+</p>
+<p>
+<code class="literal">&lt;SQL-invoked routine&gt; ::= &lt;schema
+      routine&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;schema routine&gt; ::= &lt;schema procedure&gt; |
+      &lt;schema function&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;schema procedure&gt; ::= CREATE &lt;SQL-invoked
+      procedure&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;schema function&gt; ::= CREATE &lt;SQL-invoked
+      function&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;SQL-invoked procedure&gt; ::= PROCEDURE &lt;schema
+      qualified routine name&gt; &lt;SQL parameter declaration list&gt;
+      &lt;routine characteristics&gt; &lt;routine body&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;SQL-invoked function&gt; ::= { &lt;function
+      specification&gt; | &lt;method specification designator&gt; }
+      &lt;routine body&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;SQL parameter declaration list&gt; ::= &lt;left
+      paren&gt; [ &lt;SQL parameter declaration&gt; [ { &lt;comma&gt; &lt;SQL
+      parameter declaration&gt; }... ] ] &lt;right
+      paren&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;SQL parameter declaration&gt; ::= [ &lt;parameter
+      mode&gt; ] [ &lt;SQL parameter name&gt; ] &lt;parameter type&gt; [
+      RESULT ]</code>
+</p>
+<p>
+<code class="literal">&lt;parameter mode&gt; ::= IN | OUT |
+      INOUT</code>
+</p>
+<p>
+<code class="literal">&lt;parameter type&gt; ::= &lt;data
+      type&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;function specification&gt; ::= FUNCTION &lt;schema
+      qualified routine name&gt; &lt;SQL parameter declaration list&gt;
+      &lt;returns clause&gt; &lt;routine characteristics&gt; [ &lt;dispatch
+      clause&gt; ]</code>
+</p>
+<p>
+<code class="literal">&lt;method specification designator&gt; ::= SPECIFIC
+      METHOD &lt;specific method name&gt; | [ INSTANCE | STATIC | CONSTRUCTOR
+      ] METHOD &lt;method name&gt; &lt;SQL parameter declaration list&gt; [
+      &lt;returns clause&gt; ] FOR &lt;schema-resolved user-defined type
+      name&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;routine characteristics&gt; ::= [ &lt;routine
+      characteristic&gt;... ]</code>
+</p>
+<p>
+<code class="literal">&lt;routine characteristic&gt; ::= &lt;language
+      clause&gt; | &lt;parameter style clause&gt; | SPECIFIC &lt;specific
+      name&gt; | &lt;deterministic characteristic&gt; | &lt;SQL-data access
+      indication&gt; | &lt;null-call clause&gt; | &lt;returned result sets
+      characteristic&gt; | &lt;savepoint level
+      indication&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;savepoint level indication&gt; ::= NEW SAVEPOINT
+      LEVEL | OLD SAVEPOINT LEVEL</code>
+</p>
+<p>
+<code class="literal">&lt;returned result sets characteristic&gt; ::=
+      DYNAMIC RESULT SETS &lt;maximum returned result
+      sets&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;parameter style clause&gt; ::= PARAMETER STYLE
+      &lt;parameter style&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;dispatch clause&gt; ::= STATIC
+      DISPATCH</code>
+</p>
+<p>
+<code class="literal">&lt;returns clause&gt; ::= RETURNS &lt;returns
+      type&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;returns type&gt; ::= &lt;returns data type&gt; [
+      &lt;result cast&gt; ] | &lt;returns table type&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;returns table type&gt; ::= TABLE &lt;table
+      function column list&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;table function column list&gt; ::= &lt;left
+      paren&gt; &lt;table function column list element&gt; [ { &lt;comma&gt;
+      &lt;table function column list element&gt; }... ] &lt;right
+      paren&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;table function column list element&gt; ::=
+      &lt;column name&gt; &lt;data type&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;result cast&gt; ::= CAST FROM &lt;result cast from
+      type&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;result cast from type&gt; ::= &lt;data type&gt; [
+      &lt;locator indication&gt; ]</code>
+</p>
+<p>
+<code class="literal">&lt;returns data type&gt; ::= &lt;data type&gt; [
+      &lt;locator indication&gt; ]</code>
+</p>
+<p>
+<code class="literal">&lt;routine body&gt; ::= &lt;SQL routine spec&gt; |
+      &lt;external body reference&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;SQL routine spec&gt; ::= [ &lt;rights clause&gt; ]
+      &lt;SQL routine body&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;rights clause&gt; ::= SQL SECURITY INVOKER | SQL
+      SECURITY DEFINER</code>
+</p>
+<p>
+<code class="literal">&lt;SQL routine body&gt; ::= &lt;SQL procedure
+      statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;external body reference&gt; ::= EXTERNAL [ NAME
+      &lt;external routine name&gt; ] [ &lt;parameter style clause&gt;
+      ]</code>
+</p>
+<p>
+<code class="literal">&lt;parameter style&gt; ::= SQL |
+      GENERAL</code>
+</p>
+<p>
+<code class="literal">&lt;deterministic characteristic&gt; ::= DETERMINISTIC
+      | NOT DETERMINISTIC</code>
+</p>
+<p>
+<code class="literal">&lt;SQL-data access indication&gt; ::= NO SQL |
+      CONTAINS SQL | READS SQL DATA | MODIFIES SQL DATA</code>
+</p>
+<p>
+<code class="literal">&lt;null-call clause&gt; ::= RETURNS NULL ON NULL
+      INPUT | CALLED ON NULL INPUT</code>
+</p>
+<p>
+<code class="literal">&lt;maximum returned result sets&gt; ::= &lt;unsigned
+      integer&gt;</code>
+</p>
+<p>Define an SQL-invoked routine. A few of the options are not
+      used by HyperSQL and have default behaviours. See the <a class="link" href="sqlroutines-chapt.html" title="Chapter&nbsp;8.&nbsp;SQL-Invoked Routines">SQL-Invoked Routines</a> chapter for more details of
+      various options and examples.</p>
+<a name="N11454" class="indexterm"></a>
+<p>
+<span class="bold"><strong>ALTER routine</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>alter routine statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;alter routine statement&gt; ::= ALTER &lt;specific
+      routine designator&gt; [ &lt;alter routine characteristics&gt; ] [
+      RESTRICT ] &lt;routine body&gt; </code>
+</p>
+<p>
+<code class="literal">&lt;alter routine characteristics&gt; ::= &lt;alter
+      routine characteristic&gt;...</code>
+</p>
+<p>
+<code class="literal">&lt;alter routine characteristic&gt; ::= &lt;language
+      clause&gt; | &lt;parameter style clause&gt; | &lt;SQL-data access
+      indication&gt; | &lt;null-call clause&gt; | &lt;returned result sets
+      characteristic&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;alter routine body&gt; ::= &lt;SQL routine
+      body&gt;</code>
+</p>
+<p>Alter the characteristic and the body of an SQL-invoked
+      routine. If RESTRICT is specified and the routine is already used in a a
+      different routine or view definition, an exception is raised. Altering
+      the routine changes the implementation without changing the parameters.
+      Defining recursive SQL/PSM SQL functions is only possible by altering a
+      non-recursive routine body. An example is given in the <a class="link" href="sqlroutines-chapt.html" title="Chapter&nbsp;8.&nbsp;SQL-Invoked Routines">SQL-Invoked Routines</a> chapter.</p>
+<p>An example is given below for a function defined as a Java
+      method, then redefined as an SQL function.</p>
+<pre class="programlisting">create function zero_pad(x bigint, digits int, maxsize int)
+ returns char varying(100)
+ specific zero_pad_01
+ no sql deterministic
+ language java parameter style java
+ external name 'CLASSPATH:org.hsqldb.lib.StringUtil.toZeroPaddedString';
+
+alter specific routine zero_pad_01
+ language sql
+ begin atomic
+ declare str varchar(128);
+ set str = cast(x as varchar(128));
+ set str = substring('0000000000000' from 1 for digits - char_length(str)) + str;
+ return str;
+ end
+</pre>
+<a name="N11477" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop routine statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop routine statement&gt; ::= DROP &lt;specific
+      routine designator&gt; &lt;drop behavior&gt;</code>
+</p>
+<p>Destroy an SQL-invoked routine.</p>
+</div>
+<div class="section" title="Sequence Creation">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_sequence_creation"></a>Sequence Creation</h3>
+</div>
+</div>
+</div>
+<a name="N1148C" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CREATE SEQUENCE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>sequence generator definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;sequence generator definition&gt; ::= CREATE
+      SEQUENCE &lt;sequence generator name&gt; [ &lt;sequence generator
+      options&gt; ]</code>
+</p>
+<p>
+<code class="literal">&lt;sequence generator options&gt; ::= &lt;sequence
+      generator option&gt; ...</code>
+</p>
+<p>
+<code class="literal">&lt;sequence generator option&gt; ::= &lt;sequence
+      generator data type option&gt; | &lt;common sequence generator
+      options&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;common sequence generator options&gt; ::=
+      &lt;common sequence generator option&gt; ...</code>
+</p>
+<p>
+<code class="literal">&lt;common sequence generator option&gt; ::=
+      &lt;sequence generator start with option&gt; | &lt;basic sequence
+      generator option&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;basic sequence generator option&gt; ::=
+      &lt;sequence generator increment by option&gt; | &lt;sequence generator
+      maxvalue option&gt; | &lt;sequence generator minvalue option&gt; |
+      &lt;sequence generator cycle option&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;sequence generator data type option&gt; ::= AS
+      &lt;data type&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;sequence generator start with option&gt; ::= START
+      WITH &lt;sequence generator start value&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;sequence generator start value&gt; ::= &lt;signed
+      numeric literal&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;sequence generator increment by option&gt; ::=
+      INCREMENT BY &lt;sequence generator increment&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;sequence generator increment&gt; ::= &lt;signed
+      numeric literal&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;sequence generator maxvalue option&gt; ::=
+      MAXVALUE &lt;sequence generator max value&gt; | NO
+      MAXVALUE</code>
+</p>
+<p>
+<code class="literal">&lt;sequence generator max value&gt; ::= &lt;signed
+      numeric literal&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;sequence generator minvalue option&gt; ::=
+      MINVALUE &lt;sequence generator min value&gt; | NO
+      MINVALUE</code>
+</p>
+<p>
+<code class="literal">&lt;sequence generator min value&gt; ::= &lt;signed
+      numeric literal&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;sequence generator cycle option&gt; ::= CYCLE | NO
+      CYCLE</code>
+</p>
+<p>Define a named sequence generator. A SEQUENCE object generates
+      a sequence of integers according to the specified rules. The simple
+      definition without the options defines a sequence of numbers in INTEGER
+      type starting at 1 and incrementing by 1. By default the
+      <code class="literal">CYCLE</code> property is set and the minimum and maximum
+      limits are the minimum and maximum limits of the type of returned
+      values. There are self-explanatory options for changing various
+      properties of the sequence. The <code class="literal">MAXVALUE</code> and
+      <code class="literal">MINVALUE</code> specify the upper and lower limits. If
+      <code class="literal">CYCLE</code> is specified, after the sequence returns the
+      highest or lowest value in range, the next value will respectively be
+      the lowest or highest value in range. If <code class="literal">NO CYCLE</code> is
+      specified, the use of the sequence generator results in an error once
+      the limit has been reached.</p>
+<p>The integer types: SMALLINT, INTEGER, BIGINT, DECIMAL and
+      NUMERIC can be used as the type of the sequence. DECIMAL and NUMERIC
+      types must have a scale of 0 and a precision not exceeding 18.</p>
+<a name="N114DB" class="indexterm"></a>
+<p>
+<span class="bold"><strong>ALTER SEQUENCE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>alter sequence generator
+      statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;alter sequence generator statement&gt; ::= ALTER
+      SEQUENCE &lt;sequence generator name&gt; &lt;alter sequence generator
+      options&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;alter sequence generator options&gt; ::= &lt;alter
+      sequence generator option&gt;...</code>
+</p>
+<p>
+<code class="literal">&lt;alter sequence generator option&gt; ::= &lt;alter
+      sequence generator restart option&gt; | &lt;basic sequence generator
+      option&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;alter sequence generator restart option&gt; ::=
+      RESTART [ WITH &lt;sequence generator restart value&gt;
+      ]</code>
+</p>
+<p>
+<code class="literal">&lt;sequence generator restart value&gt; ::=
+      &lt;signed numeric literal&gt;</code>
+</p>
+<p>Change the definition of a named sequence generator. The same
+      options that are used in the definition of the SEQUENCE can be used to
+      alter it. The exception is the option for the start value which is
+      <code class="literal">RESTART WITH</code> for the ALTER SEQUENCE
+      statement.</p>
+<p>If RESTART is used by itself (without a value), then the
+      current value of the sequence is reset to the start value. Otherwise,
+      the current value is reset to the given restart value.</p>
+<a name="N114FD" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP SEQUENCE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop sequence generator
+      statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop sequence generator statement&gt; ::= DROP
+      SEQUENCE [ IF EXISTS ] &lt;sequence generator name&gt; [ IF EXISTS ]
+      &lt;drop behavior&gt;</code>
+</p>
+<p>Destroy an external sequence generator. If the
+      <code class="literal">&lt;drop behavior&gt;</code> is <code class="literal">CASCADE</code>,
+      then all objects that reference the sequence are dropped. These objects
+      can be VIEW, ROUTINE or TRIGGER objects.</p>
+</div>
+<div class="section" title="SQL Procedure Statement">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_procedure_satement"></a>SQL Procedure Statement</h3>
+</div>
+</div>
+</div>
+<a name="N11519" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SQL procedure
+      statement</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>SQL procedure statement</em></span>
+</p>
+<p>The definition of CREATE TRIGGER and CREATE PROCEDURE
+      statements refers to &lt;SQL procedure statement&gt;. The definition of
+      this element is given below. However, only a subset of these statements
+      are allowed in trigger or routine definition.</p>
+<p>
+<code class="literal">&lt;SQL procedure statement&gt; ::= &lt;SQL executable
+      statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;SQL executable statement&gt; ::= &lt;SQL schema
+      statement&gt; | &lt;SQL data statement&gt; | &lt;SQL control
+      statement&gt; | &lt;SQL transaction statement&gt; | &lt;SQL connection
+      statement&gt; | &lt;SQL session statement&gt; | &lt;SQL diagnostics
+      statement&gt; | &lt;SQL dynamic statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;SQL schema statement&gt; ::= &lt;SQL schema
+      definition statement&gt; | &lt;SQL schema manipulation
+      statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;SQL schema definition statement&gt; ::= &lt;schema
+      definition&gt; | &lt;table definition&gt; | &lt;view definition&gt; |
+      &lt;SQL-invoked routine&gt; | &lt;grant statement&gt; | &lt;role
+      definition&gt; | &lt;domain definition&gt; | &lt;character set
+      definition&gt; | &lt;collation definition&gt; | &lt;transliteration
+      definition&gt; | &lt;assertion definition&gt; | &lt;trigger
+      definition&gt; | &lt;user-defined type definition&gt; | &lt;user-defined
+      cast definition&gt; | &lt;user-defined ordering definition&gt; |
+      &lt;transform definition&gt; | &lt;sequence generator
+      definition&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;SQL schema manipulation statement&gt; ::= &lt;drop
+      schema statement&gt; | &lt;alter table statement&gt; | &lt;drop table
+      statement&gt; | &lt;drop view statement&gt; | &lt;alter routine
+      statement&gt; | &lt;drop routine statement&gt; | &lt;drop user-defined
+      cast statement&gt; | &lt;revoke statement&gt; | &lt;drop role
+      statement&gt; | &lt;alter domain statement&gt; | &lt;drop domain
+      statement&gt; | &lt;drop character set statement&gt; | &lt;drop
+      collation statement&gt; | &lt;drop transliteration statement&gt; |
+      &lt;drop assertion statement&gt; | &lt;drop trigger statement&gt; |
+      &lt;alter type statement&gt; | &lt;drop data type statement&gt; |
+      &lt;alter sequence generator statement&gt; | &lt;drop sequence generator
+      statement&gt;</code>
+</p>
+</div>
+<div class="section" title="Other Schema Object Creation">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_other_object_creation"></a>Other Schema Object Creation</h3>
+</div>
+</div>
+</div>
+<a name="N1153A" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CREATE INDEX</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>create index statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;create index statement&gt; ::= CREATE INDEX
+      &lt;index name&gt; ON &lt;table name&gt; &lt;left paren&gt; {&lt;column
+      name&gt; [ASC | DESC]}, ... &lt;right paren&gt;</code>
+</p>
+<p>Creates an index on a group of columns of a table. The optional
+      [ASC | DESC] specifies if the column is indexed in the ascending or
+      descending order, but has no effect on how the index is created (it is
+      allowed for compatibility with other database engines). HyperSQL can use
+      all indexes in ascending or descending order as needed. Indexes should
+      not duplicate the columns of PRIMARY KEY, UNIQUE or FOREIGN key
+      constraints as each of these constraints creates an index
+      automatically.</p>
+<a name="N1154B" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP INDEX</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop index statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop index statement&gt; ::= DROP INDEX [ IF
+      EXISTS ] &lt;index name&gt; [ IF EXISTS ]</code>
+</p>
+<p>Destroy an index.</p>
+<a name="N1155C" class="indexterm"></a>
+<p>
+<span class="bold"><strong>ALTER INDEX</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>change the columns of an index</em></span>
+</p>
+<p>
+<code class="literal">&lt;alter index statement&gt; ::= ALTER INDEX
+      &lt;index name&gt; &lt;left paren&gt; {&lt;column name&gt;} , ...
+      &lt;right paren&gt;</code>
+</p>
+<p>Redefine an index with a new column list. This statement is
+      more efficient than dropping an existing index and creating a new
+      one.</p>
+<a name="N1156D" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CREATE TYPE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>user-defined type definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;user-defined type definition&gt; ::= CREATE TYPE
+      &lt;user-defined type body&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;user-defined type body&gt; ::= &lt;schema-resolved
+      user-defined type name&gt; [ AS &lt;representation&gt;
+      ]</code>
+</p>
+<p>
+<code class="literal">&lt;representation&gt; ::= &lt;predefined
+      type&gt;</code>
+</p>
+<p>Define a user-defined type. Currently only simple distinct
+      types can be defined without further attributes.</p>
+<a name="N11584" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CREATE CAST</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>user-defined cast definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;user-defined cast definition&gt; ::= CREATE CAST
+      &lt;left paren&gt; &lt;source data type&gt; AS &lt;target data type&gt;
+      &lt;right paren&gt; WITH &lt;cast function&gt; [ AS ASSIGNMENT
+      ]</code>
+</p>
+<p>
+<code class="literal">&lt;cast function&gt; ::= &lt;specific routine
+      designator&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;source data type&gt; ::= &lt;data
+      type&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;target data type&gt; ::= &lt;data
+      type&gt;</code>
+</p>
+<p>Define a user-defined cast. This feature may be supported in a
+      future versions of HyperSQL.</p>
+<a name="N1159E" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP CAST</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop user-defined cast statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop user-defined cast statement&gt; ::= DROP CAST
+      &lt;left paren&gt; &lt;source data type&gt; AS &lt;target data type&gt;
+      &lt;right paren&gt; &lt;drop behavior&gt;</code>
+</p>
+<p>Destroy a user-defined cast. This feature may be supported in a
+      future versions of HyperSQL.</p>
+<a name="N115AF" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CREATE CHARACTER SET</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>character set definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;character set definition&gt; ::= CREATE CHARACTER
+      SET &lt;character set name&gt; [ AS ] &lt;character set source&gt; [
+      &lt;collate clause&gt; ]</code>
+</p>
+<p>
+<code class="literal">&lt;character set source&gt; ::= GET &lt;character set
+      specification&gt;</code>
+</p>
+<p>Define a character set. A new CHARACTER SET is based on an
+      existing CHARACTER SET. The optional <code class="literal">&lt;collate
+      clause&gt;</code> specifies the collation to be used, otherwise the
+      collation is inherited from the default collation for the source
+      CHARACTER SET.</p>
+<a name="N115C6" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP CHARACTER SET</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop character set statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop character set statement&gt; ::= DROP
+      CHARACTER SET &lt;character set name&gt;</code>
+</p>
+<p>Destroy a character set. If the character set name is
+      referenced in any database object, the command fails. Note that
+      <code class="literal">CASCADE</code> or <code class="literal">RESTRICT</code> cannot be
+      specified for this command.</p>
+<a name="N115DD" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CREATE COLLATION</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>collation definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;collation definition&gt; ::= CREATE COLLATION
+      &lt;collation name&gt; FOR &lt;character set specification&gt; FROM
+      &lt;existing collation name&gt; [ &lt;pad characteristic&gt;
+      ]</code>
+</p>
+<p>
+<code class="literal">&lt;existing collation name&gt; ::= &lt;collation
+      name&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;pad characteristic&gt; ::= NO PAD | PAD
+      SPACE</code>
+</p>
+<p>Define a collation. A new collation is based on an existing
+      COLLATION and applies to an existing CHARACTER SET. The <code class="literal">&lt;pad
+      characteristic&gt;</code> specifies whether strings are padded with
+      spaces for comparison. In HyperSQL 2.1 the padding information is
+      ignored, but it may be supported in future versions.</p>
+<a name="N115F7" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP COLLATION</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop collation statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop collation statement&gt; ::= DROP COLLATION
+      &lt;collation name&gt; &lt;drop behavior&gt;</code>
+</p>
+<p>Destroy a collation. If the <code class="literal">&lt;drop
+      behavior&gt;</code> is <code class="literal">CASCADE</code>, then all
+      references to the collation revert to the default collation that would
+      be in force if the dropped collation was not specified.</p>
+<a name="N1160E" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CREATE TRANSLATION</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>transliteration definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;transliteration definition&gt; ::= CREATE
+      TRANSLATION &lt;transliteration name&gt; FOR &lt;source character set
+      specification&gt; TO &lt;target character set specification&gt; FROM
+      &lt;transliteration source&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;source character set specification&gt; ::=
+      &lt;character set specification&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;target character set specification&gt; ::=
+      &lt;character set specification&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;transliteration source&gt; ::= &lt;existing
+      transliteration name&gt; | &lt;transliteration
+      routine&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;existing transliteration name&gt; ::=
+      &lt;transliteration name&gt; </code>
+</p>
+<p>
+<code class="literal">&lt;transliteration routine&gt; ::= &lt;specific
+      routine designator&gt;</code>
+</p>
+<p>Define a character transliteration. This feature may be
+      supported in a future versions of HyperSQL.</p>
+<a name="N1162E" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP TRANSLATION</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop transliteration statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop transliteration statement&gt; ::= DROP
+      TRANSLATION &lt;transliteration name&gt;</code>
+</p>
+<p>Destroy a character transliteration. This feature may be
+      supported in a future versions of HyperSQL.</p>
+<a name="N1163F" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CREATE ASSERTION</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>assertion definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;assertion definition&gt; ::= CREATE ASSERTION
+      &lt;constraint name&gt; CHECK &lt;left paren&gt; &lt;search
+      condition&gt; &lt;right paren&gt; [ &lt;constraint characteristics&gt;
+      ]</code>
+</p>
+<p>Specify an integrity constraint. This feature may be supported
+      in a future versions of HyperSQL.</p>
+<a name="N11650" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP ASSERTION</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop assertion statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop assertion statement&gt; ::= DROP ASSERTION
+      &lt;constraint name&gt; [ &lt;drop behavior&gt; ]</code>
+</p>
+<p>Destroy an assertion. This feature may be supported in a future
+      versions of HyperSQL.</p>
+</div>
+</div>
+<div class="section" title="The Information Schema">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="dbc_information_schema"></a>The Information Schema</h2>
+</div>
+</div>
+</div>
+<p>The Information Schema is a special schema in each catalog. The SQL
+    Standard defines a number of character sets and domains in this schema. In
+    addition, all the implementation-defined collations belong to the
+    Information Schema.</p>
+<p>The SQL Standard defines many views in the Information Schema. These
+    views show the properties of the database objects that currently exist in
+    the database. When a user accesses one these views, only the properties of
+    database objects that the user can access are included.</p>
+<p>HyperSQL supports all the views defined by the Standard, apart from
+    a few views that report on extended user-defined types and other optional
+    features of the Standard that are not supported by HyperSQL.</p>
+<p>HyperSQL also adds some views to the Information Schema. These views
+    are for features that are not reported in any of the views defined by the
+    Standard, or for use by JDBC DatabaseMetaData.</p>
+<div class="section" title="Predefined Character Sets, Collations and Domains">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_char_sets_info_schema"></a>Predefined Character Sets, Collations and Domains</h3>
+</div>
+</div>
+</div>
+<p>The SQL Standard defines a number of character sets and domains in
+      the INFORMATION SCHEMA.</p>
+<p>These domains are used in the INFORMATION SCHEMA views:</p>
+<p>CARDINAL_NUMBER, YES_OR_NO, CHARACTER_DATA, SQL_IDENTIFIER,
+      TIME_STAMP</p>
+<p>All available collations are in the INFORMATION
+      SCHEMA.</p>
+</div>
+<div class="section" title="Views in INFORMATION SCHEMA">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_views_info_schema"></a>Views in INFORMATION SCHEMA</h3>
+</div>
+</div>
+</div>
+<p>HyperSQL supports a vast range of views in the INFORMATION_SCHEMA.
+      These include views specified by the SQL Standard, SQL/Schemata part,
+      plus views that are specific to HyperSQL and are used for JDBC
+      DatabaseMetaData queries, which are based on SQL/CLI part, or other
+      information that is not covered by the SQL Standard. The names of views
+      that are not part of SQL/Schemata start with SYSTEM_.</p>
+<p>The views cover different types of information. These are covered
+      in the next sections.</p>
+</div>
+<div class="section" title="Visibility of Information">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_visibility_info_schema"></a>Visibility of Information</h3>
+</div>
+</div>
+</div>
+<p>Users with the special ADMIN role can see the full information on
+      all database objects. Ordinary, non-admin users can see information on
+      the objects for which they have some privileges.</p>
+<p>The rows returned to a non-admin user exclude objects on which the
+      user has no privilege. The extent of the information in visible rows
+      varies with the user's privilege. For example, the owner of a VIEW can
+      see the text of the view query, but a user of the view cannot see this
+      text. When a user cannot see the contents of some column, null is
+      returned for that column.</p>
+</div>
+<div class="section" title="Name Information">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_name_info_schema"></a>Name Information</h3>
+</div>
+</div>
+</div>
+<p>The names of database objects are stored in hierarchical views.
+      The top level view is INFORMATION_SCHEMA_CATALOG_NAME.</p>
+<p>Below this level, there is a group of views that covers
+      authorizations and roles, without referencing schema objects. These are
+      AUTHORIZATIONS and ADMINSTRABLE_ROLE_AUTHORIZATIONS.</p>
+<p>Also below the top level, there is the SCHEMATA view, which lists
+      the schemas in the catalog.</p>
+<p>The views that refer to top-level schema objects are divided by
+      object type. These includes ASSERTIONS, CHARACTER_SETS, COLLATIONS,
+      DOMAINS, ROUTINES, SEQUENCES, TABLES, USER_DEFINED_TYPES and
+      VIEWS.</p>
+<p>There are views that refer to objects that are dependent on the
+      top-level schema objects. These include COLUMNS and PARAMETERS, views
+      for constraints, including CHECK_CONSTRAINTS, REFERENTIAL_CONSTRAINTS
+      and TABLE_CONSTRAINTS, and finally the TRIGGERS view.</p>
+<p>The usage of each type of top-level object by another is covered
+      by several views. For example TRIGGER_SEQUENCE_USAGE or
+      ROUTINE_TABLE_USAGE.</p>
+<p>Several other views list the individual privileges owned or
+      granted to each AUTHORIZATION. For example ROLE_ROUTINE_GRANTS or
+      TABLE_PRIVILEGES.</p>
+</div>
+<div class="section" title="Data Type Information">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_data_type_info_schema"></a>Data Type Information</h3>
+</div>
+</div>
+</div>
+<p>The INFORMATION_SCHEMA contains comprehensive information on the
+      data types of each schema object and its elements. For example, the
+      ROUTINES view includes the return data type for each FUNCTION
+      definition. The columns for this information contain nulls for rows that
+      cover PROCEDURE definitions.</p>
+<p>The COLUMNS, PARAMETERS and SEQUENCES views contain the type
+      information in columns with similar names.</p>
+<p>The type information for ARRAY types is returned in the
+      ELEMENT_TYPES view. When a row of the COLUMNS or other view indicates
+      that the type of the object is an ARRAY type, then there is a
+      corresponding entry for this row in the ELEMENT_TYPES view. The
+      following columns in the ELEMENTS_TYPES view identify the database
+      object whose data type is being described: OBJECT_CATALOG,
+      OBJECT_SCHEMA, OBJECT_NAME, OBJECT_TYPE, COLLECTION_TYPE_IDENTIFIER. The
+      last column's counterpart in the COLUMNS view is named differently as
+      DTD_IDENTIFIER. So in order to determine the array element type of a
+      column, an equi-join between the COLUMNS and ELEMENT_TYPES tables on the
+      six listed columns in the ELEMENT_TYPES view and their counterparts in
+      the COLUMNS view is needed.</p>
+</div>
+<div class="section" title="Product Information">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_product_info_schema"></a>Product Information</h3>
+</div>
+</div>
+</div>
+<p>A group of views, including SQL_IMPLEMENTATION_INFO, SQL_FEATURES,
+      SQL_SIZING and others cover the capabilities of HyperSQL in detail.
+      These views hold static data and can be explored even when the database
+      is empty.</p>
+</div>
+<div class="section" title="Operations Information">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_operations_info_schema"></a>Operations Information</h3>
+</div>
+</div>
+</div>
+<p>There are some HyperSQL custom views cover the current state of
+      operation of the database. These include SYSTEM_CACHEINFO,
+      SYSTEM_SESSIONINFO and SYSTEM_SESSIONS views.</p>
+</div>
+<div class="section" title="SQL Standard Views">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="dbc_standard_views_info_schema"></a>SQL Standard Views</h3>
+</div>
+</div>
+</div>
+<p>The following views are defined by the SQL Standard and supported
+      by HyperSQL. The columns and contents exactly match the Standard
+      requirements.</p>
+<a name="N116B7" class="indexterm"></a>
+<p>ADMINISTRABLE_ROLE_AUTHORIZATIONS</p>
+<p>Information on ROLE authorizations, all granted by the admin
+      role.</p>
+<a name="N116C0" class="indexterm"></a>
+<p>APPLICABLE_ROLES</p>
+<p>Information on ROLE authorizations for the current user</p>
+<a name="N116C9" class="indexterm"></a>
+<p>ASSERTIONS</p>
+<p>Empty view as ASSERTION objects are not yet supported.</p>
+<a name="N116D2" class="indexterm"></a>
+<p>AUTHORIZATIONS</p>
+<p>Top level information on USER and ROLE objects in the
+      database</p>
+<a name="N116DB" class="indexterm"></a>
+<p>CHARACTER_SETS</p>
+<p>List of supported CHARACTER SET objects</p>
+<a name="N116E4" class="indexterm"></a>
+<p>CHECK_CONSTRAINTS</p>
+<p>Additional information specific to each CHECK constraint,
+      including the search condition</p>
+<a name="N116ED" class="indexterm"></a>
+<p>CHECK_CONSTRAINT_ROUTINE_USAGE</p>
+<p>Information on FUNCTION objects referenced in CHECK constraints
+      search conditions</p>
+<a name="N116F6" class="indexterm"></a>
+<p>COLLATIONS</p>
+<p>Information on collations supported by the database.</p>
+<a name="N116FF" class="indexterm"></a>
+<p>COLUMNS</p>
+<p>Information on COLUMN objects in TABLE and VIEW definitions</p>
+<a name="N11708" class="indexterm"></a>
+<p>COLUMN_COLUMN_USAGE</p>
+<p>Information on references to COLUMN objects from other, GENERATED,
+      COLUMN objects</p>
+<a name="N11711" class="indexterm"></a>
+<p>COLUMN_DOMAIN_USAGE</p>
+<p>Information on DOMAIN objects used in type definition of COLUMN
+      objects</p>
+<a name="N1171A" class="indexterm"></a>
+<p>COLUMN_PRIVILEGES</p>
+<p>Information on privileges on each COLUMN object, granted to
+      different ROLE and USER authorizations</p>
+<a name="N11723" class="indexterm"></a>
+<p>COLUMN_UDT_USAGE</p>
+<p>Information on distinct TYPE objects used in type definition of
+      COLUMN objects</p>
+<a name="N1172C" class="indexterm"></a>
+<p>CONSTRAINT_COLUMN_USAGE</p>
+<p>Information on COLUMN objects referenced by CONSTRAINT objects in
+      the database</p>
+<a name="N11735" class="indexterm"></a>
+<p>CONSTRAINT_TABLE_USAGE</p>
+<p>Information on TABLE and VIEW objects referenced by CONSTRAINT
+      objects in the database</p>
+<a name="N1173E" class="indexterm"></a>
+<p>DATA_TYPE_PRIVILEGES</p>
+<p>Information on top level schema objects of various kinds that
+      reference TYPE objects</p>
+<a name="N11747" class="indexterm"></a>
+<p>DOMAINS</p>
+<p>Top level information on DOMAIN objects in the database.</p>
+<a name="N11750" class="indexterm"></a>
+<p>DOMAIN_CONSTRAINTS</p>
+<p>Information on CONSTRAINT definitions used for DOMAIN
+      objects</p>
+<a name="N11759" class="indexterm"></a>
+<p>ELEMENT_TYPES</p>
+<p>Information on the type of elements of ARRAY used in database
+      columns or routine parameters and return values</p>
+<a name="N11762" class="indexterm"></a>
+<p>ENABLED_ROLES</p>
+<p>Information on ROLE privileges enabled for the current
+      session</p>
+<a name="N1176B" class="indexterm"></a>
+<p>INFORMATION_SCHEMA_CATALOG_NAME</p>
+<p>Information on the single CATALOG object of the database</p>
+<a name="N11774" class="indexterm"></a>
+<p>KEY_COLUMN_USAGE</p>
+<p>Information on COLUMN objects of tables that are used by PRIMARY
+      KEY, UNIQUE and FOREIGN KEY constraints</p>
+<a name="N1177D" class="indexterm"></a>
+<p>PARAMETERS</p>
+<p>Information on parameters of each FUNCTION or PROCEDURE</p>
+<a name="N11786" class="indexterm"></a>
+<p>REFERENTIAL_CONSTRAINTS</p>
+<p>Additional information on FOREIGN KEY constraints, including
+      triggered action and name of UNIQUE constraint they refer to</p>
+<a name="N1178F" class="indexterm"></a>
+<p>ROLE_AUTHORIZATION_DESCRIPTORS</p>
+<a name="N11796" class="indexterm"></a>
+<p>ROLE_COLUMN_GRANTS</p>
+<p>Information on privileges on COLUMN objects granted to or by the
+      current session roles</p>
+<a name="N1179F" class="indexterm"></a>
+<p>ROLE_ROUTINE_GRANTS</p>
+<p>Information on privileges on FUNCTION and PROCEDURE objects
+      granted to or by the current session roles</p>
+<a name="N117A8" class="indexterm"></a>
+<p>ROLE_TABLE_GRANTS</p>
+<p>Information on privileges on TABLE and VIEW objects granted to or
+      by the current session roles</p>
+<a name="N117B1" class="indexterm"></a>
+<p>ROLE_UDT_GRANTS</p>
+<p>Information on privileges on TYPE objects granted to or by the
+      current session roles</p>
+<a name="N117BA" class="indexterm"></a>
+<p>ROLE_USAGE_GRANTS</p>
+<p>Information on privileges on USAGE privileges granted to or by the
+      current session roles</p>
+<a name="N117C3" class="indexterm"></a>
+<p>ROUTINE_COLUMN_USAGE</p>
+<p>Information on COLUMN objects of different tables that are
+      referenced in FUNCTION and PROCEDURE definitions</p>
+<a name="N117CC" class="indexterm"></a>
+<p>ROUTINE_JAR_USAGE</p>
+<p>Information on JAR usage by Java language FUNCTION and PROCEDURE
+      objects.</p>
+<a name="N117D5" class="indexterm"></a>
+<p>ROUTINE_PRIVILEGES</p>
+<p>Information on EXECUTE privileges granted on PROCEDURE and
+      FUNCTION objects</p>
+<a name="N117DE" class="indexterm"></a>
+<p>ROUTINE_ROUTINE_USAGE</p>
+<p>Information on PROCEDURE and FUNCTION objects that are referenced
+      in FUNCTION and PROCEDURE definitions</p>
+<a name="N117E7" class="indexterm"></a>
+<p>ROUTINE_SEQUENCE_USAGE</p>
+<p>Information on SEQUENCE objects that are referenced in FUNCTION
+      and PROCEDURE definitions</p>
+<a name="N117F0" class="indexterm"></a>
+<p>ROUTINE_TABLE_USAGE</p>
+<p>Information on TABLE and VIEW objects that are referenced in
+      FUNCTION and PROCEDURE definitions</p>
+<a name="N117F9" class="indexterm"></a>
+<p>ROUTINES</p>
+<p>Top level information on all PROCEDURE and FUNCTION objects in the
+      database</p>
+<a name="N11802" class="indexterm"></a>
+<p>SCHEMATA</p>
+<p>Information on all the SCHEMA objects in the database</p>
+<a name="N1180B" class="indexterm"></a>
+<p>SEQUENCES</p>
+<p>Information on SEQUENCE objects</p>
+<a name="N11814" class="indexterm"></a>
+<p>SQL_FEATURES</p>
+<p>List of all SQL:2008 standard features, including information on
+      whether they are supported or not supported by HyperSQL</p>
+<a name="N1181D" class="indexterm"></a>
+<p>SQL_IMPLEMENTATION_INFO</p>
+<p>Information on name, capabilities and defaults of the database
+      engine software.</p>
+<a name="N11826" class="indexterm"></a>
+<p>SQL_PACKAGES</p>
+<p>List of the SQL:2008 Standard packages, including information on
+      whether they are supported or not supported by HyperSQL</p>
+<a name="N1182F" class="indexterm"></a>
+<p>SQL_PARTS</p>
+<p>List of the SQL:2008 Standard parts, including information on
+      whether they are supported or not supported by HyperSQL</p>
+<a name="N11838" class="indexterm"></a>
+<p>SQL_SIZING</p>
+<p>List of the SQL:2008 Standard maximum supported sizes for
+      different features as supported by HyperSQL</p>
+<a name="N11841" class="indexterm"></a>
+<p>SQL_SIZING_PROFILES</p>
+<a name="N11848" class="indexterm"></a>
+<p>TABLES</p>
+<p>Information on all TABLE and VIEW object, including the
+      INFORMATION_SCHEMA views themselves</p>
+<a name="N11851" class="indexterm"></a>
+<p>TABLE_CONSTRAINTS</p>
+<p>Information on all table level constraints, including PRIMARY KEY,
+      UNIQUE, FOREIGN KEY and CHECK constraints</p>
+<a name="N1185A" class="indexterm"></a>
+<p>TABLE_PRIVILEGES</p>
+<p>Information on privileges on TABLE and VIEW objects owned or given
+      to the current user</p>
+<a name="N11863" class="indexterm"></a>
+<p>TRANSLATIONS</p>
+<a name="N1186A" class="indexterm"></a>
+<p>TRIGGERED_UPDATE_COLUMNS</p>
+<p>Information on columns that have been used in TRIGGER definitions
+      in the ON UPDATE clause</p>
+<a name="N11873" class="indexterm"></a>
+<p>TRIGGERS</p>
+<p>Top level information on the TRIGGER definitions in the
+      databases</p>
+<a name="N1187C" class="indexterm"></a>
+<p>TRIGGER_COLUMN_USAGE</p>
+<p>Information on COLUMN objects that have been referenced in the
+      body of TRIGGER definitions</p>
+<a name="N11885" class="indexterm"></a>
+<p>TRIGGER_ROUTINE_USAGE</p>
+<p>Information on FUNCTION and PROCEDURE objects that have been used
+      in TRIGGER definitions</p>
+<a name="N1188E" class="indexterm"></a>
+<p>TRIGGER_SEQUENCE_USAGE</p>
+<p>Information on SEQUENCE objects that been referenced in TRIGGER
+      definitions</p>
+<a name="N11897" class="indexterm"></a>
+<p>TRIGGER_TABLE_USAGE</p>
+<p>Information on TABLE and VIEW objects that have been referenced in
+      TRIGGER definitions</p>
+<a name="N118A0" class="indexterm"></a>
+<p>USAGE_PRIVILEGES</p>
+<p>Information on USAGE privileges granted to or owned by the current
+      user</p>
+<a name="N118A9" class="indexterm"></a>
+<p>USER_DEFINED_TYPES</p>
+<p>Top level information on TYPE objects in the database</p>
+<a name="N118B2" class="indexterm"></a>
+<p>VIEWS</p>
+<p>Top Level information on VIEW objects in the database</p>
+<a name="N118BB" class="indexterm"></a>
+<p>VIEW_COLUMN_USAGE</p>
+<p>Information on COLUMN objects referenced in the query expressions
+      of the VIEW objects</p>
+<a name="N118C4" class="indexterm"></a>
+<p>VIEW_ROUTINE_USAGE</p>
+<p>Information on FUNCTION and PROCEDURE objects that have been used
+      in the query expressions of the VIEW objects</p>
+<a name="N118CD" class="indexterm"></a>
+<p>VIEW_TABLE_USAGE</p>
+<p>Information on TABLE and VIEW objects that have been referenced in
+      the query expressions of the VIEW objects</p>
+<div class="section" title="HyperSQL Custom Views">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="dbc_hypersql_views_info_schema"></a>HyperSQL Custom Views</h4>
+</div>
+</div>
+</div>
+<p>The following views are specific to HyperSQL. Most of these
+        views are used directly by JDBC DatabaseMetaData method calls and are
+        indicated as such. Some views contain information that is specific to
+        HyperSQL and is not covered by the SQL Standard views.</p>
+<a name="N118DC" class="indexterm"></a>
+<p>SYSTEM_BESTROWIDENTIFIER</p>
+<p>For DatabaseMetaData.getBestRowIdentifier</p>
+<a name="N118E5" class="indexterm"></a>
+<p>SYSTEM_CACHEINFO</p>
+<p>Contains the current settings and variables of the data cache
+        used for all CACHED tables, and the data cache of each TEXT
+        table.</p>
+<a name="N118EE" class="indexterm"></a>
+<p>SYSTEM_COLUMN_SEQUENCE_USAGE</p>
+<p>Contains a row for each column that is defined as GENERATED BY
+        DEFAULT AS SEQUENCE with the column name and sequence name</p>
+<a name="N118F7" class="indexterm"></a>
+<p>SYSTEM_COLUMNS</p>
+<p>For DatabaseMetaData.getColumns, contains a row for each
+        column</p>
+<a name="N11900" class="indexterm"></a>
+<p>SYSTEM_COMMENTS</p>
+<p>Contains the user-defined comments added to tables and their
+        columns.</p>
+<a name="N11909" class="indexterm"></a>
+<p>SYSTEM_CONNECTION_PROPERTIES</p>
+<p>For DatabaseMetaData.getClientInfoProperties</p>
+<a name="N11912" class="indexterm"></a>
+<p>SYSTEM_CROSSREFERENCE</p>
+<p>Full list of all columns referenced by FOREIGN KEY constraints.
+        For DatabaseMetaData.getCrossReference, getExportedKeys and
+        getImportedKeys.</p>
+<a name="N1191B" class="indexterm"></a>
+<p>SYSTEM_INDEXINFO</p>
+<p>For DatabaseMetaData.getIndexInfo</p>
+<a name="N11924" class="indexterm"></a>
+<p>SYSTEM_PRIMARYKEYS</p>
+<p>For DatabaseMetaData.getPrimaryKeys</p>
+<a name="N1192D" class="indexterm"></a>
+<p>SYSTEM_PROCEDURECOLUMNS</p>
+<p>For DatabaseMetaData.getProcedureColumns</p>
+<a name="N11936" class="indexterm"></a>
+<p>SYSTEM_PROCEDURES</p>
+<p>For DatabaseMetaData.getFunctionColumns, getFunctions and
+        getProcedures</p>
+<a name="N1193F" class="indexterm"></a>
+<p>SYSTEM_PROPERTIES</p>
+<p>Contains the current values of all the database level
+        properties. Settings such as SQL rule enforcement, database
+        transaction model and default transaction level are all reported in
+        this view. The names of the properties are listed in the <a class="link" href="dbproperties-chapt.html" title="Chapter&nbsp;12.&nbsp;Properties">Properties</a> chapter together with the
+        corresponding SQL statements used to change the properties.</p>
+<a name="N1194D" class="indexterm"></a>
+<p>SYSTEM_SCHEMAS</p>
+<p>For DatabaseMetaData.getSchemas</p>
+<a name="N11956" class="indexterm"></a>
+<p>SYSTEM_SEQUENCES</p>
+<a name="N1195D" class="indexterm"></a>
+<p>SYSTEM_SESSIONINFO</p>
+<p>Information on the settings and properties of the current
+        session.</p>
+<a name="N11966" class="indexterm"></a>
+<p>SYSTEM_SESSIONS</p>
+<p>Information on all open sessions in the database (when used by a
+        DBA user), or just the current session.</p>
+<a name="N1196F" class="indexterm"></a>
+<p>SYSTEM_TABLES</p>
+<p>Information on tables and views for
+        DatabaseMetaData.getTables</p>
+<a name="N11978" class="indexterm"></a>
+<p>SYSTEM_TABLETYPES</p>
+<p>For DatabaseMetaData.getTableTypes</p>
+<a name="N11981" class="indexterm"></a>
+<p>SYSTEM_TEXTTABLES</p>
+<p>Information on the settings of each text table.</p>
+<a name="N1198A" class="indexterm"></a>
+<p>SYSTEM_TYPEINFO</p>
+<p>For DatabaseMetaData.getTypeInfo</p>
+<a name="N11993" class="indexterm"></a>
+<p>SYSTEM_UDTS</p>
+<p>For DatabaseMetaData.getUDTs</p>
+<a name="N1199C" class="indexterm"></a>
+<p>SYSTEM_USERS</p>
+<p>Contains the list of all users in the database (when used by a
+        DBA user), or just the current user.</p>
+<a name="N119A5" class="indexterm"></a>
+<p>SYSTEM_VERSIONCOLUMNS</p>
+<p>For DatabaseMetaData.getVersionColumns</p>
+</div>
+</div>
+</div>
+</div>
+<HR xmlns:xi="http://www.w3.org/2001/XInclude">
+<P xmlns:xi="http://www.w3.org/2001/XInclude" class="svnrev">$Revision: 4864 $</P>
+<div class="navfooter">
+<hr>
+<table summary="Navigation footer" width="100%">
+<tr>
+<td align="left" width="40%"><a accesskey="p" href="sessions-chapt.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="20%">&nbsp;</td><td align="right" width="40%">&nbsp;<a accesskey="n" href="texttables-chapt.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="40%">Chapter&nbsp;3.&nbsp;Sessions and Transactions&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="40%">&nbsp;Chapter&nbsp;5.&nbsp;Text Tables</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

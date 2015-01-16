@@ -1,0 +1,209 @@
+P14238	UniProtKB	Region	1	298	.	.	.	Note=Important for interaction with membranes containing phosphoinositides;status=By similarity		P14238_1_92	IPR001060
+P14238	UniProtKB	Region	1	298	.	.	.	Note=Important for interaction with membranes containing phosphoinositides;status=By similarity		P14238_1_94	IPR001060
+P14238	UniProtKB	Region	1	298	.	.	.	Note=Important for interaction with membranes containing phosphoinositides;status=By similarity		P14238_1_820	IPR016250
+P07332	UniProtKB	Region	1	300	.	.	.	Note=Important for interaction with membranes containing phosphoinositides		P07332_1_69	IPR001060
+P07332	UniProtKB	Region	1	300	.	.	.	Note=Important for interaction with membranes containing phosphoinositides		P07332_1_94	IPR001060
+P07332	UniProtKB	Region	1	300	.	.	.	Note=Important for interaction with membranes containing phosphoinositides		P07332_1_822	IPR016250
+P16879	UniProtKB	Region	1	300	.	.	.	Note=Important for interaction with membranes containing phosphoinositides;status=By similarity		P16879_1_94	IPR001060
+P16879	UniProtKB	Region	1	300	.	.	.	Note=Important for interaction with membranes containing phosphoinositides;status=By similarity		P16879_1_96	IPR001060
+P16879	UniProtKB	Region	1	300	.	.	.	Note=Important for interaction with membranes containing phosphoinositides;status=By similarity		P16879_1_822	IPR016250
+P41743	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain		P41743_252_578	IPR011009
+P41743	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain		P41743_138_152	IPR020454
+P41743	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain		P41743_10_596	IPR012233
+P41743	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain		P41743_25_106	IPR000270
+P41743	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain		P41743_26_107	IPR000270
+P41743	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain		P41743_140_190	IPR002219
+P41743	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain		P41743_141_190	IPR002219
+P41743	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain		P41743_141_192	IPR002219
+P41743	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain		P41743_154_163	IPR020454
+P41743	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain		P41743_179_191	IPR020454
+P41743	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain		P41743_167_178	IPR020454
+P41743	UniProtKB	Region	2	28	.	.	.	Note=Required for interaction with RAB2		P41743_10_596	IPR012233
+P41743	UniProtKB	Region	2	28	.	.	.	Note=Required for interaction with RAB2		P41743_25_106	IPR000270
+P41743	UniProtKB	Region	2	28	.	.	.	Note=Required for interaction with RAB2		P41743_26_107	IPR000270
+P41743	UniProtKB	Region	72	91	.	.	.	Note=Interaction with PARD6A		P41743_10_596	IPR012233
+P41743	UniProtKB	Region	72	91	.	.	.	Note=Interaction with PARD6A		P41743_25_106	IPR000270
+P41743	UniProtKB	Region	72	91	.	.	.	Note=Interaction with PARD6A		P41743_26_107	IPR000270
+Q62074	UniProtKB	Region	2	252	.	.	.	Note=Regulatory domain;status=By similarity		Q62074_140_190	IPR002219
+Q62074	UniProtKB	Region	2	252	.	.	.	Note=Regulatory domain;status=By similarity		Q62074_251_577	IPR011009
+Q62074	UniProtKB	Region	2	252	.	.	.	Note=Regulatory domain;status=By similarity		Q62074_25_106	IPR000270
+Q62074	UniProtKB	Region	2	252	.	.	.	Note=Regulatory domain;status=By similarity		Q62074_141_190	IPR002219
+Q62074	UniProtKB	Region	2	252	.	.	.	Note=Regulatory domain;status=By similarity		Q62074_141_192	IPR002219
+Q62074	UniProtKB	Region	2	252	.	.	.	Note=Regulatory domain;status=By similarity		Q62074_26_107	IPR000270
+Q62074	UniProtKB	Region	2	252	.	.	.	Note=Regulatory domain;status=By similarity		Q62074_154_163	IPR020454
+Q62074	UniProtKB	Region	2	252	.	.	.	Note=Regulatory domain;status=By similarity		Q62074_179_191	IPR020454
+Q62074	UniProtKB	Region	2	252	.	.	.	Note=Regulatory domain;status=By similarity		Q62074_167_178	IPR020454
+Q62074	UniProtKB	Region	2	252	.	.	.	Note=Regulatory domain;status=By similarity		Q62074_138_152	IPR020454
+Q62074	UniProtKB	Region	2	252	.	.	.	Note=Regulatory domain;status=By similarity		Q62074_10_595	IPR012233
+Q62074	UniProtKB	Region	2	28	.	.	.	Note=Required for interaction with RAB2;status=By similarity		Q62074_25_106	IPR000270
+Q62074	UniProtKB	Region	2	28	.	.	.	Note=Required for interaction with RAB2;status=By similarity		Q62074_26_107	IPR000270
+Q62074	UniProtKB	Region	2	28	.	.	.	Note=Required for interaction with RAB2;status=By similarity		Q62074_10_595	IPR012233
+Q62074	UniProtKB	Region	72	91	.	.	.	Note=Interaction with PARD6A;status=By similarity		Q62074_25_106	IPR000270
+Q62074	UniProtKB	Region	72	91	.	.	.	Note=Interaction with PARD6A;status=By similarity		Q62074_26_107	IPR000270
+Q62074	UniProtKB	Region	72	91	.	.	.	Note=Interaction with PARD6A;status=By similarity		Q62074_10_595	IPR012233
+Q5R4K9	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		Q5R4K9_140_190	IPR002219
+Q5R4K9	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		Q5R4K9_141_190	IPR002219
+Q5R4K9	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		Q5R4K9_141_192	IPR002219
+Q5R4K9	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		Q5R4K9_154_163	IPR020454
+Q5R4K9	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		Q5R4K9_10_596	IPR012233
+Q5R4K9	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		Q5R4K9_179_191	IPR020454
+Q5R4K9	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		Q5R4K9_167_178	IPR020454
+Q5R4K9	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		Q5R4K9_25_106	IPR000270
+Q5R4K9	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		Q5R4K9_252_578	IPR011009
+Q5R4K9	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		Q5R4K9_26_107	IPR000270
+Q5R4K9	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		Q5R4K9_138_152	IPR020454
+Q5R4K9	UniProtKB	Region	2	28	.	.	.	Note=Required for interaction with RAB2;status=By similarity		Q5R4K9_10_596	IPR012233
+Q5R4K9	UniProtKB	Region	2	28	.	.	.	Note=Required for interaction with RAB2;status=By similarity		Q5R4K9_25_106	IPR000270
+Q5R4K9	UniProtKB	Region	2	28	.	.	.	Note=Required for interaction with RAB2;status=By similarity		Q5R4K9_26_107	IPR000270
+Q5R4K9	UniProtKB	Region	72	91	.	.	.	Note=Interaction with PARD6A;status=By similarity		Q5R4K9_10_596	IPR012233
+Q5R4K9	UniProtKB	Region	72	91	.	.	.	Note=Interaction with PARD6A;status=By similarity		Q5R4K9_25_106	IPR000270
+Q5R4K9	UniProtKB	Region	72	91	.	.	.	Note=Interaction with PARD6A;status=By similarity		Q5R4K9_26_107	IPR000270
+F1M7Y5	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		F1M7Y5_26_107	IPR000270
+F1M7Y5	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		F1M7Y5_140_190	IPR002219
+F1M7Y5	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		F1M7Y5_141_190	IPR002219
+F1M7Y5	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		F1M7Y5_141_192	IPR002219
+F1M7Y5	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		F1M7Y5_154_163	IPR020454
+F1M7Y5	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		F1M7Y5_179_191	IPR020454
+F1M7Y5	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		F1M7Y5_167_178	IPR020454
+F1M7Y5	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		F1M7Y5_10_596	IPR012233
+F1M7Y5	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		F1M7Y5_252_578	IPR011009
+F1M7Y5	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		F1M7Y5_25_106	IPR000270
+F1M7Y5	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity		F1M7Y5_138_152	IPR020454
+F1M7Y5	UniProtKB	Region	2	28	.	.	.	Note=Required for interaction with RAB2;status=By similarity		F1M7Y5_26_107	IPR000270
+F1M7Y5	UniProtKB	Region	2	28	.	.	.	Note=Required for interaction with RAB2;status=By similarity		F1M7Y5_10_596	IPR012233
+F1M7Y5	UniProtKB	Region	2	28	.	.	.	Note=Required for interaction with RAB2;status=By similarity		F1M7Y5_25_106	IPR000270
+F1M7Y5	UniProtKB	Region	72	91	.	.	.	Note=Interaction with PARD6A;status=By similarity		F1M7Y5_26_107	IPR000270
+F1M7Y5	UniProtKB	Region	72	91	.	.	.	Note=Interaction with PARD6A;status=By similarity		F1M7Y5_10_596	IPR012233
+F1M7Y5	UniProtKB	Region	72	91	.	.	.	Note=Interaction with PARD6A;status=By similarity		F1M7Y5_25_106	IPR000270
+Q8NHW3	UniProtKB	Region	254	279	.	.	.	Note=Basic motif		Q8NHW3_250_316	IPR004827
+Q8NHW3	UniProtKB	Region	254	279	.	.	.	Note=Basic motif		Q8NHW3_227_267	IPR008917
+Q8NHW3	UniProtKB	Region	254	279	.	.	.	Note=Basic motif		Q8NHW3_227_317	IPR004826
+Q8NHW3	UniProtKB	Region	254	279	.	.	.	Note=Basic motif		Q8NHW3_2_342	IPR024874
+Q8NHW3	UniProtKB	Region	254	279	.	.	.	Note=Basic motif		Q8NHW3_254_317	IPR004827
+Q8NHW3	UniProtKB	Region	260	274	.	.	.	Note=Interaction with DNA		Q8NHW3_250_316	IPR004827
+Q8NHW3	UniProtKB	Region	260	274	.	.	.	Note=Interaction with DNA		Q8NHW3_227_267	IPR008917
+Q8NHW3	UniProtKB	Region	260	274	.	.	.	Note=Interaction with DNA		Q8NHW3_227_317	IPR004826
+Q8NHW3	UniProtKB	Region	260	274	.	.	.	Note=Interaction with DNA		Q8NHW3_2_342	IPR024874
+Q8NHW3	UniProtKB	Region	260	274	.	.	.	Note=Interaction with DNA		Q8NHW3_254_317	IPR004827
+Q8NHW3	UniProtKB	Region	282	303	.	.	.	Note=Leucine-zipper		Q8NHW3_250_316	IPR004827
+Q8NHW3	UniProtKB	Region	282	303	.	.	.	Note=Leucine-zipper		Q8NHW3_227_317	IPR004826
+Q8NHW3	UniProtKB	Region	282	303	.	.	.	Note=Leucine-zipper		Q8NHW3_2_342	IPR024874
+Q8NHW3	UniProtKB	Region	282	303	.	.	.	Note=Leucine-zipper		Q8NHW3_254_317	IPR004827
+Q8CF90	UniProtKB	Region	260	285	.	.	.	Note=Basic motif		Q8CF90_256_322	IPR004827
+Q8CF90	UniProtKB	Region	260	285	.	.	.	Note=Basic motif		Q8CF90_233_273	IPR008917
+Q8CF90	UniProtKB	Region	260	285	.	.	.	Note=Basic motif		Q8CF90_233_323	IPR004826
+Q8CF90	UniProtKB	Region	260	285	.	.	.	Note=Basic motif		Q8CF90_2_348	IPR024874
+Q8CF90	UniProtKB	Region	260	285	.	.	.	Note=Basic motif		Q8CF90_260_323	IPR004827
+Q8CF90	UniProtKB	Region	266	280	.	.	.	Note=Interaction with DNA;status=By similarity		Q8CF90_256_322	IPR004827
+Q8CF90	UniProtKB	Region	266	280	.	.	.	Note=Interaction with DNA;status=By similarity		Q8CF90_233_273	IPR008917
+Q8CF90	UniProtKB	Region	266	280	.	.	.	Note=Interaction with DNA;status=By similarity		Q8CF90_233_323	IPR004826
+Q8CF90	UniProtKB	Region	266	280	.	.	.	Note=Interaction with DNA;status=By similarity		Q8CF90_2_348	IPR024874
+Q8CF90	UniProtKB	Region	266	280	.	.	.	Note=Interaction with DNA;status=By similarity		Q8CF90_260_323	IPR004827
+Q8CF90	UniProtKB	Region	288	309	.	.	.	Note=Leucine-zipper		Q8CF90_256_322	IPR004827
+Q8CF90	UniProtKB	Region	288	309	.	.	.	Note=Leucine-zipper		Q8CF90_233_323	IPR004826
+Q8CF90	UniProtKB	Region	288	309	.	.	.	Note=Leucine-zipper		Q8CF90_2_348	IPR024874
+Q8CF90	UniProtKB	Region	288	309	.	.	.	Note=Leucine-zipper		Q8CF90_260_323	IPR004827
+Q9Y5Q3	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		Q9Y5Q3_238_301	IPR004827
+Q9Y5Q3	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		Q9Y5Q3_2_323	IPR024874
+Q9Y5Q3	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		Q9Y5Q3_234_300	IPR004827
+Q9Y5Q3	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		Q9Y5Q3_211_242	IPR008917
+Q9Y5Q3	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		Q9Y5Q3_211_251	IPR008917
+Q9Y5Q3	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		Q9Y5Q3_211_301	IPR004826
+Q9Y5Q3	UniProtKB	Region	266	287	.	.	.	Note=Leucine-zipper;status=By similarity		Q9Y5Q3_238_301	IPR004827
+Q9Y5Q3	UniProtKB	Region	266	287	.	.	.	Note=Leucine-zipper;status=By similarity		Q9Y5Q3_2_323	IPR024874
+Q9Y5Q3	UniProtKB	Region	266	287	.	.	.	Note=Leucine-zipper;status=By similarity		Q9Y5Q3_234_300	IPR004827
+Q9Y5Q3	UniProtKB	Region	266	287	.	.	.	Note=Leucine-zipper;status=By similarity		Q9Y5Q3_211_301	IPR004826
+Q2PFS4	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		Q2PFS4_211_242	IPR008917
+Q2PFS4	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		Q2PFS4_211_251	IPR008917
+Q2PFS4	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		Q2PFS4_211_301	IPR004826
+Q2PFS4	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		Q2PFS4_238_301	IPR004827
+Q2PFS4	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		Q2PFS4_2_323	IPR024874
+Q2PFS4	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		Q2PFS4_234_300	IPR004827
+Q2PFS4	UniProtKB	Region	266	287	.	.	.	Note=Leucine-zipper;status=By similarity		Q2PFS4_211_301	IPR004826
+Q2PFS4	UniProtKB	Region	266	287	.	.	.	Note=Leucine-zipper;status=By similarity		Q2PFS4_238_301	IPR004827
+Q2PFS4	UniProtKB	Region	266	287	.	.	.	Note=Leucine-zipper;status=By similarity		Q2PFS4_2_323	IPR024874
+Q2PFS4	UniProtKB	Region	266	287	.	.	.	Note=Leucine-zipper;status=By similarity		Q2PFS4_234_300	IPR004827
+P54841	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		P54841_234_300	IPR004827
+P54841	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		P54841_211_242	IPR008917
+P54841	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		P54841_211_251	IPR008917
+P54841	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		P54841_211_301	IPR004826
+P54841	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		P54841_238_301	IPR004827
+P54841	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		P54841_2_323	IPR024874
+P54841	UniProtKB	Region	266	287	.	.	.	Note=Leucine-zipper;status=By similarity		P54841_234_300	IPR004827
+P54841	UniProtKB	Region	266	287	.	.	.	Note=Leucine-zipper;status=By similarity		P54841_211_301	IPR004826
+P54841	UniProtKB	Region	266	287	.	.	.	Note=Leucine-zipper;status=By similarity		P54841_238_301	IPR004827
+P54841	UniProtKB	Region	266	287	.	.	.	Note=Leucine-zipper;status=By similarity		P54841_2_323	IPR024874
+P54842	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		P54842_234_300	IPR004827
+P54842	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		P54842_2_323	IPR024874
+P54842	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		P54842_211_242	IPR008917
+P54842	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		P54842_211_251	IPR008917
+P54842	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		P54842_211_301	IPR004826
+P54842	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity		P54842_238_301	IPR004827
+P54842	UniProtKB	Region	266	287	.	.	.	Note=Leucine-zipper;status=By similarity		P54842_234_300	IPR004827
+P54842	UniProtKB	Region	266	287	.	.	.	Note=Leucine-zipper;status=By similarity		P54842_2_323	IPR024874
+P54842	UniProtKB	Region	266	287	.	.	.	Note=Leucine-zipper;status=By similarity		P54842_211_301	IPR004826
+P54842	UniProtKB	Region	266	287	.	.	.	Note=Leucine-zipper;status=By similarity		P54842_238_301	IPR004827
+A7Z017	UniProtKB	Region	126	377	.	.	.	Note=Represses ARE-mediated transcription;status=By similarity		A7Z017_2_377	IPR024874
+A7Z017	UniProtKB	Region	126	377	.	.	.	Note=Represses ARE-mediated transcription;status=By similarity		A7Z017_292_355	IPR004827
+A7Z017	UniProtKB	Region	126	377	.	.	.	Note=Represses ARE-mediated transcription;status=By similarity		A7Z017_288_354	IPR004827
+A7Z017	UniProtKB	Region	126	377	.	.	.	Note=Represses ARE-mediated transcription;status=By similarity		A7Z017_265_305	IPR008917
+A7Z017	UniProtKB	Region	126	377	.	.	.	Note=Represses ARE-mediated transcription;status=By similarity		A7Z017_265_355	IPR004826
+A7Z017	UniProtKB	Region	292	317	.	.	.	Note=Basic motif;status=By similarity		A7Z017_2_377	IPR024874
+A7Z017	UniProtKB	Region	292	317	.	.	.	Note=Basic motif;status=By similarity		A7Z017_292_355	IPR004827
+A7Z017	UniProtKB	Region	292	317	.	.	.	Note=Basic motif;status=By similarity		A7Z017_288_354	IPR004827
+A7Z017	UniProtKB	Region	292	317	.	.	.	Note=Basic motif;status=By similarity		A7Z017_265_305	IPR008917
+A7Z017	UniProtKB	Region	292	317	.	.	.	Note=Basic motif;status=By similarity		A7Z017_265_355	IPR004826
+A7Z017	UniProtKB	Region	320	341	.	.	.	Note=Leucine-zipper;status=By similarity		A7Z017_2_377	IPR024874
+A7Z017	UniProtKB	Region	320	341	.	.	.	Note=Leucine-zipper;status=By similarity		A7Z017_292_355	IPR004827
+A7Z017	UniProtKB	Region	320	341	.	.	.	Note=Leucine-zipper;status=By similarity		A7Z017_288_354	IPR004827
+A7Z017	UniProtKB	Region	320	341	.	.	.	Note=Leucine-zipper;status=By similarity		A7Z017_265_355	IPR004826
+O75444	UniProtKB	Region	126	373	.	.	.	Note=Represses ARE-mediated transcription		O75444_288_351	IPR004827
+O75444	UniProtKB	Region	126	373	.	.	.	Note=Represses ARE-mediated transcription		O75444_284_350	IPR004827
+O75444	UniProtKB	Region	126	373	.	.	.	Note=Represses ARE-mediated transcription		O75444_261_301	IPR008917
+O75444	UniProtKB	Region	126	373	.	.	.	Note=Represses ARE-mediated transcription		O75444_261_351	IPR004826
+O75444	UniProtKB	Region	126	373	.	.	.	Note=Represses ARE-mediated transcription		O75444_2_373	IPR024874
+O75444	UniProtKB	Region	288	313	.	.	.	Note=Basic motif;status=By similarity		O75444_288_351	IPR004827
+O75444	UniProtKB	Region	288	313	.	.	.	Note=Basic motif;status=By similarity		O75444_284_350	IPR004827
+O75444	UniProtKB	Region	288	313	.	.	.	Note=Basic motif;status=By similarity		O75444_261_301	IPR008917
+O75444	UniProtKB	Region	288	313	.	.	.	Note=Basic motif;status=By similarity		O75444_261_351	IPR004826
+O75444	UniProtKB	Region	288	313	.	.	.	Note=Basic motif;status=By similarity		O75444_2_373	IPR024874
+O75444	UniProtKB	Region	316	337	.	.	.	Note=Leucine-zipper;status=By similarity		O75444_288_351	IPR004827
+O75444	UniProtKB	Region	316	337	.	.	.	Note=Leucine-zipper;status=By similarity		O75444_284_350	IPR004827
+O75444	UniProtKB	Region	316	337	.	.	.	Note=Leucine-zipper;status=By similarity		O75444_261_351	IPR004826
+O75444	UniProtKB	Region	316	337	.	.	.	Note=Leucine-zipper;status=By similarity		O75444_2_373	IPR024874
+P54843	UniProtKB	Region	126	370	.	.	.	Note=Represses ARE-mediated transcription;status=By similarity		P54843_285_348	IPR004827
+P54843	UniProtKB	Region	126	370	.	.	.	Note=Represses ARE-mediated transcription;status=By similarity		P54843_2_370	IPR024874
+P54843	UniProtKB	Region	126	370	.	.	.	Note=Represses ARE-mediated transcription;status=By similarity		P54843_281_347	IPR004827
+P54843	UniProtKB	Region	126	370	.	.	.	Note=Represses ARE-mediated transcription;status=By similarity		P54843_258_298	IPR008917
+P54843	UniProtKB	Region	126	370	.	.	.	Note=Represses ARE-mediated transcription;status=By similarity		P54843_258_348	IPR004826
+P54843	UniProtKB	Region	285	310	.	.	.	Note=Basic motif;status=By similarity		P54843_285_348	IPR004827
+P54843	UniProtKB	Region	285	310	.	.	.	Note=Basic motif;status=By similarity		P54843_2_370	IPR024874
+P54843	UniProtKB	Region	285	310	.	.	.	Note=Basic motif;status=By similarity		P54843_281_347	IPR004827
+P54843	UniProtKB	Region	285	310	.	.	.	Note=Basic motif;status=By similarity		P54843_258_298	IPR008917
+P54843	UniProtKB	Region	285	310	.	.	.	Note=Basic motif;status=By similarity		P54843_258_348	IPR004826
+P54843	UniProtKB	Region	313	334	.	.	.	Note=Leucine-zipper;status=By similarity		P54843_285_348	IPR004827
+P54843	UniProtKB	Region	313	334	.	.	.	Note=Leucine-zipper;status=By similarity		P54843_2_370	IPR024874
+P54843	UniProtKB	Region	313	334	.	.	.	Note=Leucine-zipper;status=By similarity		P54843_281_347	IPR004827
+P54843	UniProtKB	Region	313	334	.	.	.	Note=Leucine-zipper;status=By similarity		P54843_258_348	IPR004826
+P54844	UniProtKB	Region	126	369	.	.	.	Note=Represses ARE-mediated transcription;status=By similarity		P54844_257_347	IPR004826
+P54844	UniProtKB	Region	126	369	.	.	.	Note=Represses ARE-mediated transcription;status=By similarity		P54844_284_347	IPR004827
+P54844	UniProtKB	Region	126	369	.	.	.	Note=Represses ARE-mediated transcription;status=By similarity		P54844_2_369	IPR024874
+P54844	UniProtKB	Region	126	369	.	.	.	Note=Represses ARE-mediated transcription;status=By similarity		P54844_280_346	IPR004827
+P54844	UniProtKB	Region	126	369	.	.	.	Note=Represses ARE-mediated transcription;status=By similarity		P54844_257_297	IPR008917
+P54844	UniProtKB	Region	284	309	.	.	.	Note=Basic motif;status=By similarity		P54844_257_347	IPR004826
+P54844	UniProtKB	Region	284	309	.	.	.	Note=Basic motif;status=By similarity		P54844_284_347	IPR004827
+P54844	UniProtKB	Region	284	309	.	.	.	Note=Basic motif;status=By similarity		P54844_2_369	IPR024874
+P54844	UniProtKB	Region	284	309	.	.	.	Note=Basic motif;status=By similarity		P54844_280_346	IPR004827
+P54844	UniProtKB	Region	284	309	.	.	.	Note=Basic motif;status=By similarity		P54844_257_297	IPR008917
+P54844	UniProtKB	Region	312	333	.	.	.	Note=Leucine-zipper;status=By similarity		P54844_257_347	IPR004826
+P54844	UniProtKB	Region	312	333	.	.	.	Note=Leucine-zipper;status=By similarity		P54844_284_347	IPR004827
+P54844	UniProtKB	Region	312	333	.	.	.	Note=Leucine-zipper;status=By similarity		P54844_2_369	IPR024874
+P54844	UniProtKB	Region	312	333	.	.	.	Note=Leucine-zipper;status=By similarity		P54844_280_346	IPR004827
+P29590	UniProtKB	Region	448	555	.	.	.	Note=Interaction with PER2		P29590_240_570	IPR021978
+P29590	UniProtKB	Region	476	490	.	.	.	Note=Nuclear localization signal		P29590_240_570	IPR021978
+P29590	UniProtKB	Region	556	562	.	.	.	Note=Sumo interaction motif (SIM)		P29590_240_570	IPR021978
+Q64127	UniProtKB	Region	835	841	.	.	.	Note=Interaction with histone H3 that is not methylated at 'Lys-4' (H3K4me0);status=By similarity		Q64127_827_874	IPR019787
+Q64127	UniProtKB	Region	835	841	.	.	.	Note=Interaction with histone H3 that is not methylated at 'Lys-4' (H3K4me0);status=By similarity		Q64127_821_877	IPR011011
+Q64127	UniProtKB	Region	835	841	.	.	.	Note=Interaction with histone H3 that is not methylated at 'Lys-4' (H3K4me0);status=By similarity		Q64127_829_872	IPR019787
+Q64127	UniProtKB	Region	835	841	.	.	.	Note=Interaction with histone H3 that is not methylated at 'Lys-4' (H3K4me0);status=By similarity		Q64127_812_878	IPR013083
+Q64127	UniProtKB	Region	835	841	.	.	.	Note=Interaction with histone H3 that is not methylated at 'Lys-4' (H3K4me0);status=By similarity		Q64127_830_871	IPR019786

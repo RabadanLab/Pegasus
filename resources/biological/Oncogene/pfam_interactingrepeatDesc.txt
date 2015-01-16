@@ -1,0 +1,27 @@
+	
+PF00004	ATPase family associated with various cellular activities (AAA)
+PF00008	EGF-like domain
+PF00017	SH2 domain
+PF00018	SH3 domain
+PF00023	Ankyrin repeat
+PF00027	Cyclic nucleotide-binding domain
+PF00036	EF hand
+PF00069	Protein kinase domain
+PF00071	Ras family
+PF00076	RNA recognition motif. (a.k.a. RRM, RBD, or RNP domain)
+PF00097	Zinc finger, C3HC4 type (RING finger)
+PF00169	PH domain
+PF00307	Calponin homology (CH) domain
+PF00397	WW domain
+PF00435	Spectrin repeat
+PF00515	Tetratricopeptide repeat
+PF00531	Death domain
+PF00554	Rel homology domain (RHD)
+PF00612	IQ calmodulin-binding motif
+PF00646	F-box domain
+PF00651	BTB/POZ domain
+PF00850	Histone deacetylase domain
+PF00856	SET domain
+PF01363	FYVE zinc finger
+PF01412	Putative GTPase activating protein for Arf
+PF01833	IPT/TIG domain

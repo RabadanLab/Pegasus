@@ -1,0 +1,744 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter&nbsp;6.&nbsp;Access Control</title>
+<link href="../docbook.css" type="text/css" rel="stylesheet">
+<meta content="DocBook XSL-NS Stylesheets V1.76.1" name="generator">
+<meta name="keywords" content="Hsqldb, HyperSQL, SQL">
+<meta name="keywords" content="Hsqldb, HyperSQL, Database, JDBC, Java">
+<link rel="home" href="index.html" title="HyperSQL User Guide">
+<link rel="up" href="index.html" title="HyperSQL User Guide">
+<link rel="prev" href="texttables-chapt.html" title="Chapter&nbsp;5.&nbsp;Text Tables">
+<link rel="next" href="dataaccess-chapt.html" title="Chapter&nbsp;7.&nbsp;Data Access and Change">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table summary="Navigation header" width="100%">
+<tr>
+<td align="left" width="30%"><a accesskey="p" href="texttables-chapt.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="40%" style="font-weight:bold;">Chapter&nbsp;6.&nbsp;Access Control</td><td align="right" width="30%">&nbsp;<a accesskey="n" href="dataaccess-chapt.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="30%">Chapter&nbsp;5.&nbsp;Text Tables&nbsp;</td><td align="center" width="40%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="30%">&nbsp;Chapter&nbsp;7.&nbsp;Data Access and Change</td>
+</tr>
+</table>
+</div>
+<HR>
+<div class="chapter" title="Chapter&nbsp;6.&nbsp;Access Control">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title">
+<a name="accesscontrol-chapt"></a>Chapter&nbsp;6.&nbsp;Access Control</h2>
+</div>
+<div>
+<div class="authorgroup">
+<div class="author">
+<h3 class="author">
+<span class="firstname">Fred</span> <span class="surname">Toussi</span>
+</h3>
+<div class="affiliation">
+<span class="orgname">The HSQL Development Group<br>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<p class="releaseinfo">$Revision: 3096 $</p>
+</div>
+<div>
+<div class="legalnotice" title="Legal Notice">
+<a name="N11B60"></a>
+<p>Copyright 2010-2012 Fred Toussi. Permission is granted to distribute
+      this document without any alteration under the terms of the HSQLDB
+      license. Additional permission is granted to the HSQL Development Group
+      to distribute this document with or without alterations under the terms
+      of the HSQLDB license.</p>
+</div>
+</div>
+<div>
+<p class="pubdate">2012-01-15 10:12:45-0500</p>
+</div>
+</div>
+</div>
+<div class="toc">
+<p>
+<b>Table of Contents</b>
+</p>
+<dl>
+<dt>
+<span class="section"><a href="accesscontrol-chapt.html#acc_overview">Overview</a></span>
+</dt>
+<dt>
+<span class="section"><a href="accesscontrol-chapt.html#acc_auth_and_access_ctrl">Authorizations and Access Control</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="accesscontrol-chapt.html#acc_built_in_roles_users">Built-In Roles and Users</a></span>
+</dt>
+<dt>
+<span class="section"><a href="accesscontrol-chapt.html#acc_access_rights">Access Rights</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="accesscontrol-chapt.html#acc_statements">Statements for
+    Authorization and Access Control</a></span>
+</dt>
+</dl>
+</div>
+<div class="section" title="Overview">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="acc_overview"></a>Overview</h2>
+</div>
+</div>
+</div>
+<p>This chapter is about access control to database objects such as
+    tables, inside the database engine. Other issues related to security
+    include user authentication, password complexity and secure connections
+    are covered in the <a class="link" href="management-chapt.html" title="Chapter&nbsp;11.&nbsp;System Management">System Management</a> chapter and the <a class="link" href="listeners-chapt.html" title="Chapter&nbsp;13.&nbsp;HyperSQL Network Listeners (Servers)">HyperSQL Network Listeners
+    (Servers)</a>
+    chapter.</p>
+<p>Apart from schemas and their object, each HyperSQL catalog has USER
+    and ROLE objects. These objects are collectively called
+    <span class="emphasis"><em>authorizations</em></span>. Each AUTHORIZATION has some access
+    rights on some of the schemas or the objects they contain. The persistent
+    elements of an SQL environment are database objects</p>
+<p>Each database object has a name. A name is an identifier and is
+    unique within its name-space. Authorizations names follow the rules
+    described below and the case-normal form is stored in the database. When
+    connecting to a database, the user name and password must match the case
+    of the case-normal form.</p>
+<a name="N11B79" class="indexterm"></a>
+<p>
+<span class="bold"><strong>identifier</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>definition of identifier</em></span>
+</p>
+<p>
+<code class="literal">&lt;identifier&gt; ::= &lt;regular identifier&gt; |
+    &lt;delimited identifier&gt; | &lt;SQL language identifier&gt;
+    </code>
+</p>
+<p>
+<code class="literal">&lt;delimited identifier&gt; ::= &lt;double quote&gt;
+    &lt;character sequence&gt; &lt;double quote&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;regular identifier&gt; ::= &lt;special character
+    sequence&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;SQL language identifier&gt; ::= &lt;special
+    character sequence&gt;</code>
+</p>
+<p>A <code class="literal">&lt;delimited identifier&gt;</code> is a sequence
+    of characters enclosed with double-quote symbols. All characters are
+    allowed in the character sequence.</p>
+<p>A <code class="literal">&lt;regular identifier&gt;</code> is a special
+    sequence of characters. It consists of letters, digits and the underscore
+    characters. It must begin with a letter.</p>
+<p>A <code class="literal">&lt;SQL language identifier&gt;</code> is similar
+    to <code class="literal">&lt;regular identifier&gt;</code> but the letters can range
+    only from A-Z in the ASCII character set. This type of identifier is used
+    for names of CHARACTER SET objects.</p>
+<p>If the character sequence of a delimited identifier is the same
+    as an undelimited identifier, it represents the same identifier. For
+    example "JOHN" is the same identifier as JOHN. In a <code class="literal">&lt;regular
+    identifier&gt;</code> the case-normal form is considered for
+    comparison. This form consists of the upper-case of equivalent of all the
+    letters.</p>
+<p>The character sequence length of all identifiers must be between
+    1 and 128 characters.</p>
+<p>A reserved word is one that is used by the SQL Standard for
+    special purposes. It is similar to a <code class="literal">&lt;regular
+    identifier&gt;</code> but it cannot be used as an identifier for user
+    objects. If a reserved word is enclosed in double quote characters, it
+    becomes a quoted identifier and can be used for database
+    objects.</p>
+</div>
+<div class="section" title="Authorizations and Access Control">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="acc_auth_and_access_ctrl"></a>Authorizations and Access Control</h2>
+</div>
+</div>
+</div>
+<p>In general, ROLE and USER objects simply control access to schema
+    objects. This is the scope of the SQL Standard. However, there are special
+    roles that allow the creation of USER and ROLE objects and also allow some
+    special operations on the database as a whole. These roles are not defined
+    by the Standard, which has left it to implementers to define such roles as
+    they are needed for the particular SQL implementation.</p>
+<p>A ROLE has a name a collection of zero or more other roles, plus
+    some privileges (access rights). A USER has a name and a password. It
+    similarly has a collection of zero or more roles plus some
+    privileges.</p>
+<p>USER objects existed in the SQL-92, but ROLE objects were introduced
+    in SQL:1999. Originally it was intended that USER objects would normally
+    be the same as the operating system USER objects and their authentication
+    would be handled outside the SQL environment. The co-existence of ROLE and
+    USER objects results in complexity. With the addition of ROLE objects,
+    there is no rationale, other than legacy support, for granting privileges
+    to USER objects directly. It is better to create roles and grant
+    privileges to them, then grant the roles to USER objects.</p>
+<p>The Standard effectively defines a special ROLE, named PUBLIC. All
+    authorization have the PUBLIC role, which cannot be removed from them.
+    Therefore any access right assigned to the PUBLIC role applies to all
+    authorizations in the database. For many simple databases, it is adequate
+    to create a single, non-admin user, then assign access rights to the
+    pre-existing PUBLIC role. Access to INFORMATION_SCHEMA views is granted to
+    PUBLIC, therefore these views are accessible to all. However, the contents
+    of each view depends on the ROLE or USER (AUTHORIZATION) that is in force
+    while accessing the view.</p>
+<p>Each schema has a single AUTHORIZATION. This is commonly known as
+    the <span class="emphasis"><em>owner</em></span> of the schema. All the objects in the
+    schema inherit the schema owner. The schema owner can add objects to the
+    schema, drop them or alter them.</p>
+<p>By default, the objects in a schema can only be accessed by the
+    schema owner. The schema owner can grant access rights on the objects to
+    other users or roles.</p>
+<a name="N11BC2" class="indexterm"></a>
+<p>
+<span class="bold"><strong>authorization
+    identifier</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>authorization identifier</em></span>
+</p>
+<p>
+<code class="literal">&lt;authorization identifier&gt; ::= &lt;role name&gt; |
+    &lt;user name&gt;</code>
+</p>
+<p>Authorization identifiers share the same name-space within the
+    database. The same name cannot be used for a USER and a ROLE.</p>
+<div class="section" title="Built-In Roles and Users">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="acc_built_in_roles_users"></a>Built-In Roles and Users</h3>
+</div>
+</div>
+</div>
+<p>There are some pre-defined roles in each database; some defined by
+      the SQL Standard, some by HyperSQL. These roles can be assigned to users
+      (directly or via other, user-defined roles). In addition, there is the
+      default initial user, SA, created with each new database.</p>
+<a name="N11BD9" class="indexterm"></a>
+<p>
+<span class="bold"><strong>PUBLIC</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>the PUBLIC role</em></span>
+</p>
+<p>The role that is assigned to all authorizations (roles and
+      users) in the database. This role has access rights to all objects in
+      the INFORMATION_SCHEMA. Any roles or rights granted to this role, are in
+      effect granted to all users of the database.</p>
+<a name="N11BE7" class="indexterm"></a>
+<p>
+<span class="bold"><strong>_SYSTEM</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>the _SYSTEM role</em></span>
+</p>
+<p>This role is the authorization for the pre-defined (system)
+      objects in the database, including the INFORMATION_SCHEMA. This role
+      cannot be assigned to any authorization.</p>
+<a name="N11BF5" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DBA</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>the DBA role (HyperSQL-specific)</em></span>
+</p>
+<p>This is a special role in HyperSQL. A user that has this role
+      can perform all possible administrative tasks on the database. The DBA
+      role can also act as a proxy for all the roles and users in the
+      database. This means it can do everything the authorization for a schema
+      can do, including dropping the schema or its objects, or granting rights
+      on the schema objects to a grantee.</p>
+<a name="N11C03" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CREATE_SCHEMA</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>the CREATE_SCHEMA role
+      (HyperSQL-specific)</em></span>
+</p>
+<p>An authorization that has this role, can create schemas. The
+      DBA authorization has this role and can grant it to other
+      authorizations.</p>
+<a name="N11C11" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CHANGE_AUTHORIZATION</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>the CHANGE_AUTHORIZATION role
+      (HyperSQL-specific)</em></span>
+</p>
+<p>A user that has this role, can change the authorization for the
+      current session to another user. The other user cannot have the DBA role
+      (otherwise, the original user would gain DBA privileges). The DBA
+      authorization has this role and can grant it to other
+      authorizations.</p>
+<a name="N11C1F" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SA</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>the SA user (HyperSQL-specific)</em></span>
+</p>
+<p>This user is automatically created with a new database and has
+      the DBA role. Initially, the password for this user is an empty string.
+      After connecting to the new database as this user, it is possible to
+      change the password, create other users and created new schema objects.
+      The SA user can be dropped by another user that has the DBA
+      role.</p>
+</div>
+<div class="section" title="Access Rights">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="acc_access_rights"></a>Access Rights</h3>
+</div>
+</div>
+</div>
+<p>By default, the objects in a schema can only be accessed by the
+      schema owner. But the schema owner can grant privileges (access rights)
+      on the objects to other users or roles.</p>
+<p>Things can get far more complex, because the grant of privileges
+      can be made WITH GRANT OPTION. In this case, the role or user that has
+      been granted the privilege can grant the privilege to other roles and
+      users.</p>
+<p>Privileges can also be revoked from users or roles.</p>
+<p>The statements for granting and revoking privileges normally
+      specify which privileges are granted or revoked. However, there is a
+      shortcut, ALL PRIVILEGES, which means all the privileges that the
+      <code class="literal">&lt;grantor&gt;</code> has on the schema object. The
+      <code class="literal">&lt;grantor&gt;</code> is normally the CURRENT_USER of the
+      session that issues the statement.</p>
+<p>The user or role that is granted privileges is referred to as
+      <code class="literal">&lt;grantee&gt;</code> for the granted privileges.</p>
+<p>
+<span class="bold"><strong>Table</strong></span>
+</p>
+<p>For tables, including views, privileges can be granted with
+      different degrees of granularity. It is possible to grant a privilege on
+      all columns of a table, or on specific columns of the table.</p>
+<p>The DELETE privilege applies to the table, rather than its
+      columns. It applies to all DELETE statements.</p>
+<p>The SELECT, INSERT and UPDATE privileges may apply to all
+      columns or to individual columns. These privileges determine whether the
+      <code class="literal">&lt;grantee&gt;</code> can execute SQL data statements on
+      the table.</p>
+<p>The SELECT privilege designates the columns that can be
+      referenced in SELECT statements, as well as the columns that are read in
+      a DELETE or UPDATE statement, including the search condition.</p>
+<p>The INSERT privilege designates the columns into which explicit
+      values can be inserted. To be able to insert a row into the table, the
+      user must therefore have the INSERT privilege on the table, or at least
+      all the columns that do not have a default value.</p>
+<p>The UPDATE privilege simply designates the table or the
+      specific columns that can be updated.</p>
+<p>The REFERENCES privilege allows the
+      <code class="literal">&lt;grantee&gt;</code> to define a FOREIGN KEY constraint on
+      a different table, which references the table or the specific columns
+      designated for the REFERENCES privilege.</p>
+<p>The TRIGGER privilege allows adding a trigger to the
+      table.</p>
+<p>
+<span class="bold"><strong>Sequence, Type, Domain, Character Set,
+      Collation, Transliteration,</strong></span>
+</p>
+<p>For these objects, only USAGE can be granted. The USAGE
+      privilege is needed when object is referenced directly in an SQL
+      statement.</p>
+<p>
+<span class="bold"><strong>Routine</strong></span>
+</p>
+<p>For routines, including procedures or functions, only EXECUTE
+      privilege can be granted. This privilege is needed when the routine is
+      used directly in an SQL statement.</p>
+<p>
+<span class="bold"><strong>Other Objects</strong></span>
+</p>
+<p>Other objects such as constraints and assertions are not used
+      directly and there is no grantable privilege that refers to
+      them.</p>
+</div>
+</div>
+<div class="section" title="Statements for Authorization and Access Control">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="acc_statements"></a>Statements for
+    Authorization and Access Control</h2>
+</div>
+</div>
+</div>
+<p>The statements listed below allow creation and destruction of USER
+    and ROLE objects. The GRANT and REVOKE statements allow roles to be
+    assigned to other roles or to users. The same statements are also used in
+    a different form to assign privileges on schema objects to users and
+    roles.</p>
+<a name="N11C77" class="indexterm"></a>
+<p>
+<a name="create_user-sql"></a><span class="bold"><strong>CREATE
+    USER</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>user definition (HyperSQL)</em></span>
+</p>
+<p>
+<code class="literal">&lt;user definition&gt; ::= CREATE USER &lt;user
+    name&gt; PASSWORD &lt;password&gt; [ ADMIN ]</code>
+</p>
+<p>Define a new user and its password. <code class="literal">&lt;user
+    name&gt;</code> is an SQL identifier. If it is double-quoted it is
+    case-sensitive, otherwise it is turned to uppercase.
+    <code class="literal">&lt;password&gt;</code> is a string enclosed with single quote
+    characters and is case-sensitive. If <code class="literal">ADMIN</code> is
+    specified, the DBA role is granted to the new user. Only a user with the
+    DBA role can execute this statement.</p>
+<a name="N11C92" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP USER</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop user statement (HyperSQL)</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop user statement&gt; ::= DROP USER &lt;user
+    name&gt;</code>
+</p>
+<p>Drop (destroy) an existing user. If the specified user is the
+    authorization for a schema, the schema is destroyed.</p>
+<p>Only a user with the DBA role can execute this
+    statement.</p>
+<a name="N11CA5" class="indexterm"></a>
+<p>
+<span class="bold"><strong>ALTER USER ... SET
+    PASSWORD</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set the password for a user
+    (HyperSQL)</em></span>
+</p>
+<p>
+<code class="literal">&lt;alter user set password statement&gt; ::= ALTER USER
+    &lt;user name&gt; SET PASSWORD &lt;password&gt;</code>
+</p>
+<p>Change the password of an existing user. <code class="literal">&lt;user
+    name&gt;</code> is an SQL identifier. If it is double-quoted it is
+    case-sensitive, otherwise it is turned to uppercase.
+    <code class="literal">&lt;password&gt;</code> is a string enclosed with single quote
+    characters and is case-sensitive.</p>
+<p>Only a user with the DBA role can execute this command.</p>
+<a name="N11CBE" class="indexterm"></a>
+<p>
+<span class="bold"><strong>ALTER USER ... SET INITIAL
+    SCHEMA</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set the initial schema for a user
+    (HyperSQL)</em></span>
+</p>
+<p>
+<code class="literal">&lt;alter user set initial schema statement&gt; ::=
+    ALTER USER &lt;user name&gt; SET INITIAL SCHEMA &lt;schema name&gt; |
+    DEFAULT</code>
+</p>
+<p>Change the initial schema for a user. The initial schema is the
+    schema used by default for SQL statements issued during a session. If
+    <code class="literal">DEFAULT</code> is used, the default initial schema for all
+    users is used as the initial schema for the user. The SET SCHEMA command
+    allows the user to change the schema for the duration of the
+    session.</p>
+<p>Only a user with the DBA role can execute this
+    statement.</p>
+<a name="N11CD4" class="indexterm"></a>
+<p>
+<span class="bold"><strong>ALTER USER ... SET
+    LOCAL</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set the user authentication as local
+    (HyperSQL)</em></span>
+</p>
+<p>
+<code class="literal">&lt;alter user set local&gt; ::= ALTER USER &lt;user
+    name&gt; SET LOCAL { TRUE | FALSE }</code>
+</p>
+<p>Sets the authentication method for the user as local. This
+    statement has an effect only when external authentication with role names
+    is enabled. In this method of authentication, users created in the
+    database are ignored and an external authentication mechanism, such as
+    LDAP is used. This statement is used if you want to use local, password
+    authentication for a specific user. </p>
+<p>Only a user with the DBA role can execute this
+    statement.</p>
+<a name="N11CE7" class="indexterm"></a>
+<p>
+<a name="set_password-sql"></a><span class="bold"><strong>SET
+    PASSWORD</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set password statement (HyperSQL)</em></span>
+</p>
+<p>
+<code class="literal">&lt;set password statement&gt; ::= SET PASSWORD
+    &lt;password&gt;</code>
+</p>
+<p>Set the password for the current user.
+    <code class="literal">&lt;password&gt;</code> is a string enclosed with single quote
+    characters and is case-sensitive.</p>
+<a name="N11CFC" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET INITIAL SCHEMA</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set the initial schema for the current user
+    (HyperSQL)</em></span>
+</p>
+<p>
+<code class="literal">&lt;set initial schema statement&gt; ::= SET INITIAL
+    SCHEMA &lt;schema name&gt; | DEFAULT</code>
+</p>
+<p>Change the initial schema for the current user. The initial
+    schema is the schema used by default for SQL statements issued during a
+    session. If <code class="literal">DEFAULT</code> is used, the default initial schema
+    for all users is used as the initial schema for the current user. The
+    separate SET SCHEMA command allows the user to change the schema for the
+    duration of the session. See also the <a class="link" href="sessions-chapt.html" title="Chapter&nbsp;3.&nbsp;Sessions and Transactions">Sessions and Transactions</a> chapter.</p>
+<a name="N11D15" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE DEFAULT INITIAL
+    SCHEMA</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set the default initial schema for all users
+    (HyperSQL)</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database default initial schema statement&gt;
+    ::= SET DATABASE DEFAULT INITIAL SCHEMA &lt;schema
+    name&gt;</code>
+</p>
+<p>Sets the initial schema for new users. This schema can later be
+    changed with the <code class="literal">&lt;set initial schema statement&gt;</code>
+    command.</p>
+<a name="N11D29" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CREATE ROLE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>role definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;role definition&gt; ::= CREATE ROLE &lt;role
+    name&gt; [ WITH ADMIN &lt;grantor&gt; ]</code>
+</p>
+<p>Defines a new role. Initially the role has no rights, except
+    those of the PUBLIC role. Only a user with the DBA role can execute this
+    command.</p>
+<a name="N11D3A" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP ROLE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop role statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop role statement&gt; ::= DROP ROLE &lt;role
+    name&gt;</code>
+</p>
+<p>Drop (destroy) a role. If the specified role is the authorization
+    for a schema, the schema is destroyed. Only a user with the DBA role can
+    execute this statement.</p>
+<a name="N11D4B" class="indexterm"></a>
+<p>
+<span class="bold"><strong>GRANTED BY</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>grantor determination</em></span>
+</p>
+<p>
+<code class="literal">GRANTED BY &lt;grantor&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;grantor&gt; ::= CURRENT_USER |
+    CURRENT_ROLE</code>
+</p>
+<p>The authorization that is granting or revoking a role or
+    privileges. The optional <code class="literal">GRANTED BY &lt;grantor&gt;</code>
+    clause can be used in various statements that perform GRANT or REVOKE
+    actions. If the clause is not used, the authorization is CURRENT_USER.
+    Otherwise, it is the specified authorization.</p>
+<a name="N11D62" class="indexterm"></a>
+<p>
+<span class="bold"><strong>GRANT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>grant privilege statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;grant privilege statement&gt; ::= GRANT
+    &lt;privileges&gt; TO &lt;grantee&gt; [ { &lt;comma&gt; &lt;grantee&gt;
+    }... ] [ WITH GRANT OPTION ] [ GRANTED BY &lt;grantor&gt;
+    ]</code>
+</p>
+<p>Assign privileges on schema objects to roles or users. Each
+    <code class="literal">&lt;grantee&gt;</code> is a role or a user. If <code class="literal">[ WITH
+    GRANT OPTION ]</code> is specified, then the
+    <code class="literal">&lt;grantee&gt;</code> can assign the privileges to other
+    <code class="literal">&lt;grantee&gt;</code> objects.</p>
+<p>
+<code class="literal">&lt;privileges&gt; ::= &lt;object privileges&gt; ON
+    &lt;object name&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;object name&gt; ::= [ TABLE ] &lt;table name&gt; |
+    DOMAIN &lt;domain name&gt; | COLLATION &lt;collation name&gt; | CHARACTER
+    SET &lt;character set name&gt; | TRANSLATION &lt;transliteration name&gt;
+    | TYPE &lt;user-defined type name&gt; | SEQUENCE &lt;sequence generator
+    name&gt; | &lt;specific routine designator&gt; | ROUTINE &lt;routine
+    name&gt; | FUNCTION &lt;function name&gt; | PROCEDURE &lt;procedure
+    name&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;object privileges&gt; ::= ALL PRIVILEGES |
+    &lt;action&gt; [ { &lt;comma&gt; &lt;action&gt; }... ]</code>
+</p>
+<p>
+<code class="literal">&lt;action&gt; ::= SELECT | SELECT &lt;left paren&gt;
+    &lt;privilege column list&gt; &lt;right paren&gt; | DELETE | INSERT [
+    &lt;left paren&gt; &lt;privilege column list&gt; &lt;right paren&gt; ] |
+    UPDATE [ &lt;left paren&gt; &lt;privilege column list&gt; &lt;right
+    paren&gt; ] | REFERENCES [ &lt;left paren&gt; &lt;privilege column
+    list&gt; &lt;right paren&gt; ] | USAGE | TRIGGER |
+    EXECUTE</code>
+</p>
+<p>
+<code class="literal">&lt;privilege column list&gt; ::= &lt;column name
+    list&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;grantee&gt; ::= PUBLIC | &lt;authorization
+    identifier&gt;</code>
+</p>
+<p>The <code class="literal">&lt;object privileges&gt;</code> that can be used
+    depend on the type of the <code class="literal">&lt;object name&gt;</code>. These
+    are discussed in the previous section. For a table, if
+    <code class="literal">&lt;privilege column list&gt;</code> is not specified, then
+    the privilege is granted on the table, which includes all of its columns
+    and any column that may be added to it in the future. For routines, the
+    name of the routine can be specified in two ways, either as the generic
+    name as the specific name. HyperSQL allows referencing all overloaded
+    versions of a routine at the same time, using its name. This differs from
+    the SQL Standard which requires the use of <code class="literal">&lt;specific routine
+    designator&gt;</code> to grant privileges separately on each different
+    signature of the routine.</p>
+<p>Each <code class="literal">&lt;grantee&gt;</code> is the name of a role or
+    a user. Examples of GRANT statement are given below:</p>
+<div class="informalexample">
+<pre class="programlisting">GRANT ALL ON SEQUENCE aSequence TO roleOrUser 
+GRANT SELECT ON aTable TO roleOrUser  
+GRANT SELECT, UPDATE ON aTABLE TO roleOrUser1, roleOrUser2
+GRANT SELECT(columnA, columnB), UPDATE(columnA, columnB) ON TABLE aTable TO roleOrUser
+GRANT EXECUTE ON SPECIFIC ROUTINE aroutine_1234 TO rolOrUser
+</pre>
+</div>
+<p>As mentioned in the general discussion, it is better to define a
+    role for the collection of all the privileges required by an application.
+    This role is then granted to any user. If further changes are made to the
+    privileges of this role, they are automatically reflected in all the users
+    that have the role.</p>
+<a name="N11DA9" class="indexterm"></a>
+<p>
+<span class="bold"><strong>GRANT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>grant role statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;grant role statement&gt; ::= GRANT &lt;role name&gt;
+    [ { &lt;comma&gt; &lt;role name&gt; }... ] TO &lt;grantee&gt; [ {
+    &lt;comma&gt; &lt;grantee&gt; }... ] [ WITH ADMIN OPTION ] [ GRANTED BY
+    &lt;grantor&gt; ]</code>
+</p>
+<p>Assign roles to roles or users. One or more roles can be assigned
+    to one or more <code class="literal">&lt;grantee&gt;</code> objects. A
+    <code class="literal">&lt;grantee&gt;</code> is a user or a role. If the <code class="literal">[
+    WITH ADMIN OPTION ]</code> is specified, then each
+    <code class="literal">&lt;grantee&gt;</code> can grant the newly assigned roles to
+    other grantees. An example of user and role creation with grants is given
+    below:</p>
+<div class="informalexample">
+<pre class="programlisting">CREATE USER appuser
+CREATE ROLE approle
+GRANT approle TO appuser
+GRANT SELECT, UPDATE ON TABLE atable TO approle
+GRANT USAGE ON SEQUENCE asequence to approle
+GRANT EXECUTE ON ROUTINE aroutine TO approle
+</pre>
+</div>
+<a name="N11DC9" class="indexterm"></a>
+<p>
+<span class="bold"><strong>REVOKE privilege</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>revoke statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;revoke privilege statement&gt; ::= REVOKE [ GRANT
+    OPTION FOR ] &lt;privileges&gt; FROM &lt;grantee&gt; [ { &lt;comma&gt;
+    &lt;grantee&gt; }... ] [ GRANTED BY &lt;grantor&gt; ] RESTRICT |
+    CASCADE</code>
+</p>
+<p>Revoke privileges from a user or role.</p>
+<a name="N11DDA" class="indexterm"></a>
+<p>
+<span class="bold"><strong>REVOKE role</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>revoke role statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;revoke role statement&gt; ::= REVOKE [ ADMIN OPTION
+    FOR ] &lt;role revoked&gt; [ { &lt;comma&gt; &lt;role revoked&gt; }... ]
+    FROM &lt;grantee&gt; [ { &lt;comma&gt; &lt;grantee&gt; }... ] [ GRANTED BY
+    &lt;grantor&gt; ] RESTRICT | CASCADE</code>
+</p>
+<p>
+<code class="literal">&lt;role revoked&gt; ::= &lt;role
+    name&gt;</code>
+</p>
+<p>Revoke a role from users or roles.</p>
+</div>
+</div>
+<HR xmlns:xi="http://www.w3.org/2001/XInclude">
+<P xmlns:xi="http://www.w3.org/2001/XInclude" class="svnrev">$Revision: 4864 $</P>
+<div class="navfooter">
+<hr>
+<table summary="Navigation footer" width="100%">
+<tr>
+<td align="left" width="40%"><a accesskey="p" href="texttables-chapt.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="20%">&nbsp;</td><td align="right" width="40%">&nbsp;<a accesskey="n" href="dataaccess-chapt.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="40%">Chapter&nbsp;5.&nbsp;Text Tables&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="40%">&nbsp;Chapter&nbsp;7.&nbsp;Data Access and Change</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

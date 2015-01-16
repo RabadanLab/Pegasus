@@ -1,0 +1,113 @@
+1
+1%3B approximate
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+2
+2%3B approximate
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+3
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+4
+40
+41
+42
+43
+44
+45
+46%3B approximate
+47%3B approximate
+48%3B approximate
+5
+6
+7
+8
+9
+ANK 1
+ANK 1%3B truncated
+ANK 2
+ANK 3
+ANK 4
+ANK 5
+ARM 1
+ARM 2
+ARM 3
+ARM 4
+ARM 5
+ARM 6
+ARM 7
+Approximate
+BRCA2 1
+BRCA2 2
+BRCA2 3
+BRCA2 4
+BRCA2 5
+BRCA2 6
+BRCA2 7
+BRCA2 8
+Knot 1
+Knot 2
+Knot 3
+Knot 4
+Knot 5
+LRR 1
+LRR 10
+LRR 11
+LRR 12
+LRR 13
+LRR 14
+LRR 15
+LRR 16
+LRR 17
+LRR 18
+LRR 19
+LRR 2
+LRR 20
+LRR 21
+LRR 22
+LRR 3
+LRR 4
+LRR 5
+LRR 6
+LRR 7
+LRR 8
+LRR 9
+WD 1
+WD 10
+WD 11
+WD 12
+WD 13
+WD 14
+WD 2
+WD 3
+WD 4
+WD 5
+WD 6
+WD 7
+WD 8
+WD 9

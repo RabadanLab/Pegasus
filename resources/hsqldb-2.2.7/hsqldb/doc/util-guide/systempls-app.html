@@ -1,0 +1,369 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Appendix&nbsp;A.&nbsp;SqlTool System PL Variables</title>
+<link href="../docbook.css" type="text/css" rel="stylesheet">
+<meta content="DocBook XSL-NS Stylesheets V1.76.1" name="generator">
+<meta name="keywords" content="HyperSQL, Hsqldb, Hypersonic, Database, JDBC, Java">
+<link rel="home" href="index.html" title="HyperSQL Utilities Guide">
+<link rel="up" href="index.html" title="HyperSQL Utilities Guide">
+<link rel="prev" href="transfer-tool-chapt.html" title="Chapter&nbsp;4.&nbsp;Transfer Tool">
+<link rel="next" href="filelinks-app.html" title="Appendix&nbsp;B.&nbsp;HyperSQL File Links">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table summary="Navigation header" width="100%">
+<tr>
+<td align="left" width="30%"><a accesskey="p" href="transfer-tool-chapt.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="40%" style="font-weight:bold;">Appendix&nbsp;A.&nbsp;SqlTool System PL Variables</td><td align="right" width="30%">&nbsp;<a accesskey="n" href="filelinks-app.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="30%">Chapter&nbsp;4.&nbsp;Transfer Tool&nbsp;</td><td align="center" width="40%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="30%">&nbsp;Appendix&nbsp;B.&nbsp;HyperSQL File Links</td>
+</tr>
+</table>
+</div>
+<HR>
+<div class="appendix" title="Appendix&nbsp;A.&nbsp;SqlTool System PL Variables">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title">
+<a name="systempls-app"></a>Appendix&nbsp;A.&nbsp;SqlTool System PL Variables</h2>
+</div>
+<div>
+<h3 class="subtitle">
+<i>As of SqlFile revision 4905</i>
+</h3>
+</div>
+</div>
+</div>
+<p>
+    SqlTool System PL variables are the mechanism used to configure SqlTool
+    behavior.
+    You can list all <span class="emphasis"><em>set</em></span> PL variables by running the
+    SqlTool command <code class="literal">* listvalues</code>.
+    If a SqlTool System variable is not shown, then it is
+    <span class="emphasis"><em>unset</em></span> (which is equivalent to
+    <span class="emphasis"><em>non-null</em></span>).
+    But if a system variable is not set, that doesn't mean that the setting
+    behavior will be <span class="emphasis"><em>unset</em></span>, but rather that the
+    <span class="emphasis"><em>default behavior</em></span> will apply.
+    For example, if you <code class="literal">* listvalues</code> and the variable
+    <code class="varname">*DSV_COL_DELIM</code> is not listed, that doesn't mean that
+    there will be no DSV column delimiter, but that the default DSV column
+    delimiter will be used.
+    The in-program help can be used to determine what the default behavior is.
+    (In the case of <code class="varname">*DSV_COL_DELIM</code>, you can see the default
+    behavior by running <code class="varname">\x?</code>.
+  </p>
+<p>
+    Besides System PL variables, there are also user PL variables which have
+    names beginning with a letter, and the special variables
+    <code class="literal">?</code> and <code class="literal">NULL</code>.
+    <code class="literal">NULL</code> is completely equivalent to
+    <code class="literal">*NULL</code>, which is explained below.
+    See the <a class="link" href="sqltool-chapt.html" title="Chapter&nbsp;1.&nbsp;SqlTool">SqlTool</a>
+    chapter about <code class="literal">?</code>.
+  </p>
+<div class="variablelist">
+<table border="0">
+<col valign="top" align="left">
+<tbody>
+<tr>
+<td>
+<p>
+<span class="term">*ALL_QUOTED</span>
+</p>
+</td><td>
+          Boolean.  Whether to quote all values (excluding null values)
+          in a \xq export.  No effect on any command other than \xq.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*BOTTOM_HTMLFRAG_FILE</span>
+</p>
+</td><td>
+          File path to HTML fragment file to close the HTML report or
+          DSV import reject file.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*DSV_COL_DELIM</span>
+</p>
+</td><td>
+          Literal string (which may contain character escapes).
+          DSV or CSV output column delimiter literal.
+          Run \x? to see default value and details.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*DSV_COL_SPLITTER</span>
+</p>
+</td><td>
+          Regular expression.
+          DSV or CSV input column delimiter regular expression.
+          Run \x? to see default value and details.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*DSV_CONST_COLS</span>
+</p>
+</td><td>
+          A list of <code class="literal">column_name = column_value|...</code>
+          settings.
+          Specifies constant import values.
+          Run \x? to see default value and details.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*DSV_RECORDS_PER_COMMIT</span>
+</p>
+</td><td>
+          Integer.  How often to commit upon DSV/CSV imports.
+          Run \x? to see default value and details.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*DSV_REJECT_FILE</span>
+</p>
+</td><td>
+          File path.
+          Path to DSV file of rejects rejected upon CSV/DSV imports.
+          Run \x? to see default value and details.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*DSV_REJECT_REPORT</span>
+</p>
+</td><td>
+          File path.
+          Path to HTML report about CSV/DSV import failures.
+          Run \x? to see default value and details.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*DSV_ROW_DELIM</span>
+</p>
+</td><td>
+          Literal string (which may contain character escapes).
+          DSV or CSV output row delimiter literal.
+          Run \x? to see default value and details.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*DSV_ROW_SPLITTER</span>
+</p>
+</td><td>
+          Regular expression.
+          DSV or CSV input row delimiter regular expression.
+          Run \x? to see default value and details.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*DSV_SKIP_COLS</span>
+</p>
+</td><td>
+          A list of column names to skip, like
+          <code class="literal">column1|column2</code>
+          Specifies columns to omit from CSV or DSV importing or exporting.
+          Run \x? to see default value and details.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*DSV_SKIP_PREFIX</span>
+</p>
+</td><td>
+          Literal string (which may contain character escapes).
+          Specifies comment delimiter character or string in DSV or CSV files.
+          Run \x? to see default value and details.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*DSV_TRIM_ALL</span>
+</p>
+</td><td>
+          Boolean.
+          Trim leading and trailing white space from every cell in
+          CSV or DSV file upon import.
+          Run \x? to see default value and details.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*DSV_TARGET_FILE</span>
+</p>
+</td><td>
+          File path.
+          File where to export CSV or DSV to.
+          Run \x? to see default value and details.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*DSV_TARGET_TABLE</span>
+</p>
+</td><td>
+          Table name.
+          Table where to import CSV or DSV to.
+          Run \x? to see default value and details.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*IGNORE_BANG_STATUS</span>
+</p>
+</td><td>
+          Boolean.
+          If true, then if an external command executed by <code class="literal">\!</code>
+          returns error (non-zero) status, SqlTool will not report or try to
+          act on the error.
+          (This will have no effect on what the external program may do).
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*NULL</span>
+</p>
+</td><td>
+          Null (i.e. always unset).
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*NULL_REP_HTML</span>
+</p>
+</td><td>
+          Literal string (which may contain character escapes).
+          Same as <code class="varname">*NULL_REP_TOKEN</code>, but only applies to
+          HTML reports.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*NULL_REP_TOKEN</span>
+</p>
+</td><td>
+        Literal string (which may contain character escapes).
+        String value to represent SQL nulls from VARCHAR columns and
+        null (unset) PL variable values.
+        Applies to what displays on screen and what gets written into
+        export files.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*REVISION</span>
+</p>
+</td><td>
+        Read only.  Literal string.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*ROW</span>
+</p>
+</td><td>
+        Read only.  Literal string.  Set only inside of
+        <code class="literal">* forrow</code> loop bodies.
+        If there is only a single column fetched, then this is equal to that
+        cell of the current row, unless that value is null, in which case
+        <code class="varname">*ROW</code> will be the <code class="varname">*NULL_REP_TOKEN</code>
+        value.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*START_TIME</span>
+</p>
+</td><td>
+        Read only.  Literal string.
+        Automatically set to a localized string presenting the date and time.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*TIMESTAMP</span>
+</p>
+</td><td>
+        Read only.  Literal string.
+        Only usable if <code class="varname">*TIMESTAMP_FORMAT</code> has been set.
+        Displays the date and/or time at which this variable is dereferenced.
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*TIMESTAMP_FORMAT</span>
+</p>
+</td><td>
+        Formatting string, as described below.
+        Setting this variable enables the <code class="varname">*TIMESTAMP</code>
+        read-only variable to be used.
+        Set to a date and/or time format like
+        <code class="literal">yyyy-MM-dd'T'HH:mm:ss.SSSZ</code>, as described at
+        <a class="link" href="http://download.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html" target="_top">http://download.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html</a>
+    </td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">*TOP_HTMLFRAG_FILE</span>
+</p>
+</td><td>
+          File path.
+          File path to HTML fragment file to open the HTML report or
+          DSV import reject file.
+   </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<HR xmlns:xi="http://www.w3.org/2001/XInclude">
+<P xmlns:xi="http://www.w3.org/2001/XInclude" class="svnrev">$Revision: 4904 $</P>
+<div class="navfooter">
+<hr>
+<table summary="Navigation footer" width="100%">
+<tr>
+<td align="left" width="40%"><a accesskey="p" href="transfer-tool-chapt.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="20%">&nbsp;</td><td align="right" width="40%">&nbsp;<a accesskey="n" href="filelinks-app.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="40%">Chapter&nbsp;4.&nbsp;Transfer Tool&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="40%">&nbsp;Appendix&nbsp;B.&nbsp;HyperSQL File Links</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

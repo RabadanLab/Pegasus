@@ -1,0 +1,128 @@
+AGC-kinase C-terminal
+ARID
+Arf-GAP
+BAH 1
+BAH 2
+BAR
+BEN
+BRCT 1
+BRCT 2
+BTB
+BUB1 N-terminal
+Bromo
+Bromo 1
+Bromo 2
+Bromo 3
+Bromo 4
+Bromo 5
+Bromo 6
+C2
+C2 tensin-type
+CAP-Gly 1
+CAP-Gly 2
+CAP-Gly 3
+CARD
+CRAL-TRIO
+CTCK
+CUB 1
+CUB 2
+DAPIN
+DH
+DIX
+Deacetylase sirtuin-type
+Eph LBD
+Ephrin RBD
+FAT
+FATC
+FCH
+FERM
+FF 1
+FF 2
+FF 3
+FF 4
+FHA
+FYR C-terminal
+FYR N-terminal
+Fibronectin type-III 1
+Fibronectin type-III 2
+Fibronectin type-III 3
+Fibronectin type-III 4
+Fibronectin type-III 5
+Fibronectin type-III 6
+G-patch
+HIN-200
+HIT
+HP
+HTH myb-type
+IMD
+Ig-like C2-type 1
+Ig-like C2-type 2
+Ig-like C2-type 3
+Ig-like C2-type 4
+Ig-like V-type
+Kazal-like 1
+Kazal-like 2
+Kazal-like 2%3B degenerate
+Kazal-like 3
+LIM zinc-binding 1
+LIM zinc-binding 2
+LIM zinc-binding 3
+LRRNT
+MI 1
+MI 2
+Myb-like 1
+Myb-like 2
+N-acetyltransferase
+Nudix hydrolase
+OPR
+PH
+PI3K/PI4K
+PID
+POLO box 1
+POLO box 2
+PP2C-like
+PUA
+Peptidase S1
+Phosphatase tensin-type
+Protein kinase
+Protein kinase 1
+Protein kinase 2
+REKLES
+RGS
+RRM
+Rap-GAP
+Ras-GAP
+Ras-associating
+Rho-GAP
+Roc
+SAM
+SAM 1
+SAM 2
+SARAH
+SEA
+SH2
+SH3
+SRCR 1
+SRCR 10
+SRCR 11
+SRCR 12
+SRCR 13
+SRCR 14
+SRCR 2
+SRCR 3
+SRCR 4
+SRCR 5
+SRCR 6
+SRCR 7
+SRCR 8
+SRCR 9
+SSD
+START
+UBA
+VIT
+VWFA
+WH2
+WW 1
+WW 2
+ZP
+bZIP

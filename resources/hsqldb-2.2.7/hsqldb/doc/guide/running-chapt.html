@@ -1,0 +1,766 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter&nbsp;1.&nbsp;Running and Using HyperSQL</title>
+<link href="../docbook.css" type="text/css" rel="stylesheet">
+<meta content="DocBook XSL-NS Stylesheets V1.76.1" name="generator">
+<meta name="keywords" content="Hsqldb, HyperSQL, SQL">
+<meta name="keywords" content="Hsqldb, HyperSQL, Database, JDBC, Java">
+<link rel="home" href="index.html" title="HyperSQL User Guide">
+<link rel="up" href="index.html" title="HyperSQL User Guide">
+<link rel="prev" href="book-pref.html" title="Preface">
+<link rel="next" href="sqlgeneral-chapt.html" title="Chapter&nbsp;2.&nbsp;SQL Language">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table summary="Navigation header" width="100%">
+<tr>
+<td align="left" width="30%"><a accesskey="p" href="book-pref.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="40%" style="font-weight:bold;">Chapter&nbsp;1.&nbsp;Running and Using HyperSQL</td><td align="right" width="30%">&nbsp;<a accesskey="n" href="sqlgeneral-chapt.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="30%">Preface&nbsp;</td><td align="center" width="40%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="30%">&nbsp;Chapter&nbsp;2.&nbsp;SQL Language</td>
+</tr>
+</table>
+</div>
+<HR>
+<div class="chapter" title="Chapter&nbsp;1.&nbsp;Running and Using HyperSQL">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title">
+<a name="running-chapt"></a>Chapter&nbsp;1.&nbsp;Running and Using HyperSQL</h2>
+</div>
+<div>
+<div class="authorgroup">
+<div class="author">
+<h3 class="author">
+<span class="firstname">Fred</span> <span class="surname">Toussi</span>
+</h3>
+<div class="affiliation">
+<span class="orgname">The HSQL Development Group<br>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<p class="releaseinfo">$Revision: 4895 $</p>
+</div>
+<div>
+<div class="legalnotice" title="Legal Notice">
+<a name="N100CC"></a>
+<p>Copyright 2002-2012 Fred Toussi. Permission is granted to
+      distribute this document without any alteration under the terms of the
+      HSQLDB license. Additional permission is granted to the HSQL Development
+      Group to distribute this document with or without alterations under the
+      terms of the HSQLDB license.</p>
+</div>
+</div>
+<div>
+<p class="pubdate">2012-01-15 10:12:45-0500</p>
+</div>
+</div>
+</div>
+<div class="toc">
+<p>
+<b>Table of Contents</b>
+</p>
+<dl>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_hsqldb_jar">The HSQLDB Jar</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_access_tools">Running Database Access Tools</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_hsqldb_db">A HyperSQL Database</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_inprocess">In-Process Access to Database Catalogs</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_server_modes">Server Modes</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_hsql_server">HyperSQL HSQL Server</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_http_server">HyperSQL HTTP Server</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_http_servlet">HyperSQL HTTP Servlet</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_connecting_db">Connecting to a Database Server</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_security">Security Considerations</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_multiple_db">Using Multiple Databases</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc-data-access">Accessing the Data</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_closing_db">Closing the Database</a></span>
+</dt>
+<dt>
+<span class="section"><a href="running-chapt.html#rgc_new_db">Creating a New Database</a></span>
+</dt>
+</dl>
+</div>
+<div class="section" title="The HSQLDB Jar">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="rgc_hsqldb_jar"></a>The HSQLDB Jar</h2>
+</div>
+</div>
+</div>
+<p>The HSQLDB jar package is located in the /lib directory of the ZIP
+    package and contains several components and programs.</p>
+<div class="itemizedlist" title="Components of the Hsqldb jar package">
+<p class="title">
+<b>Components of the Hsqldb jar package</b>
+</p>
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>HyperSQL RDBMS Engine (HSQLDB)</p>
+</li>
+<li class="listitem">
+<p>HyperSQL JDBC Driver</p>
+</li>
+<li class="listitem">
+<p>Database Manager (GUI database access tool, with Swing and AWT
+        versions)</p>
+</li>
+<li class="listitem">
+<p>Sql Tool (command line database access tool)</p>
+</li>
+</ul>
+</div>
+<p>The HyperSQL RDBMS and JDBC Driver provide the core functionality.
+    An additional jar contains Sql Tool (command line database access tool).
+    SqlTool and the DatabaseManagers are general-purpose database tools that
+    can be used with any database engine that has a JDBC driver.</p>
+</div>
+<div class="section" title="Running Database Access Tools">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="rgc_access_tools"></a>Running Database Access Tools</h2>
+</div>
+</div>
+</div>
+<p>The tools are used for interactive user access to databases,
+    including creation of a database, inserting or modifying data, or querying
+    the database. All tools are run in the normal way for Java programs. In
+    the following example the Swing version of the Database Manager is
+    executed. The <code class="filename">hsqldb.jar</code> is located in the directory
+    <code class="filename">../lib</code> relative to the current directory.</p>
+<pre class="screen">java -cp ../lib/hsqldb.jar org.hsqldb.util.DatabaseManagerSwing</pre>
+<p>If <code class="filename">hsqldb.jar</code> is in the current directory, the
+    command would change to:</p>
+<pre class="screen">java -cp hsqldb.jar org.hsqldb.util.DatabaseManagerSwing</pre>
+<div class="itemizedlist" title="Main classes for the Hsqldb tools">
+<p class="title">
+<b>Main classes for the Hsqldb tools</b>
+</p>
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+<code class="classname">org.hsqldb.util.DatabaseManager</code>
+</p>
+</li>
+<li class="listitem">
+<p>
+<code class="classname">org.hsqldb.util.DatabaseManagerSwing</code>
+</p>
+</li>
+</ul>
+</div>
+<p>When a tool is up and running, you can connect to a database (may be
+    a new database) and use SQL commands to access and modify the data.</p>
+<p>Tools can use command line arguments. You can add the command line
+    argument --help to get a list of available arguments for these
+    tools.</p>
+<p>Double clicking the HSQLDB jar will start the DatabaseManagerSwing
+    application.</p>
+</div>
+<div class="section" title="A HyperSQL Database">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="rgc_hsqldb_db"></a>A HyperSQL Database</h2>
+</div>
+</div>
+</div>
+<p>Each HyperSQL database is called a catalog. There are three types of
+    catalog depending on how the data is stored.</p>
+<div class="itemizedlist" title="Types of catalog data">
+<p class="title">
+<b>Types of catalog data</b>
+</p>
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+<em class="glossterm">mem:</em> stored entirely in RAM - without any
+        persistence beyond the JVM process's life</p>
+</li>
+<li class="listitem">
+<p>
+<em class="glossterm">file:</em> stored in filesystem files</p>
+</li>
+<li class="listitem">
+<p>
+<em class="glossterm">res:</em> stored in a Java resource, such as a
+        Jar and always read-only</p>
+</li>
+</ul>
+</div>
+<p>All-in-memory, <em class="glossterm">mem:</em> catalogs can be used for
+    test data or as sophisticated caches for an application. These databases
+    do not have any files.</p>
+<p>A <em class="glossterm">file</em>: catalog consists of between 2 to 6
+    files, all named the same but with different extensions, located in the
+    same directory. For example, the database named "test" consists of the
+    following files:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>
+<code class="filename">test.properties</code>
+</p>
+</li>
+<li class="listitem">
+<p>
+<code class="filename">test.script</code>
+</p>
+</li>
+<li class="listitem">
+<p>
+<code class="filename">test.log</code>
+</p>
+</li>
+<li class="listitem">
+<p>
+<code class="filename">test.data</code>
+</p>
+</li>
+<li class="listitem">
+<p>
+<code class="filename">test.backup</code>
+</p>
+</li>
+<li class="listitem">
+<p>
+<code class="filename">test.lobs</code>
+</p>
+</li>
+</ul>
+</div>
+<p>The properties file contains a few settings about the database. The
+    script file contains the definition of tables and other database objects,
+    plus the data for non-cached tables. The log file contains recent changes
+    to the database. The data file contains the data for cached tables and the
+    backup file is a compressed backup of the last known consistent state of
+    the data file. All these files are essential and should never be deleted.
+    For some catalogs, the <code class="filename">test.data</code> and
+    <code class="filename">test.backup</code> files will not be present. In addition to
+    those files, a HyperSQL database may link to any formatted text files,
+    such as CSV lists, anywhere on the disk.</p>
+<p>While the "test" catalog is open, a <code class="filename">test.log</code>
+    file is used to write the changes made to data. This file is removed at a
+    normal SHUTDOWN. Otherwise (with abnormal shutdown) this file is used at
+    the next startup to redo the changes. A <code class="filename">test.lck </code>file
+    is also used to record the fact that the database is open. This is deleted
+    at a normal SHUTDOWN.</p>
+<div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<table border="0" summary="Note">
+<tr>
+<td valign="top" align="center" rowspan="2" width="25"><img alt="[Note]" src="../images/db/note.png"></td><th align="left">Note</th>
+</tr>
+<tr>
+<td valign="top" align="left">
+<p>When the engine closes the database at a shutdown, it creates
+      temporary files with the extension <code class="literal">.new</code> which it then
+      renames to those listed above. These files should not be deleted by the
+      user. At the time of the next startup, all such files will be deleted by
+      the database engine. In some circumstances, a
+      <code class="filename">test.data.xxx.old</code> is created and deleted afterwards
+      by the database engine. The user can delete these
+      <code class="filename">test.data.xxx.old</code> files.</p>
+</td>
+</tr>
+</table>
+</div>
+<p>A <em class="glossterm">res:</em> catalog consists of the files for a
+    small, read-only database that can be stored inside a Java resource such
+    as a ZIP or JAR archive and distributed as part of a Java application
+    program.</p>
+</div>
+<div class="section" title="In-Process Access to Database Catalogs">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="rgc_inprocess"></a>In-Process Access to Database Catalogs</h2>
+</div>
+</div>
+</div>
+<p>In general, JDBC is used for all access to databases. This is done
+    by making a connection to the database, then using various methods of the
+    <code class="classname">java.sql.Connection</code> object that is returned to
+    access the data. Access to an <em class="glossterm">in-process</em> database
+    is started from JDBC, with the database path specified in the connection
+    URL. For example, if the <em class="glossterm">file: </em>database name is
+    "testdb" and its files are located in the same directory as where the
+    command to run your application was issued, the following code is used for
+    the connection:</p>
+<pre class="programlisting">  Connection c = DriverManager.getConnection("jdbc:hsqldb:file:testdb", "SA", "");</pre>
+<p>The database file path format can be specified using forward slashes
+    in Windows hosts as well as Linux hosts. So relative paths or paths that
+    refer to the same directory on the same drive can be identical. For
+    example if your database path in Linux is
+    <code class="filename">/opt/db/testdb</code> and you create an identical directory
+    structure on the <code class="literal">C:</code> drive of a Windows host, you can
+    use the same URL in both Windows and Linux:</p>
+<pre class="programlisting">  Connection c = DriverManager.getConnection("jdbc:hsqldb:file:/opt/db/testdb", "SA", "");</pre>
+<p>When using relative paths, these paths will be taken relative to the
+    directory in which the shell command to start the Java Virtual Machine was
+    executed. Refer to the Javadoc for <code class="classname"><a class="classname" href="filelinks-app.html#JDBCConnection.html-link">JDBCConnection</a></code> for more
+    details.</p>
+<p>Paths and database names for file databases are treated as
+    case-sensitive when the database is created or the first connection is
+    made to the database. But if a second connection is made to an open
+    database, using a path and name that differs only in case, then the
+    connection is made to the existing open database. This measure is
+    necessary because in Windows the two paths are equivalent.</p>
+<p>A <em class="glossterm">mem:</em> database is specified by the
+    <em class="glossterm">mem:</em> protocol. For <em class="glossterm">mem:</em>
+    databases, the path is simply a name. Several <em class="glossterm">mem:</em>
+    databases can exist at the same time and distinguished by their names. In
+    the example below, the database is called "mymemdb":</p>
+<pre class="programlisting">  Connection c = DriverManager.getConnection("jdbc:hsqldb:mem:mymemdb", "SA", "");</pre>
+<p>A <em class="glossterm">res:</em> database, is specified by the
+    <em class="glossterm">res:</em> protocol. As it is a Java resource, the
+    database path is a Java URL (similar to the path to a class). In the
+    example below, "resdb" is the root name of the database files, which
+    exists in the directory "org/my/path" within the classpath (probably in a
+    Jar). A Java resource is stored in a compressed format and is decompressed
+    in memory when it is used. For this reason, a <em class="glossterm">res:</em>
+    database should not contain large amounts of data and is always
+    read-only.</p>
+<pre class="programlisting">  Connection c = DriverManager.getConnection("jdbc:hsqldb:res:org.my.path.resdb", "SA", "");</pre>
+<p>The first time <em class="glossterm">in-process</em> connection is made
+    to a database, some general data structures are initialised and a few
+    helper threads are started. After this, creation of connections and calls
+    to JDBC methods of the connections execute as if they are part of the Java
+    application that is making the calls. When the SQL command "SHUTDOWN" is
+    executed, the global structures and helper threads for the database are
+    destroyed.</p>
+<p>Note that only one Java process at a time can make
+    <em class="glossterm">in-process</em> connections to a given
+    <em class="glossterm">file:</em> database. However, if the
+    <em class="glossterm">file:</em> database has been made read-only, or if
+    connections are made to a <em class="glossterm">res:</em> database, then it is
+    possible to make <em class="glossterm">in-process</em> connections from
+    multiple Java processes.</p>
+</div>
+<div class="section" title="Server Modes">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="rgc_server_modes"></a>Server Modes</h2>
+</div>
+</div>
+</div>
+<p>For most applications, <em class="glossterm">in-process</em> access is
+    faster, as the data is not converted and sent over the network. The main
+    drawback is that it is not possible by default to connect to the database
+    from outside your application. As a result you cannot check the contents
+    of the database with external tools such as Database Manager while your
+    application is running.</p>
+<p>Server modes provide the maximum accessibility. The database engine
+    runs in a JVM and opens one or more <em class="glossterm">in-process</em>
+    catalogs. It listens for connections from programs on the same computer or
+    other computers on the network. It translates these connections into
+    <em class="glossterm">in-process</em> connections to the databases.</p>
+<p>Several different programs can connect to the server and retrieve or
+    update information. Applications programs (clients) connect to the server
+    using the HyperSQL JDBC driver. In most server modes, the server can serve
+    an unlimited number of databases that are specified at the time of running
+    the server, or optionally, as a connection request is received.</p>
+<p>A Sever mode is also the prefered mode of running the database
+    during development. It allows you to query the database from a separate
+    database access utility while your application is running.</p>
+<p>There are three server modes, based on the protocol used for
+    communications between the client and server. They are briefly discussed
+    below. More details on servers is provided in the <a class="link" href="listeners-chapt.html" title="Chapter&nbsp;13.&nbsp;HyperSQL Network Listeners (Servers)">HyperSQL Network Listeners
+    (Servers)</a> chapter.</p>
+<div class="section" title="HyperSQL HSQL Server">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="rgc_hsql_server"></a>HyperSQL HSQL Server</h3>
+</div>
+</div>
+</div>
+<p>This is the preferred way of running a database server and the
+      fastest one. A proprietary communications protocol is used for this
+      mode. A command similar to those used for running tools and described
+      above is used for running the server. The following example of the
+      command for starting the server starts the server with one (default)
+      database with files named "mydb.*" and the public name of "xdb". The
+      public name hides the file names from users.</p>
+<div class="informalexample">
+<pre class="screen">  java -cp ../lib/hsqldb.jar org.hsqldb.server.Server --database.0 file:mydb --dbname.0 xdb</pre>
+</div>
+<p>The command line argument <code class="literal">--help</code> can be used to
+      get a list of available arguments.</p>
+</div>
+<div class="section" title="HyperSQL HTTP Server">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="rgc_http_server"></a>HyperSQL HTTP Server</h3>
+</div>
+</div>
+</div>
+<p>This method of access is used when the computer hosting the
+      database server is restricted to the HTTP protocol. The only reason for
+      using this method of access is restrictions imposed by firewalls on the
+      client or server machines and it should not be used where there are no
+      such restrictions. The HyperSQL HTTP Server is a special web server that
+      allows JDBC clients to connect via HTTP. The server can also act as a
+      small general-purpose web server for static pages.</p>
+<p>To run an HTTP server, replace the main class for the server in
+      the example command line above with the following:</p>
+<div class="informalexample">
+<pre class="screen">  org.hsqldb.server.WebServer</pre>
+</div>
+<p>The command line argument <code class="literal">--help</code> can be used to
+      get a list of available arguments.</p>
+</div>
+<div class="section" title="HyperSQL HTTP Servlet">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="rgc_http_servlet"></a>HyperSQL HTTP Servlet</h3>
+</div>
+</div>
+</div>
+<p>This method of access also uses the HTTP protocol. It is used when
+      a separate servlet engine (or application server) such as Tomcat or
+      Resin provides access to the database. The Servlet Mode cannot be
+      started independently from the servlet engine. The
+      <code class="filename">Servlet</code> class, in the HSQLDB jar, should be
+      installed on the application server to provide the connection. The
+      database is specified using an application server property. Refer to the
+      source file <code class="filename"><a class="filename" href="filelinks-app.html#Servlet.java-link">
+      src/org/hsqldb/server/Servlet.java</a></code> to see the details.</p>
+<p>Both HTTP Server and Servlet modes can only be accessed using the
+      JDBC driver at the client end. They do not provide a web front end to
+      the database. The Servlet mode can serve only a single database.</p>
+<p>Please note that you do not normally use this mode if you are
+      using the database engine in an application server. In this situation,
+      connections to a catalog are usually made
+      <em class="glossterm">in-process</em>, or using a separate Server</p>
+</div>
+<div class="section" title="Connecting to a Database Server">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="rgc_connecting_db"></a>Connecting to a Database Server</h3>
+</div>
+</div>
+</div>
+<p>When a HyperSQL server is running, client programs can connect to
+      it using the HSQLDB JDBC Driver contained in
+      <code class="filename">hsqldb.jar</code>. Full information on how to connect to a
+      server is provided in the Java Documentation for <code class="classname"><a class="classname" href="filelinks-app.html#JDBCConnection.html-link"> JDBCConnection</a></code>
+      (located in the <code class="filename">/doc/apidocs</code> directory of HSQLDB
+      distribution). A common example is connection to the default port (9001)
+      used for the <em class="glossterm">hsql:</em> protocol on the same
+      machine:</p>
+<div class="example">
+<a name="N1021F"></a>
+<p class="title">
+<b>Example&nbsp;1.1.&nbsp;Java code to connect to the local hsql Server</b>
+</p>
+<div class="example-contents">
+<pre class="programlisting">  try {
+      Class.forName("org.hsqldb.jdbc.JDBCDriver" );
+  } catch (Exception e) {
+      System.err.println("ERROR: failed to load HSQLDB JDBC driver.");
+      e.printStackTrace();
+      return;
+  }
+
+  Connection c = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/xdb", "SA", "");</pre>
+</div>
+</div>
+<br class="example-break">
+<p>If the HyperSQL HTTP server is used, the protocol is
+      <em class="glossterm">http:</em> and the URL will be different:</p>
+<div class="example">
+<a name="N10229"></a>
+<p class="title">
+<b>Example&nbsp;1.2.&nbsp;Java code to connect to the local http Server</b>
+</p>
+<div class="example-contents">
+<pre class="programlisting">  Connection c = DriverManager.getConnection("jdbc:hsqldb:http://localhost/xdb", "SA", "");</pre>
+</div>
+</div>
+<br class="example-break">
+<p>Note in the above connection URL, there is no mention of the
+      database file, as this was specified when running the server. Instead,
+      the public name defined for dbname.0 is used. Also, see the <a class="link" href="listeners-chapt.html" title="Chapter&nbsp;13.&nbsp;HyperSQL Network Listeners (Servers)">HyperSQL Network Listeners
+    (Servers)</a> chapter
+      for the connection URL when there is more than one database per server
+      instance.</p>
+</div>
+<div class="section" title="Security Considerations">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="rgc_security"></a>Security Considerations</h3>
+</div>
+</div>
+</div>
+<a name="N10238" class="indexterm"></a>
+<p>When a HyperSQL server is run, network access should be adequately
+      protected. Source IP addresses may be restricted by use of our <a class="link" href="listeners-chapt.html#lsc_acl" title="Network Access Control">Access Control List feature</a>,
+      network filtering software, firewall software, or standalone firewalls.
+      Only secure passwords should be used-- most importantly, the password
+      for the default system user should be changed from the default empty
+      string. If you are purposefully providing data to the public, then the
+      wide-open public network connection should be used exclusively to access
+      the public data via read-only accounts. (i.e., neither secure data nor
+      privileged accounts should use this connection). These considerations
+      also apply to HyperSQL servers run with the HTTP protocol.</p>
+<p>HyperSQL provides two optional security mechanisms. The <a class="link" href="listeners-chapt.html#lsc_tls" title="TLS Encryption">encrypted SSL protocol</a>, and
+      <a class="link" href="listeners-chapt.html#lsc_acl" title="Network Access Control">Access Control Lists</a>. Both
+      mechanisms can be specified when running the Server or WebServer. On the
+      client, the URL to connect to an SSL server is slightly
+      different:</p>
+<div class="example">
+<a name="N1024D"></a>
+<p class="title">
+<b>Example&nbsp;1.3.&nbsp;Java code to connect to the local secure SSL hsql and http
+          Servers</b>
+</p>
+<div class="example-contents">
+<pre class="programlisting">  Connection c = DriverManager.getConnection("jdbc:hsqldb:hsqls://localhost/xdb", "SA", "");
+  Connection c = DriverManager.getConnection("jdbc:hsqldb:https://localhost/xdb", "SA", "");
+</pre>
+</div>
+</div>
+<p>
+<br class="example-break">The security features are discussed in detail in the <a class="link" href="listeners-chapt.html" title="Chapter&nbsp;13.&nbsp;HyperSQL Network Listeners (Servers)">HyperSQL Network Listeners
+    (Servers)</a>
+      chapter.</p>
+</div>
+<div class="section" title="Using Multiple Databases">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="rgc_multiple_db"></a>Using Multiple Databases</h3>
+</div>
+</div>
+</div>
+<p>A server can provide connections to more than one database. In the
+      examples above, more than one set of database names can be specified on
+      the command line. It is also possible to specify all the databases in a
+      <code class="literal">.properties</code> file, instead of the command line. These
+      capabilities are covered in the <a class="link" href="listeners-chapt.html" title="Chapter&nbsp;13.&nbsp;HyperSQL Network Listeners (Servers)">HyperSQL Network Listeners
+    (Servers)</a> chapter</p>
+</div>
+</div>
+<div class="section" title="Accessing the Data">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="rgc-data-access"></a>Accessing the Data</h2>
+</div>
+</div>
+</div>
+<p>As shown so far, a <code class="classname">java.sql.Connection</code> object
+    is always used to access the database. But the speed and performance
+    depends on the type of connection.</p>
+<p>Establishing a connection and closing it has some overheads,
+    therefore it is not good practice to create a new connection to perform a
+    small number of operations. A connection should be reused as much as
+    possible and closed only when it is not going to be used again for a long
+    while.</p>
+<p>Reuse is more important for server connections. A server connection
+    uses a TCP port for communications. Each time a connection is made, a port
+    is allocated by the operating system and deallocated after the connection
+    is closed. If many connections are made from a single client, the
+    operating system may not be able to keep up and may refuse the connection
+    attempt.</p>
+<p>A <code class="classname">java.sql.Connection</code> object has some methods
+    that return further <code class="classname">java.sql.*</code> objects. All these
+    objects belong to the connection that returned them and are closed when
+    the connection is closed. These objects can be reused, but if they are not
+    needed after performing the operations, they should be closed.</p>
+<p>A <code class="classname">java.sql.DatabaseMetaData</code> object is used to
+    get metadata for the database.</p>
+<p>A <code class="classname">java.sql.Statement</code> object is used to
+    execute queries and data change statements. A
+    <code class="classname">java.sql.Statement</code> can be reused to execute a
+    different statement each time.</p>
+<p>A <code class="classname">java.sql.PreparedStatement</code> object is used
+    to execute a single statement repeatedly. The SQL statement usually
+    contains parameters, which can be set to new values before each reuse.
+    When a <code class="classname">java.sql.PreparedStatement</code> object is
+    created, the engine keeps the compiled SQL statement for reuse, until the
+    <code class="classname">java.sql.PreparedStatement</code> object is closed. As a
+    result, repeated use of a
+    <code class="classname">java.sql.PreparedStatement</code> is much faster than
+    using a <code class="classname">java.sql.Statement</code> object.</p>
+<p>A <code class="classname">java.sql.CallableStatement</code> object is used
+    to execute an SQL CALL statement. The SQL CALL statement may contain
+    parameters, which should be set to new values before each reuse. Similar
+    to <code class="classname">java.sql.PreparedStatement</code>, the engine keeps the
+    compiled SQL statement for reuse, until the
+    <code class="classname">java.sql.CallableStatement</code> object is closed.</p>
+<p>A <code class="classname">java.sql.Connection</code> object also has some
+    methods for transaction control.</p>
+<p>The <code class="methodname">commit()</code> method performs a
+    <code class="literal">COMMIT</code> while the <code class="methodname">rollback()</code>
+    method performs a <code class="literal">ROLLBACK</code> SQL statement.</p>
+<p>The <code class="methodname">setSavepoint(String name)</code> method
+    performs a <code class="literal">SAVEPOINT &lt;name&gt;</code> SQL statement and
+    returns a <code class="classname">java.sql.Savepoint</code> object. The
+    <code class="methodname">rollback(Savepoint name)</code> method performs a
+    <code class="literal">ROLLBACK TO SAVEPOINT &lt;name&gt;</code> SQL
+    statement.</p>
+<p>The Javadoc for <code class="classname"><a class="classname" href="filelinks-app.html#JDBCConnection.html-link">
+    JDBCConnection</a></code>, <code class="classname"><a class="classname" href="filelinks-app.html#JDBCDriver.html-link">
+    JDBCDriver</a></code>, <code class="classname"><a class="classname" href="filelinks-app.html#JDBCDatabaseMetaData.html-link">
+    JDBCDatabaseMetadata</a></code> <code class="classname"><a class="classname" href="filelinks-app.html#JDBCResultSet.html-link"> JDBCResultSet</a></code>,
+    <code class="classname"><a class="classname" href="filelinks-app.html#JDBCStatement.html-link">
+    JDBCStatement</a></code>, <code class="classname"><a class="classname" href="filelinks-app.html#JDBCPreparedStatement.html-link">
+    JDBCPreparedStatement</a></code> list all the supported JDBC methods
+    together with information that is specific to HSQLDB.</p>
+</div>
+<div class="section" title="Closing the Database">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="rgc_closing_db"></a>Closing the Database</h2>
+</div>
+</div>
+</div>
+<p>All databases running in different modes can be closed with the
+    SHUTDOWN command, issued as an SQL statement.</p>
+<p>When SHUTDOWN is issued, all active transactions are rolled back.
+    The catalog files are then saved in a form that can be opened quickly the
+    next time the catalog is opened.</p>
+<p>A special form of closing the database is via the SHUTDOWN COMPACT
+    command. This command rewrites the <code class="literal">.data</code> file that
+    contains the information stored in CACHED tables and compacts it to its
+    minimum size. This command should be issued periodically, especially when
+    lots of inserts, updates or deletes have been performed on the cached
+    tables. Changes to the structure of the database, such as dropping or
+    modifying populated CACHED tables or indexes also create large amounts of
+    unused file space that can be reclaimed using this command.</p>
+<p>Databases are not closed when the last connection to the database is
+    explicitly closed via JDBC. A connection property,
+    <code class="literal">shutdown=true</code>, can be specified on the first connection
+    to the database (the connection that opens the database) to force a
+    shutdown when the last connection closes.</p>
+<div class="example">
+<a name="N102F3"></a>
+<p class="title">
+<b>Example&nbsp;1.4.&nbsp;specifying a connection property to shutdown the database when
+        the last connection is closed</b>
+</p>
+<div class="example-contents">
+<pre class="programlisting">  Connection c = DriverManager.getConnection(
+          "jdbc:hsqldb:file:/opt/db/testdb;shutdown=true", "SA", "");</pre>
+</div>
+</div>
+<p>
+<br class="example-break">This feature is useful for running tests, where it may not be
+    practical to shutdown the database after each test. But it is not
+    recommended for application programs.</p>
+</div>
+<div class="section" title="Creating a New Database">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="rgc_new_db"></a>Creating a New Database</h2>
+</div>
+</div>
+</div>
+<p>When a server instance is started, or when a connection is made to
+    an <em class="glossterm">in-process</em> database, a new, empty database is
+    created if no database exists at the given path.</p>
+<p>With HyperSQL 2.0 the username and password that are specified for
+    the connection are used for the new database. Both the username and
+    password are case-sensitive. (The exception is the default SA user, which
+    is not case-sensitive). If no username or password is specified, the
+    default SA user and an empty password are used.</p>
+<p>This feature has a side effect that can confuse new users. If a
+    mistake is made in specifying the path for connecting to an existing
+    database, a connection is nevertheless established to a new database. For
+    troubleshooting purposes, you can specify a connection property
+    <span class="property">ifexists</span>=<code class="literal">true</code> to allow connection
+    to an existing database only and avoid creating a new database. In this
+    case, if the database does not exist, the
+    <code class="methodname">getConnection()</code> method will throw an
+    exception.</p>
+<div class="example">
+<a name="N10310"></a>
+<p class="title">
+<b>Example&nbsp;1.5.&nbsp;specifying a connection property to disallow creating a new
+        database</b>
+</p>
+<div class="example-contents">
+<pre class="programlisting">  Connection c = DriverManager.getConnection(
+          "jdbc:hsqldb:file:/opt/db/testdb;ifexists=true", "SA", "");</pre>
+</div>
+</div>
+<p>
+<br class="example-break">
+</p>
+<p>A database has many optional properties, described in the <a class="link" href="deployment-chapt.html" title="Chapter&nbsp;15.&nbsp;Deployment Guide">Deployment Guide</a> chapter. You can specify most of
+    these properties on the URL or in the connection properties for the first
+    connection that creates the database. See the <a class="link" href="dbproperties-chapt.html" title="Chapter&nbsp;12.&nbsp;Properties">Properties</a> chapter.</p>
+</div>
+</div>
+<HR xmlns:xi="http://www.w3.org/2001/XInclude">
+<P xmlns:xi="http://www.w3.org/2001/XInclude" class="svnrev">$Revision: 4864 $</P>
+<div class="navfooter">
+<hr>
+<table summary="Navigation footer" width="100%">
+<tr>
+<td align="left" width="40%"><a accesskey="p" href="book-pref.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="20%">&nbsp;</td><td align="right" width="40%">&nbsp;<a accesskey="n" href="sqlgeneral-chapt.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="40%">Preface&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="40%">&nbsp;Chapter&nbsp;2.&nbsp;SQL Language</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

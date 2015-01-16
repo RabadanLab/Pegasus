@@ -1,0 +1,477 @@
+AGC-kinase C-terminal
+AWS
+B30.2/SPRY
+BAR
+BRCT 1
+BRCT 2
+BTB
+Bromo
+Bromo%3B divergent
+C2
+C2 PI3K-type
+CH
+CRAL-TRIO
+CTCK
+CUB
+CUB 1
+CUB 2
+Cadherin
+Cbl-PTB
+Cyclin N-terminal
+DCUN1
+DH
+DHR-1
+DHR-2
+DUSP
+Death
+Dilute
+EF-hand 1
+EF-hand 2
+EGF-like 1
+EGF-like 10
+EGF-like 11%3B calcium-binding;status=Potential
+EGF-like 12%3B calcium-binding;status=Potential
+EGF-like 13%3B calcium-binding;status=Potential
+EGF-like 14%3B calcium-binding;status=Potential
+EGF-like 15%3B calcium-binding;status=Potential
+EGF-like 16
+EGF-like 17
+EGF-like 18
+EGF-like 19
+EGF-like 2
+EGF-like 20
+EGF-like 21
+EGF-like 22
+EGF-like 23
+EGF-like 24
+EGF-like 25
+EGF-like 26
+EGF-like 27
+EGF-like 28
+EGF-like 29
+EGF-like 3
+EGF-like 4
+EGF-like 5%3B calcium-binding;status=Potential
+EGF-like 6
+EGF-like 7%3B calcium-binding;status=Potential
+EGF-like 8%3B calcium-binding;status=Potential
+EGF-like 9%3B calcium-binding;status=Potential
+EH 1
+EH 2
+EH 3
+ENTH
+FCH
+FERM
+FHA
+FYR C-terminal
+FYR N-terminal
+Fibronectin type-III 1
+Fibronectin type-III 2
+Fibronectin type-III 3
+Fibronectin type-III 4
+Fibronectin type-III 5
+Fibronectin type-III 6
+Fibronectin type-III 7
+Fibronectin type-III 8
+Fibronectin type-III 9
+Follistatin-like 1
+Follistatin-like 2
+GMPS ATP-PPase
+Glutamine amidotransferase type-1
+H15
+HTH myb-type 1
+HTH myb-type 2
+HTH myb-type 3
+Helicase ATP-binding
+Helicase C-terminal
+IGFBP N-terminal
+IPT/TIG 1
+IPT/TIG 2
+IPT/TIG 3
+IQ
+Ig-like C2-type
+Ig-like C2-type 1
+Ig-like C2-type 2
+Ig-like C2-type 3
+Ig-like C2-type 4
+Ig-like C2-type 5
+KRAB
+KRAB-related
+Kazal-like 1
+Kazal-like 2
+LDL-receptor class A
+LETM1
+LIM zinc-binding 1
+LIM zinc-binding 2
+LRRCT
+MAM 1
+MAM 2
+MPN
+Myosin head-like
+N-terminal Ras-GEF
+OPR
+PAS
+PDZ
+PH
+PI3K-ABD
+PI3K-RBD
+PI3K/PI4K
+PIK helical
+PNT
+PWWP 1
+PWWP 2
+Paired
+Post-SET
+Protein kinase
+Protein kinase 1
+Protein kinase 2
+RBD
+RGSL
+RHD
+RRM
+RRM 1
+RRM 2
+RRM 3
+Rab-GAP TBC
+Ras-GAP
+Ras-GEF
+Ras-associating 1
+Ras-associating 2
+Rho-GAP
+Runt
+SAP
+SET
+SH2
+SH2 1
+SH2 2
+SH2%3B atypical
+SH3
+SH3 1
+SH3 2
+SPOC
+SRCR 1
+SRCR 10
+SRCR 11
+SRCR 12
+SRCR 13
+SRCR 14
+SRCR 2
+SRCR 3
+SRCR 4
+SRCR 5
+SRCR 6
+SRCR 7
+SRCR 8
+SRCR 9
+SWIB
+Sema
+TAFH
+TB
+TSP type-1
+Tyrosine-protein phosphatase
+UBA
+UBA-like
+UBX
+Ubiquitin-like 1
+Ubiquitin-like 2
+VWFC
+WW
+WW 1
+WW 2
+YEATS
+ZP
+bHLH
+bZIP
+11 X 3 AA approximate repeats
+11 X 5 AA approximate repeats
+15 X 3 AA repeats of D-P-F
+18 X 4 AA approximate repeats
+2 X 13 AA imperfect tandem repeats
+21 X approximate tandem repeats of D-R-[S%2CG](0%2C3)-G-G-Y-G-G
+31 X approximate tandem repeats
+4 X 25 AA approximate tandem repeats
+4H
+5 X 29 AA tandem repeats
+ARF-binding
+Acetyl-CoA binding
+Actin-binding;status=By similarity
+Activates transcription%3B Inhibition of nuclear import due to lack of NLS and KPNA2 interaction
+Activates transcription%3B Inhibition of nuclear import due to lack of NLS and KPNA2 interaction;status=By similarity
+Activation domain%3B required for transcription activation
+Activation domain%3B required for transcription activation;status=By similarity
+Activation loop
+Activation loop;status=By similarity
+Activation segment
+Activation segment;status=By similarity
+Basic motif
+Basic motif%3B required for the activation of phospholipid synthesis%2C but not for CDS1-binding
+Basic motif%3B required for the activation of phospholipid synthesis%2C but not for CDS1-binding;status=By similarity
+Basic motif%3B required for the activation of phospholipid synthesis;status=By similarity
+Basic motif;status=By similarity
+Basic motif;status=Potential
+Binding to ABL SH2-domain
+Binding to ABL SH2-domain;status=By similarity
+C-terminal
+CAP
+Catalytic
+Cyclin-like 1
+Cyclin-like 2
+DNA-binding
+DNA-binding;status=By similarity
+Decreased nuclear import with localization in the nucleus but also in the cytoplasm
+Decreased nuclear import with localization in the nucleus but also in the cytoplasm;status=By similarity
+Dimerization
+Domain A
+Domain B
+Domain C%3B mediates interaction with E4F1
+EAD (Gln/Pro/Thr-rich)
+EF-hand-like
+Earmuff domain
+F-actin-binding
+F-actin-binding;status=By similarity
+GRR
+Helix-loop-helix motif;status=Potential
+Heparin-binding
+Heparin-binding;status=By similarity
+Hinge
+Hypervariable region
+Hypervariable region;status=By similarity
+Important for interaction with membranes containing phosphoinositides
+Important for interaction with membranes containing phosphoinositides;status=By similarity
+Important for interaction with phosphotyrosine-binding proteins
+Important for interaction with phosphotyrosine-binding proteins;status=By similarity
+Important for normal regulation of the kinase activity and for maintaining the kinase in an inactive state in the absence of bound ligand
+Important for normal regulation of the kinase activity and for maintaining the kinase in an inactive state in the absence of ligand binding;status=By similarity
+Important for oligomerization
+Inhibitor binding
+Inhibitors binding
+Inhibitors binding;status=By similarity
+Inhibits enzyme activity in the absence of bound histone
+Inositol-(1%2C3%2C4%2C5)-tetrakisphosphate binding
+Interaction with ARC;status=By similarity
+Interaction with ARIH2
+Interaction with BBS4
+Interaction with CD2AP
+Interaction with CD2AP;status=By similarity
+Interaction with CREBBP
+Interaction with DAB2;status=By similarity
+Interaction with DNA
+Interaction with DNA;status=By similarity
+Interaction with E4F1
+Interaction with E4F1;status=By similarity
+Interaction with ESR1
+Interaction with FAM64A
+Interaction with FSTL3
+Interaction with GAS6
+Interaction with GLUT4;status=By similarity
+Interaction with GMNN
+Interaction with GMNN;status=By similarity
+Interaction with HAP1
+Interaction with HIPK2 and NLK
+Interaction with HIPK2 and NLK;status=By similarity
+Interaction with KAT6A
+Interaction with KAT6B;status=By similarity
+Interaction with KDM5B;status=By similarity
+Interaction with LIMD1
+Interaction with LRWD1
+Interaction with MAPK9%2C SMAD3 and probably SUV39H1
+Interaction with MTBP
+Interaction with MTBP;status=By similarity
+Interaction with MUC20
+Interaction with MUC20;status=By similarity
+Interaction with PARD6A
+Interaction with PARD6A;status=By similarity
+Interaction with PDCD6
+Interaction with PEBP1/RKIP
+Interaction with PEBP1/RKIP;status=By similarity
+Interaction with PER2
+Interaction with PIK3C2B;status=By similarity
+Interaction with PML
+Interaction with PPP1CC isoform gamma-2
+Interaction with PTPRH
+Interaction with PTPRH;status=By similarity
+Interaction with PYHIN1
+Interaction with PYHIN1;status=By similarity
+Interaction with RAB3IP
+Interaction with RANBP9
+Interaction with RANBP9;status=By similarity
+Interaction with RUNX1-1
+Interaction with RUNX1-2
+Interaction with SEC13
+Interaction with SQSTM1;status=By similarity
+Interaction with SSX2IP
+Interaction with STAT3
+Interaction with TRIB3
+Interaction with USP7
+Interaction with USP7;status=By similarity
+Interaction with cytokine/interferon/growth hormone receptors;status=By similarity
+Interaction with histone H3 that is not methylated at 'Lys-4' (H3K4me0);status=By similarity
+Interactions with CD4 and CD8
+Interactions with CD4 and CD8;status=By similarity
+Interacts with CTNNB1
+Interacts with KPNA2
+Interacts with KPNA2;status=By similarity
+Interacts with PYGO1
+Involved in GSK-3 binding
+Involved in GSK-3 binding;status=By similarity
+Kinase
+Leucine-zipper
+Leucine-zipper 1
+Leucine-zipper 2
+Leucine-zipper;status=By similarity
+Ligand-binding
+Ligand-binding;status=Potential
+Linker
+Massively activates transcription
+Massively activates transcription;status=By similarity
+Mediates interaction with BRPF1%2C required for histone H3 acetyltransferase activity
+Mediates interaction with GATA1
+Mediates interaction with MAD2L2
+Mediates interaction with SCAI and ACTB;status=By similarity
+Membrane-binding amphipathic helix;status=By similarity
+Modulating
+N-terminal
+Necessary for association to the NPC
+Necessary for association to the NPC;status=By similarity
+Necessary for interaction with APEX1
+Necessary for interaction with HSF1
+Necessary for interaction with HSF1;status=By similarity
+Necessary for interaction with RB1 and RBL2
+Necessary for interaction with RB1 and RBL2;status=By similarity
+Necessary for interaction with RBL2
+Necessary for interaction with RBL2;status=By similarity
+Necessary for interaction with USP2
+Necessary for interaction with USP2;status=By similarity
+Necessary for nuclear localization
+Necessary for nuclear localization;status=By similarity
+Negative regulatory domain
+Negative regulatory domain;status=By similarity
+Nuclear localization signal
+Nuclear localization signal;status=By similarity
+Nuclear receptor binding site (NRBS)
+PIN1-binding;status=By similarity
+PT region%3B mediates the BCR-dependent translocation to plasma membrane
+Pocket%3B binds T and E1A
+RII-binding
+RS
+RUNX1-binding
+Ras exchanger motif region%3B required for transforming activity
+Region II
+Regulatory domain
+Regulatory domain;status=By similarity
+Regulatory juxtamembrane domain
+Regulatory juxtamembrane domain;status=By similarity
+Represses ARE-mediated transcription
+Represses ARE-mediated transcription;status=By similarity
+Repression domain%3B contains 3 sumoylation motifs and massively decrease transcription activity
+Repression domain%3B contains 3 sumoylation motifs and massively decrease transcription activity;status=By similarity
+Required and sufficient for mitochondrial import
+Required and sufficient for mitochondrial import;status=By similarity
+Required for activation of RUNX1-1
+Required for activation of RUNX1-2
+Required for binding D-type cyclins;status=By similarity
+Required for binding corepressor NCOR1
+Required for dimerization upon membrane association;status=By similarity
+Required for interaction with KPNB1 and EEA1;status=By similarity
+Required for interaction with RAB2
+Required for interaction with RAB2;status=By similarity
+Required for interaction with RUNX2;status=By similarity
+Required for interaction with SENP3
+Required for nuclear localization
+Required for nucleolar localization
+Required for transcriptional activation
+S-adenosyl-L-methionine binding
+SH2-like
+SNAG domain
+SNAG domain;status=By similarity
+Self-association
+Seven-bladed beta propeller
+Spacer
+Strong transcription activation domain;status=Potential
+Sufficient and essential for mediating its nuclear import
+Sufficient and essential for mediating its nuclear import;status=By similarity
+Sufficient for interaction with EPHB1
+Sufficient for interaction with NLK;status=By similarity
+Sufficient for interaction with TPR
+Sufficient for interaction with TPR;status=By similarity
+Sufficient to mediate interaction with PAXBP1;status=By similarity
+Sumo interaction motif (SIM)
+Suppress the PT region-mediated translocation to plasma membrane
+Transactivation domain
+Transactivation domain%3B required for DOT1L-binding
+Transcriptional activation
+Transcriptional activation domain
+Transcriptional activation domain;status=By similarity
+Transriptional transactivator
+VEFS-box
+1
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+2
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+3
+30
+31
+4
+4%3B approximate
+5
+6
+7
+8
+9
+ANK 1
+ANK 2
+ANK 3
+ANK 4
+ANK 5
+ANK 6
+ANK 7
+Blade 1
+Blade 2
+Blade 3
+Blade 4
+Blade 5
+Blade 6
+Blade 7
+LNR 1
+LNR 2
+LNR 3
+LRR 1
+LRR 2
+RPEL 1
+RPEL 2
+Spectrin
+TNFR-Cys
+UIM 1
+UIM 2
+WD 1
+WD 2
+WD 3
+WD 4
+WD 5
+WD 6
+WD 7
+WD 8
+WD 8%3B interaction with SEC13;status=By similarity
+WD 9
+Cytoplasmic;status=Potential
+Extracellular;status=Potential
+Lumenal;status=Potential
+Mitochondrial intermembrane;status=Potential

@@ -1,0 +1,674 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter&nbsp;9.&nbsp;Triggers</title>
+<link href="../docbook.css" type="text/css" rel="stylesheet">
+<meta content="DocBook XSL-NS Stylesheets V1.76.1" name="generator">
+<meta name="keywords" content="Hsqldb, HyperSQL, SQL">
+<meta name="keywords" content="Hsqldb, HyperSQL, Database, JDBC, Java">
+<link rel="home" href="index.html" title="HyperSQL User Guide">
+<link rel="up" href="index.html" title="HyperSQL User Guide">
+<link rel="prev" href="sqlroutines-chapt.html" title="Chapter&nbsp;8.&nbsp;SQL-Invoked Routines">
+<link rel="next" href="builtinfunctions-chapt.html" title="Chapter&nbsp;10.&nbsp;Built In Functions">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table summary="Navigation header" width="100%">
+<tr>
+<td align="left" width="30%"><a accesskey="p" href="sqlroutines-chapt.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="40%" style="font-weight:bold;">Chapter&nbsp;9.&nbsp;Triggers</td><td align="right" width="30%">&nbsp;<a accesskey="n" href="builtinfunctions-chapt.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="30%">Chapter&nbsp;8.&nbsp;SQL-Invoked Routines&nbsp;</td><td align="center" width="40%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="30%">&nbsp;Chapter&nbsp;10.&nbsp;Built In Functions</td>
+</tr>
+</table>
+</div>
+<HR>
+<div class="chapter" title="Chapter&nbsp;9.&nbsp;Triggers">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title">
+<a name="triggers-chapt"></a>Chapter&nbsp;9.&nbsp;Triggers</h2>
+</div>
+<div>
+<div class="authorgroup">
+<div class="author">
+<h3 class="author">
+<span class="firstname">Fred</span> <span class="surname">Toussi</span>
+</h3>
+<div class="affiliation">
+<span class="orgname">The HSQL Development Group<br>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<p class="releaseinfo">$Revision: 3042 $</p>
+</div>
+<div>
+<div class="legalnotice" title="Legal Notice">
+<a name="N131DE"></a>
+<p>Copyright 2010-2012 Fred Toussi. Permission is granted to
+      distribute this document without any alteration under the terms of the
+      HSQLDB license. Additional permission is granted to the HSQL Development
+      Group to distribute this document with or without alterations under the
+      terms of the HSQLDB license.</p>
+</div>
+</div>
+<div>
+<p class="pubdate">2012-01-15 10:12:45-0500</p>
+</div>
+</div>
+</div>
+<div class="toc">
+<p>
+<b>Table of Contents</b>
+</p>
+<dl>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_overview">Overview</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_before_triggers">BEFORE Triggers</a></span>
+</dt>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_after_triggers">AFTER Triggers</a></span>
+</dt>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_instead_of_triggers">INSTEAD OF Triggers</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_trigger_props">Trigger Properties</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_trigger_event">Trigger Event</a></span>
+</dt>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_trigger_granularity">Granularity</a></span>
+</dt>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_trigger_action_time">Trigger Action Time</a></span>
+</dt>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_row_references">References to Rows</a></span>
+</dt>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_trigger_condition">Trigger Condition</a></span>
+</dt>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_trigger_action_sql">Trigger Action in SQL</a></span>
+</dt>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_trigger_action_java">Trigger Action in Java</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="triggers-chapt.html#trc_trigger_creation">Trigger Creation</a></span>
+</dt>
+</dl>
+</div>
+<div class="section" title="Overview">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="trc_overview"></a>Overview</h2>
+</div>
+</div>
+</div>
+<p>Trigger functionality first appeared in SQL:1999. Triggers embody
+    the <span class="emphasis"><em>live database</em></span> concept, where changes in SQL data
+    can be monitored and acted upon. This means each time a DELETE, UPDATE or
+    INSERT is performed, additional actions are taken by the declared
+    triggers. SQL Standard triggers are <em class="glossterm">imperative</em>
+    while the <em class="glossterm">relational</em> aspects of SQL are
+    <em class="glossterm">declarative</em>. Triggers allow performing an arbitrary
+    transformation of data that is being updated or inserted, or to prevent
+    insert, updated or deletes, or to perform additional operations.</p>
+<p>Some bad examples of SQL triggers in effect enforce an &ldquo;integrity
+    constraint&rdquo; which would better be expressed as a CHECK constraint. A
+    trigger that causes an exception if the value inserted in a column is
+    negative is such an example. A check constraint that declares
+    <code class="literal">CHECK VALUE &gt;= 0</code> (declarative) is a better way of
+    expressing an integrity constraint than a trigger that throws an exception
+    if the same condition is false.</p>
+<p>Usage constraints cannot always be expressed by SQL&rsquo;s integrity
+    constraint statements. Triggers can enforce these constraints. For
+    example, it is not possible to use a check constraint to prevent inserts
+    or deletes on weekends. A trigger can be used to enforce the time when
+    each operation is allowed.</p>
+<p>A trigger is declared to activate when an UPDATE, INSERT or
+    DELETE action is performed on a table. These actions may be direct or
+    indirect. Indirect actions may arise from CASCADE actions of FOREIGN KEY
+    constraints, or from data change statements performed on a VIEW that is
+    based on the table that in.</p>
+<p>It is possible to declare multiple triggers on a single table.
+    The triggers activate one by one according to the order in which they were
+    defined. HyperSQL supports an extension to the CREATE TRIGGER statement,
+    which allows the user to specify the execution order of the new
+    trigger.</p>
+<p>A row level trigger allows access to the deleted or inserted
+    rows. For UPDATE actions there is both an old and new version of each row.
+    A trigger can be specified to activate before or after the action has been
+    performed.</p>
+<div class="section" title="BEFORE Triggers">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="trc_before_triggers"></a>BEFORE Triggers</h3>
+</div>
+</div>
+</div>
+<p>A trigger that is declared as BEFORE DELETE cannot modify the
+      deleted row. In other words, it cannot decide to delete a different row
+      by changing the column values of the row. A trigger that is declared as
+      BEFORE INSERT and BEFORE UPDATE can modify the values that are inserted
+      into the database. For example, a badly formatted string can be cleaned
+      up by a trigger before INSERT or UPDATE.</p>
+<p>BEFORE triggers cannot modify the other tables of the database.
+      All BEFORE triggers can veto the action by throwing an
+      exception.</p>
+<p>Because BEFORE triggers can modify the inserted or updated
+      rows, all constraint checks are performed after the execution of the
+      BEFORE triggers. The checks include NOT NULL constraints, length of
+      strings, CHECK constraints, and FOREIGN key constraints.</p>
+</div>
+<div class="section" title="AFTER Triggers">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="trc_after_triggers"></a>AFTER Triggers</h3>
+</div>
+</div>
+</div>
+<p>AFTER triggers can also perform additional data changes, for
+      example inserting an additional row into a different table for data
+      audits. These triggers cannot modify the rows that have been modified by
+      the INSERT or UPDATE action.</p>
+</div>
+<div class="section" title="INSTEAD OF Triggers">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="trc_instead_of_triggers"></a>INSTEAD OF Triggers</h3>
+</div>
+</div>
+</div>
+<p>A trigger that is declared on a VIEW, is an INSTEAD OF trigger.
+      This term means when an INSERT, UPDATE or DELETE statement is executed
+      with the view as the target, the trigger action is all that is
+      performed, and no further data change takes place on the view. The
+      trigger action can include all the statements that are necessary to
+      change the data in the tables that underlie the view, or even other
+      tables, such as audit tables. With the use of INSTEAD OF triggers a
+      read-only view can effectively become updatable or
+      insertable-into.</p>
+</div>
+</div>
+<div class="section" title="Trigger Properties">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="trc_trigger_props"></a>Trigger Properties</h2>
+</div>
+</div>
+</div>
+<p>A trigger is declared on a specific table or view. Various trigger
+    properties determine when the trigger is executed and how.</p>
+<div class="section" title="Trigger Event">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="trc_trigger_event"></a>Trigger Event</h3>
+</div>
+</div>
+</div>
+<p>The trigger event specifies the type of SQL statement that causes
+      the trigger to execute. Each trigger is specified to execute when an
+      INSERT, DELETE or UPDATE takes place.</p>
+<p>The event can be filtered by two separate means. For all triggers,
+      the WHEN clause can specify a condition against the rows that are the
+      subject of the trigger, together with the data in the database. For
+      example, a trigger can activate when the size of a table becomes larger
+      than a certain amount. Or it can activate when the values in the rows
+      being modified satisfy certain conditions.</p>
+<p>An UPDATE trigger can be declared to execute only when certain
+      columns are the subject of an update statement. For example, a trigger
+      declared as AFTER UPDATE OF (datecolumn) will activate only when the
+      UPDATE statement that is executed includes the column, datecolumn, as
+      one of the columns specified in its SET statements.</p>
+</div>
+<div class="section" title="Granularity">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="trc_trigger_granularity"></a>Granularity</h3>
+</div>
+</div>
+</div>
+<p>A statement level trigger is performed once for the executed SQL
+      statement and is declared as FOR EACH STATEMENT.</p>
+<p>A row level trigger is performed once for each row that is
+      modified during the execution of an SQL statement and is declared as FOR
+      EACH ROW. Note that an SQL statement can INSERT, UPDATE or DELETE zero
+      or more rows.</p>
+<p>If a statement does not apply to any row, then the trigger is not
+      executed.</p>
+<p>If FOR EACH ROW or FOR EACH STATEMENT is not specified, then the
+      default is FOR EACH STATEMENT.</p>
+<p>The granularity dictates whether the REFERENCING clause can
+      specify OLD ROW, NEW ROW, or OLD TABLE, NEW TABLE.</p>
+<p>A trigger declared as FOR EACH STATEMENT can only be an AFTER
+      trigger.</p>
+</div>
+<div class="section" title="Trigger Action Time">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="trc_trigger_action_time"></a>Trigger Action Time</h3>
+</div>
+</div>
+</div>
+<p>A trigger is executed BEFORE, AFTER or INSTEAD OF the trigger
+      event.</p>
+<p>INSTEAD OF triggers are allowed only when the trigger is declared
+      on a VIEW. With this type of trigger, the event (SQL statement) itself
+      is not executed, only the trigger.</p>
+<p>BEFORE or AFTER triggers are executed just before or just after
+      the execution of the event. For example, just before a row is inserted
+      into a table, the BEFORE trigger is activated, and just after the row is
+      inserted, the AFTER trigger is executed.</p>
+<p>BEFORE triggers can modify the row that is being inserted or
+      updated. AFTER triggers cannot modify rows. They are usually used to
+      perform additional operations, such as inserting rows into other
+      tables.</p>
+<p>A trigger declared as FOR EACH STATEMENT can only be an AFTER
+      trigger.</p>
+</div>
+<div class="section" title="References to Rows">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="trc_row_references"></a>References to Rows</h3>
+</div>
+</div>
+</div>
+<p>If the old rows or new rows are referenced in the SQL statements
+      in the trigger action, they must have names. The REFERENCING clause is
+      used to give names to the old and new rows. The clause, REFERENCING OLD
+      | NEW TABLE is used for statement level triggers. The clause,
+      REFERENCING OLD | NEW ROW is used for row level triggers. If the old
+      rows or new rows are referenced in the SQL statements in the trigger
+      action, they must have names. In the SQL statements, the columns of the
+      old or new rows are qualified with the specified names.</p>
+</div>
+<div class="section" title="Trigger Condition">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="trc_trigger_condition"></a>Trigger Condition</h3>
+</div>
+</div>
+</div>
+<p>The WHEN clause can specify a condition for the columns of the row
+      that is being changed. Using this clause you can simply avoid
+      unnecessary trigger activation for rows that do not need it.</p>
+<p>For UPDATE trigger, you can specify a list of columns of the
+      table. If a list of columns is specified, then if the UPDATE statement
+      does not change the columns with SET clauses, then the trigger is not
+      activated at all.</p>
+</div>
+<div class="section" title="Trigger Action in SQL">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="trc_trigger_action_sql"></a>Trigger Action in SQL</h3>
+</div>
+</div>
+</div>
+<p>The trigger action specifies what the trigger does when it is
+      activated. This is usually written as one or more SQL statements.</p>
+<p>When a row level trigger is activated, there is an OLD ROW, or a
+      NEW ROW, or both. An INSERT statement supplies a NEW ROW row to be
+      inserted into a table. A DELETE statement supplies an OLD ROW be
+      deleted. An UPDATE statement supplies both OLD ROW and NEW ROW that
+      represent the updated rows before and after the update. The REFERENCING
+      clause gives names to these rows, so that the rows can be referenced in
+      the trigger action.</p>
+<p>In the example below, a name is given to the NEW ROW and it is
+      used both in the WHEN clause and in the trigger action SQL to insert a
+      row into a triglog table after each row insert into the testtrig
+      table.</p>
+<pre class="programlisting">  CREATE TRIGGER trig AFTER INSERT ON testtrig 
+    REFERENCING NEW ROW AS newrow
+    FOR EACH ROW WHEN (newrow.id &gt; 1)
+    INSERT INTO TRIGLOG VALUES (newrow.id, newrow.data, 'inserted')
+</pre>
+<p>In the example blow, the trigger code modifies the updated data if
+      a condition is true. This type of trigger is useful when the application
+      does not perform the necessary checks and modifications to data. The
+      statement block that starts with BEGIN ATOMIC is similar to an SQL/PSM
+      block and can contain all the SQL statements that are allowed in an
+      SQL/PSM block.</p>
+<pre class="programlisting">  CREATE TRIGGER t BEFORE UPDATE ON customer
+    REFERENCING NEW AS newrow FOR EACH ROW
+    BEGIN ATOMIC
+      IF LENGTH(newrow.firstname) &gt; 10 THEN
+        SET newrow.firstname = LOWER(newrow.firstname);
+      END IF;
+    END
+</pre>
+</div>
+<div class="section" title="Trigger Action in Java">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="trc_trigger_action_java"></a>Trigger Action in Java</h3>
+</div>
+</div>
+</div>
+<p>A trigger action can be written as a Java class that implements
+      the <code class="classname">org.hsqldb.Trigger</code> interface. This interface
+      has a single method which is called when the trigger is activated,
+      either before or after the event. When the method is called by the
+      engine, it supplies the type of trigger as an int value defined by the
+      interface(as type argument), the name of the trigger (as trigName
+      argument), the name of the table (as tabName argument), the OLD ROW (as
+      oldRow argument) and the NEW ROW (as newRow argument). The oldRow
+      argument is null for row level INSERT triggers. The newRow argument is
+      null for row level DELETE triggers. For table level triggers, both
+      arguments are null (that is, there is no access to the data). The
+      triggerType argument is one of the constants in the org.hsqldb.Trigger
+      interface which indicate the type of trigger, for example,
+      INSERT_BEFORE_ROW or UPDATE_AFTER_ROW.</p>
+<p>The Java class for the trigger can be reused for several triggers
+      on different tables. The method code can distinguish between the
+      different tables and triggers using the supplied arguments and take
+      appropriate action.</p>
+<pre class="programlisting">    fire (int triggerType, String name, String table, Object row1[], Object row2[])
+</pre>
+<p>The Java method for a synchronous trigger (see below) can modify
+      the values in newRow2 in a BEFORE trigger. Such modifications are
+      reflected in the row that is being inserted or updated. Any other
+      modifications are ignored by the engine.</p>
+<p>A Java trigger that uses an instance of
+      <code class="classname">org.hsqldb.Trigger</code> has two forms, synchronous, or
+      asynchronous (immediate or queued). By default, or when QUEUE 0 is
+      specified, the action is performed immediately by calling the Java
+      method. This is similar to SQL trigger actions.</p>
+<p>When QUEUE n is specified with n larger than 0, the engine uses a
+      separate thread to execute the Java method, using a queue with the size
+      n. For certain applications, such as real-time systems this allows
+      asynchronous notifications to be sent by the trigger event, without
+      introducing delays in the engine. With asynchronous triggers, an extra
+      parameter, NOWAIT can be used in trigger definition. This overcomes the
+      queue full condition. In this mode, old calls that are still in the
+      queue are discarded one by one and replaced with new calls.</p>
+<p>Java row level triggers that are declared with BEFORE trigger
+      action time can modify the row data. Triggers with AFTER trigger action
+      time can modify the database, e.g. insert new rows. If the trigger needs
+      to access the database, the same method as in Java Language Routines
+      SQL/JRT can be used. The Java code should connect to the URL
+      <code class="literal">"jdbc:default:connection"</code> and use this connection to
+      access the database.</p>
+<p>For sample trigger classes and test code see,
+      <code class="classname">org.hsqldb.sample.TriggerSample</code>,
+      <code class="classname">org.hsqldb.test.TestTriggers</code>,
+      <code class="classname">org.hsqldb.test.TriggerClass</code> and the associated
+      text script <code class="filename">TestTriggers.txt</code> in the
+      <code class="literal">/testrun/hsqldb/</code> directory. In the example below, the
+      trigger is activated only if the update statement includes SET clauses
+      that modify any of the specified columns (c1, c2, c3). Furthermore, the
+      trigger is not activated if the c2 column in the updated row is
+      null.</p>
+<pre class="programlisting">  CREATE TRIGGER TRIGBUR BEFORE UPDATE OF c1, c2, c3 ON testtrig 
+    referencing NEW ROW AS newrow
+    FOR EACH ROW WHEN (newrow.c2 IS NOT NULL)
+    CALL "org.hsqldb.test.TriggerClass"
+</pre>
+<p>Java functions can be called from an SQL trigger. So it is
+      possible to define the Java function to perform any external
+      communication that are necessary for the trigger, and use SQL code for
+      checks and alterations to data.</p>
+<pre class="programlisting">  CREATE TRIGGER t BEFORE UPDATE ON customer
+    REFERENCING NEW AS newrow FOR EACH ROW
+    BEGIN ATOMIC
+      IF LENGTH(newrow.firstname) &gt; 10 THEN
+        CALL my_java_function(newrow.firstname, newrow.lastname);
+      END IF;
+    END
+</pre>
+</div>
+</div>
+<div class="section" title="Trigger Creation">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="trc_trigger_creation"></a>Trigger Creation</h2>
+</div>
+</div>
+</div>
+<a name="N13298" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CREATE TRIGGER</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>trigger definition</em></span>
+</p>
+<p>
+<code class="literal">&lt;trigger definition&gt; ::= CREATE TRIGGER
+    &lt;trigger name&gt; &lt;trigger action time&gt; &lt;trigger event&gt; ON
+    &lt;table name&gt; [BEFORE &lt;other trigger name&gt;] [ REFERENCING
+    &lt;transition table or variable list&gt; ] &lt;triggered
+    action&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;trigger action time&gt; ::= BEFORE | AFTER | INSTEAD
+    OF</code>
+</p>
+<p>
+<code class="literal">&lt;trigger event&gt; ::= INSERT | DELETE | UPDATE [ OF
+    &lt;trigger column list&gt; ]</code>
+</p>
+<p>
+<code class="literal">&lt;trigger column list&gt; ::= &lt;column name
+    list&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;triggered action&gt; ::= [ FOR EACH { ROW |
+    STATEMENT } ] [ &lt;triggered when clause&gt; ] &lt;triggered SQL
+    statement&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;triggered when clause&gt; ::= WHEN &lt;left
+    paren&gt; &lt;search condition&gt; &lt;right paren&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;triggered SQL statement&gt; ::= &lt;SQL procedure
+    statement&gt; | BEGIN ATOMIC { &lt;SQL procedure statement&gt;
+    &lt;semicolon&gt; }... END | [QUEUE &lt;integer literal&gt;] [NOWAIT] CALL
+    &lt;HSQLDB trigger class FQN&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;transition table or variable list&gt; ::=
+    &lt;transition table or variable&gt;...</code>
+</p>
+<p>
+<code class="literal">&lt;transition table or variable&gt; ::= OLD [ ROW ] [
+    AS ] &lt;old transition variable name&gt; | NEW [ ROW ] [ AS ] &lt;new
+    transition variable name&gt; | OLD TABLE [ AS ] &lt;old transition table
+    name&gt; | NEW TABLE [ AS ] &lt;new transition table
+    name&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;old transition table name&gt; ::= &lt;transition
+    table name&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;new transition table name&gt; ::= &lt;transition
+    table name&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;transition table name&gt; ::=
+    &lt;identifier&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;old transition variable name&gt; ::= &lt;correlation
+    name&gt;</code>
+</p>
+<p>
+<code class="literal">&lt;new transition variable name&gt; ::= &lt;correlation
+    name&gt;</code>
+</p>
+<p>Trigger definition is a relatively complex statement. The
+    combination of <code class="literal">&lt;trigger action time&gt;</code> and
+    <code class="literal">&lt;trigger event&gt;</code> determines the type of the
+    trigger. Examples include BEFORE DELETE, AFTER UPDATE, INSTEAD OF INSERT.
+    If the optional <code class="literal">[ OF &lt;trigger column list&gt; ]</code> is
+    specified for an UPDATE trigger, then the trigger is activated only if one
+    of the columns that is in the <code class="literal">&lt;trigger column
+    list&gt;</code> is specified in the UPDATE statement that activates the
+    trigger.</p>
+<p>If a trigger is <code class="literal">FOR EACH ROW</code>, which is the
+    default option, then the trigger is activated for each row of the table
+    that is affected by the execution of an SQL statement. Otherwise, it is
+    activated once only per statement execution. For <code class="literal">FOR EACH
+    ROW</code> triggers, there is an OLD and NEW state for each row. For
+    UPDATE triggers, both OLD and NEW states exist, representing the row
+    before the update, and after the update. For DELETE, triggers, there is
+    only an OLD state. For INSERT triggers, there is only the NEW state. If a
+    trigger is <code class="literal">FOR EACH STATEMENT</code>, then a transient table
+    is created containing all the rows for the OLD state and another transient
+    table is created for the NEW state.</p>
+<p>The <code class="literal">[ REFERENCING &lt;transition table or variable&gt;
+    ]</code> is used to give a name to the OLD and NEW data row or table.
+    This name can be referenced in the <code class="literal">&lt;SQL procedure
+    statement&gt;</code> to access the data.</p>
+<p>The optional <code class="literal">&lt;triggered when clause&gt;</code> is
+    a search condition, similar to the search condition of a DELETE or UPDATE
+    statement. If the search condition is not TRUE for a row, then the trigger
+    is not activated for that row.</p>
+<p>The <code class="literal">&lt;SQL procedure statement&gt;</code> is limited
+    to INSERT, DELETE, UPDATE and MERGE statements.</p>
+<p>The <code class="literal">&lt;HSQLDB trigger class FQN&gt;</code> is a
+    delimited identifier that contains the fully qualified name of a Java
+    class that implements the <code class="classname">org.hsqldb.Trigger</code>
+    interface.</p>
+<p>Early releases of HyperSQL version 2.0 do not allow the use of
+    OLD TABLE or NEW TABLE in statement level triggers.</p>
+<a name="N13303" class="indexterm"></a>
+<p>
+<span class="bold"><strong>TRIGGERED SQL
+    STATEMENT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>triggered SQL statement</em></span>
+</p>
+<p>
+<code class="literal">The &lt;triggered SQL statement&gt;</code> has three
+    forms.</p>
+<p>The first form is a single SQL procedure statement. This
+    statement can reference the OLD ROW and NEW ROW variables. For example, it
+    can reference these variables and insert a row into a separate
+    table.</p>
+<p>The second form is enclosed in a BEGIN ... END block and can
+    include one or more SQL procedure statements. In BEFORE triggers, you can
+    include SET statements to modify the inserted or updated rows. In AFTER
+    triggers, you can include INSERT, DELETE and UPDATE statements to change
+    the data in other database tables. SELECT and CALL statements are allowed
+    in BEFORE and AFTER triggers. CALL statements in BEFORE triggers should
+    not modify data.</p>
+<p>The third form specifies a call to a Java method.</p>
+<p>Two examples of a trigger with a block are given below. The block
+    can include elements discussed in the <a class="link" href="sqlroutines-chapt.html" title="">SQL-Invoked Routines</a> chapter, including
+    local variables, loops and conditionals. You can also raise an exception
+    in such blocks in order to terminate the execution of the SQL statement
+    that caused the trigger to execute.</p>
+<pre class="programlisting">/* the trigger throws an exception if a customer with the given last name already exists */
+  CREATE TRIGGER trigone BEFORE INSERT ON customer 
+    REFERENCING NEW ROW AS newrow
+    FOR EACH ROW WHEN (newrow.id &gt; 100)
+    BEGIN ATOMIC
+      IF EXISTS (SELECT * FROM CUSTOMER WHERE CUSTOMER.LASTNAME = NEW.LASTNAME) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'already exists';
+      END IF;
+    END
+</pre>
+<pre class="programlisting">/* for each row inserted into the target, the trigger insert a row into the table used for logging */
+  CREATE TRIGGER trig AFTER INSERT ON testtrig 
+    BEFORE othertrigger  
+    REFERENCING NEW ROW AS newrow
+    FOR EACH ROW WHEN (newrow.id &gt; 1)
+    BEGIN ATOMIC
+      INSERT INTO triglog VALUES (newrow.id, newrow.data, 'inserted');
+      /* more statements can be included */
+    END
+</pre>
+<p></p>
+<a name="N13325" class="indexterm"></a>
+<p>
+<span class="bold"><strong>TRIGGER EXECUTION
+    ORDER</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>trigger execution order</em></span>
+</p>
+<p>
+<code class="literal">&lt;trigger execution order&gt; ::= BEFORE &lt;other
+    trigger name&gt;</code>
+</p>
+<p>HyperSQL extends the SQL Standard to allow the order of execution
+    of a trigger to be specified by using [BEFORE &lt;other trigger name&gt;]
+    in the definition. The newly defined trigger will be executed before the
+    specified other trigger. If this clause is not used, the new trigger is
+    executed after all the previously defined triggers of the same scope
+    (BEFORE, AFTER, EACH ROW, EACH STATEMENT).</p>
+<a name="N13336" class="indexterm"></a>
+<p>
+<span class="bold"><strong>DROP TRIGGER</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>drop trigger statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;drop trigger statement&gt; ::= DROP TRIGGER
+    &lt;trigger name&gt;</code>
+</p>
+<p>Destroy a trigger.</p>
+</div>
+</div>
+<HR xmlns:xi="http://www.w3.org/2001/XInclude">
+<P xmlns:xi="http://www.w3.org/2001/XInclude" class="svnrev">$Revision: 4864 $</P>
+<div class="navfooter">
+<hr>
+<table summary="Navigation footer" width="100%">
+<tr>
+<td align="left" width="40%"><a accesskey="p" href="sqlroutines-chapt.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="20%">&nbsp;</td><td align="right" width="40%">&nbsp;<a accesskey="n" href="builtinfunctions-chapt.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="40%">Chapter&nbsp;8.&nbsp;SQL-Invoked Routines&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="40%">&nbsp;Chapter&nbsp;10.&nbsp;Built In Functions</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

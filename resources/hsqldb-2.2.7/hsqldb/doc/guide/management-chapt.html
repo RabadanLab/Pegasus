@@ -1,0 +1,2818 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter&nbsp;11.&nbsp;System Management</title>
+<link href="../docbook.css" type="text/css" rel="stylesheet">
+<meta content="DocBook XSL-NS Stylesheets V1.76.1" name="generator">
+<meta name="keywords" content="Hsqldb, HyperSQL, SQL">
+<meta name="keywords" content="Hsqldb, HyperSQL, Database, JDBC, Java">
+<link rel="home" href="index.html" title="HyperSQL User Guide">
+<link rel="up" href="index.html" title="HyperSQL User Guide">
+<link rel="prev" href="builtinfunctions-chapt.html" title="Chapter&nbsp;10.&nbsp;Built In Functions">
+<link rel="next" href="dbproperties-chapt.html" title="Chapter&nbsp;12.&nbsp;Properties">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table summary="Navigation header" width="100%">
+<tr>
+<td align="left" width="30%"><a accesskey="p" href="builtinfunctions-chapt.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="40%" style="font-weight:bold;">Chapter&nbsp;11.&nbsp;System Management</td><td align="right" width="30%">&nbsp;<a accesskey="n" href="dbproperties-chapt.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="30%">Chapter&nbsp;10.&nbsp;Built In Functions&nbsp;</td><td align="center" width="40%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="30%">&nbsp;Chapter&nbsp;12.&nbsp;Properties</td>
+</tr>
+</table>
+</div>
+<HR>
+<div class="chapter" title="Chapter&nbsp;11.&nbsp;System Management">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title">
+<a name="management-chapt"></a>Chapter&nbsp;11.&nbsp;System Management</h2>
+</div>
+<div>
+<div class="authorgroup">
+<div class="author">
+<h3 class="author">
+<span class="firstname">Fred</span> <span class="surname">Toussi</span>
+</h3>
+<div class="affiliation">
+<span class="orgname">The HSQL Development Group<br>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<p class="releaseinfo">$Revision: 4903 $</p>
+</div>
+<div>
+<div class="legalnotice" title="Legal Notice">
+<a name="N13FFF"></a>
+<p>Copyright 2002-2012 Fred Toussi. Permission is granted to
+      distribute this document without any alteration under the terms of the
+      HSQLDB license. Additional permission is granted to the HSQL Development
+      Group to distribute this document with or without alterations under the
+      terms of the HSQLDB license.</p>
+</div>
+</div>
+<div>
+<p class="pubdate">2012-01-15 10:12:45-0500</p>
+</div>
+</div>
+</div>
+<div class="toc">
+<p>
+<b>Table of Contents</b>
+</p>
+<dl>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_modes_tables">Mode of Operation and Tables</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_modes_operation">Mode of Operation</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_table_types">Tables</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_large_objects">Large Objects</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_deploy_context">Deployment context</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_readonly_database">Readonly Databases</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_acid_persistence">ACID, Persistence and Reliability</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_acid">Atomicity, Consistency, Isolation, Durability</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_backup">Backing Up Database Catalogs</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_online_backup">Making Online Backups</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_offline_backup">Making Offline Backups</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_listing_backup">Examining Backups</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_restoring_backup">Restoring a Backup</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_encrypted_database">Encrypted Databases</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_encrypted_create">Creating and Accessing an Encrypted Database</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_encrypted_speed">Speed Considerations</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_encrypted_security">Security Considerations</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_monitoring_operation">Monitoring Database Operations</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_external_monitoring">External Statement Level Monitoring</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_internal_monitoring">Internal Statement Level Monitoring</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_internal_event_monitoring">Internal Event Monitoring</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_server_monitoring">Server Operation Monitoring</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_database_security">Database Security</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_security_defaults">Security Defaults</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_authentication_control">Authentication Control</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_compatibility_other">Compatibility with Other RDBMS</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_compatibility_postgres">PostgreSQL Compatibility</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_compatibility_mysql">MySQL Compatibility</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_compatibility_firebird">Firebird Compatibility</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_compatibility_derby">Apache Derby Compatibility</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_compatibility_oracle">Oracle Compatibility</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_compatibility_db2">DB2 Compatibility</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_compatibility_mssql">MS SQLServer and Sybase Compatibility</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_statements">Statements</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_system_operations">System Operations</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_database_settings">Database Settings</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_sql_settings">SQL Conformance Settings</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_cache_persistence">Cache, Persistence and Files Settings</a></span>
+</dt>
+<dt>
+<span class="section"><a href="management-chapt.html#mtc_authntication_settings">Authentication Settings</a></span>
+</dt>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" title="Mode of Operation and Tables">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="mtc_modes_tables"></a>Mode of Operation and Tables</h2>
+</div>
+</div>
+</div>
+<p>HyperSQL has many modes of operation and features that allow it to
+    be used in very different scenarios. Levels of memory usage, speed and
+    accessibility by different applications are influenced by how HyperSQL is
+    deployed.</p>
+<div class="section" title="Mode of Operation">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_modes_operation"></a>Mode of Operation</h3>
+</div>
+</div>
+</div>
+<p>The decision to run HyperSQL as a separate server process or as an
+      <em class="glossterm">in-process</em> database should be based on the
+      following:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>When HyperSQL is run as a server on a separate machine, it
+            is isolated from hardware failures and crashes on the hosts
+            running the application.</p>
+</li>
+<li class="listitem">
+<p>When HyperSQL is run as a server on the same machine, it is
+            isolated from application crashes and memory leaks.</p>
+</li>
+<li class="listitem">
+<p>Server connections are slower than
+            <em class="glossterm">in-process</em> connections due to the overhead
+            of streaming the data for each JDBC call.</p>
+</li>
+<li class="listitem">
+<p>You can reduce client/server traffic using SQL Stored
+            procedures to reduce the number of JDBC execute calls.</p>
+</li>
+<li class="listitem">
+<p>During development, it is better to use a Server with
+            server.silent=false, which displays the statements sent to the
+            server on the console window.</p>
+</li>
+<li class="listitem">
+<p>To improve speed of execution for statements that are
+            executed repeatedly, reuse a parameterized PreparedStatement for
+            the lifetime of the connections.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="Tables">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_table_types"></a>Tables</h3>
+</div>
+</div>
+</div>
+<p>TEXT tables are designed for special applications where the data
+      has to be in an interchangeable format, such as CSV (comma separated
+      values). TEXT tables should not be used for routine storage of
+      data.</p>
+<p>MEMORY tables and CACHED tables are generally used for data
+      storage. The difference between the two is as follows:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>The data for all MEMORY tables is read from the *.script
+            file when the database is started and stored in memory. In
+            contrast the data for cached tables is not read into memory until
+            the table is accessed. Furthermore, only part of the data for each
+            CACHED table is held in memory, allowing tables with more data
+            than can be held in memory.</p>
+</li>
+<li class="listitem">
+<p>When the database is shutdown in the normal way, all the
+            data for MEMORY tables is written out to the disk. In comparison,
+            the data in CACHED tables that has changed is written out during
+            operation and at shutdown.</p>
+</li>
+<li class="listitem">
+<p>The size and capacity of the data cache for all the CACHED
+            tables is configurable. This makes it possible to allow all the
+            data in CACHED tables to be cached in memory. In this case, speed
+            of access is good, but slightly slower than MEMORY tables.</p>
+</li>
+<li class="listitem">
+<p>For normal applications it is recommended that MEMORY tables
+            are used for small amounts of data, leaving CACHED tables for
+            large data sets. For special applications in which speed is
+            paramount and a large amount of free memory is available, MEMORY
+            tables can be used for large tables as well.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="Large Objects">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_large_objects"></a>Large Objects</h3>
+</div>
+</div>
+</div>
+<p>HyperSQL 2.0 supports dedicated storage and access to BLOB and
+      CLOB objects. These objects can have huge sizes. BLOB or CLOB is
+      specified as the type of a column of the table. Afterwards, rows can be
+      inserted into the table using a PreparedStatement for efficient transfer
+      of large LOB data to the database. In <em class="glossterm">mem:</em>
+      catalogs, CLOB and BLOB data is stored in memory. In
+      <em class="glossterm">file:</em> catalogs, this data is stored in a single
+      separate file which has the extension *.lobs. The size of this file can
+      grow to huge, terabyte figures.</p>
+<p>LOB data should be store in the database using a JDBC
+      PreparedStatement object. The streaming methods send the LOB to the
+      database in one operation as a binary or character stream. Inside the
+      database, the disk space is allocated as needed and the data is saved as
+      it is being received. LOB data should be retrieved from the database
+      using a JDBC ResultSet method. When a streaming method is used to
+      retrieve a LOB, it is retrieved in large chunks in a transparent manner.
+      LOB data can also be stored by calling a JDBC method with String or
+      byte[] argument, but these methods limit the size of the LOB that can be
+      stored or retrieved.</p>
+<p>LOB data is not duplicated in the database when a lob is copied
+      from one table to another. The disk space is reused when a LOB is
+      deleted and is no longer contained in any table. This happens only at
+      the time of a CHECKPOINT.</p>
+<p>By using a dedicated LOB store, HyperSQL achieves consistently
+      high speeds (usually over 20MB / s) for both storage and retrieval of
+      LOBs.</p>
+<p>There is an internal LOBS schema in the database to store the
+      id's, sizes and addresses of the LOBs (but not the actual LOBS) in a few
+      system tables. This schema is stored in the database as MEMORY tables.
+      Therefore the amount of JVM memory should be increased when more than
+      tens of thousands of LOBs are stored in the database. If your database
+      contains more than a few hundreds of thousands of LOBs and memory use
+      becomes an issue, you can change one or all LOB schema tables to CACHED
+      tables. See statements below:</p>
+<div class="example">
+<a name="N14052"></a>
+<p class="title">
+<b>Example&nbsp;11.1.&nbsp;Using CACHED tables for the LOB schema</b>
+</p>
+<div class="example-contents">
+<pre class="screen">  SET TABLE SYSTEM_LOBS.BLOCKS TYPE CACHED
+  SET TABLE SYSTEM_LOBS.LOBS TYPE CACHED
+  SET TABLE SYSTEM_LOBS.LOB_IDS TYPE CACHED
+</pre>
+</div>
+</div>
+<br class="example-break">
+</div>
+<div class="section" title="Deployment context">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_deploy_context"></a>Deployment context</h3>
+</div>
+</div>
+</div>
+<p>The files used for storing HyperSQL database data are all in the
+      same directory. New files are always created and deleted by the database
+      engine. Two simple principles must be observed:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>The Java process running HyperSQL must have full privileges on
+          the directory where the files are stored. This include create and
+          delete privileges.</p>
+</li>
+<li class="listitem">
+<p>The file system must have enough spare room both for the
+          'permanent' and 'temporary' files. The default maximum size of the
+          *.log file is 50MB. The *.data file can grow to up to 16GB (more if
+          the default has been increased). The .backup file can be up to the
+          size of the *.data file. The *.lobs file can grow to several
+          terabytes. The temporary files created at the time of a SHUTDOWN can
+          be equal in size to the *.script file and the .data file.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="Readonly Databases">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_readonly_database"></a>Readonly Databases</h3>
+</div>
+</div>
+</div>
+<p>A <em class="glossterm">file:</em> catalog can be made readonly
+      permanently, or it can be opened as readonly. To make the database
+      readonly, the property, value pair, readonly=true can be added to the
+      .properties file of the database.</p>
+<p>It is also possible to open a normal database as readonly. For
+      this, the property can be included in the URL of the first connection to
+      the database.</p>
+<p>There is another option which allows MEMORY tables to be writable,
+      but without persisting the changes at SHUTDOWN. This option is activated
+      with the property, value pair, <code class="literal">files_readonly= true</code>,
+      which can be added to the .properties file of the database, or included
+      in the URL of the first connection to the database. This option is
+      useful for running application tests which operate on a predefined
+      dataset.</p>
+</div>
+</div>
+<div class="section" title="ACID, Persistence and Reliability">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="mtc_acid_persistence"></a>ACID, Persistence and Reliability</h2>
+</div>
+</div>
+</div>
+<p>HyperSQL 2.0 uses the same persistence mechanism as version 1.8, but
+    with important enhancements. The code has proven reliable, as the last
+    critical issue was fixed 2 years before the release of version 2.0.</p>
+<p>There are further enhancements in version 2.2</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>More extensive locking mechanism has been added to code to
+        support multithreaded access.</p>
+</li>
+<li class="listitem">
+<p>Incremental backup (an internal mechanism for crash protection)
+        allows fast checkpoint and shutdown.</p>
+</li>
+<li class="listitem">
+<p>All files are synced at checkpoints and also just before
+        closing.</p>
+</li>
+<li class="listitem">
+<p>The data file is enlarged in block increments</p>
+</li>
+<li class="listitem">
+<p>The nio implementation has been improved</p>
+</li>
+</ul>
+</div>
+<p>Persistence relies on the JVM, the operating system, and the
+    computer hardware. A database system like HSQLDB can perform millions of
+    read and write operations in an hour. As system hardware and software can
+    go wrong, it is impossible to achieve zero failure rate. Therefore regular
+    backups are recommended. HyperSQL 2.2 has built-in database backup and
+    restore features, discussed elsewhere in this chapter.</p>
+<p>A note regarding the nio implementation: This implementation applies
+    only to CACHED table data in the .data file. Other files are not accessed
+    via nio. There has been an issue with some JVM implementations of nio not
+    releasing the file buffers after they were closed. HyperSQL uses a
+    workaround which is recommended with Sun JVM's. This does not apply to
+    other JVM's. In such environments, it is therefore recommended to test the
+    CHECKPOINT DEFRAG operation and the shutting down and restarting the
+    database inside the same Java process extensively with nio. Use of nio can
+    be turned off if necessary.</p>
+<div class="section" title="Atomicity, Consistency, Isolation, Durability">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_acid"></a>Atomicity, Consistency, Isolation, Durability</h3>
+</div>
+</div>
+</div>
+<p>Atomicity means a transaction either fails without changing the
+      data, or succeeds. HyperSQL ensures atomicity both during operations and
+      in the event of a system crash.</p>
+<p>Consistency means all the implicit and explicit integrity
+      constraints are always enforced. HyperSQL always enforces the
+      constraints and at the same time does not allow unenforceable
+      constraints (illegal forms of CHECK constraints) to be created.</p>
+<p>Isolation means transactions do not interfere with each other.
+      HyperSQL enforces isolation according to strict rules of the database
+      isolation model (MVCC or LOCKS).</p>
+<p>Durability means a committed transaction is protected in case of a
+      system crash. HyperSQL ensures durability according to the setting for
+      WRITE DELAY MILLIS. A zero delay setting results in an
+      FileDescriptor#sync() call each time a transaction commits. A timed
+      delay means the FileDescriptor#sync() call is executed in the given
+      intervals and only the last transactions committed in the interval may
+      be lost. The sync() call is also made at all critical points, including
+      when a file is about to be closed. Durability of files requires a
+      reliable JVM and disk storage system that stores the data safely with a
+      sync() call. In practice, many systems are generally reliable in this
+      respect.</p>
+</div>
+</div>
+<div class="section" title="Backing Up Database Catalogs">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="mtc_backup"></a>Backing Up Database Catalogs</h2>
+</div>
+</div>
+</div>
+<a name="N140A0" class="indexterm"></a>
+<p>The database engine saves the files containing all the data in a
+    file catalog when a shutdown takes place. It automatically recovers from
+    an abnormal termination and preserves the data when the catalog is opened
+    next time. In an ideal operating environment, where there is no OS crash,
+    disk failure, bugs in code, etc. there would be no need regularly to
+    backup a database. This is meant to say, the engine performs the routine
+    shutdown procedure internally, therefore backing up catalogs is an
+    insurance policy against all sorts of misadventure that are not under the
+    control of the database engine.</p>
+<p>The data for each catalog consists of up to 5 files in the same
+    directory with the endings such as <code class="literal">*.properties</code>,
+    <code class="literal">*.script</code>, etc., as detailed in previous
+    chapters.</p>
+<p>HyperSQL 2.0 includes commands to backup the database files into
+    a single <code class="literal">.tar</code> or <code class="literal">.tar.gz</code> file
+    archive. The backup can be performed by a command given in a JDBC session
+    if the target database catalog is running, or on the command-line if the
+    target catalog has been shutdown.</p>
+<div class="section" title="Making Online Backups">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_online_backup"></a>Making Online Backups</h3>
+</div>
+</div>
+</div>
+<p>To back up a running catalog, obtain a JDBC connection and
+      issue a <code class="literal">BACKUP DATABASE</code> command in SQL. In its most
+      simple form, the command format below will backup the database as a
+      single <code class="literal">.tar.gz</code> file to the given directory.</p>
+<pre class="programlisting">  BACKUP DATABASE TO &lt;directory name&gt; BLOCKING</pre>
+<p>The <span class="emphasis"><em>directory name</em></span> must end with a slash
+      to distinguish it as a directory, and the whole string must be in single
+      quotes like so: <code class="literal">'subdir/nesteddir/'</code>.</p>
+<p>See the next section under Statements for details about the
+      command and its options. See the sections below about restoring a
+      backup.</p>
+</div>
+<div class="section" title="Making Offline Backups">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_offline_backup"></a>Making Offline Backups</h3>
+</div>
+</div>
+</div>
+<p>To back up an offline catalog, the catalog must be in shut down
+      state. You will run a Java command like this. In this example, the
+      database is named dbname and is in the dbdir directory. The backup is
+      saved to a file named backup.tar in the tardir directory.</p>
+<div class="example">
+<a name="N140D4"></a>
+<p class="title">
+<b>Example&nbsp;11.2.&nbsp;Offline Backup Example</b>
+</p>
+<div class="example-contents">
+<pre class="screen">  java -cp hsqldb.jar org.hsqldb.lib.tar.DbBackup --save tardir/backup.tar dbdir/dbname</pre>
+</div>
+</div>
+<p>
+<br class="example-break">where <code class="filename">tardir/backup.tar</code> is a file path
+      to the <code class="literal">*.tar</code> or <code class="literal">*.tar.gz</code> file to
+      be created in your file system, and <code class="filename">dbdir/dbname</code> is
+      the file path to the catalog file base name (in same fashion as in
+      <code class="varname">server.database.*</code> settings and JDBC URLs with catalog
+      type <em class="glossterm">file:</em>.</p>
+</div>
+<div class="section" title="Examining Backups">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_listing_backup"></a>Examining Backups</h3>
+</div>
+</div>
+</div>
+<p>You can list the contents of backup tar files with
+      <code class="classname">DbBackup</code> on your operating system command line,
+      or with any Pax-compliant tar or pax client (this includes GNU tar),
+      </p>
+<div class="example">
+<a name="N140F5"></a>
+<p class="title">
+<b>Example&nbsp;11.3.&nbsp;Listing a Backup with DbBackup</b>
+</p>
+<div class="example-contents">
+<pre class="screen">  java -cp hsqldb.jar org.hsqldb.lib.tar.DbBackup --list tardir/backup.tar</pre>
+</div>
+</div>
+<p>
+<br class="example-break">You can also give regular expressions at the end of the
+      command line if you are only interested in some of the file entries in
+      the backup. Note that these are real regular expressions, not shell
+      globbing patterns, so you would use <code class="literal">.+script</code> to match
+      entries ending in "script", not <code class="literal">*script</code>.</p>
+<p>You can examine the contents of the backup in their entirety by
+      restoring the backup, as explained in the following section, to a
+      temporary directory.</p>
+</div>
+<div class="section" title="Restoring a Backup">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_restoring_backup"></a>Restoring a Backup</h3>
+</div>
+</div>
+</div>
+<p>You use <code class="classname">DbBackup</code> on your operating system
+      command line to restore a catalog from a backup. </p>
+<div class="example">
+<a name="N1410C"></a>
+<p class="title">
+<b>Example&nbsp;11.4.&nbsp;Restoring a Backup with DbBackup</b>
+</p>
+<div class="example-contents">
+<pre class="screen">  java -cp hsqldb.jar org.hsqldb.lib.tar.DbBackup --extract tardir/backup.tar dbdir</pre>
+</div>
+</div>
+<p>
+<br class="example-break">where <code class="filename">tardir/backup.tar</code> is a file path
+      to the *.tar or *.tar.gz file to be read, and <code class="filename">dbdir</code>
+      is the target directory to extract the catalog files into. Note that
+      <code class="filename">dbdir</code> specifies a directory path, without the
+      catalog file base name. The files will be created with the names stored
+      in the tar file (and which you can see as described in the preceding
+      section).</p>
+</div>
+</div>
+<div class="section" title="Encrypted Databases">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="mtc_encrypted_database"></a>Encrypted Databases</h2>
+</div>
+</div>
+</div>
+<p>HyperSQL supports encrypted databases. Encryption services use the
+    Java Cryptography Extensions (JCE) and uses the ciphers installed with the
+    JRE. HyperSQL itself does not contain any cryptography code.</p>
+<p>Three elements are involved in specifying the encryption method and
+    key. A cipher, together with its configuration is identified by a string
+    which includes the name of the cipher and optional parameters. A provider
+    is the fully qualified class name of the cipher provider. A key is
+    represented as a hexadecimal string.</p>
+<div class="section" title="Creating and Accessing an Encrypted Database">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_encrypted_create"></a>Creating and Accessing an Encrypted Database</h3>
+</div>
+</div>
+</div>
+<p>First, a key must be created for the desired cipher and
+      configuration. This is done by calling the function CRYPT_KEY(&lt;cipher
+      spec&gt;, &lt;provider&gt;). If the default provider (the built-in JVM
+      ciphers) is used, then NULL should be specified as the provider. The
+      CRYPT_KEY function returns a hexadecimal key. The function call can be
+      made in any HyperSQL database, so long as the provider class is on the
+      classpath. This key can be used to create a new encrypted database.
+      Calls to this function always return different keys, based on a
+      generated random values.</p>
+<p>As an example, a call to CRYPT_KEY('Blowfish', null) returned the
+      string, '604a6105889da65326bf35790a923932'. To create a new database,
+      the URL below is used:</p>
+<p>
+<code class="literal">jdbc:hsqldb:file:&lt;database
+      path&gt;;crypt_key=604a6105889da65326bf35790a923932;crypt_type=blowfish</code>
+</p>
+<p>The third property name is crypt_provider. This is specified only
+      when the provider is not the default provider.</p>
+<p>HyperSQL works with any symmetric cipher that may be available
+      from the JVM.</p>
+<p>The files that are encrypted include the .script, .data, .backup
+      and .log files. The .lobs file is not encrypted by default. The property
+      crypt_lobs=true must be specified to encrypt the .lobs file.</p>
+</div>
+<div class="section" title="Speed Considerations">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_encrypted_speed"></a>Speed Considerations</h3>
+</div>
+</div>
+</div>
+<p>General operations on an encrypted database are performed the same
+      as with any database. However, some operations are significantly slower
+      than with the equivalent cleartext database. With MEMORY tables, there
+      is no difference to the speed of SELECT statements, but data change
+      statements are slower. With CACHED tables, the speed of all statements
+      is slower.</p>
+</div>
+<div class="section" title="Security Considerations">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_encrypted_security"></a>Security Considerations</h3>
+</div>
+</div>
+</div>
+<p>Security considerations for encrypted databases have been
+      discussed at length in HSQLDB discussion groups. Development team
+      members have commented that encryption is not a panacea for all security
+      needs. The following issues should be taken into account:</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Encrypted files are relatively safe in transport, but
+            because databases contain many repeated values and words,
+            especially known tokens such as CREATE, INSERT, etc., breaking the
+            encryption of a database may be simpler than an unknown
+            file.</p>
+</li>
+<li class="listitem">
+<p>Only the files are encrypted, not the memory image. Poking
+            into computer memory, while the database is open, will expose the
+            contents of the database.</p>
+</li>
+<li class="listitem">
+<p>HyperSQL is open source. Someone who has the key, can
+            compile and use a modified version of the program that saves a
+            full cleartext dump of an encrypted database</p>
+</li>
+</ul>
+</div>
+<p>Therefore encryption is generally effective only when
+      the users who have access to the crypt key are trusted.</p>
+</div>
+</div>
+<div class="section" title="Monitoring Database Operations">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="mtc_monitoring_operation"></a>Monitoring Database Operations</h2>
+</div>
+</div>
+</div>
+<p>Database operations can be monitored at different levels using
+    internal HyperSQL capabilities or add-ons.</p>
+<div class="section" title="External Statement Level Monitoring">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_external_monitoring"></a>External Statement Level Monitoring</h3>
+</div>
+</div>
+</div>
+<p>Statement level monitoring allows you to gather statistics about
+      executed statements. HyperSQL is supported by the monitoring tool JAMon
+      (Java Application Monitor). JAMon is currently developed as the
+      SourceForge project, jamonapi.</p>
+<p>JAMon works at the JDBC level. It can monitor and gather
+      statistics on different types of executed statements or other JDBC
+      calls.</p>
+<p>Early versions of JAMon were developed with HSQLDB and had to be
+      integrated into HSQLDB at code level. The latest versions can be added
+      on as a proxy in a much simpler fashion.</p>
+</div>
+<div class="section" title="Internal Statement Level Monitoring">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_internal_monitoring"></a>Internal Statement Level Monitoring</h3>
+</div>
+</div>
+</div>
+<p>The internally-generated, individual sql log for the database can
+      be enabled with the <code class="literal">SET DATABASE EVENT LOG SQL LEVEL</code>
+      statement, described in the next section. As all the executed
+      statements are logged, there is an impact on speed. So you should only
+      use this for debugging. Two levels of sql logging are supported.</p>
+</div>
+<div class="section" title="Internal Event Monitoring">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_internal_event_monitoring"></a>Internal Event Monitoring</h3>
+</div>
+</div>
+</div>
+<p>HyperSQL can log important internal events of the engine. These
+      events occur during the operation of the engine, and are not always
+      coupled with the exact type of statement being executed. Normal events
+      such as opening and closing of files, or errors such as OutOfMemory
+      conditions are examples of logged events.</p>
+<p>HyperSQL supports two methods of logging. One method is specific
+      to the individual database and is managed internally by HyperSQL. The
+      other method is specific to JVM and is managed by a logging
+      framework.</p>
+<p>The internally-generated, individual log for the database can be
+      enabled with the <code class="literal">SET DATABASE EVENT LOG LEVEL</code>
+      statement, described in the next section. This method of logging is very
+      useful for desktop application deployment, as it provides an ongoing
+      record of database operations.</p>
+<p>HyperSQL also supports log4J and JDK logging. The same event
+      information that is passed to the internal log, is passed to external
+      logging frameworks. These frameworks are configured outside HyperSQL.
+      The log messages include the string "hsqldb.db." followed by the unique
+      id (a 16 character string) of the database that generated the message,
+      so they can be identified in a multi-database server context.</p>
+</div>
+<div class="section" title="Server Operation Monitoring">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_server_monitoring"></a>Server Operation Monitoring</h3>
+</div>
+</div>
+</div>
+<p>A Server or WebServer instance can be started with the property
+      server.silent=false. This causes all the connections and their executed
+      statements to be printed to stdout as the statements are submitted to
+      the server.</p>
+</div>
+</div>
+<div class="section" title="Database Security">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="mtc_database_security"></a>Database Security</h2>
+</div>
+</div>
+</div>
+<p>HyperSQL has extensive security features which are implemented at
+    different levels and covered in different chapters of this guide.</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>The server can use SSL and IP address access control lists. See
+        the <a class="link" href="listeners-chapt.html" title="Chapter&nbsp;13.&nbsp;HyperSQL Network Listeners (Servers)">HyperSQL Network Listeners
+    (Servers)</a> chapter.</p>
+</li>
+<li class="listitem">
+<p>You can define a system property to stop the database engine
+        accessing the Java static functions that are on the classpath, apart
+        from a limited set that you allow. See Securing Access to Classes in
+        the <a class="link" href="sqlroutines-chapt.html" title="Chapter&nbsp;8.&nbsp;SQL-Invoked Routines">SQL-Invoked Routines</a> chapter.</p>
+</li>
+<li class="listitem">
+<p>You can define a system property to allow access to files on the
+        file system outside the database directory and its children. This
+        access is only necessary if you use TEXT tables. See the <a class="link" href="texttables-chapt.html" title="Chapter&nbsp;5.&nbsp;Text Tables">Text Tables</a>
+        chapter.</p>
+</li>
+<li class="listitem">
+<p>The database files can be encrypted. Discussed in this
+        chapter.</p>
+</li>
+<li class="listitem">
+<p>Within the database, the DBA privileges are required for system
+        and maintenance jobs.</p>
+</li>
+<li class="listitem">
+<p>You can define users and roles and grant them access on
+        different database objects. Each user has a password and is granted a
+        set of privileges. See the <a class="link" href="accesscontrol-chapt.html" title="Chapter&nbsp;6.&nbsp;Access Control">Access Control</a> chapter.</p>
+</li>
+<li class="listitem">
+<p>You can define a password complexity check function for new and
+        changed passwords. This is covered below under Authentication
+        Settings.</p>
+</li>
+<li class="listitem">
+<p>You can use external authentication instead of internally stored
+        password to authenticate users for each database. This is covered
+        below under Authentication Settings.</p>
+</li>
+</ol>
+</div>
+<p>HyperSQL security is multi-layered and avoids any loopholes to
+    circumvent security. It is however the user's responsibility to enable the
+    required level of security.</p>
+<div class="section" title="Security Defaults">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_security_defaults"></a>Security Defaults</h3>
+</div>
+</div>
+</div>
+<p>The default setting are generally adequate for most embedded use
+      of the database or for servers on the host that are accessed from the
+      same machine. For servers accessed within a network, and especially for
+      those accessed from outside the network, additional security settings
+      must be used.</p>
+<p>The default settings for server and web server do not use SSL or
+      IP access control lists. These features are enabled programatically, or
+      with the properties used to start the server.</p>
+<p>The default settings allow a database user with the DBA role or
+      with schema creation role to access static functions on the classpath.
+      You can disable this feature or limit it to specific classes and
+      methods. This can be done programatically or by setting a system
+      property when you start a server.</p>
+<p>If access to specific static functions is granted, then these
+      functions must be considered as part of the database program and checked
+      for any security flaws before inclusion in the classpath.</p>
+<p>The default settings do not allow a user to access files outside
+      the database directory. This access is for TEXT table source files. You
+      can override this programatically or with a system property when you
+      start a server.</p>
+<p>The encryption of database file does not utilise any user-supplied
+      information for encryption keys. This level of security is outside the
+      realm of users and passwords.</p>
+<p>The first user for a new database has the DBA role. This user name
+      need not be SA. The name of the first DBA user and its password can be
+      specified when the database is created by the first connection to the
+      database. These settings are then stored in the database.</p>
+<p>The initial user with the DBA role should be used for admin
+      purposes only. At least one additional role should be created for normal
+      database use in the application and at least one additional user should
+      be created and granted this role. The new role should not be given the
+      DBA role. It can be given the CREATE_SCHEMA role, which allows it to
+      create and access multiple schemas. Alternatively, the user with the DBA
+      role can create the schemas and their objects and then grant specific
+      privileges on the objects to the non-DBA role.</p>
+</div>
+<div class="section" title="Authentication Control">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_authentication_control"></a>Authentication Control</h3>
+</div>
+</div>
+</div>
+<p>Authentication is the mechanism that determines if a user can
+      access the database at all. Once authentication is performed, the
+      authorization mechanism is used to determine which database objects the
+      particular user can access. The default authentication mechanism is
+      password authentication. Each user is created with a password, which is
+      stored in the database and checked each time a new database connection
+      is created.</p>
+<a name="N141C5" class="indexterm"></a>
+<p>
+<span class="bold"><strong>Password Complexity
+      Check</strong></span>
+</p>
+<p>HyperSQL allows you to define a function that checks the quality
+      of the passwords defined in the database. The passwords are stored in
+      the database. Each time a user connects, the user's name and password
+      are checked against the stored list of users and passwords. The
+      connection attempt is rejected if there is no match.</p>
+<a name="N141D0" class="indexterm"></a>
+<p>
+<span class="bold"><strong>External
+      Authentication</strong></span>
+</p>
+<p>You can use an external authentication mechanism instead of the
+      internal authentication mechanism. HyperSQL allows you to define a
+      function that checks the combination of database unique name, user name,
+      and password for each connection attempt. The function can use external
+      resources to authenticate the user. For example, a directory server may
+      be used. The password may be ignored if the external resource can verify
+      the user's credential without it.</p>
+<p>You can override external authentication for a user with the ALTER
+      USER statement. See the <a class="link" href="accesscontrol-chapt.html" title="Chapter&nbsp;6.&nbsp;Access Control">Access Control</a> chapter</p>
+</div>
+</div>
+<div class="section" title="Compatibility with Other RDBMS">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="mtc_compatibility_other"></a>Compatibility with Other RDBMS</h2>
+</div>
+</div>
+</div>
+<p>HyperSQL is used more than any other database engine for application
+    testing and development targeted at other databases. Over the years, this
+    usage resulted in developers finding and reporting many obscure bugs in
+    HyperSQL, which have all been fixed in the latest version. Also, HyperSQL
+    2.0 has been written to the SQL Standard and avoids the traps caused by
+    superficial imitation of existing RDBMS.</p>
+<p>HyperSQL has many property settings that relax conformance to the
+    Standard in order to allow compatibility with other RDBMS, without
+    breaking the core integrity of the database. These properties are modified
+    with SET DATABASE SQL statements described in the SQL Conformance Settings
+    section of this chapter</p>
+<p>The SQL Standard has existed since 1989 and has been expanded over
+    the years in several revisions. Also, the X-Open specification has defined
+    a number of SQL functions which are implemented by most RDBMS.</p>
+<p>Each RDBMS supports additional functions that are not covered by the
+    standard. Some RDBMS use non-standard syntax for some operations.
+    Fortunately, most popular RDBMS products have introduced better
+    compatibility with the Standard in their recent versions, but there are
+    still some portability issues. HyperSQL overcomes the potability issues
+    using these strategies</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>An extensive set of functions cover the SQL Standard, X-Open,
+        and most of the useful functions that other RDBMS may support.</p>
+</li>
+<li class="listitem">
+<p>Database properties, which can be specified on the URL or as SQL
+        statements, relax conformance to the Standard in order to allow
+        non-standard comparisons and assignments allowed by other
+        RDBMS.</p>
+</li>
+<li class="listitem">
+<p>Specific SQL syntax compatibility modes allow syntax and type
+        names that are supported by some popular RDBMS.</p>
+</li>
+<li class="listitem">
+<p>User-defined types and functions, including aggregate functions,
+        allow any type or function that is supported by some RDBMS to be
+        defined and used.</p>
+</li>
+</ul>
+</div>
+<p>In the future, the supported compatibility modes with other RDBMS
+    will be expanded further.</p>
+<div class="section" title="PostgreSQL Compatibility">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_compatibility_postgres"></a>PostgreSQL Compatibility</h3>
+</div>
+</div>
+</div>
+<p>PostgreSQL is fairly compatible with the Standard, but uses some
+      non-standard features.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Use <code class="literal">&lt;set database sql syntax PGS
+          statement&gt;</code> to enable the PostgreSQL's non-standard
+          features. References to SERIAL, BIGSERIAL and TEXT data types, as
+          well as sequence functions, are translated into HSQLDB
+          equivalents.</p>
+</li>
+<li class="listitem">
+<p>Use MVCC if your application is multi-user</p>
+</li>
+<li class="listitem">
+<p>PostgreSQL functions are generally supported</p>
+</li>
+<li class="listitem">
+<p>For identity columns, PostgreSQL uses a non-standard linkage
+          with an external identity sequence. In most cases, this can be
+          converted to <code class="literal">GENERATED BY DEFAULT AS IDENTITY</code>. In
+          those cases where the identity sequence needs to be shared by
+          multiple tables, you can use a new HyperSQL 2.2 feature
+          <code class="literal">GENERATED BY DEFAULT AS SEQUENCE &lt;sequence
+          name&gt;</code>, which is the equivalent of the PostgreSQL
+          implementation.</p>
+</li>
+<li class="listitem">
+<p>In CREATE TABLE statements, the SERIAL and BIGSERIAL types are
+          translated into INTEGER or BIGINT, with <code class="literal">GENERATED BY
+          DEFAULT AS IDENTITY</code>. Usage of DEFAULT NEXTVAL(&lt;sequence
+          name&gt;) is supported so long as the <code class="literal">&lt;sequence
+          name&gt;</code> refers to an existing sequence. This usage is
+          translated into <code class="literal">GENERATED BY DEFAULT AS SEQUENCE
+          &lt;sequence name&gt;</code>.</p>
+</li>
+<li class="listitem">
+<p>In SELECT and other statements, the
+          <code class="literal">NEXTVAL(&lt;sequence name&gt;)</code> and
+          <code class="literal">LASTVAL()</code> functions are supported and translated
+          into HyperSQL's <code class="literal">NEXT VALUE FOR &lt;sequence
+          name&gt;</code> and <code class="literal">IDENTITY()</code>
+          expressions.</p>
+</li>
+<li class="listitem">
+<p>PostgreSQL uses a non-standard expression, <code class="literal">SELECT 'A
+          Test String'</code> to return a single row table. The standard
+          form is <code class="literal">VALUES('A Test String')</code>. In PGS syntax
+          mode, this type of SELECT is supported.</p>
+</li>
+<li class="listitem">
+<p>HyperSQL supports SQL Standard ARRAY types. PostgreSQL also
+          supports this, but not entirely according to the Standard.</p>
+</li>
+<li class="listitem">
+<p>SQL routines are portable, but some syntax elements are
+          different and require changes.</p>
+</li>
+<li class="listitem">
+<p>You may need to use <code class="literal">SET DATABASE SQL TDC { DELETE |
+          UPDATE }</code> FALSE statements.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="MySQL Compatibility">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_compatibility_mysql"></a>MySQL Compatibility</h3>
+</div>
+</div>
+</div>
+<p>MySQL had many incompatibilities with the Standard. The latest
+      versions have introduced much greater compatibly, but some of these
+      features have to be turned on via properties. You should therefore check
+      the current Standard compatibility settings of your MySQL database and
+      use the available HyperSQL properties to achieve closer results. If you
+      avoid the few anti-Standard features of MySQL you can port your
+      databases to HyperSQL.</p>
+<p>HyperSQL does not have the following non-standard limitations of
+      MySQL.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Win HyperSQL, an UPDATE statement can update UNIQUE and
+          PRIMARY KEY columns of a table without causing an exception due to
+          temporary violation of constraints. These constraints are checked at
+          the end of execution, therefore there is no need for an ORDER BY
+          clause in an UPDATE statement.</p>
+</li>
+<li class="listitem">
+<p>MySQL foreign key constraints are not enforced by the default
+          MyISAM engine. Be aware of the possibility of data being rejected by
+          HyperSQL due to these constraints.</p>
+</li>
+<li class="listitem">
+<p>With HyperSQL INSERT or UPDATE statements either succeed or
+          fail due to constraint violation. MySQL has the non-standard IGNORE
+          overrides to ignore violations, which is not accepted by
+          HyperSQL.</p>
+</li>
+<li class="listitem">
+<p>Unlike MySQL, HyperSQL allows you to modify a table with an
+          INSERT, UPDATE or DELETE statement which selects from the same table
+          in a subquery.</p>
+</li>
+</ul>
+</div>
+<p>Follow the guidelines below for converting MySQL databases and
+      applications.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Use <code class="literal">&lt;set database sql syntax MYS
+          statement&gt;</code> to enable support for AUTO_INCREMENT and
+          TEXT data types. These type definitions are translated into HSQLDB
+          equivalents.</p>
+</li>
+<li class="listitem">
+<p>Use MVCC with <code class="literal">&lt;set database transaction control
+          statement&gt;</code> if your application is multi-user.</p>
+</li>
+<li class="listitem">
+<p>Avoid storing invalid values, for example invalid dates such
+          as '0000-00-00' or '2001-00-00' which are rejected by
+          HyperSQL.</p>
+</li>
+<li class="listitem">
+<p>Avoid the MySQL feature that trims spaces at the end of CHAR
+          values.</p>
+</li>
+<li class="listitem">
+<p>In MySQL, a database is the same as a schema. In HyperSQL
+          several schemas can exist in the same database and accessed
+          transparently. In addition a HyperSQL server supports multiple
+          separate databases.</p>
+</li>
+<li class="listitem">
+<p>In MySQL, older, non-standard, forms of database object name
+          case-sensitivity make is difficult to port applications. Use the
+          latest form which encloses case-sensitive names in double
+          quotes.</p>
+</li>
+<li class="listitem">
+<p>MySQL functions are generally supported, including
+          GROUP_CONCAT.</p>
+</li>
+<li class="listitem">
+<p>For fine control over type conversion, check the settings for
+          <code class="literal">&lt;set database sql convert truncate
+          statement&gt;</code>
+</p>
+</li>
+<li class="listitem">
+<p>If you use concatenation of possibly NULL values in your
+          select statements, you may need to change the setting with the
+          <code class="literal">&lt;set database sql concat nulls
+          statement&gt;</code>
+</p>
+</li>
+<li class="listitem">
+<p>MySQL supports most SQL Standard types (except INTERVAL
+          types), as well as non-standard types, which are also supported by
+          HyperSQL. Supported types include SMALLINT, INT, BIGINT, DOUBLE,
+          FLOAT, DECIMAL, NUMERIC, VARCHAR, CHAR, BINARY, VARBINARY, BLOB,
+          DATE, TIMESTAMP (all Standard SQL) and TINYINT, DATETIME (non
+          Standard).</p>
+</li>
+<li class="listitem">
+<p>MySQL uses a non-standard expression, <code class="literal">SELECT 'A Test
+          String'</code> to return a single row table. The standard form is
+          <code class="literal">VALUES('A Test String')</code>. In MYS syntax mode, this
+          type of SELECT is supported.</p>
+</li>
+<li class="listitem">
+<p>SQL user-defined function and procedure syntax is very similar
+          to SQL Standard syntax. A few changes may still be required.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="Firebird Compatibility">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_compatibility_firebird"></a>Firebird Compatibility</h3>
+</div>
+</div>
+</div>
+<p>Firebird generally follows the SQL Standard. Applications can be
+      ported to HyperSQL without difficulty.</p>
+</div>
+<div class="section" title="Apache Derby Compatibility">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_compatibility_derby"></a>Apache Derby Compatibility</h3>
+</div>
+</div>
+</div>
+<p>Apache Derby supports a smaller subset of the SQL Standard
+      compared to HyperSQL. Applications can be ported to HyperSQL without
+      difficulty.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Use MVCC with <code class="literal">&lt;set database transaction control
+          statement&gt;</code> if your application is multi-user.</p>
+</li>
+<li class="listitem">
+<p>HyperSQL supports Java language functions and stored
+          procedures with the standard syntax, which is similar to the way
+          Derby supports these features.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="Oracle Compatibility">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_compatibility_oracle"></a>Oracle Compatibility</h3>
+</div>
+</div>
+</div>
+<p>Recent versions of Oracle support Standard SQL syntax for outer
+      joins and many other operations. In addition, HyperSQL features a
+      setting to support Oracle syntax and semantics for the most widely used
+      non-standard features.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Use <code class="literal">&lt;set database sql syntax ORA
+          statement&gt;</code> to enable support for some non-standard
+          syntax of Oracle.</p>
+</li>
+<li class="listitem">
+<p>Use MVCC with <code class="literal">&lt;set database transaction control
+          statement&gt;</code> if your application is multi-user.</p>
+</li>
+<li class="listitem">
+<p>Fine control over MVCC deadlock avoidance is provided by the
+          <code class="literal">&lt;set database transaction rollback on conflict
+          statement&gt;</code> and the corresonding
+          <code class="literal">hsqldb.tx_conflict_rollback</code> connection
+          property.</p>
+</li>
+<li class="listitem">
+<p>If your application relies on Oracle behaviour for nulls in
+          multi-column UNIQUE constraints, use <code class="literal">&lt;set database sql
+          unique nulls statement&gt;</code> to change the default.</p>
+</li>
+<li class="listitem">
+<p>If you use the non-standard concatenation of possibly NULL
+          values in your select statements, you may need to change the setting
+          for <code class="literal">&lt;set database sql concat nulls
+          statement&gt;</code>.</p>
+</li>
+<li class="listitem">
+<p>Many Oracle functions are supported, including no-arg
+          functions such as SYSDATE and SYSTIMESTAMP and more complex ones
+          such as TO_DATE and TO_CHAR.</p>
+</li>
+<li class="listitem">
+<p>Non-standard data type definitions such as NUMBER, VARCHAR2,
+          NVARCHAR2, BINARY_DOUBLE, BINARY_FLOAT, LONG, RAW are translated
+          into the closest HyperSQL / SQL Standard equivalent in ORA
+          mode.</p>
+</li>
+<li class="listitem">
+<p>The DATE type is interpreted as TIMESTAMP(0) in ORA syntax
+          mode.</p>
+</li>
+<li class="listitem">
+<p>The DUAL table and the expressions, ROWNUM, CURRVAL, NEXTVAL
+          are supported in ORA syntax mode.</p>
+</li>
+<li class="listitem">
+<p>HyperSQL natively supports operations involving datetime and
+          interval values. These features are based on the SQL
+          Standard.</p>
+</li>
+<li class="listitem">
+<p>Many subtle automatic type conversions, syntax refinements and
+          other common features are supported.</p>
+</li>
+<li class="listitem">
+<p>SQL routines are generally portable, but some changes may be
+          required.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="DB2 Compatibility">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_compatibility_db2"></a>DB2 Compatibility</h3>
+</div>
+</div>
+</div>
+<p>DB2 is highly compatible with the SQL Standard (except its lack of
+      support for the INFORMATION_SCHEMA). Applications can be ported to
+      HyperSQL without difficulty.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Use <code class="literal">&lt;set database sql syntax DB2
+          statement&gt;</code> to enable support for some non-standard
+          syntax of DB2.</p>
+</li>
+<li class="listitem">
+<p>Use MVCC with <code class="literal">&lt;set database transaction control
+          statement&gt;</code> if your application is multi-user.</p>
+</li>
+<li class="listitem">
+<p>HyperSQL supports almost the entire syntax of DB2 together
+          with many of the functions. Even local temporary tables using the
+          SESSION pseudo schema are supported.</p>
+</li>
+<li class="listitem">
+<p>The DB2 binary type definition FOR BIT DATA, as well as empty
+          definition of column default values are supported in DB2 syntax
+          mode.</p>
+</li>
+<li class="listitem">
+<p>Many DB2 functions are supported.</p>
+</li>
+<li class="listitem">
+<p>The DUAL table and the expressions, ROWNUM, CURRVAL, NEXTVAL
+          are supported in DB2 syntax mode.</p>
+</li>
+<li class="listitem">
+<p>SQL routines are highly portable with minimal change.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="MS SQLServer and Sybase Compatibility">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_compatibility_mssql"></a>MS SQLServer and Sybase Compatibility</h3>
+</div>
+</div>
+</div>
+<p>SQLServer has some incompatibilities with the Standard syntax. The
+      most significant is the use of square brackets instead of double quotes
+      for case-sensitive column names.</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Use <code class="literal">&lt;set database sql syntax MSS
+          statement&gt;</code> to enable support for the
+          <code class="literal">CONVERT(&lt;type definition&gt;, &lt;expression)</code>
+          function with switched order of arguments</p>
+</li>
+<li class="listitem">
+<p>Use MVCC with <code class="literal">&lt;set database transaction control
+          statement&gt;</code> if your application is multi-user.</p>
+</li>
+<li class="listitem">
+<p>If you use the non-standard concatenation of possibly NULL
+          values in your select statements, you may need to change the setting
+          for &lt;set database sql concat nulls statement&gt;.</p>
+</li>
+<li class="listitem">
+<p>HyperSQL supports + for string concatenation. It also supports
+          many functions supported by these dialects.</p>
+</li>
+<li class="listitem">
+<p>SQLServer uses a non-standard expression, <code class="literal">SELECT 'A
+          Test String'</code> to return a single row table. The standard
+          form is <code class="literal">VALUES('A Test String')</code>. In MSS syntax
+          mode, this type of SELECT is supported.</p>
+</li>
+<li class="listitem">
+<p>SQL routines need quite a lot of changes.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" title="Statements">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="mtc_statements"></a>Statements</h2>
+</div>
+</div>
+</div>
+<p>System level statements are listed in this section. Statements that
+    begin with SET DATABASE or SET FILES are for properties that have an
+    effect on the normal operation of HyperSQL. The effects of these
+    statements are also discussed in different chapters.</p>
+<div class="section" title="System Operations">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_system_operations"></a>System Operations</h3>
+</div>
+</div>
+</div>
+<p>These statements perform a system level action.</p>
+<a name="N1433D" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SHUTDOWN</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>shutdown statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;shutdown statement&gt; ::= SHUTDOWN [IMMEDIATELY |
+      COMPACT | SCRIPT]</code>
+</p>
+<p>Shutdown the database. If the optional qualifier is not used, a
+      normal SHUTDOWN is performed. A normal SHUTDOWN ensures all data is
+      saved correctly and the database opens without delay on next
+      use.</p>
+<div class="variablelist">
+<table border="0">
+<col valign="top" align="left">
+<tbody>
+<tr>
+<td>
+<p>
+<span class="term">SHUTDOWN</span>
+</p>
+</td><td>
+<p>Normal shutdown saves all the database files, then deletes
+            the .log file (and the .backup file in the default mode). The
+            database opens without delay on next used.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">SHUTDOWN IMMEDIATELY</span>
+</p>
+</td><td>
+<p>Saves the *.log file and closes the database files. This is
+            the quickest form of shutdown. This command should not be used as
+            the routine method of closing the database, because when the
+            database is accessed next time, it may take a long time to
+            start.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">SHUTDOWN COMPACT</span>
+</p>
+</td><td>
+<p>This is similar to normal SHUTDOWN, but reduces the *.data
+            file to its minimum size. It can take much longer than normal
+            SHUTDOWN. This shouldn't be used as routine.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<span class="term">SHUTDOWN SCRIPT</span>
+</p>
+</td><td>
+<p>This is similar to SHUTDOWN COMPACT, but it does not rewrite
+            the <code class="literal">*.data</code> and text table files. After SHUTDOWN
+            SCRIPT, only the <code class="literal">*.script</code> and
+            <code class="literal">*.properties</code> files remain. At the next startup,
+            these files are processed and the <code class="literal">*.data</code> file
+            is created if there are cached tables. This command in effect
+            performs part of the job of SHUTDOWN COMPACT, leaving the other
+            part to be performed automatically at the next startup.</p>
+<p>This command produces a full script of the database which
+            can be edited for special purposes prior to the next
+            startup.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<a name="N14377" class="indexterm"></a>
+<p>
+<span class="bold"><strong>BACKUP DATABASE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>backup database statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;backup database statement&gt; ::= BACKUP DATABASE
+      TO &lt;file path&gt; {SCRIPT | [NOT] COMPRESSED}
+      BLOCKING</code>
+</p>
+<p>Backup the database to specified <code class="literal">&lt;file
+      path&gt;</code> for archiving purposes.</p>
+<p>The <code class="literal">&lt;file path&gt;</code> can be in two forms.
+      If the <code class="literal">&lt;file path&gt;</code> ends with a forward slash,
+      it specifies a directory. In this case, an automatic name for the
+      archive is generated that includes the date, time and the base name of
+      the database. The database is backed up to this archive file in the
+      specified directory. If the <code class="literal">&lt;file path&gt;</code> does
+      not end with a forward slash, it specifies a user-defined file name for
+      the backup archive. The archive is in tar, gzip format depending on
+      whether it is compressed or not.</p>
+<p>The SCRIPT option is not currently supported. If SCRIPT is
+      specified, the backup will consist of two files, a
+      <code class="literal">*.properties</code> file and a <code class="literal">*.script</code>
+      file, which contain all the data and settings of the database. These
+      files are not compressed.</p>
+<p>If COMPRESSED or NOT COMPRESSED is specified, the backup
+      consists of the current snapshot of database files. During backup, a
+      CHECKPOINT command is silently executed.</p>
+<p>The qualifier, BLOCKING, means all database operations are
+      suspended during backup.</p>
+<p>The HyperSQL jar also contains a program that creates an
+      archive of an offline database. It also contains a program to expand an
+      archive into database files. These programs are documented in this
+      chapter under Backing up Database Catalogs.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<a name="N143A6" class="indexterm"></a>
+<p>
+<span class="bold"><strong>CHECKPOINT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>checkpoint statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;checkpoint statement&gt; ::= CHECKPOINT
+      [DEFRAG]</code>
+</p>
+<p>Closes the database files, rewrites the script file, deletes
+      the log file and opens the database. If <code class="literal">DEFRAG</code> is
+      specified, also shrinks the <code class="literal">*.data</code> file to its
+      minimum size. Only a user with the DBA role can execute this
+      statement.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<a name="N143BF" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SCRIPT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>script statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;script statement&gt; ::= SCRIPT [&lt;file
+      name&gt;]</code>
+</p>
+<p>Returns a script containing SQL statements that define the
+      database, its users, and its schema objects. If <code class="literal">&lt;file
+      name&gt;</code> is not specified, the statements are returned in a
+      ResultSet, with each row containing an SQL statement. No data statements
+      are included in this form. The optional file name is a single-quoted
+      string. If <code class="literal">&lt;file name&gt;</code> is specified, then the
+      script is written to the named file. In this case, all the data in all
+      tables of the database is included in the script as INSERT
+      statements.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+</div>
+<div class="section" title="Database Settings">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_database_settings"></a>Database Settings</h3>
+</div>
+</div>
+</div>
+<p>These statements change the database settings.</p>
+<a name="N143DE" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE
+      COLLATION</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database collation statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database collation statement&gt; ::= SET
+      DATABASE COLLATION &lt;collation name&gt;</code>
+</p>
+<p>Each database can have its own collation. Sets the collation
+      from the set of collations supported by HyperSQL. Once this command has
+      been issued, the database can be opened in any JVM and will retain its
+      collation.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<a name="N143F1" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE DEFAULT RESULT MEMORY
+      ROWS</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database default result memory rows
+      statement</em></span><code class="literal"> </code>
+</p>
+<p>
+<code class="literal">&lt;set database default result memory rows&gt; ::=
+      SET DATABASE DEFAULT RESULT MEMORY ROWS &lt;unsigned integer
+      literal&gt;</code>
+</p>
+<p>Sets the maximum number of rows of each result set and internal
+      temporary table that is held in memory. Temporary tables includes views,
+      schema-based and session-based TEMPORARY tables, transient tables for
+      subqueries, and INFORMATION_SCHEMA tables.</p>
+<p>This setting applies to all sessions. Individual sessions can
+      change the value with the <code class="literal">SET SESSION RESULT MEMORY
+      ROWS</code> statement. The default is 0, meaning all result sets are
+      held in memory.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">hsqldb.result_max_memory_rows</code>.</p>
+<a name="N14410" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE DEFAULT TABLE
+      TYPE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database default table type
+      statement</em></span><code class="literal"> </code>
+</p>
+<p>
+<code class="literal">&lt;set database default table type&gt; ::= SET
+      DATABASE DEFAULT TABLE TYPE { CACHED | MEMORY }</code>
+</p>
+<p>Sets the type of table created when the next CREATE TABLE
+      statement is executed. The default is MEMORY.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">hsqldb.default_table_type</code>.</p>
+<a name="N1442A" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE EVENT LOG
+      LEVEL</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database event log level
+      statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database event log level&gt; ::= SET DATABASE
+      EVENT LOG [ SQL ] LEVEL { 0 | 1 | 2 | 3 }</code>
+</p>
+<p>When the SQL option is not used, this statement sets the amount
+      of information logged in the internal, database-specific event log.
+      Level 0 means no log. Level 1 means only important (error) events. Level
+      2 means more events, including both important and less important
+      (normal) events. Level 3 includes even more details. For readonly and
+      <em class="glossterm">mem:</em> databases, if the level is set above 0, the
+      log messages are directed to stderr.</p>
+<p>The events are logged in a file with the extension
+      <code class="literal">.app.log</code> alongside the main database files.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">hsqldb.applog</code>.</p>
+<p>When the SQL option is used, this statement logs the SQL
+      statements as they are executed. Each log line contains the timestamp
+      and the session number, followed by the SQL statement and JDBC arguments
+      if any.</p>
+<p>Levels 1 and 2 are supported. Level 1 only logs commits and
+      rollbacks, while Level 2 logs all statements.</p>
+<p>The logged lines are stored in a file with the extension
+      <code class="literal">.sql.log</code> alongside the main database files.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">hsqldb.sqllog</code>.</p>
+<a name="N14458" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE GC</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database gc statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database gc statement&gt; ::= SET DATABASE GC
+      &lt;unsigned integer literal&gt;</code>
+</p>
+<p>An optional property which forces calls to <code class="literal">System.gc()
+      </code>after the specified number of row operations. The default
+      value for this property is 0, which means no System.gc() calls. Usual
+      values for this property range from 10000 depending on the system and
+      the memory allocation. This property may be useful in some in-process
+      deployments, especially with older JVM implementations.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<a name="N1446E" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE UNIQUE
+      NAME</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database unique name</em></span><code class="literal">
+      </code>
+</p>
+<p>
+<code class="literal">&lt;set database unique name statement&gt; ::= SET
+      DATABASE UNIQUE NAME &lt;identifier&gt;</code>
+</p>
+<p>Each HyperSQL catalog (database) has an engine-generated
+      internal name. This name is a 16 character long string, beginning with
+      HSQLDB and based on the time of creation of the database. The name is
+      used for the log events that are sent to external logging frameworks.
+      The new name must be exactly 16 characters long with no
+      spaces.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<a name="N14483" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE TRANSACTION
+      CONTROL</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database transaction control
+      statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database transaction control statement&gt; ::=
+      SET DATABASE TRANSACTION CONTROL { LOCKS | MVLOCKS | MVCC
+      }</code>
+</p>
+<p>Set the concurrency control system for the database. It can be
+      issued only when all sessions have been committed or rolled back. This
+      command and its modes is discussed in the <a class="link" href="sqlroutines-chapt.html" title="Chapter&nbsp;8.&nbsp;SQL-Invoked Routines">Sessions and Transactions</a> chapter.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">hsqldb.tx</code>.</p>
+<a name="N1449F" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE TRANSACTION ROLLBACK ON
+      CONFLICT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database transaction rollback on conflict
+      statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database transaction rollback on conflict
+      statement&gt; ::= SET DATABASE TRANSACTION ROLLBACK ON CONFLICT { TRUE |
+      FALSE }</code>
+</p>
+<p>When a transaction deadlock or conflict is about to happen, the
+      current transaction is rolled back and an exception is raised. When this
+      property is set false, the transaction is not rolled back. Only the
+      latest statement that would cause the conflict is undone and an
+      exception is raised. The property should not be changed unless the
+      application can quickly perform an alternative statement and complete
+      the transaction. It is provided for compatibility with other database
+      engines which do not roll back the transaction upon deadlock. This
+      command is also discussed in the <a class="link" href="sqlroutines-chapt.html" title="Chapter&nbsp;8.&nbsp;SQL-Invoked Routines">Sessions and Transactions</a> chapter.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">hsqldb.tx_conflict_rollback</code>.</p>
+<a name="N144BB" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE DEFAULT ISOLATION
+      LEVEL</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database default isolation level
+      statement</em></span><code class="literal"> </code>
+</p>
+<p>
+<code class="literal">&lt;set database default isolation level&gt; ::= SET
+      DATABASE DEFAULT ISOLATION LEVEL { READ COMMITTED | SERIALIZABLE
+      }</code>
+</p>
+<p>Sets the transaction isolation level for new sessions. The
+      default is READ COMMITTED. Each session can also set its isolation
+      level.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">hsqldb.tx_level</code>.</p>
+<a name="N144D5" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE TEXT TABLE
+      DEFAULTS</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database text table defaults
+      statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database text table defaults statement&gt; ::=
+      SET DATABASE TEXT TABLE DEFAULTS &lt;character
+      literal&gt;</code>
+</p>
+<p>An optional property to override default text table settings.
+      The string literal has the same format as the string used for setting
+      the data source of a text table, but without the file name. See the
+      <a class="link" href="texttables-chapt.html" title="Chapter&nbsp;5.&nbsp;Text Tables">Text Tables</a>
+      chapter.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+</div>
+<div class="section" title="SQL Conformance Settings">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_sql_settings"></a>SQL Conformance Settings</h3>
+</div>
+</div>
+</div>
+<p>These statements modify the level of conformance to the SQL
+      Standard in different areas. The settings that specify SQL SYNTAX are
+      for compatibility with other database engines and are FALSE by default.
+      For all the rest of the settings, TRUE means better conformance to the
+      Standard (unless the Standard defines the behaviour as implementation
+      dependent). The default value of a few of these settings is FALSE, due
+      to widespread non-conforming statements that are already in use in user
+      applications or statements generated by object relational tools. So long
+      as it is practical, it is best to set the non-conforming defaults to
+      TRUE in order to improve the quality of the database
+      application.</p>
+<a name="N144F2" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE SQL
+      SIZE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database sql size statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database sql size statement&gt; ::= SET
+      DATABASE SQL SIZE { TRUE | FALSE }</code>
+</p>
+<p>Enable or disable enforcement of column sizes for CHAR and
+      VARCHAR columns. The default is TRUE, meaning table definition must
+      contain <code class="literal">VARCHAR(n)</code> instead of
+      <code class="literal">VARCHAR</code>.</p>
+<p>SQL Standard requires enforcement.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">sql.enforce_size</code>.</p>
+<a name="N14512" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE SQL
+      NAMES</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database sql names statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database sql names statement&gt; ::= SET
+      DATABASE SQL NAMES { TRUE | FALSE }</code>
+</p>
+<p>Enable or disable full enforcement of the rule that prevents
+      SQL keywords being used for database object names such as columns and
+      tables. The default is <code class="literal">FALSE</code>, meaning
+      disabled.</p>
+<p>SQL Standard requires enforcement. <span class="emphasis"><em>It is better to
+      enable this check, in order to improve the quality and correctness of
+      SQL statements.</em></span>
+</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">sql.enforce_names</code>.</p>
+<a name="N14531" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE SQL
+      REFERENCES</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database sql references
+      statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database sql references statement&gt; ::= SET
+      DATABASE SQL REFERENCES { TRUE | FALSE }</code>
+</p>
+<p>This command can enable or disable full enforcement of the rule
+      that prevents ambiguous column references in SQL statements (usually
+      SELECT statements). A column reference is ambiguous when it is not
+      qualified by a table name or table alias and can refer to more than one
+      column in a JOIN list.</p>
+<p>The property is <code class="literal">FALSE</code> by default.</p>
+<p>SQL Standard requires enforcement. <span class="emphasis"><em>It is better to
+      enable this check, in order to improve the quality and correctness of
+      SQL statements.</em></span> When false, the first matching table is used
+      to resolve the column reference.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">sql.enforce_refs</code>.</p>
+<a name="N14553" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE SQL
+      TYPES</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database sql types statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database sql types statement&gt; ::= SET
+      DATABASE SQL TYPES { TRUE | FALSE }</code>
+</p>
+<p>This command can enable or disable full enforcement of the
+      rules that prevents illegal type conversions and parameters or nulls
+      without type in SQL statements (usually SELECT statements). For example
+      an INTEGER column or a DATE column cannot be compared to a character
+      string or searched with a LIKE expression when the property is
+      <code class="literal">TRUE</code>.</p>
+<p>The property is <code class="literal">FALSE</code> by default.</p>
+<p>SQL Standard requires enforcement. <span class="emphasis"><em>It is better to
+      enable this check, in order to improve the quality and correctness of
+      SQL statements.</em></span>
+</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">sql.enforce_type</code>.</p>
+<a name="N14577" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE SQL TDC
+      DELETE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database sql tdc delete
+      statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database sql tdc delete statement&gt; ::= SET
+      DATABASE SQL TDC DELETE { TRUE | FALSE }</code>
+</p>
+<p>This command can enable or disable full enforcement of the SQL
+      Standard rules that prevents triggered data change exceptions caused by
+      ON DELETE CASCADE clauses of foreign key constraint.</p>
+<p>When there are multiple constraints, a row may be updated by
+      one constraint and deleted by another constraint in the same operation.
+      This is not allowed by default. Changing this to false allows such
+      violations of the Standard to pass without an exception.</p>
+<p>The property is <code class="literal">TRUE</code> by default.</p>
+<p>SQL Standard requires enforcement, therefore this property
+      shouldn't be changed unless an application written for a non-conforming
+      RDBMS needs it.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">sql.enforce_tdc_delete</code>.</p>
+<a name="N14598" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE SQL TDC
+      UPDATE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database sql tdc update
+      statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database sql tdc update statement&gt; ::= SET
+      DATABASE SQL TDC UPDATE { TRUE | FALSE }</code>
+</p>
+<p>This command can enable or disable full enforcement of the SQL
+      Standard rules that prevents triggered data change exceptions caused by
+      multiple ON UPDATE or ON DELETE SET clauses of foreign key constraint.
+      When there are multiple constraints, a field in a row may be updated by
+      two constraints to different values in the same operation. This is not
+      allowed by default. Changing this to <code class="literal">FALSE</code> allows
+      such violations of the Standard to pass without an exception.</p>
+<p>The property is <code class="literal">TRUE</code> by default.</p>
+<p>SQL Standard requires enforcement, therefore this property
+      shouldn't be changed unless an application written for a non-conforming
+      RDBMS needs it.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">sql.enforce_tdc_update</code>.</p>
+<a name="N145BA" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE SQL TRANSLATE TTI
+      TYPES</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database sql translate tti types
+      statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database sql translate tti types statement&gt;
+      ::= SET DATABASE SQL TRANSLATE TTI TYPES { TRUE | FALSE
+      }</code>
+</p>
+<p>The JDBC Specification up to version 4.1 does not support some
+      SQL Standard built-in types, therefore these types must be translated to
+      a supported type when accessed through JDBC ResultSet and
+      PreparedStatement methods.</p>
+<p>If the property is true, the TIME / TIMESTAMP WITH TIME ZONE
+      types and INTERVAL types are represented in JDBC methods of
+      <code class="classname">ResultSetMetaData</code> and
+      <code class="classname">DatabaseMetaData</code> as JDBC datetime types without
+      time zone and the VARCHAR type respectively. The original type names are
+      preserved.</p>
+<p>The property is <code class="literal">TRUE</code> by default. If set to
+      <code class="literal">FALSE</code>, the type codes for WITH TIME ZONE types will
+      be SQL type codes as opposed to JDBC type codes.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">jdbc.translate_tti_types</code>.</p>
+<a name="N145E2" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE SQL CONCAT
+      NULLS</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database sql concat nulls
+      statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database sql concat nulls statement&gt; ::=
+      SET DATABASE SQL CONCAT NULLS { TRUE | FALSE }</code>
+</p>
+<p>When the property is <code class="literal">TRUE</code>, concatenation of
+      a null value with a not-null value results in a null value. When the
+      property is <code class="literal">FALSE</code> this type of concatenation result
+      in the not-null value.</p>
+<p>Setting this property <code class="literal">FALSE</code> results in
+      concatenation behaviour similar to Oracle or MS SQL Server.</p>
+<p>SQL Standard requires a NULL result..</p>
+<p>The property is <code class="literal">TRUE</code> by default.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">sql.concat_nulls</code>.</p>
+<a name="N1460C" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE SQL UNIQUE
+      NULLS</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database sql unique nulls
+      statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database sql unique nulls statement&gt; ::=
+      SET DATABASE SQL UNIQUE NULLS { TRUE | FALSE }</code>
+</p>
+<p>When the property is <code class="literal">TRUE</code>, with multi-column
+      UNIQUE constraints, it is possible to insert multiple rows for which one
+      or more of the values for the constraint columns is NULL. When the
+      property is <code class="literal">FALSE</code>, if there is any not-null value in
+      the columns, then the set of values is compared to the existing rows and
+      if there is a match, an exception is thrown. The setting
+      <code class="literal">FALSE</code>, makes the behaviour more restrictive. For
+      example, inserting (1, null) twice is possible by default, but not
+      possible when the property is <code class="literal">FALSE</code>.</p>
+<p>Setting this property <code class="literal">FALSE</code> results in
+      UNIQUE constraint behaviour similar to Oracle.</p>
+<p>SQL Standard requires the default (TRUE) behaviour.</p>
+<p>The property is <code class="literal">TRUE</code> by default.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">sql.unique_nulls</code>.</p>
+<a name="N1463C" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE SQL CONVERT
+      TRUNCATE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database sql unique convert
+      truncate</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database sql convert truncate statement&gt;
+      ::= SET DATABASE SQL CONVERT TRUNCATE { TRUE | FALSE
+      }</code>
+</p>
+<p>When the property is <code class="literal">TRUE</code>, conversion from a
+      floating point value (a DOUBLE value) to an integral type always
+      truncates the fractional part. When the property is
+      <code class="literal">FALSE</code>, rounding takes place instead of truncation.
+      For example, assigning the value 123456E-2 to an integer column will
+      result in 1234 by default, but 1235 when the property is
+      <code class="literal">FALSE</code>.</p>
+<p>Standard SQL considers this behaviour implementation
+      dependent.</p>
+<p>The property is <code class="literal">TRUE</code> by default.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">sql.convert_trunc</code>.</p>
+<a name="N14664" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE SQL AVG
+      SCALE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database sql avg scale</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database sql avg scale&gt; ::= SET DATABASE
+      SQL AVG SCALE &lt;numeric value&gt;</code>
+</p>
+<p>By default, the result of division and the AVG and MEDIAN
+      aggregate functions has the same type as the aggregated type of the
+      values. This includes the scale. The scale specified with this property
+      is used if it is larger than the scale of the operation. For example,
+      the average of 5 and 10 is 7 by default, but 7.50 if the scale is
+      specified as 2. The result of 7/3 is 2 by default but 2.33 if the scale
+      is specified as 2.</p>
+<p>Standard SQL considers this behaviour implementation dependent.
+      Some databases use a default scale larger than zero.</p>
+<p>The property is <code class="literal">0</code> by default.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">sql.avg_scale</code>.</p>
+<a name="N14683" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE SQL DOUBLE
+      NAN</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database sql double nan</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database sql double nan&gt; ::= SET DATABASE
+      SQL DOUBLE NAN { TRUE | FALSE }</code>
+</p>
+<p>When the property is <code class="literal">TRUE</code>, division of a
+      floating point value (a DOUBLE value) by zero raises an exception. When
+      the property is <code class="literal">FALSE</code>, a Java
+      <code class="literal">Double.NaN</code>, <code class="literal">POSITIVE_INFINITY</code> or
+      <code class="literal">NEGATIVE_INFINITY</code> value is returned.</p>
+<p>Standard SQL requires an exception to be raised.</p>
+<p>The property is <code class="literal">TRUE</code> by default.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">sql.double_nan</code>.</p>
+<a name="N146B1" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE SQL NULLS
+      FIRST</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database sql nulls first</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database sql nulls first&gt; ::= SET DATABASE
+      SQL NULLS FIRST { TRUE | FALSE }</code>
+</p>
+<p>When the property is <code class="literal">TRUE</code>, nulls appear
+      before values in result sets with ORDER BY. When set FALSE, nulls appear
+      after the values. Some databases, including PostgreSQL, Oracle and MS
+      SQL Server, return nulls after the values.</p>
+<p>The property is <code class="literal">TRUE</code> by default.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">sql.nulls_first</code>.</p>
+<a name="N146D1" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE SQL SYNTAX
+      DB2</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database sql syntax DB2</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database sql syntax DB2 statement&gt; ::= SET
+      DATABASE SQL SYNTAX DB2 { TRUE | FALSE }</code>
+</p>
+<p>This property, when set TRUE, enables support for some elements
+      of DB2 syntax. Single-row SELECT statements (<code class="literal">SELECT
+      &lt;expression list&gt;</code> without the FROM clause) are supported
+      and treated as the SQL Standard equivalent, <code class="literal">VALUES
+      &lt;expression list&gt;</code>. The DUAL table is supported, as well
+      as the ROWNUM pseudo-column. BINARY type definitions such as VARCHAR(L)
+      FOR BIT DATA are supported. Empty DEFAULT clauses in column definitions
+      are supported.</p>
+<p>The property is <code class="literal">FALSE</code> by default.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">sql.syntax_db2</code>.</p>
+<a name="N146F4" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE SQL SYNTAX
+      MSS</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database sql syntax MSS</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database sql syntax MSS statement&gt; ::= SET
+      DATABASE SQL SYNTAX MSS { TRUE | FALSE }</code>
+</p>
+<p>This property, when set TRUE, enables support for some elements
+      of SQLServer syntax. Single-row SELECT statements (<code class="literal">SELECT
+      &lt;expression list&gt;</code> without the FROM clause) are supported
+      and treated as the SQL Standard equivalent, <code class="literal">VALUES
+      &lt;expression list&gt;</code>. The parameters of CONVERT() function
+      are switched in this mode.</p>
+<p>The property is <code class="literal">FALSE</code> by default.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">sql.syntax_mss</code>.</p>
+<a name="N14717" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE SQL SYNTAX
+      MYS</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database sql syntax MYS</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database sql syntax MYS statement&gt; ::= SET
+      DATABASE SQL SYNTAX MYS { TRUE | FALSE }</code>
+</p>
+<p>This property, when set TRUE, enables support for some elements
+      of MySQL syntax. The TEXT data type is translated to
+      LONGVARCHAR.</p>
+<p>In CREATE TABLE statements, [NOT NULL | NULL] can be used
+      immediately after the column type name and before the DEFAULT clause.
+      AUTO_INCREMENT is translated to the GENERATED BY DEFAULT AS IDENTITY
+      clause.</p>
+<p>Single-row SELECT statements (<code class="literal">SELECT &lt;expression
+      list&gt;</code> without the FROM clause) are supported and treated as
+      the SQL Standard equivalent, <code class="literal">VALUES &lt;expression
+      list&gt;</code>.</p>
+<p>The property is <code class="literal">FALSE</code> by default.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">sql.syntax_mys</code>.</p>
+<a name="N1473E" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE SQL SYNTAX
+      ORA</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database sql syntax ORA</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database sql syntax ORA statement&gt; ::= SET
+      DATABASE SQL SYNTAX ORA { TRUE | FALSE }</code>
+</p>
+<p>This property, when set TRUE, enables support for some elements
+      of Oracle syntax. The DUAL table is supported, together with ROWNUM,
+      NEXTVAL and CURRVAL syntax and semantics.</p>
+<p>The non-standard types are translated to supported standard
+      types. BINARY_DOUBLE and BINARY_FLOAT are translated to DOUBLE. LONG RAW
+      and RAW are translated to VARBINARY with long or medium length limits.
+      LONG and VARCHAR2 are translated to VARCHAR with long or medium length
+      limits. NUMBER is translated to DECIMAL. Some extra type conversions and
+      no-arg functions are also allowed in this mode.</p>
+<p>The property is <code class="literal">FALSE</code> by default.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">sql.syntax_ora</code>.</p>
+<a name="N1475D" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE SQL SYNTAX
+      PGS</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database sql syntax PGS</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database sql syntax PGS statement&gt; ::= SET
+      DATABASE SQL SYNTAX PGS { TRUE | FALSE }</code>
+</p>
+<p>This property, when set TRUE, enables support for some elements
+      of PosgtreSQL syntax. The TEXT data type is translated to LONGVARCHAR,
+      while the SERIAL data types is translated to BIGINT together with
+      GENERATED BY DEFAULT AS IDENTITY.</p>
+<p>Single-row SELECT statements (<code class="literal">SELECT &lt;expression
+      list&gt;</code> without the FROM clause) are supported and treated as
+      the SQL Standard equivalent, <code class="literal">VALUES &lt;expression
+      list&gt;</code>.</p>
+<p>The functions <code class="literal">NEXTVAL(&lt;sequence name
+      string&gt;)</code>, <code class="literal">CURRVAL(&lt;sequence name
+      string&gt;)</code> and <code class="literal">LASTVAL()</code> are supported in
+      this compatibility mode.</p>
+<p>The property is <code class="literal">FALSE</code> by default.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">sql.syntax_pgs</code>.</p>
+<a name="N1478D" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE REFERENTIAL
+      INTEGRITY</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database referential integrity
+      statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database referential integrity statement&gt;
+      ::= SET DATABASE REFERENTIAL INTEGRITY { TRUE | FALSE
+      }</code>
+</p>
+<p>This command enables or disables the enforcement of referential
+      integrity constraints (foreign key constraints), check constraints apart
+      from NOT NULL and execution of triggers. By default, all constraints are
+      checked.</p>
+<p>The only legitimate use of this statement is before importing
+      large amounts of external data into tables that have existing FOREIGN
+      KEY constraints. After import, the statement must be used again to
+      enable constraint enforcement.</p>
+<p>If you are not sure the data conforms to the constraints, run
+      queries to verify all rows conform to the FOREIGN KEY constraints and
+      take appropriate actions for the rows that do not conform.</p>
+<p>A query example to return the rows in a foreign key table that
+      have no parent is given below:</p>
+<div class="example">
+<a name="N147A4"></a>
+<p class="title">
+<b>Example&nbsp;11.5.&nbsp;Finding foreign key rows with no parents after a bulk
+        import</b>
+</p>
+<div class="example-contents">
+<pre class="screen">  SELECT * FROM foreign_key_table LEFT OUTER JOIN primary_key_table 
+    ON foreign_key_table.fk_col = primary_key_table.pk_col WHERE primary_key_table.pk_col IS NULL</pre>
+</div>
+</div>
+<br class="example-break">
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+</div>
+<div class="section" title="Cache, Persistence and Files Settings">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_cache_persistence"></a>Cache, Persistence and Files Settings</h3>
+</div>
+</div>
+</div>
+<p>These statements control the memory and other settings for
+      database persistence.</p>
+<a name="N147B1" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET FILES BACKUP INCREMENT
+      </strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set files backup increment
+      statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set files backup increment statement&gt; ::= SET
+      FILES BACKUP INCREMENT { TRUE | FALSE }</code>
+</p>
+<p>Older versions of HSQLDB perform a backup of the .data file
+      before its contents are modified and the whole .data file is saved in a
+      compressed form when a CHECKPOINT or SHUTDOWN is performed. This takes a
+      long time when the size of the database exceeds 100 MB or so (on an
+      average 2010 computer, you can expect a backup speed of 20MB per second
+      or more).</p>
+<p>The alternative is backup in increments, just before some part
+      of the .data file is modified. In this mode, no backup is performed at
+      CHECKPOINT or SHUTDOWN. This mode is preferred for large databases which
+      are opened and closed frequently.</p>
+<p>The default mode is <code class="literal">TRUE</code>. If the old method
+      of backup is preferred, the mode can be set
+      <code class="literal">FALSE</code>.</p>
+<p>Warning: The old, non-incremental setting, FALSE, shouldn't be
+      used at all when the data file is larger than 4GB. If it is used, the
+      data file is not fully backed up and can result in corruption. The zip
+      compression method is used in this mode and it is limited to 4GB
+      size.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">hsqldb.inc_backup</code>.</p>
+<a name="N147D5" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET FILES CACHE ROWS</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set files cache rows statement</em></span><code class="literal">
+      </code>
+</p>
+<p>
+<code class="literal">&lt;set files cache rows statement&gt; ::= SET FILES
+      CACHE ROWS &lt;unsigned integer literal&gt;</code>
+</p>
+<p>Sets the maximum number of rows (of CACHED tables) held in the
+      memory cache. The default is 50000 rows.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">hsqldb.cache_rows</code>.</p>
+<a name="N147EF" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET FILES CACHE SIZE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set files cache size statement</em></span><code class="literal">
+      </code>
+</p>
+<p>
+<code class="literal">&lt;set files cache size statement&gt; ::= SET FILES
+      CACHE SIZE &lt;unsigned integer literal&gt;</code>
+</p>
+<p>Sets maximum amount of data (of CACHED tables) in kilobytes
+      held in the memory cache. The default is 10000 kilobytes. Note the
+      amount of memory used is larger than this amount, which does not account
+      for Java object size overheads.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">hsqldb.cache_size</code>.</p>
+<a name="N14809" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET FILES DEFRAG</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set files defrag statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set files defrag statement&gt; ::= SET FILES
+      DEFRAG &lt;unsigned integer literal&gt;</code>
+</p>
+<p>Sets the threshold for performing a DEFRAG during a checkpoint.
+      The <code class="literal">&lt;unsigned integer literal&gt;</code> is the
+      percentage of abandoned space in the <code class="literal">*.data</code> file.
+      When a CHECKPOINT is performed either as a result of the
+      <code class="literal">.log</code> file reaching the limit set by <code class="literal">SET
+      FILES LOG SIZE m</code>, or by the user issuing a CHECKPOINT command,
+      the amount of space abandoned since the database was opened is checked
+      and if it is larger than specified percentage, a CHECKPOINT DEFRAG is
+      performed instead of a CHECKPOINT.</p>
+<p>The default is 0, which indicates no DEFRAG. Useful values are
+      between 10 to 50.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">hsqldb.defrag_limit</code>.</p>
+<a name="N1482F" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET FILES LOG</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set files log statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set files log statement&gt; ::= SET FILES LOG {
+      TRUE | FALSE }</code>
+</p>
+<p>Sets logging of database operations on or off. Turning logging
+      off is for special usage, such as temporary cache usage. The default is
+      TRUE.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">hsqldb.log_data</code>.</p>
+<a name="N14847" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET FILES LOG SIZE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set files log size statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set files log size statement&gt; ::= SET FILES LOG
+      SIZE &lt;unsigned integer literal&gt;</code>
+</p>
+<p>Sets the maximum size in MB of the <code class="literal">*.log</code>
+      file to the specified value. The default maximum size is 50 MB. If the
+      value is zero, no limit is used for the size of the file. When the size
+      of the file reaches this value, a CHECKPOINT is performed and the the
+      <code class="literal">*.log</code> file is cleared to size 0.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">hsqldb.log_size</code>.</p>
+<a name="N14865" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET FILES NIO</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set files nio</em></span>
+</p>
+<p>
+<code class="literal">&lt;set files nio statement&gt; ::= SET FILES NIO {
+      TRUE | FALSE }</code>
+</p>
+<p>Sets the access method of the .data file. The default is TRUE
+      and uses the Java nio classes to access the file.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">hsqldb.nio_data_file</code>.</p>
+<a name="N1487D" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET FILES NIO SIZE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set files nio size</em></span>
+</p>
+<p>
+<code class="literal">&lt;set files nio size statement&gt; ::= SET FILES NIO
+      SIZE &lt;unsigned integer literal&gt;</code>
+</p>
+<p>Sets The maximum size of .data file in megabytes that can use
+      the nio access method. When the file gets larger than this limit,
+      non-nio access methods are used. Values 64, 128, 256, 512, 1024, 2048
+      can be used. The default is 256MB.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">hsqldb.nio_max_size</code>.</p>
+<a name="N14895" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET FILES WRITE
+      DELAY</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set files write delay statement</em></span>
+</p>
+<p>
+<code class="literal">&lt;set files write delay statement&gt; ::= SET FILES
+      WRITE DELAY {{ TRUE | FALSE } | &lt;seconds value&gt; | &lt;milliseconds
+      value&gt; MILLIS}</code>
+</p>
+<p>Set the WRITE DELAY property of the database. The WRITE DELAY
+      controls the frequency of file sync for the log file. When WRITE_DELAY
+      is set to FALSE or 0, the sync takes place immediately at each COMMIT.
+      WRITE DELAY TRUE performs the sync once every 0.5 seconds (which is the
+      default). A numeric value can be specified instead.</p>
+<p>The purpose of this command is to control the amount of data loss
+      in case of a total system crash. A delay of 1 second means at most the
+      data written to disk during the last second before the crash is lost.
+      All data written prior to this has been synced and should be
+      recoverable.</p>
+<p>A write delay of 0 impacts performance in high load situations, as
+      the engine has to wait for the file system to catch up.</p>
+<p>To avoid this, you can set write delay down to 10
+      milliseconds.</p>
+<p>Each time the SET FILES WRITE DELAY statement is executed with any
+      value, a sync is immediately performed.</p>
+<p>Only a user with the DBA role can execute this statement.</p>
+<p>This is equivalent to the connection properties
+      <code class="literal">hsqldb.write_delay</code> and
+      <code class="literal">hsqldb.write_delay_millis</code>.</p>
+<a name="N148B8" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET FILES SCALE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set files scale</em></span>
+</p>
+<p>
+<code class="literal">&lt;set files scale statement&gt; ::= SET FILES SCALE
+      &lt;scale value&gt;</code>
+</p>
+<p>Changes the scale factor for the .data file. The default scale
+      is 8 and allows 16GB of data storage capacity. The scale can be
+      increased in order to increase the maximum data storage capacity. The
+      scale values 8, 16, 32, 64, 128, 256, 512, 1024 are allowed. Scale value
+      1024 allows a maximum capacity of 2 TB.</p>
+<p>This command can be used only when there is no data in CACHED
+      tables. This is equivalent to the connection property
+      <code class="literal">hsqldb.cache_file_scale</code>.</p>
+<p>The scale factor indicates the size of the unit of storage of
+      data in bytes. For example, with a scale factor of 128, a row containing
+      a small amount of data will use 128 bytes. Larger rows may use multiple
+      units of 128 bytes.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">hsqldb.cache_file_scale</code>.</p>
+<a name="N148D7" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET FILES LOB SCALE</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set files lob scale</em></span>
+</p>
+<p>
+<code class="literal">&lt;set files lob scale statement&gt; ::= SET FILES
+      LOB SCALE &lt;scale value&gt;</code>
+</p>
+<p>Changes the scale factor for the .lobs file. The scale is
+      interpreted in kilobytes. The default scale is 32 and allows 64TB of lob
+      data storage capacity. The scale can be reduced in order to improve
+      storage efficiency. If the lobs are a lot smaller than 32 kilobytes,
+      reducing the scale will reduce wasted space. The scale values 1, 2, 4,
+      8, 16, 32 are allowed. For example if the average size of lobs is 4
+      kilobytes, the default scale of 32 will result in 28KB wasted space for
+      each lob. Reducing the lob scale to 2 will result in average 1KB wasted
+      space for each lob.</p>
+<p>This command can be used only when there is no lob in the
+      database.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>This is equivalent to the connection property
+      <code class="literal">hsqldb.lob_file_scale</code>.</p>
+<a name="N148F1" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET FILES SCRIPT
+      FORMAT</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set files script format</em></span>
+</p>
+<p>
+<code class="literal">&lt;set files script format statement&gt; ::= SET
+      FILES SCRIPT FORMAT { TEXT | COMPRESSED }</code>
+</p>
+<p>Changes the compression setting for database scripts. The
+      default is text. Using COMPRESSED results in the storage of the .script
+      file in gzip compressed form. Using this command causes a
+      CHECKPOINT.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+</div>
+<div class="section" title="Authentication Settings">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="mtc_authntication_settings"></a>Authentication Settings</h3>
+</div>
+</div>
+</div>
+<p>Two settings are available for authentication control.</p>
+<p>When the default password authentication is used, the passwords
+      can be checked for complexity according to administrative rules</p>
+<a name="N1490C" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE PASSWORD CHECK
+      FUNCTION</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database password check
+      function</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database password check function statement&gt;
+      ::= SET DATABASE PASSWORD CHECK FUNCTION { &lt;routine body&gt; | NONE
+      }</code>
+</p>
+<p>The routine body is the body of a function that has a VARCHAR
+      parameter and returns a BOOLEAN. This function checks the
+      <code class="literal">PASSWORD</code> submitted as parameter and returns TRUE if
+      it conforms to complexity checks, or FALSE, if it does not.</p>
+<p>The <code class="literal">&lt;routine body&gt;</code> can be an SQL block
+      or an external Java function reference. This is covered in the <a class="link" href="sqlroutines-chapt.html" title="Chapter&nbsp;8.&nbsp;SQL-Invoked Routines">SQL-Invoked Routines</a>
+      chapter</p>
+<p>To disable this mechanism, the token <code class="literal">NONE</code>
+      can be specified instead of the <code class="literal">&lt;routine
+      body&gt;</code>.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<p>In the examples below, an SQL function and a Java function are
+      used.</p>
+<pre class="programlisting">SET DATABASE PASSWORD CHECK FUNCTION
+  BEGIN ATOMIC
+    IF CHAR_LENGTH(PASSWORD) &gt; 6 THEN
+      RETURN TRUE;
+    ELSE 
+      RETURN FALSE;
+    END IF;
+  END
+
+SET DATABASE PASSWORD CHECK FUNCTION EXTERNAL NAME 'CLASSPATH:org.anorg.access.AccessClass.accessMethod'
+
+// the Java method is defined like this
+public static boolean accessMethod(String param) {
+    return param != null &amp;&amp; param.length &gt; 6;
+}
+</pre>
+<p>It is possible to replace the default password authentication
+      completely with a function that uses external authentication servers,
+      such as LDAP. This function is called each time a user connects to the
+      database.</p>
+<a name="N14939" class="indexterm"></a>
+<p>
+<span class="bold"><strong>SET DATABASE AUTHENTICATION
+      FUNCTION</strong></span>
+</p>
+<p>
+<span class="emphasis"><em>set database authentication
+      function</em></span>
+</p>
+<p>
+<code class="literal">&lt;set database authentication function statement&gt;
+      ::= SET DATABASE AUTHENTICATION FUNCTION { &lt;external body
+      reference&gt; | NONE }</code>
+</p>
+<p>The routine body is an external Java function reference. This
+      function has three String parameters. The first parameter is the unique
+      name of the database, the second parameter the user name, and the third
+      parameter the password.</p>
+<p>External authentication can be used in two different patterns.
+      In the first pattern, user names must be stored in the database. In the
+      second pattern, user names shouldn't be stored in the database and any
+      names that are stored in the database are ignored.</p>
+<p>In both patterns, the username and password are checked by the
+      authentication function. If the function throws a runtime exception then
+      authentication fails.</p>
+<p>In the first pattern, the function always returns null if
+      authentication is successful.</p>
+<p>In the second pattern, the function returns a list of role
+      names that have been granted to the user. These roles must match the
+      ROLE objects that have been defined in the database.</p>
+<p>The Java function should return an instance of
+      org.hsqldb.jdbc.JDBCArrayBasic constructed with a String[] argument that
+      contains the role names.</p>
+<p>Only a user with the DBA role can execute this
+      statement.</p>
+<pre class="programlisting">SET DATABASE AUTHENTICATION FUNCTION EXTERNAL NAME 'CLASSPATH:org.anorg.access.AccessClass.accessExernalMethod'
+
+// the Java method is defined like this
+public static java.sql.Array accessExternalMethod(String database, String user, String password) {
+    if (externalCheck(database, user, password) {
+        return null;
+    }
+    throw new RuntimeException("failed to authenticate");
+}
+</pre>
+</div>
+</div>
+</div>
+<HR xmlns:xi="http://www.w3.org/2001/XInclude">
+<P xmlns:xi="http://www.w3.org/2001/XInclude" class="svnrev">$Revision: 4864 $</P>
+<div class="navfooter">
+<hr>
+<table summary="Navigation footer" width="100%">
+<tr>
+<td align="left" width="40%"><a accesskey="p" href="builtinfunctions-chapt.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="20%">&nbsp;</td><td align="right" width="40%">&nbsp;<a accesskey="n" href="dbproperties-chapt.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="40%">Chapter&nbsp;10.&nbsp;Built In Functions&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="40%">&nbsp;Chapter&nbsp;12.&nbsp;Properties</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

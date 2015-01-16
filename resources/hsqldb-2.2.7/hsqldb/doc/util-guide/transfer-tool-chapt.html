@@ -1,0 +1,129 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter&nbsp;4.&nbsp;Transfer Tool</title>
+<link href="../docbook.css" type="text/css" rel="stylesheet">
+<meta content="DocBook XSL-NS Stylesheets V1.76.1" name="generator">
+<meta name="keywords" content="Hsqldb, Transfer">
+<meta name="keywords" content="HyperSQL, Hsqldb, Hypersonic, Database, JDBC, Java">
+<link rel="home" href="index.html" title="HyperSQL Utilities Guide">
+<link rel="up" href="index.html" title="HyperSQL Utilities Guide">
+<link rel="prev" href="dbm-chapt.html" title="Chapter&nbsp;3.&nbsp;Database Manager">
+<link rel="next" href="systempls-app.html" title="Appendix&nbsp;A.&nbsp;SqlTool System PL Variables">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table summary="Navigation header" width="100%">
+<tr>
+<td align="left" width="30%"><a accesskey="p" href="dbm-chapt.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="40%" style="font-weight:bold;">Chapter&nbsp;4.&nbsp;Transfer Tool</td><td align="right" width="30%">&nbsp;<a accesskey="n" href="systempls-app.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="30%">Chapter&nbsp;3.&nbsp;Database Manager&nbsp;</td><td align="center" width="40%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="30%">&nbsp;Appendix&nbsp;A.&nbsp;SqlTool System PL Variables</td>
+</tr>
+</table>
+</div>
+<HR>
+<div class="chapter" title="Chapter&nbsp;4.&nbsp;Transfer Tool">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title">
+<a name="transfer-tool-chapt"></a>Chapter&nbsp;4.&nbsp;Transfer Tool</h2>
+</div>
+<div>
+<div class="authorgroup">
+<div class="author">
+<h3 class="author">
+<span class="firstname">Fred</span> <span class="surname">Toussi</span>
+</h3>
+<div class="affiliation">
+<span class="orgname">The HSQL Development Group<br>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<p class="releaseinfo">$Revision: 4904 $</p>
+</div>
+<div>
+<p class="pubdate">2012-01-15 10:15:31-0500</p>
+</div>
+</div>
+</div>
+<div class="toc">
+<p>
+<b>Table of Contents</b>
+</p>
+<dl>
+<dt>
+<span class="section"><a href="transfer-tool-chapt.html#trantool_intro-sect">Brief Introduction</a></span>
+</dt>
+</dl>
+</div>
+<div class="section" title="Brief Introduction">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="trantool_intro-sect"></a>Brief Introduction</h2>
+</div>
+</div>
+</div>
+<p>Transfer Tool is a GUI program for transferring SQL schema and
+      data from one JDBC source to another. Source and destination can be
+      different database engines or different databases on the same
+      server.</p>
+<p>Transfer Tool works in two different modes. Direct transfer
+      maintains a connection to both source and destination and performs the
+      transfer. Dump and Restore mode is invoked once to transfer the data
+      from the source to a text file (Dump), then again to transfer the data
+      from the text file to the destination (Restore). With Dump and Restore,
+      it is possible to make any changes to database object definitions and
+      data prior to restoring it to the target.</p>
+<p>Dump and Restore modes can be set via the command line with -d
+      (--dump) or -r (--restore) options. Alternatively the Transfer Tool can
+      be started with any of the three modes from the Database Manager's Tools
+      menu.</p>
+<p>The connection dialogue allows you to save the settings for the
+      connection you are about to make. You can then access the connection in
+      future sessions. These settings are shared with those from the Database
+      Manager tool. See the appendix on Database Manager for details of the
+      connection dialogue box.</p>
+<p>From version 1.8.0 Transfer Tool is no longer part of the
+      <code class="filename">hsqldb.jar</code>. You can build the
+      <code class="filename">hsqldbutil.jar</code> using the Ant command of the same
+      name, to build a jar that includes Transfer Tool and the Database
+      Manager.</p>
+<p>When collecting meta-data, Transfer Tool performs SELECT * FROM
+      &lt;table&gt; queries on all the tables in the source database. This may
+      take a long time with some database engines. When the source database is
+      HSQLDB, this means memory should be available for the result sets
+      returned from the queries. Therefore, the memory allocation of the java
+      process in which Transfer Tool is executed may have to be high.</p>
+<p>The current version of Transfer is far from ideal, as it has not
+      been actively developed for several years. The program also lacks the
+      ability to create UNIQUE constraints and creates UNIQUE indexes instead.
+      However, some bugs have been fixed in the latest version and the program
+      can be used with most of the supported databases. The best way to use
+      the program is the DUMP and RESTORE modes, which allow you to manually
+      change the SQL statements in the dump file before restoring to a
+      database. A useful idea is to dump and restore the database definition
+      separately from the database data.</p>
+</div>
+</div>
+<HR xmlns:xi="http://www.w3.org/2001/XInclude">
+<P xmlns:xi="http://www.w3.org/2001/XInclude" class="svnrev">$Revision: 4904 $</P>
+<div class="navfooter">
+<hr>
+<table summary="Navigation footer" width="100%">
+<tr>
+<td align="left" width="40%"><a accesskey="p" href="dbm-chapt.html"><img src="../images/db/prev.png" alt="Prev"></a>&nbsp;</td><td align="center" width="20%">&nbsp;</td><td align="right" width="40%">&nbsp;<a accesskey="n" href="systempls-app.html"><img src="../images/db/next.png" alt="Next"></a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="40%">Chapter&nbsp;3.&nbsp;Database Manager&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html"><img src="../images/db/home.png" alt="Home"></a></td><td valign="top" align="right" width="40%">&nbsp;Appendix&nbsp;A.&nbsp;SqlTool System PL Variables</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,262 @@
+2 X approximate tandem repeats
+42 X 20 AA approximate tandem repeats of P-A-P-G-S-T-A-P-P-A-H-G-V-T-S-A-P-D-T-R
+5 X Knot repeats
+8 X 5 AA tandem repeats of G-[PAVG]-E-E-[DAYSLE]
+9 X 4 AA repeats of P-A-P-A
+ALMS motif
+ALMS motif;status=By similarity
+Autoinhibitory domain (AID);status=By similarity
+B site;status=By similarity
+Basic (repression of DNA-binding)
+Basic (repression of DNA-binding);status=By similarity
+Basic motif
+Basic motif;status=By similarity
+C-terminal (CTD)
+Clathrin-binding
+Clathrin-binding;status=By similarity
+DNA-binding;status=By similarity
+DNA-binding;status=Potential
+Domain A
+Domain A;status=By similarity
+Domain B
+Domain B;status=By similarity
+Domain C%3B mediates interaction with E4F1;status=By similarity
+Domain%3B mediates interaction with E4F1;status=By similarity
+Focal adhesion-targeting (FAT)
+Focal adhesion-targeting (FAT);status=By similarity
+G domain
+HIV-1 integrase-binding
+Highly charged
+Hydrophilic
+Important for dimerization%2C phosphorylation and activation
+Important for interaction with membranes containing phosphoinositides
+Important for interaction with membranes containing phosphoinositides;status=By similarity
+Important for interaction with target DNA
+Important for interaction with target DNA;status=By similarity
+Interaction with ABL1
+Interaction with ABL1;status=By similarity
+Interaction with ARID3A
+Interaction with ATM%2C CKIP%2C IFP35 and NMI
+Interaction with ATM%2C CKIP%2C IFP35 and NMI;status=By similarity
+Interaction with AXIN1
+Interaction with AXIN1;status=By similarity
+Interaction with BIN2
+Interaction with BIN2;status=By similarity
+Interaction with BRCA1
+Interaction with BRCA1;status=By similarity
+Interaction with CARM1
+Interaction with CARM1;status=By similarity
+Interaction with CCND1%2C CCND2 and CCND3
+Interaction with CCND1%2C CCND2 and CCND3;status=By similarity
+Interaction with CCND2
+Interaction with CCND2;status=By similarity
+Interaction with CTBP1
+Interaction with CTBP1;status=By similarity
+Interaction with CTNNB1
+Interaction with CTNNB1;status=By similarity
+Interaction with CUX1 and HDAC1;status=By similarity
+Interaction with DAXX;status=By similarity
+Interaction with DNA
+Interaction with DNA;status=By similarity
+Interaction with E4F1
+Interaction with E4F1;status=By similarity
+Interaction with EGFR and ERBB2 and regulation of EGFR activation
+Interaction with EGFR and ERBB2 and regulation of EGFR activation;status=By similarity
+Interaction with EGLN1/PHD2
+Interaction with EGLN1/PHD2;status=By similarity
+Interaction with EPB41L1;status=By similarity
+Interaction with EXO1
+Interaction with Elongin BC complex
+Interaction with Elongin BC complex;status=By similarity
+Interaction with FANCD2
+Interaction with FANCD2;status=By similarity
+Interaction with GSK3B;status=By similarity
+Interaction with HIPK1
+Interaction with HIPK1;status=By similarity
+Interaction with HIPK2
+Interaction with HIPK2;status=By similarity
+Interaction with HMGA1
+Interaction with HMGA1;status=By similarity
+Interaction with HRMT1L2
+Interaction with HRMT1L2;status=By similarity
+Interaction with IKBKG/NEMO
+Interaction with KIF21A
+Interaction with LIMD1;status=By similarity
+Interaction with MAPT
+Interaction with MAPT;status=By similarity
+Interaction with MYO10
+Interaction with NPM1
+Interaction with NPM1;status=By similarity
+Interaction with P53
+Interaction with PALB2
+Interaction with PALB2;status=By similarity
+Interaction with PARD6A
+Interaction with PARD6A;status=By similarity
+Interaction with PDPK1
+Interaction with PDPK1;status=By similarity
+Interaction with PER2
+Interaction with PER2;status=By similarity
+Interaction with PLCG1;status=By similarity
+Interaction with POLR2A and PAF1
+Interaction with POLR2A and PAF1;status=By similarity
+Interaction with POU4F1
+Interaction with POU4F1;status=By similarity
+Interaction with PPP1R15A
+Interaction with PPP1R15A;status=By similarity
+Interaction with PPP2CA
+Interaction with PPP2CA;status=By similarity
+Interaction with RAD51
+Interaction with RAD51 and BRCA2
+Interaction with RAD51 and BRCA2;status=By similarity
+Interaction with RAD51;status=By similarity
+Interaction with RASGRF2
+Interaction with RASGRF2;status=By similarity
+Interaction with RB1
+Interaction with RB1;status=By similarity
+Interaction with RICTOR
+Interaction with RICTOR;status=By similarity
+Interaction with RNF111
+Interaction with RNF111;status=By similarity
+Interaction with SKI and SMAD1;status=By similarity
+Interaction with TP53
+Interaction with TP53 and TP73
+Interaction with TP53;status=By similarity
+Interaction with TRAF2
+Interaction with TRIP
+Interaction with UBE2I
+Interaction with UBE2I;status=By similarity
+Interaction with UBL1
+Interaction with USP7
+Interaction with USP7;status=By similarity
+Interaction with WWOX
+Interaction with WWOX;status=By similarity
+Interaction with YAP1
+Interaction with YAP1;status=By similarity
+Interaction with YES1%2C SRC and FYN
+Interaction with beta-catenin;status=By similarity
+Interaction with capping proteins (CPs)
+Interaction with capping proteins (CPs);status=By similarity
+Interaction with histone H3 that is acetylated at 'Lys-23' (H3K23ac)
+Interaction with histone H3 that is not methylated at 'Lys-4' (H3K4me0)
+Interaction with histone H3 that is not methylated at 'Lys-4' (H3K4me0);status=By similarity
+Interaction with keratin proteins
+Interaction with keratin proteins;status=By similarity
+Interactions with HOMER1 and NF2;status=By similarity
+Interacts with the 53BP2 SH3 domain
+Involved in CDK5RAP3-binding
+Involved in binding to CCT complex
+Leucine-zipper
+Leucine-zipper;status=By similarity
+Localization to nuclear speckles
+Localization to nuclear speckles;status=By similarity
+MOAP1-binding
+MOAP1-binding;status=By similarity
+MYC-binding
+MYC-binding;status=By similarity
+Mediates HDAC-dependent transcriptional repression
+Mediates interaction with E4F1
+Mediates interaction with E4F1;status=By similarity
+Mediates nuclear export
+Mediates nuclear export;status=By similarity
+Mediates targeting to the mitochondria
+Mediates targeting to the mitochondria;status=By similarity
+Necessary and sufficient for TP53 activation;status=By similarity
+Necessary for RNA-binding
+Necessary for RNA-binding;status=By similarity
+Necessary for interaction with AKT1
+Necessary for interaction with AKT1;status=By similarity
+Necessary for interaction with CASC5
+Necessary for interaction with CASC5;status=By similarity
+Necessary for interaction with PPIG
+Necessary for interaction with RNPS1
+Necessary for interactions with KRT8%2C KRT18 and KRT19
+Necessary for mediating alternative 5' splicing
+Necessary for nuclear localization
+Necessary for nuclear localization;status=By similarity
+Necessary for the association to nascent RNAPII transcripts and nuclear localization
+Necessary for the association to nascent RNAPII transcripts and nuclear localization;status=By similarity
+Negative regulator of AP-1 activity
+Negative regulator of AP-1 activity;status=By similarity
+Nuclear export signal 1 (NES 1)
+Nuclear export signal 2 (NES 2)
+Nuclear export signal 3 (NES 3)
+Nuclear localization signal
+Nuclear localization signal 1 (NLS 1)
+Nuclear localization signal 1 (NLS1);status=By similarity
+Nuclear localization signal 2 (NLS 2)
+Nuclear localization signal 2 (NLS2);status=By similarity
+Nuclear localization signal;status=By similarity
+Nuclear receptor binding site (NRBS)
+Oligomerization
+Oligomerization;status=By similarity
+Oligomerization;status=Potential
+PBR;status=By similarity
+PDZ domain-binding
+PDZ domain-binding;status=By similarity
+Phosphatase sequence motif I
+Phosphatase sequence motif II
+Phosphatase sequence motif III
+Pocket%3B binds E1A
+Pocket%3B binds T and E1A
+Pocket%3B binds T and E1A;status=By similarity
+Polybasic cluster (PBR)
+Polybasic cluster (PBR);status=By similarity
+RK-rich region
+RK-rich region;status=By similarity
+RNA binding
+Regulatory domain
+Regulatory domain;status=By similarity
+Represses ARE-mediated transcription
+Represses ARE-mediated transcription;status=By similarity
+Required for DNA-binding
+Required for DNA-binding;status=By similarity
+Required for E3 UFM1-protein ligase activity
+Required for E3 UFM1-protein ligase activity;status=By similarity
+Required for interaction with CSK;status=By similarity
+Required for interaction with FBXO42
+Required for interaction with FBXO42;status=By similarity
+Required for interaction with GRB2 and CSK;status=By similarity
+Required for interaction with GSK3B
+Required for interaction with HDAC1
+Required for interaction with HDAC1;status=By similarity
+Required for interaction with MYO6;status=By similarity
+Required for interaction with RAB2
+Required for interaction with RAB2;status=By similarity
+Required for interaction with TSC1
+Required for interaction with ZNF385A
+Required for interaction with ZNF385A;status=By similarity
+Required for interaction with beta- and gamma-catenins
+Required for its oligomerization and is important for its focal concentration at DNA damage sites
+Required for its oligomerization and is important for its focal concentration at DNA damage sites;status=By similarity
+Required for localization to clathrin-coated pits;status=By similarity
+Required for localization to nuclear speckles;status=By similarity
+Required for tertiary structure stability of the protein
+Required for tertiary structure stability of the protein;status=By similarity
+Required for transcriptional activation
+Required for transcriptional activation;status=By similarity
+Responsible for down-regulation through a process mediated by direct ubiquitination
+SUMO interaction motifs (SIM)%3B required for nuclear localization and kinase activity;status=By similarity
+Small GTPase-like
+Spacer
+Spacer;status=By similarity
+Spectrin--actin-binding
+Spectrin--actin-binding;status=Potential
+Substrate binding;status=By similarity
+Sufficient for PSAP complex assembly
+Sufficient for interaction with GRB2;status=By similarity
+Sufficient for interaction with RB1
+Sufficient for interaction with RB1;status=By similarity
+Sufficient for interaction with SH3KBP1 SH3 domain;status=By similarity
+Sumo interaction motif (SIM)
+Sumo interaction motif (SIM);status=By similarity
+T-loop/activation segment
+Telomerase inhibitory domain (TID)
+Transactivation;status=By similarity
+Transcription activation (acidic)
+Transcription activation (acidic);status=By similarity
+Transcriptional corepression
+Transcriptional corepression;status=By similarity
+Trichohyalin/plectin homology domain
+Trichohyalin/plectin homology domain;status=By similarity
+intrinsically disordered
+intrinsically disordered;status=By similarity

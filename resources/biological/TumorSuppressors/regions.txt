@@ -1,0 +1,725 @@
+Q99490	UniProtKB	Region	1	23	.	.	.	Note=Interaction with EPB41L1;status=By similarity	
+Q99490	UniProtKB	Region	180	225	.	.	.	Note=Interactions with HOMER1 and NF2;status=By similarity	
+Q99490	UniProtKB	Region	267	390	.	.	.	Note=Interaction with PLCG1;status=By similarity	
+Q99490	UniProtKB	Region	405	572	.	.	.	Note=G domain	
+P25054	UniProtKB	Region	960	1337	.	.	.	Note=Responsible for down-regulation through a process mediated by direct ubiquitination	
+P25054	UniProtKB	Region	1866	1893	.	.	.	Note=Highly charged	
+Q61315	UniProtKB	Region	1864	1891	.	.	.	Note=Highly charged	
+P70478	UniProtKB	Region	1864	1891	.	.	.	Note=Highly charged	
+Q8IVW6	UniProtKB	Region	203	365	.	.	.	Note=Interaction with RB1	
+Q8IVW6	UniProtKB	Region	490	513	.	.	.	Note=Interaction with ARID3A	
+Q13315	UniProtKB	Region	1373	1382	.	.	.	Note=Interaction with ABL1	
+Q62388	UniProtKB	Region	1380	1389	.	.	.	Note=Interaction with ABL1;status=By similarity	
+Q6PQD5	UniProtKB	Region	1374	1383	.	.	.	Note=Interaction with ABL1;status=By similarity	
+O15169	UniProtKB	Region	209	338	.	.	.	Note=Interaction with TP53;status=By similarity	
+O15169	UniProtKB	Region	348	433	.	.	.	Note=Interaction with GSK3B;status=By similarity	
+O15169	UniProtKB	Region	434	502	.	.	.	Note=Interaction with CTNNB1;status=By similarity	
+O15169	UniProtKB	Region	507	757	.	.	.	Note=Interaction with RNF111	
+O15169	UniProtKB	Region	575	789	.	.	.	Note=Interaction with PPP2CA	
+O15169	UniProtKB	Region	677	752	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+O35625	UniProtKB	Region	209	338	.	.	.	Note=Interaction with TP53	
+O35625	UniProtKB	Region	348	432	.	.	.	Note=Interaction with GSK3B;status=By similarity	
+O35625	UniProtKB	Region	433	501	.	.	.	Note=Interaction with beta-catenin;status=By similarity	
+O35625	UniProtKB	Region	505	758	.	.	.	Note=Interaction with RNF111;status=By similarity	
+O35625	UniProtKB	Region	572	790	.	.	.	Note=Interaction with PPP2CA;status=By similarity	
+O35625	UniProtKB	Region	678	753	.	.	.	Note=Interaction with HIPK2	
+O88566	UniProtKB	Region	327	413	.	.	.	Note=Interaction with GSK3B;status=By similarity	
+O88566	UniProtKB	Region	413	478	.	.	.	Note=Interaction with beta-catenin;status=By similarity	
+Q8N9N5	UniProtKB	Region	152	342	.	.	.	Note=Interaction with CUX1 and HDAC1;status=By similarity	
+Q8N9N5	UniProtKB	Region	320	349	.	.	.	Note=Necessary and sufficient for TP53 activation;status=By similarity	
+Q8N9N5	UniProtKB	Region	342	393	.	.	.	Note=DNA-binding;status=By similarity	
+O00499	UniProtKB	Region	2	122	.	.	.	Note=Interaction with BIN2	
+O00499	UniProtKB	Region	378	421	.	.	.	Note=Clathrin-binding	
+O08539	UniProtKB	Region	2	122	.	.	.	Note=Interaction with BIN2;status=By similarity	
+O08539	UniProtKB	Region	379	422	.	.	.	Note=Clathrin-binding;status=By similarity	
+O08839	UniProtKB	Region	2	122	.	.	.	Note=Interaction with BIN2;status=By similarity	
+O08839	UniProtKB	Region	379	422	.	.	.	Note=Clathrin-binding;status=By similarity	
+Q864U1	UniProtKB	Region	1392	1419	.	.	.	Note=Interaction with PALB2;status=By similarity	
+Q95153	UniProtKB	Region	1401	1428	.	.	.	Note=Interaction with PALB2;status=By similarity	
+Q6J6I8	UniProtKB	Region	1397	1424	.	.	.	Note=Interaction with PALB2;status=By similarity	
+P38398	UniProtKB	Region	1397	1424	.	.	.	Note=Interaction with PALB2	
+Q6J6I9	UniProtKB	Region	1397	1424	.	.	.	Note=Interaction with PALB2;status=By similarity	
+P48754	UniProtKB	Region	1353	1380	.	.	.	Note=Interaction with PALB2;status=By similarity	
+Q9GKK8	UniProtKB	Region	1397	1424	.	.	.	Note=Interaction with PALB2;status=By similarity	
+Q6J6J0	UniProtKB	Region	1397	1424	.	.	.	Note=Interaction with PALB2;status=By similarity	
+O54952	UniProtKB	Region	1354	1381	.	.	.	Note=Interaction with PALB2;status=By similarity	
+Q864S8	UniProtKB	Region	1	40	.	.	.	Note=Interaction with PALB2;status=By similarity	
+Q864S8	UniProtKB	Region	630	992	.	.	.	Note=Interaction with NPM1;status=By similarity	
+P51587	UniProtKB	Region	1	40	.	.	.	Note=Interaction with PALB2	
+P51587	UniProtKB	Region	639	1000	.	.	.	Note=Interaction with NPM1	
+P51587	UniProtKB	Region	2350	2545	.	.	.	Note=Interaction with FANCD2	
+P97929	UniProtKB	Region	1	40	.	.	.	Note=Interaction with PALB2;status=By similarity	
+P97929	UniProtKB	Region	628	979	.	.	.	Note=Interaction with NPM1;status=By similarity	
+P97929	UniProtKB	Region	2298	2466	.	.	.	Note=Interaction with FANCD2;status=By similarity	
+O35923	UniProtKB	Region	1	40	.	.	.	Note=Interaction with PALB2;status=By similarity	
+O35923	UniProtKB	Region	622	982	.	.	.	Note=Interaction with NPM1;status=By similarity	
+O35923	UniProtKB	Region	2313	2475	.	.	.	Note=Interaction with FANCD2;status=By similarity	
+O60566	UniProtKB	Region	152	185	.	.	.	Note=Necessary for interaction with CASC5	
+Q9Z1S0	UniProtKB	Region	146	179	.	.	.	Note=Necessary for interaction with CASC5;status=By similarity	
+Q6P1J9	UniProtKB	Region	200	531	.	.	.	Note=Interaction with POLR2A and PAF1	
+Q6P1J9	UniProtKB	Region	200	250	.	.	.	Note=Interaction with CTNNB1	
+Q8JZM7	UniProtKB	Region	200	531	.	.	.	Note=Interaction with POLR2A and PAF1;status=By similarity	
+Q8JZM7	UniProtKB	Region	200	250	.	.	.	Note=Interaction with CTNNB1;status=By similarity	
+Q4V8C8	UniProtKB	Region	200	531	.	.	.	Note=Interaction with POLR2A and PAF1;status=By similarity	
+Q4V8C8	UniProtKB	Region	200	250	.	.	.	Note=Interaction with CTNNB1;status=By similarity	
+O14519	UniProtKB	Region	1	60	.	.	.	Note=intrinsically disordered	
+P49119	UniProtKB	Region	1	60	.	.	.	Note=intrinsically disordered;status=By similarity	
+O35207	UniProtKB	Region	1	60	.	.	.	Note=intrinsically disordered;status=By similarity	
+P49918	UniProtKB	Region	156	213	.	.	.	Note=9 X 4 AA repeats of P-A-P-A	
+A8WW61	UniProtKB	Region	535	564	.	.	.	Note=Required for tertiary structure stability of the protein;status=By similarity	
+Q20646	UniProtKB	Region	528	555	.	.	.	Note=Required for tertiary structure stability of the protein	
+O96017	UniProtKB	Region	368	394	.	.	.	Note=T-loop/activation segment	
+Q96M02	UniProtKB	Region	116	224	.	.	.	Note=Required for interaction with HDAC1;status=By similarity	
+Q96M02	UniProtKB	Region	571	699	.	.	.	Note=ALMS motif;status=By similarity	
+D2J0Y4	UniProtKB	Region	67	175	.	.	.	Note=Required for interaction with HDAC1	
+D2J0Y4	UniProtKB	Region	516	644	.	.	.	Note=ALMS motif	
+O60519	UniProtKB	Region	29	60	.	.	.	Note=Basic motif;status=By similarity	
+O60519	UniProtKB	Region	62	69	.	.	.	Note=Leucine-zipper;status=By similarity	
+Q9NQC7	UniProtKB	Region	106	593	.	.	.	Note=Interaction with TRIP	
+Q9NQC7	UniProtKB	Region	394	469	.	.	.	Note=Interaction with TRAF2	
+Q9NQC7	UniProtKB	Region	470	554	.	.	.	Note=Interaction with IKBKG/NEMO	
+Q5VWQ8	UniProtKB	Region	646	943	.	.	.	Note=Necessary for interaction with AKT1	
+Q3UHC7	UniProtKB	Region	646	943	.	.	.	Note=Necessary for interaction with AKT1;status=By similarity	
+Q6P730	UniProtKB	Region	453	750	.	.	.	Note=Necessary for interaction with AKT1;status=By similarity	
+P98082	UniProtKB	Region	230	447	.	.	.	Note=Required for localization to clathrin-coated pits;status=By similarity	
+P98082	UniProtKB	Region	604	732	.	.	.	Note=Sufficient for interaction with GRB2;status=By similarity	
+P98082	UniProtKB	Region	619	627	.	.	.	Note=Required for interaction with CSK;status=By similarity	
+P98082	UniProtKB	Region	649	770	.	.	.	Note=Required for interaction with MYO6;status=By similarity	
+P98082	UniProtKB	Region	663	671	.	.	.	Note=Required for interaction with GRB2 and CSK;status=By similarity	
+P98082	UniProtKB	Region	709	725	.	.	.	Note=Sufficient for interaction with SH3KBP1 SH3 domain;status=By similarity	
+P43146	UniProtKB	Region	1432	1439	.	.	.	Note=Interaction with MYO10	
+Q08DM1	UniProtKB	Region	225	309	.	.	.	Note=Interaction with RASGRF2;status=By similarity	
+Q08495	UniProtKB	Region	224	308	.	.	.	Note=Interaction with RASGRF2	
+Q9WV69	UniProtKB	Region	224	308	.	.	.	Note=Interaction with RASGRF2;status=By similarity	
+Q5R4B6	UniProtKB	Region	224	308	.	.	.	Note=Interaction with RASGRF2;status=By similarity	
+Q9Y222	UniProtKB	Region	1	237	.	.	.	Note=Interaction with CCND2;status=By similarity	
+Q9Y222	UniProtKB	Region	87	458	.	.	.	Note=Required for DNA-binding;status=By similarity	
+Q9Y222	UniProtKB	Region	87	170	.	.	.	Note=Required for transcriptional activation;status=By similarity	
+Q9Y222	UniProtKB	Region	176	760	.	.	.	Note=Interaction with CCND1%2C CCND2 and CCND3;status=By similarity	
+Q9Y222	UniProtKB	Region	459	760	.	.	.	Note=Required for transcriptional activation;status=By similarity	
+Q8CE22	UniProtKB	Region	1	237	.	.	.	Note=Interaction with CCND2	
+Q8CE22	UniProtKB	Region	87	458	.	.	.	Note=Required for DNA-binding	
+Q8CE22	UniProtKB	Region	87	170	.	.	.	Note=Required for transcriptional activation	
+Q8CE22	UniProtKB	Region	176	761	.	.	.	Note=Interaction with CCND1%2C CCND2 and CCND3	
+Q8CE22	UniProtKB	Region	459	761	.	.	.	Note=Required for transcriptional activation	
+Q66HG1	UniProtKB	Region	1	237	.	.	.	Note=Interaction with CCND2;status=By similarity	
+Q66HG1	UniProtKB	Region	87	458	.	.	.	Note=Required for DNA-binding;status=By similarity	
+Q66HG1	UniProtKB	Region	87	170	.	.	.	Note=Required for transcriptional activation;status=By similarity	
+Q66HG1	UniProtKB	Region	176	690	.	.	.	Note=Interaction with CCND1%2C CCND2 and CCND3;status=By similarity	
+Q66HG1	UniProtKB	Region	459	760	.	.	.	Note=Required for transcriptional activation;status=By similarity	
+Q9Y2J2	UniProtKB	Region	394	513	.	.	.	Note=Hydrophilic	
+Q9Y2J2	UniProtKB	Region	514	860	.	.	.	Note=Spectrin--actin-binding;status=Potential	
+Q9Y2J2	UniProtKB	Region	861	1083	.	.	.	Note=C-terminal (CTD)	
+Q9WV92	UniProtKB	Region	402	528	.	.	.	Note=Hydrophilic	
+Q9WV92	UniProtKB	Region	559	602	.	.	.	Note=Spectrin--actin-binding	
+Q9WV92	UniProtKB	Region	777	929	.	.	.	Note=C-terminal (CTD)	
+P00533	UniProtKB	Region	688	704	.	.	.	Note=Important for dimerization%2C phosphorylation and activation	
+Q9UJM3	UniProtKB	Region	334	363	.	.	.	Note=Interaction with EGFR and ERBB2 and regulation of EGFR activation	
+Q99JZ7	UniProtKB	Region	333	362	.	.	.	Note=Interaction with EGFR and ERBB2 and regulation of EGFR activation;status=By similarity	
+P05432	UniProtKB	Region	332	361	.	.	.	Note=Interaction with EGFR and ERBB2 and regulation of EGFR activation;status=By similarity	
+Q9NZB2	UniProtKB	Region	339	405	.	.	.	Note=Interaction with YES1%2C SRC and FYN	
+Q9NZB2	UniProtKB	Region	829	1118	.	.	.	Note=RNA binding	
+P14238	UniProtKB	Region	1	298	.	.	.	Note=Important for interaction with membranes containing phosphoinositides;status=By similarity	
+P07332	UniProtKB	Region	1	300	.	.	.	Note=Important for interaction with membranes containing phosphoinositides	
+P16879	UniProtKB	Region	1	300	.	.	.	Note=Important for interaction with membranes containing phosphoinositides;status=By similarity	
+P07954	UniProtKB	Region	176	179	.	.	.	Note=B site;status=By similarity	
+P07954	UniProtKB	Region	186	188	.	.	.	Note=Substrate binding;status=By similarity	
+Q14526	UniProtKB	Region	154	315	.	.	.	Note=Mediates HDAC-dependent transcriptional repression	
+Q14526	UniProtKB	Region	241	247	.	.	.	Note=Interaction with CTBP1	
+Q9WUM7	UniProtKB	Region	97	230	.	.	.	Note=Transcriptional corepression;status=By similarity	
+Q9WUM7	UniProtKB	Region	189	520	.	.	.	Note=Interaction with DAXX;status=By similarity	
+Q9WUM7	UniProtKB	Region	539	816	.	.	.	Note=Interaction with SKI and SMAD1;status=By similarity	
+Q9WUM7	UniProtKB	Region	724	869	.	.	.	Note=Interaction with POU4F1;status=By similarity	
+Q9WUM7	UniProtKB	Region	746	848	.	.	.	Note=Interaction with CTBP1;status=By similarity	
+Q9WUM7	UniProtKB	Region	759	869	.	.	.	Note=Interaction with HMGA1;status=By similarity	
+Q9WUM7	UniProtKB	Region	774	777	.	.	.	Note=Nuclear localization signal 1 (NLS1);status=By similarity	
+Q9WUM7	UniProtKB	Region	804	807	.	.	.	Note=Nuclear localization signal 2 (NLS2);status=By similarity	
+Q9WUM7	UniProtKB	Region	812	907	.	.	.	Note=Interaction with TP53 and TP73	
+Q9WUM7	UniProtKB	Region	845	952	.	.	.	Note=Localization to nuclear speckles;status=By similarity	
+Q9WUM7	UniProtKB	Region	845	952	.	.	.	Note=Required for localization to nuclear speckles;status=By similarity	
+Q9WUM7	UniProtKB	Region	845	879	.	.	.	Note=Interaction with UBE2I;status=By similarity	
+Q9WUM7	UniProtKB	Region	854	876	.	.	.	Note=Interaction with UBL1	
+Q9WUM7	UniProtKB	Region	856	880	.	.	.	Note=SUMO interaction motifs (SIM)%3B required for nuclear localization and kinase activity;status=By similarity	
+Q9WUM7	UniProtKB	Region	907	1022	.	.	.	Note=Interaction with AXIN1;status=By similarity	
+Q9WUM7	UniProtKB	Region	956	1168	.	.	.	Note=Autoinhibitory domain (AID);status=By similarity	
+Q9QZR5	UniProtKB	Region	97	230	.	.	.	Note=Transcriptional corepression	
+Q9QZR5	UniProtKB	Region	189	520	.	.	.	Note=Interaction with DAXX;status=By similarity	
+Q9QZR5	UniProtKB	Region	539	844	.	.	.	Note=Interaction with SKI and SMAD1;status=By similarity	
+Q9QZR5	UniProtKB	Region	752	897	.	.	.	Note=Interaction with POU4F1	
+Q9QZR5	UniProtKB	Region	774	876	.	.	.	Note=Interaction with CTBP1	
+Q9QZR5	UniProtKB	Region	787	897	.	.	.	Note=Interaction with HMGA1	
+Q9QZR5	UniProtKB	Region	802	805	.	.	.	Note=Nuclear localization signal 1 (NLS1);status=By similarity	
+Q9QZR5	UniProtKB	Region	832	835	.	.	.	Note=Nuclear localization signal 2 (NLS2);status=By similarity	
+Q9QZR5	UniProtKB	Region	839	934	.	.	.	Note=Interaction with TP53 and TP73	
+Q9QZR5	UniProtKB	Region	873	980	.	.	.	Note=Localization to nuclear speckles	
+Q9QZR5	UniProtKB	Region	873	980	.	.	.	Note=Required for localization to nuclear speckles;status=By similarity	
+Q9QZR5	UniProtKB	Region	873	907	.	.	.	Note=Interaction with UBE2I	
+Q9QZR5	UniProtKB	Region	884	908	.	.	.	Note=SUMO interaction motifs (SIM)%3B required for nuclear localization and kinase activity;status=By similarity	
+Q9QZR5	UniProtKB	Region	935	1050	.	.	.	Note=Interaction with AXIN1	
+Q9QZR5	UniProtKB	Region	984	1196	.	.	.	Note=Autoinhibitory domain (AID);status=By similarity	
+Q9UK53	UniProtKB	Region	405	422	.	.	.	Note=PBR;status=By similarity	
+Q9QXV3	UniProtKB	Region	262	279	.	.	.	Note=PBR;status=By similarity	
+Q14678	UniProtKB	Region	43	52	.	.	.	Note=Nuclear export signal 1 (NES 1)	
+Q14678	UniProtKB	Region	65	68	.	.	.	Note=Nuclear localization signal 1 (NLS 1)	
+Q14678	UniProtKB	Region	125	134	.	.	.	Note=Nuclear export signal 2 (NES 2)	
+Q14678	UniProtKB	Region	291	467	.	.	.	Note=Interaction with KIF21A	
+Q14678	UniProtKB	Region	613	622	.	.	.	Note=Nuclear export signal 3 (NES 3)	
+Q14678	UniProtKB	Region	979	992	.	.	.	Note=Nuclear localization signal 2 (NLS 2)	
+Q14678	UniProtKB	Region	1156	1308	.	.	.	Note=Interaction with KIF21A	
+P41743	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain	
+P41743	UniProtKB	Region	2	28	.	.	.	Note=Required for interaction with RAB2	
+P41743	UniProtKB	Region	72	91	.	.	.	Note=Interaction with PARD6A	
+Q62074	UniProtKB	Region	2	252	.	.	.	Note=Regulatory domain;status=By similarity	
+Q62074	UniProtKB	Region	2	28	.	.	.	Note=Required for interaction with RAB2;status=By similarity	
+Q62074	UniProtKB	Region	72	91	.	.	.	Note=Interaction with PARD6A;status=By similarity	
+Q5R4K9	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity	
+Q5R4K9	UniProtKB	Region	2	28	.	.	.	Note=Required for interaction with RAB2;status=By similarity	
+Q5R4K9	UniProtKB	Region	72	91	.	.	.	Note=Interaction with PARD6A;status=By similarity	
+F1M7Y5	UniProtKB	Region	2	253	.	.	.	Note=Regulatory domain;status=By similarity	
+F1M7Y5	UniProtKB	Region	2	28	.	.	.	Note=Required for interaction with RAB2;status=By similarity	
+F1M7Y5	UniProtKB	Region	72	91	.	.	.	Note=Interaction with PARD6A;status=By similarity	
+O95835	UniProtKB	Region	526	655	.	.	.	Note=Interaction with YAP1	
+Q8BYR2	UniProtKB	Region	525	654	.	.	.	Note=Interaction with YAP1;status=By similarity	
+G5E5X0	UniProtKB	Region	54	136	.	.	.	Note=Mediates nuclear export;status=By similarity	
+G5E5X0	UniProtKB	Region	188	259	.	.	.	Note=Interaction with EGLN1/PHD2;status=By similarity	
+G5E5X0	UniProtKB	Region	402	440	.	.	.	Note=Interaction with RB1;status=By similarity	
+G5E5X0	UniProtKB	Region	470	674	.	.	.	Note=Necessary for nuclear localization;status=By similarity	
+Q9UGP4	UniProtKB	Region	54	134	.	.	.	Note=Mediates nuclear export	
+Q9UGP4	UniProtKB	Region	186	260	.	.	.	Note=Interaction with EGLN1/PHD2	
+Q9UGP4	UniProtKB	Region	404	442	.	.	.	Note=Interaction with RB1	
+Q9UGP4	UniProtKB	Region	472	676	.	.	.	Note=Necessary for nuclear localization	
+Q9QXD8	UniProtKB	Region	54	128	.	.	.	Note=Mediates nuclear export;status=By similarity	
+Q9QXD8	UniProtKB	Region	181	256	.	.	.	Note=Interaction with EGLN1/PHD2;status=By similarity	
+Q9QXD8	UniProtKB	Region	396	434	.	.	.	Note=Interaction with RB1;status=By similarity	
+Q9QXD8	UniProtKB	Region	464	668	.	.	.	Note=Necessary for nuclear localization;status=By similarity	
+B5DEH0	UniProtKB	Region	54	128	.	.	.	Note=Mediates nuclear export;status=By similarity	
+B5DEH0	UniProtKB	Region	180	251	.	.	.	Note=Interaction with EGLN1/PHD2;status=By similarity	
+B5DEH0	UniProtKB	Region	391	429	.	.	.	Note=Interaction with RB1;status=By similarity	
+B5DEH0	UniProtKB	Region	459	663	.	.	.	Note=Necessary for nuclear localization;status=By similarity	
+Q5TKA1	UniProtKB	Region	2	296	.	.	.	Note=Sufficient for interaction with RB1	
+Q4R8N2	UniProtKB	Region	2	296	.	.	.	Note=Sufficient for interaction with RB1;status=By similarity	
+Q8NHW3	UniProtKB	Region	254	279	.	.	.	Note=Basic motif	
+Q8NHW3	UniProtKB	Region	260	274	.	.	.	Note=Interaction with DNA	
+Q8NHW3	UniProtKB	Region	282	303	.	.	.	Note=Leucine-zipper	
+Q8CF90	UniProtKB	Region	260	285	.	.	.	Note=Basic motif	
+Q8CF90	UniProtKB	Region	266	280	.	.	.	Note=Interaction with DNA;status=By similarity	
+Q8CF90	UniProtKB	Region	288	309	.	.	.	Note=Leucine-zipper	
+Q9Y5Q3	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity	
+Q9Y5Q3	UniProtKB	Region	266	287	.	.	.	Note=Leucine-zipper;status=By similarity	
+Q2PFS4	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity	
+Q2PFS4	UniProtKB	Region	266	287	.	.	.	Note=Leucine-zipper;status=By similarity	
+P54841	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity	
+P54841	UniProtKB	Region	266	287	.	.	.	Note=Leucine-zipper;status=By similarity	
+P54842	UniProtKB	Region	238	263	.	.	.	Note=Basic motif;status=By similarity	
+P54842	UniProtKB	Region	266	287	.	.	.	Note=Leucine-zipper;status=By similarity	
+A7Z017	UniProtKB	Region	126	377	.	.	.	Note=Represses ARE-mediated transcription;status=By similarity	
+A7Z017	UniProtKB	Region	292	317	.	.	.	Note=Basic motif;status=By similarity	
+A7Z017	UniProtKB	Region	320	341	.	.	.	Note=Leucine-zipper;status=By similarity	
+O75444	UniProtKB	Region	126	373	.	.	.	Note=Represses ARE-mediated transcription	
+O75444	UniProtKB	Region	288	313	.	.	.	Note=Basic motif;status=By similarity	
+O75444	UniProtKB	Region	316	337	.	.	.	Note=Leucine-zipper;status=By similarity	
+P54843	UniProtKB	Region	126	370	.	.	.	Note=Represses ARE-mediated transcription;status=By similarity	
+P54843	UniProtKB	Region	285	310	.	.	.	Note=Basic motif;status=By similarity	
+P54843	UniProtKB	Region	313	334	.	.	.	Note=Leucine-zipper;status=By similarity	
+P54844	UniProtKB	Region	126	369	.	.	.	Note=Represses ARE-mediated transcription;status=By similarity	
+P54844	UniProtKB	Region	284	309	.	.	.	Note=Basic motif;status=By similarity	
+P54844	UniProtKB	Region	312	333	.	.	.	Note=Leucine-zipper;status=By similarity	
+P40692	UniProtKB	Region	410	650	.	.	.	Note=Interaction with EXO1	
+P43246	UniProtKB	Region	601	671	.	.	.	Note=Interaction with EXO1	
+P15941	UniProtKB	Region	126	965	.	.	.	Note=42 X 20 AA approximate tandem repeats of P-A-P-G-S-T-A-P-P-A-H-G-V-T-S-A-P-D-T-R	
+P15941	UniProtKB	Region	1192	1228	.	.	.	Note=Interaction with P53	
+P15941	UniProtKB	Region	1223	1230	.	.	.	Note=Required for interaction with GSK3B	
+P15941	UniProtKB	Region	1233	1241	.	.	.	Note=Required for interaction with beta- and gamma-catenins	
+Q5E9U9	UniProtKB	Region	1	133	.	.	.	Note=Interaction with PDPK1;status=By similarity	
+Q8WTW4	UniProtKB	Region	1	133	.	.	.	Note=Interaction with PDPK1	
+Q9WUE4	UniProtKB	Region	1	133	.	.	.	Note=Interaction with PDPK1;status=By similarity	
+Q9W678	UniProtKB	Region	1	28	.	.	.	Note=Transcription activation (acidic)	
+Q9W678	UniProtKB	Region	237	244	.	.	.	Note=Interaction with DNA;status=By similarity	
+Q9W678	UniProtKB	Region	298	329	.	.	.	Note=Oligomerization	
+Q9W678	UniProtKB	Region	342	365	.	.	.	Note=Basic (repression of DNA-binding)	
+P67938	UniProtKB	Region	1	44	.	.	.	Note=Transcription activation (acidic)	
+P67938	UniProtKB	Region	63	102	.	.	.	Note=Interaction with WWOX;status=By similarity	
+P67938	UniProtKB	Region	92	363	.	.	.	Note=Interaction with HIPK1;status=By similarity	
+P67938	UniProtKB	Region	92	293	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+P67938	UniProtKB	Region	105	229	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+P67938	UniProtKB	Region	108	285	.	.	.	Note=Interaction with AXIN1;status=By similarity	
+P67938	UniProtKB	Region	249	287	.	.	.	Note=Interaction with E4F1;status=By similarity	
+P67938	UniProtKB	Region	266	273	.	.	.	Note=Interaction with DNA;status=By similarity	
+P67938	UniProtKB	Region	312	353	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+P67938	UniProtKB	Region	318	349	.	.	.	Note=Oligomerization	
+P67938	UniProtKB	Region	352	356	.	.	.	Note=Interaction with USP7;status=By similarity	
+P67938	UniProtKB	Region	361	380	.	.	.	Note=Basic (repression of DNA-binding)	
+P67939	UniProtKB	Region	1	44	.	.	.	Note=Transcription activation (acidic)	
+P67939	UniProtKB	Region	63	102	.	.	.	Note=Interaction with WWOX;status=By similarity	
+P67939	UniProtKB	Region	92	363	.	.	.	Note=Interaction with HIPK1;status=By similarity	
+P67939	UniProtKB	Region	92	293	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+P67939	UniProtKB	Region	105	229	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+P67939	UniProtKB	Region	108	285	.	.	.	Note=Interaction with AXIN1;status=By similarity	
+P67939	UniProtKB	Region	249	287	.	.	.	Note=Interaction with E4F1;status=By similarity	
+P67939	UniProtKB	Region	266	273	.	.	.	Note=Interaction with DNA;status=By similarity	
+P67939	UniProtKB	Region	312	353	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+P67939	UniProtKB	Region	318	349	.	.	.	Note=Oligomerization	
+P67939	UniProtKB	Region	352	356	.	.	.	Note=Interaction with USP7;status=By similarity	
+P67939	UniProtKB	Region	361	380	.	.	.	Note=Basic (repression of DNA-binding)	
+Q29537	UniProtKB	Region	1	44	.	.	.	Note=Transcription activation (acidic)	
+Q29537	UniProtKB	Region	63	97	.	.	.	Note=Interaction with WWOX;status=By similarity	
+Q29537	UniProtKB	Region	87	358	.	.	.	Note=Interaction with HIPK1;status=By similarity	
+Q29537	UniProtKB	Region	87	288	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+Q29537	UniProtKB	Region	100	224	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+Q29537	UniProtKB	Region	103	280	.	.	.	Note=Interaction with AXIN1;status=By similarity	
+Q29537	UniProtKB	Region	244	282	.	.	.	Note=Interaction with E4F1;status=By similarity	
+Q29537	UniProtKB	Region	261	268	.	.	.	Note=Interaction with DNA;status=By similarity	
+Q29537	UniProtKB	Region	307	348	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+Q29537	UniProtKB	Region	313	344	.	.	.	Note=Oligomerization	
+Q29537	UniProtKB	Region	347	351	.	.	.	Note=Interaction with USP7;status=By similarity	
+Q29537	UniProtKB	Region	356	375	.	.	.	Note=Basic (repression of DNA-binding)	
+Q9WUR6	UniProtKB	Region	1	44	.	.	.	Note=Transcription activation (acidic)	
+Q9WUR6	UniProtKB	Region	64	108	.	.	.	Note=Interaction with WWOX;status=By similarity	
+Q9WUR6	UniProtKB	Region	98	368	.	.	.	Note=Interaction with HIPK1;status=By similarity	
+Q9WUR6	UniProtKB	Region	98	298	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+Q9WUR6	UniProtKB	Region	111	234	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+Q9WUR6	UniProtKB	Region	114	290	.	.	.	Note=Interaction with AXIN1;status=By similarity	
+Q9WUR6	UniProtKB	Region	254	292	.	.	.	Note=Interaction with E4F1;status=By similarity	
+Q9WUR6	UniProtKB	Region	271	278	.	.	.	Note=Interaction with DNA;status=By similarity	
+Q9WUR6	UniProtKB	Region	317	358	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+Q9WUR6	UniProtKB	Region	323	354	.	.	.	Note=Oligomerization	
+Q9WUR6	UniProtKB	Region	357	361	.	.	.	Note=Interaction with USP7;status=By similarity	
+Q9WUR6	UniProtKB	Region	366	385	.	.	.	Note=Basic (repression of DNA-binding)	
+P10360	UniProtKB	Region	1	30	.	.	.	Note=Transcription activation (acidic)	
+P10360	UniProtKB	Region	259	266	.	.	.	Note=Interaction with DNA;status=By similarity	
+P10360	UniProtKB	Region	308	339	.	.	.	Note=Oligomerization	
+P10360	UniProtKB	Region	347	364	.	.	.	Note=Basic (repression of DNA-binding)	
+P13481	UniProtKB	Region	1	83	.	.	.	Note=Interaction with HRMT1L2;status=By similarity	
+P13481	UniProtKB	Region	1	44	.	.	.	Note=Transcription activation (acidic)	
+P13481	UniProtKB	Region	66	110	.	.	.	Note=Interaction with WWOX;status=By similarity	
+P13481	UniProtKB	Region	100	370	.	.	.	Note=Interaction with HIPK1;status=By similarity	
+P13481	UniProtKB	Region	100	300	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+P13481	UniProtKB	Region	113	236	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+P13481	UniProtKB	Region	116	292	.	.	.	Note=Interaction with AXIN1;status=By similarity	
+P13481	UniProtKB	Region	256	294	.	.	.	Note=Interaction with E4F1;status=By similarity	
+P13481	UniProtKB	Region	273	280	.	.	.	Note=Interaction with DNA;status=By similarity	
+P13481	UniProtKB	Region	300	393	.	.	.	Note=Interaction with CARM1;status=By similarity	
+P13481	UniProtKB	Region	319	360	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+P13481	UniProtKB	Region	325	356	.	.	.	Note=Oligomerization	
+P13481	UniProtKB	Region	359	363	.	.	.	Note=Interaction with USP7;status=By similarity	
+P13481	UniProtKB	Region	368	387	.	.	.	Note=Basic (repression of DNA-binding)	
+O09185	UniProtKB	Region	1	45	.	.	.	Note=Transcription activation (acidic)	
+O09185	UniProtKB	Region	66	110	.	.	.	Note=Interaction with WWOX;status=By similarity	
+O09185	UniProtKB	Region	100	370	.	.	.	Note=Interaction with HIPK1;status=By similarity	
+O09185	UniProtKB	Region	100	300	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+O09185	UniProtKB	Region	113	236	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+O09185	UniProtKB	Region	116	292	.	.	.	Note=Interaction with AXIN1;status=By similarity	
+O09185	UniProtKB	Region	256	294	.	.	.	Note=Interaction with E4F1;status=By similarity	
+O09185	UniProtKB	Region	273	280	.	.	.	Note=Interaction with DNA;status=By similarity	
+O09185	UniProtKB	Region	319	360	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+O09185	UniProtKB	Region	325	356	.	.	.	Note=Oligomerization	
+O09185	UniProtKB	Region	359	363	.	.	.	Note=Interaction with USP7;status=By similarity	
+O09185	UniProtKB	Region	368	387	.	.	.	Note=Basic (repression of DNA-binding)	
+P79734	UniProtKB	Region	1	31	.	.	.	Note=Transcription activation (acidic)	
+P79734	UniProtKB	Region	241	248	.	.	.	Note=Interaction with DNA;status=By similarity	
+P79734	UniProtKB	Region	301	332	.	.	.	Note=Oligomerization	
+P79734	UniProtKB	Region	345	366	.	.	.	Note=Basic (repression of DNA-binding)	
+Q8SPZ3	UniProtKB	Region	1	45	.	.	.	Note=Transcription activation (acidic);status=By similarity	
+Q8SPZ3	UniProtKB	Region	59	103	.	.	.	Note=Interaction with WWOX;status=By similarity	
+Q8SPZ3	UniProtKB	Region	93	364	.	.	.	Note=Interaction with HIPK1;status=By similarity	
+Q8SPZ3	UniProtKB	Region	93	294	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+Q8SPZ3	UniProtKB	Region	106	230	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+Q8SPZ3	UniProtKB	Region	109	286	.	.	.	Note=Interaction with AXIN1;status=By similarity	
+Q8SPZ3	UniProtKB	Region	250	288	.	.	.	Note=Interaction with E4F1;status=By similarity	
+Q8SPZ3	UniProtKB	Region	267	274	.	.	.	Note=Interaction with DNA;status=By similarity	
+Q8SPZ3	UniProtKB	Region	313	354	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+Q8SPZ3	UniProtKB	Region	319	350	.	.	.	Note=Oligomerization;status=By similarity	
+Q8SPZ3	UniProtKB	Region	353	357	.	.	.	Note=Interaction with USP7;status=By similarity	
+Q8SPZ3	UniProtKB	Region	362	381	.	.	.	Note=Basic (repression of DNA-binding);status=By similarity	
+Q29480	UniProtKB	Region	1	112	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+Q29480	UniProtKB	Region	132	170	.	.	.	Note=Interaction with E4F1;status=By similarity	
+Q29480	UniProtKB	Region	149	156	.	.	.	Note=Interaction with DNA;status=By similarity	
+Q29480	UniProtKB	Region	201	207	.	.	.	Note=Oligomerization	
+P41685	UniProtKB	Region	1	44	.	.	.	Note=Transcription activation (acidic)	
+P41685	UniProtKB	Region	63	102	.	.	.	Note=Interaction with WWOX;status=By similarity	
+P41685	UniProtKB	Region	92	363	.	.	.	Note=Interaction with HIPK1;status=By similarity	
+P41685	UniProtKB	Region	92	293	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+P41685	UniProtKB	Region	105	229	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+P41685	UniProtKB	Region	108	285	.	.	.	Note=Interaction with AXIN1;status=By similarity	
+P41685	UniProtKB	Region	249	287	.	.	.	Note=Interaction with E4F1;status=By similarity	
+P41685	UniProtKB	Region	266	273	.	.	.	Note=Interaction with DNA;status=By similarity	
+P41685	UniProtKB	Region	312	353	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+P41685	UniProtKB	Region	318	349	.	.	.	Note=Oligomerization	
+P41685	UniProtKB	Region	352	356	.	.	.	Note=Interaction with USP7;status=By similarity	
+P41685	UniProtKB	Region	361	380	.	.	.	Note=Basic (repression of DNA-binding)	
+P79892	UniProtKB	Region	26	60	.	.	.	Note=Interaction with WWOX;status=By similarity	
+P79892	UniProtKB	Region	50	251	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+P79892	UniProtKB	Region	63	187	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+P79892	UniProtKB	Region	207	245	.	.	.	Note=Interaction with E4F1;status=By similarity	
+P79892	UniProtKB	Region	224	231	.	.	.	Note=Interaction with DNA;status=By similarity	
+P79892	UniProtKB	Region	276	280	.	.	.	Note=Oligomerization	
+P04637	UniProtKB	Region	1	83	.	.	.	Note=Interaction with HRMT1L2	
+P04637	UniProtKB	Region	1	44	.	.	.	Note=Transcription activation (acidic)	
+P04637	UniProtKB	Region	66	110	.	.	.	Note=Interaction with WWOX	
+P04637	UniProtKB	Region	100	370	.	.	.	Note=Interaction with HIPK1;status=By similarity	
+P04637	UniProtKB	Region	100	300	.	.	.	Note=Required for interaction with ZNF385A	
+P04637	UniProtKB	Region	113	236	.	.	.	Note=Required for interaction with FBXO42	
+P04637	UniProtKB	Region	116	292	.	.	.	Note=Interaction with AXIN1;status=By similarity	
+P04637	UniProtKB	Region	241	248	.	.	.	Note=Interacts with the 53BP2 SH3 domain	
+P04637	UniProtKB	Region	256	294	.	.	.	Note=Interaction with E4F1	
+P04637	UniProtKB	Region	273	280	.	.	.	Note=Interaction with DNA	
+P04637	UniProtKB	Region	300	393	.	.	.	Note=Interaction with CARM1	
+P04637	UniProtKB	Region	319	360	.	.	.	Note=Interaction with HIPK2	
+P04637	UniProtKB	Region	325	356	.	.	.	Note=Oligomerization	
+P04637	UniProtKB	Region	359	363	.	.	.	Note=Interaction with USP7	
+P04637	UniProtKB	Region	368	387	.	.	.	Note=Basic (repression of DNA-binding)	
+O93379	UniProtKB	Region	1	36	.	.	.	Note=Transcription activation (acidic)	
+O93379	UniProtKB	Region	249	256	.	.	.	Note=Interaction with DNA;status=By similarity	
+O93379	UniProtKB	Region	303	334	.	.	.	Note=Oligomerization	
+O93379	UniProtKB	Region	347	372	.	.	.	Note=Basic (repression of DNA-binding)	
+P56423	UniProtKB	Region	1	83	.	.	.	Note=Interaction with HRMT1L2;status=By similarity	
+P56423	UniProtKB	Region	1	44	.	.	.	Note=Transcription activation (acidic)	
+P56423	UniProtKB	Region	66	110	.	.	.	Note=Interaction with WWOX;status=By similarity	
+P56423	UniProtKB	Region	100	370	.	.	.	Note=Interaction with HIPK1;status=By similarity	
+P56423	UniProtKB	Region	100	300	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+P56423	UniProtKB	Region	113	236	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+P56423	UniProtKB	Region	116	292	.	.	.	Note=Interaction with AXIN1;status=By similarity	
+P56423	UniProtKB	Region	256	294	.	.	.	Note=Interaction with E4F1;status=By similarity	
+P56423	UniProtKB	Region	273	280	.	.	.	Note=Interaction with DNA;status=By similarity	
+P56423	UniProtKB	Region	300	393	.	.	.	Note=Interaction with CARM1;status=By similarity	
+P56423	UniProtKB	Region	319	360	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+P56423	UniProtKB	Region	325	356	.	.	.	Note=Oligomerization	
+P56423	UniProtKB	Region	359	363	.	.	.	Note=Interaction with USP7;status=By similarity	
+P56423	UniProtKB	Region	368	387	.	.	.	Note=Basic (repression of DNA-binding)	
+P61260	UniProtKB	Region	1	83	.	.	.	Note=Interaction with HRMT1L2;status=By similarity	
+P61260	UniProtKB	Region	1	44	.	.	.	Note=Transcription activation (acidic)	
+P61260	UniProtKB	Region	66	110	.	.	.	Note=Interaction with WWOX;status=By similarity	
+P61260	UniProtKB	Region	100	300	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+P61260	UniProtKB	Region	113	236	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+P61260	UniProtKB	Region	256	294	.	.	.	Note=Interaction with E4F1;status=By similarity	
+P61260	UniProtKB	Region	273	280	.	.	.	Note=Interaction with DNA;status=By similarity	
+P61260	UniProtKB	Region	300	393	.	.	.	Note=Interaction with CARM1;status=By similarity	
+P61260	UniProtKB	Region	325	356	.	.	.	Note=Oligomerization	
+P61260	UniProtKB	Region	359	363	.	.	.	Note=Interaction with USP7;status=By similarity	
+P61260	UniProtKB	Region	368	387	.	.	.	Note=Basic (repression of DNA-binding)	
+P56424	UniProtKB	Region	1	83	.	.	.	Note=Interaction with HRMT1L2;status=By similarity	
+P56424	UniProtKB	Region	1	44	.	.	.	Note=Transcription activation (acidic)	
+P56424	UniProtKB	Region	66	110	.	.	.	Note=Interaction with WWOX;status=By similarity	
+P56424	UniProtKB	Region	100	370	.	.	.	Note=Interaction with HIPK1;status=By similarity	
+P56424	UniProtKB	Region	100	300	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+P56424	UniProtKB	Region	113	236	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+P56424	UniProtKB	Region	116	292	.	.	.	Note=Interaction with AXIN1;status=By similarity	
+P56424	UniProtKB	Region	256	294	.	.	.	Note=Interaction with E4F1;status=By similarity	
+P56424	UniProtKB	Region	273	280	.	.	.	Note=Interaction with DNA;status=By similarity	
+P56424	UniProtKB	Region	300	393	.	.	.	Note=Interaction with CARM1;status=By similarity	
+P56424	UniProtKB	Region	319	360	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+P56424	UniProtKB	Region	325	356	.	.	.	Note=Oligomerization	
+P56424	UniProtKB	Region	359	363	.	.	.	Note=Interaction with USP7;status=By similarity	
+P56424	UniProtKB	Region	368	387	.	.	.	Note=Basic (repression of DNA-binding)	
+O36006	UniProtKB	Region	1	44	.	.	.	Note=Transcription activation (acidic)	
+O36006	UniProtKB	Region	64	108	.	.	.	Note=Interaction with WWOX;status=By similarity	
+O36006	UniProtKB	Region	98	368	.	.	.	Note=Interaction with HIPK1;status=By similarity	
+O36006	UniProtKB	Region	98	298	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+O36006	UniProtKB	Region	111	234	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+O36006	UniProtKB	Region	114	290	.	.	.	Note=Interaction with AXIN1;status=By similarity	
+O36006	UniProtKB	Region	254	292	.	.	.	Note=Interaction with E4F1;status=By similarity	
+O36006	UniProtKB	Region	271	278	.	.	.	Note=Interaction with DNA;status=By similarity	
+O36006	UniProtKB	Region	317	358	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+O36006	UniProtKB	Region	323	354	.	.	.	Note=Oligomerization	
+O36006	UniProtKB	Region	357	361	.	.	.	Note=Interaction with USP7;status=By similarity	
+O36006	UniProtKB	Region	366	385	.	.	.	Note=Basic (repression of DNA-binding)	
+Q00366	UniProtKB	Region	1	45	.	.	.	Note=Transcription activation (acidic)	
+Q00366	UniProtKB	Region	66	113	.	.	.	Note=Interaction with WWOX;status=By similarity	
+Q00366	UniProtKB	Region	103	373	.	.	.	Note=Interaction with HIPK1;status=By similarity	
+Q00366	UniProtKB	Region	103	303	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+Q00366	UniProtKB	Region	116	239	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+Q00366	UniProtKB	Region	119	295	.	.	.	Note=Interaction with AXIN1;status=By similarity	
+Q00366	UniProtKB	Region	259	297	.	.	.	Note=Interaction with E4F1;status=By similarity	
+Q00366	UniProtKB	Region	276	283	.	.	.	Note=Interaction with DNA;status=By similarity	
+Q00366	UniProtKB	Region	322	363	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+Q00366	UniProtKB	Region	328	359	.	.	.	Note=Oligomerization	
+Q00366	UniProtKB	Region	362	366	.	.	.	Note=Interaction with USP7;status=By similarity	
+Q00366	UniProtKB	Region	371	390	.	.	.	Note=Basic (repression of DNA-binding)	
+P02340	UniProtKB	Region	1	42	.	.	.	Note=Transcription activation (acidic)	
+P02340	UniProtKB	Region	60	104	.	.	.	Note=Interaction with WWOX;status=By similarity	
+P02340	UniProtKB	Region	94	364	.	.	.	Note=Interaction with HIPK1	
+P02340	UniProtKB	Region	94	294	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+P02340	UniProtKB	Region	107	230	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+P02340	UniProtKB	Region	110	286	.	.	.	Note=Interaction with AXIN1	
+P02340	UniProtKB	Region	253	291	.	.	.	Note=Interaction with E4F1;status=By similarity	
+P02340	UniProtKB	Region	267	274	.	.	.	Note=Interaction with DNA	
+P02340	UniProtKB	Region	313	354	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+P02340	UniProtKB	Region	319	350	.	.	.	Note=Oligomerization	
+P02340	UniProtKB	Region	353	357	.	.	.	Note=Interaction with USP7;status=By similarity	
+P02340	UniProtKB	Region	362	381	.	.	.	Note=Basic (repression of DNA-binding)	
+P25035	UniProtKB	Region	1	44	.	.	.	Note=Transcription activation (acidic)	
+P25035	UniProtKB	Region	262	269	.	.	.	Note=Interaction with DNA;status=By similarity	
+P25035	UniProtKB	Region	325	356	.	.	.	Note=Oligomerization	
+P25035	UniProtKB	Region	369	392	.	.	.	Note=Basic (repression of DNA-binding)	
+P79820	UniProtKB	Region	1	48	.	.	.	Note=Transcription activation (acidic)	
+P79820	UniProtKB	Region	254	261	.	.	.	Note=Interaction with DNA;status=By similarity	
+P79820	UniProtKB	Region	302	331	.	.	.	Note=Oligomerization	
+P79820	UniProtKB	Region	334	350	.	.	.	Note=Basic (repression of DNA-binding)	
+Q9TUB2	UniProtKB	Region	1	45	.	.	.	Note=Transcription activation (acidic)	
+Q9TUB2	UniProtKB	Region	63	102	.	.	.	Note=Interaction with WWOX;status=By similarity	
+Q9TUB2	UniProtKB	Region	92	363	.	.	.	Note=Interaction with HIPK1;status=By similarity	
+Q9TUB2	UniProtKB	Region	92	293	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+Q9TUB2	UniProtKB	Region	105	229	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+Q9TUB2	UniProtKB	Region	108	285	.	.	.	Note=Interaction with AXIN1;status=By similarity	
+Q9TUB2	UniProtKB	Region	249	287	.	.	.	Note=Interaction with E4F1;status=By similarity	
+Q9TUB2	UniProtKB	Region	266	273	.	.	.	Note=Interaction with DNA;status=By similarity	
+Q9TUB2	UniProtKB	Region	312	353	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+Q9TUB2	UniProtKB	Region	318	349	.	.	.	Note=Oligomerization	
+Q9TUB2	UniProtKB	Region	352	356	.	.	.	Note=Interaction with USP7;status=By similarity	
+Q9TUB2	UniProtKB	Region	361	380	.	.	.	Note=Basic (repression of DNA-binding)	
+O12946	UniProtKB	Region	1	41	.	.	.	Note=Transcription activation (acidic)	
+O12946	UniProtKB	Region	248	255	.	.	.	Note=Interaction with DNA;status=By similarity	
+O12946	UniProtKB	Region	305	336	.	.	.	Note=Oligomerization	
+O12946	UniProtKB	Region	341	362	.	.	.	Note=Basic (repression of DNA-binding)	
+Q95330	UniProtKB	Region	1	43	.	.	.	Note=Transcription activation (acidic)	
+Q95330	UniProtKB	Region	63	107	.	.	.	Note=Interaction with WWOX;status=By similarity	
+Q95330	UniProtKB	Region	97	368	.	.	.	Note=Interaction with HIPK1;status=By similarity	
+Q95330	UniProtKB	Region	97	297	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+Q95330	UniProtKB	Region	110	233	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+Q95330	UniProtKB	Region	113	289	.	.	.	Note=Interaction with AXIN1;status=By similarity	
+Q95330	UniProtKB	Region	253	291	.	.	.	Note=Interaction with E4F1;status=By similarity	
+Q95330	UniProtKB	Region	270	277	.	.	.	Note=Interaction with DNA;status=By similarity	
+Q95330	UniProtKB	Region	317	358	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+Q95330	UniProtKB	Region	323	354	.	.	.	Note=Oligomerization	
+Q95330	UniProtKB	Region	357	361	.	.	.	Note=Interaction with USP7;status=By similarity	
+Q95330	UniProtKB	Region	366	385	.	.	.	Note=Basic (repression of DNA-binding)	
+P10361	UniProtKB	Region	1	47	.	.	.	Note=Transcription activation (acidic)	
+P10361	UniProtKB	Region	64	108	.	.	.	Note=Interaction with WWOX;status=By similarity	
+P10361	UniProtKB	Region	98	368	.	.	.	Note=Interaction with HIPK1;status=By similarity	
+P10361	UniProtKB	Region	98	298	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+P10361	UniProtKB	Region	111	234	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+P10361	UniProtKB	Region	114	290	.	.	.	Note=Interaction with AXIN1;status=By similarity	
+P10361	UniProtKB	Region	254	292	.	.	.	Note=Interaction with E4F1;status=By similarity	
+P10361	UniProtKB	Region	271	278	.	.	.	Note=Interaction with DNA;status=By similarity	
+P10361	UniProtKB	Region	317	358	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+P10361	UniProtKB	Region	323	354	.	.	.	Note=Oligomerization	
+P10361	UniProtKB	Region	357	361	.	.	.	Note=Interaction with USP7;status=By similarity	
+P10361	UniProtKB	Region	366	385	.	.	.	Note=Basic (repression of DNA-binding)	
+P51664	UniProtKB	Region	1	44	.	.	.	Note=Transcription activation (acidic)	
+P51664	UniProtKB	Region	64	98	.	.	.	Note=Interaction with WWOX;status=By similarity	
+P51664	UniProtKB	Region	88	359	.	.	.	Note=Interaction with HIPK1;status=By similarity	
+P51664	UniProtKB	Region	88	289	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+P51664	UniProtKB	Region	101	225	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+P51664	UniProtKB	Region	104	281	.	.	.	Note=Interaction with AXIN1;status=By similarity	
+P51664	UniProtKB	Region	245	283	.	.	.	Note=Interaction with E4F1;status=By similarity	
+P51664	UniProtKB	Region	262	269	.	.	.	Note=Interaction with DNA;status=By similarity	
+P51664	UniProtKB	Region	308	349	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+P51664	UniProtKB	Region	314	345	.	.	.	Note=Oligomerization	
+P51664	UniProtKB	Region	348	352	.	.	.	Note=Interaction with USP7;status=By similarity	
+P51664	UniProtKB	Region	357	376	.	.	.	Note=Basic (repression of DNA-binding)	
+Q64662	UniProtKB	Region	1	24	.	.	.	Note=Transcription activation (acidic)	
+Q64662	UniProtKB	Region	44	88	.	.	.	Note=Interaction with WWOX;status=By similarity	
+Q64662	UniProtKB	Region	78	278	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+Q64662	UniProtKB	Region	91	214	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+Q64662	UniProtKB	Region	234	272	.	.	.	Note=Interaction with E4F1;status=By similarity	
+Q64662	UniProtKB	Region	251	258	.	.	.	Note=Interaction with DNA;status=By similarity	
+Q64662	UniProtKB	Region	303	314	.	.	.	Note=Oligomerization	
+Q9W679	UniProtKB	Region	1	47	.	.	.	Note=Transcription activation (acidic)	
+Q9W679	UniProtKB	Region	254	261	.	.	.	Note=Interaction with DNA;status=By similarity	
+Q9W679	UniProtKB	Region	308	337	.	.	.	Note=Oligomerization	
+Q9W679	UniProtKB	Region	342	363	.	.	.	Note=Basic (repression of DNA-binding)	
+Q9TTA1	UniProtKB	Region	1	83	.	.	.	Note=Interaction with HRMT1L2;status=By similarity	
+Q9TTA1	UniProtKB	Region	1	44	.	.	.	Note=Transcription activation (acidic)	
+Q9TTA1	UniProtKB	Region	66	110	.	.	.	Note=Interaction with WWOX;status=By similarity	
+Q9TTA1	UniProtKB	Region	100	370	.	.	.	Note=Interaction with HIPK1;status=By similarity	
+Q9TTA1	UniProtKB	Region	100	300	.	.	.	Note=Required for interaction with ZNF385A;status=By similarity	
+Q9TTA1	UniProtKB	Region	113	236	.	.	.	Note=Required for interaction with FBXO42;status=By similarity	
+Q9TTA1	UniProtKB	Region	116	292	.	.	.	Note=Interaction with AXIN1;status=By similarity	
+Q9TTA1	UniProtKB	Region	256	294	.	.	.	Note=Interaction with E4F1;status=By similarity	
+Q9TTA1	UniProtKB	Region	273	280	.	.	.	Note=Interaction with DNA;status=By similarity	
+Q9TTA1	UniProtKB	Region	300	393	.	.	.	Note=Interaction with CARM1;status=By similarity	
+Q9TTA1	UniProtKB	Region	319	360	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+Q9TTA1	UniProtKB	Region	325	356	.	.	.	Note=Oligomerization	
+Q9TTA1	UniProtKB	Region	357	383	.	.	.	Note=Interaction with USP7;status=By similarity	
+Q9TTA1	UniProtKB	Region	368	387	.	.	.	Note=Basic (repression of DNA-binding)	
+P07193	UniProtKB	Region	1	29	.	.	.	Note=Transcription activation (acidic)	
+P07193	UniProtKB	Region	248	255	.	.	.	Note=Interaction with DNA;status=By similarity	
+P07193	UniProtKB	Region	300	331	.	.	.	Note=Oligomerization	
+P07193	UniProtKB	Region	344	356	.	.	.	Note=Basic (repression of DNA-binding)	
+O57538	UniProtKB	Region	1	35	.	.	.	Note=Transcription activation (acidic)	
+O57538	UniProtKB	Region	236	243	.	.	.	Note=Interaction with DNA;status=By similarity	
+O57538	UniProtKB	Region	288	317	.	.	.	Note=Oligomerization	
+O57538	UniProtKB	Region	319	336	.	.	.	Note=Basic (repression of DNA-binding)	
+Q92143	UniProtKB	Region	1	35	.	.	.	Note=Transcription activation (acidic)	
+Q92143	UniProtKB	Region	236	243	.	.	.	Note=Interaction with DNA;status=By similarity	
+Q92143	UniProtKB	Region	288	317	.	.	.	Note=Oligomerization	
+Q92143	UniProtKB	Region	319	336	.	.	.	Note=Basic (repression of DNA-binding)	
+Q9XSK8	UniProtKB	Region	1	46	.	.	.	Note=Transactivation;status=By similarity	
+Q9XSK8	UniProtKB	Region	131	310	.	.	.	Note=DNA-binding;status=Potential	
+Q9XSK8	UniProtKB	Region	345	386	.	.	.	Note=Oligomerization;status=Potential	
+Q9XSK8	UniProtKB	Region	345	380	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+O15350	UniProtKB	Region	1	46	.	.	.	Note=Transactivation;status=By similarity	
+O15350	UniProtKB	Region	131	310	.	.	.	Note=DNA-binding;status=Potential	
+O15350	UniProtKB	Region	345	386	.	.	.	Note=Oligomerization;status=Potential	
+O15350	UniProtKB	Region	345	380	.	.	.	Note=Interaction with HIPK2	
+Q9JJP2	UniProtKB	Region	1	43	.	.	.	Note=Transactivation;status=By similarity	
+Q9JJP2	UniProtKB	Region	123	302	.	.	.	Note=DNA-binding;status=By similarity	
+Q9JJP2	UniProtKB	Region	337	378	.	.	.	Note=Oligomerization;status=Potential	
+Q9JJP2	UniProtKB	Region	337	372	.	.	.	Note=Interaction with HIPK2;status=By similarity	
+Q86YC2	UniProtKB	Region	1	319	.	.	.	Note=Interaction with BRCA1	
+Q86YC2	UniProtKB	Region	1	200	.	.	.	Note=Interaction with RAD51	
+Q86YC2	UniProtKB	Region	1	160	.	.	.	Note=Required for its oligomerization and is important for its focal concentration at DNA damage sites	
+Q86YC2	UniProtKB	Region	853	1186	.	.	.	Note=Interaction with RAD51 and BRCA2	
+Q3U0P1	UniProtKB	Region	1	308	.	.	.	Note=Interaction with BRCA1;status=By similarity	
+Q3U0P1	UniProtKB	Region	1	195	.	.	.	Note=Interaction with RAD51;status=By similarity	
+Q3U0P1	UniProtKB	Region	1	157	.	.	.	Note=Required for its oligomerization and is important for its focal concentration at DNA damage sites;status=By similarity	
+Q3U0P1	UniProtKB	Region	771	1104	.	.	.	Note=Interaction with RAD51 and BRCA2;status=By similarity	
+Q9H307	UniProtKB	Region	2	284	.	.	.	Note=Necessary for interaction with RNPS1	
+Q9H307	UniProtKB	Region	2	167	.	.	.	Note=Necessary for mediating alternative 5' splicing	
+Q9H307	UniProtKB	Region	2	98	.	.	.	Note=Necessary for interactions with KRT8%2C KRT18 and KRT19	
+Q9H307	UniProtKB	Region	221	284	.	.	.	Note=Sufficient for PSAP complex assembly	
+Q9H307	UniProtKB	Region	606	717	.	.	.	Note=Necessary for interaction with PPIG	
+Q96BK5	UniProtKB	Region	254	328	.	.	.	Note=Telomerase inhibitory domain (TID)	
+Q9CZX5	UniProtKB	Region	254	328	.	.	.	Note=Telomerase inhibitory domain (TID)	
+A4L691	UniProtKB	Region	254	328	.	.	.	Note=Telomerase inhibitory domain (TID)	
+A4IFK0	UniProtKB	Region	133	193	.	.	.	Note=Interaction with capping proteins (CPs);status=By similarity	
+A4IFK0	UniProtKB	Region	136	308	.	.	.	Note=Interaction with ATM%2C CKIP%2C IFP35 and NMI;status=By similarity	
+A4IFK0	UniProtKB	Region	308	409	.	.	.	Note=Negative regulator of AP-1 activity;status=By similarity	
+Q53GL0	UniProtKB	Region	133	193	.	.	.	Note=Interaction with capping proteins (CPs)	
+Q53GL0	UniProtKB	Region	136	308	.	.	.	Note=Interaction with ATM%2C CKIP%2C IFP35 and NMI	
+Q53GL0	UniProtKB	Region	308	409	.	.	.	Note=Negative regulator of AP-1 activity	
+Q9JIY0	UniProtKB	Region	132	192	.	.	.	Note=Interaction with capping proteins (CPs);status=By similarity	
+Q9JIY0	UniProtKB	Region	135	307	.	.	.	Note=Interaction with ATM%2C CKIP%2C IFP35 and NMI;status=By similarity	
+Q9JIY0	UniProtKB	Region	307	408	.	.	.	Note=Negative regulator of AP-1 activity;status=By similarity	
+Q5BJM5	UniProtKB	Region	132	192	.	.	.	Note=Interaction with capping proteins (CPs);status=By similarity	
+Q5BJM5	UniProtKB	Region	135	307	.	.	.	Note=Interaction with ATM%2C CKIP%2C IFP35 and NMI;status=By similarity	
+Q5BJM5	UniProtKB	Region	307	408	.	.	.	Note=Negative regulator of AP-1 activity;status=By similarity	
+P29590	UniProtKB	Region	448	555	.	.	.	Note=Interaction with PER2	
+P29590	UniProtKB	Region	476	490	.	.	.	Note=Nuclear localization signal	
+P29590	UniProtKB	Region	556	562	.	.	.	Note=Sumo interaction motif (SIM)	
+Q60953	UniProtKB	Region	458	565	.	.	.	Note=Interaction with PER2;status=By similarity	
+Q60953	UniProtKB	Region	486	500	.	.	.	Note=Nuclear localization signal;status=By similarity	
+Q60953	UniProtKB	Region	566	572	.	.	.	Note=Sumo interaction motif (SIM);status=By similarity	
+Q8NEB5	UniProtKB	Region	108	116	.	.	.	Note=Phosphatase sequence motif I	
+Q8NEB5	UniProtKB	Region	149	152	.	.	.	Note=Phosphatase sequence motif II	
+Q8NEB5	UniProtKB	Region	201	211	.	.	.	Note=Phosphatase sequence motif III	
+P85299	UniProtKB	Region	10	95	.	.	.	Note=Interaction with RICTOR	
+P85299	UniProtKB	Region	188	218	.	.	.	Note=Interaction with RICTOR	
+Q812A5	UniProtKB	Region	10	96	.	.	.	Note=Interaction with RICTOR;status=By similarity	
+Q812A5	UniProtKB	Region	189	219	.	.	.	Note=Interaction with RICTOR;status=By similarity	
+Q5FVG6	UniProtKB	Region	10	96	.	.	.	Note=Interaction with RICTOR;status=By similarity	
+Q5FVG6	UniProtKB	Region	189	219	.	.	.	Note=Interaction with RICTOR;status=By similarity	
+P60483	UniProtKB	Region	401	403	.	.	.	Note=PDZ domain-binding;status=By similarity	
+P60484	UniProtKB	Region	401	403	.	.	.	Note=PDZ domain-binding	
+O08586	UniProtKB	Region	401	403	.	.	.	Note=PDZ domain-binding;status=By similarity	
+Q9NS23	UniProtKB	Region	2	119	.	.	.	Note=Mediates interaction with E4F1	
+Q9NS23	UniProtKB	Region	315	318	.	.	.	Note=MOAP1-binding	
+Q99MK9	UniProtKB	Region	2	115	.	.	.	Note=Mediates interaction with E4F1;status=By similarity	
+Q99MK9	UniProtKB	Region	311	314	.	.	.	Note=MOAP1-binding;status=By similarity	
+P28749	UniProtKB	Region	385	949	.	.	.	Note=Pocket%3B binds T and E1A	
+P28749	UniProtKB	Region	385	584	.	.	.	Note=Domain A	
+P28749	UniProtKB	Region	585	780	.	.	.	Note=Spacer	
+P28749	UniProtKB	Region	781	949	.	.	.	Note=Domain B	
+Q64701	UniProtKB	Region	383	944	.	.	.	Note=Pocket%3B binds T and E1A	
+Q64701	UniProtKB	Region	383	584	.	.	.	Note=Domain A	
+Q64701	UniProtKB	Region	585	779	.	.	.	Note=Spacer	
+Q64701	UniProtKB	Region	780	944	.	.	.	Note=Domain B	
+Q08999	UniProtKB	Region	417	1024	.	.	.	Note=Pocket%3B binds E1A	
+Q08999	UniProtKB	Region	417	616	.	.	.	Note=Domain A	
+Q08999	UniProtKB	Region	617	827	.	.	.	Note=Spacer	
+Q08999	UniProtKB	Region	828	1024	.	.	.	Note=Domain B	
+Q64700	UniProtKB	Region	414	1021	.	.	.	Note=Pocket%3B binds E1A	
+Q64700	UniProtKB	Region	414	613	.	.	.	Note=Domain A	
+Q64700	UniProtKB	Region	614	824	.	.	.	Note=Spacer	
+Q64700	UniProtKB	Region	825	1021	.	.	.	Note=Domain B	
+O55081	UniProtKB	Region	414	1021	.	.	.	Note=Pocket%3B binds E1A	
+O55081	UniProtKB	Region	414	613	.	.	.	Note=Domain A	
+O55081	UniProtKB	Region	614	824	.	.	.	Note=Spacer	
+O55081	UniProtKB	Region	825	1021	.	.	.	Note=Domain B	
+Q29RT0	UniProtKB	Region	186	236	.	.	.	Note=Necessary for the association to nascent RNAPII transcripts and nuclear localization;status=By similarity	
+Q29RT0	UniProtKB	Region	336	396	.	.	.	Note=Necessary for RNA-binding;status=By similarity	
+P38159	UniProtKB	Region	186	236	.	.	.	Note=Necessary for the association to nascent RNAPII transcripts and nuclear localization	
+P38159	UniProtKB	Region	333	391	.	.	.	Note=Necessary for RNA-binding	
+Q4R7F0	UniProtKB	Region	186	236	.	.	.	Note=Necessary for the association to nascent RNAPII transcripts and nuclear localization;status=By similarity	
+Q4R7F0	UniProtKB	Region	333	391	.	.	.	Note=Necessary for RNA-binding;status=By similarity	
+A5A6M3	UniProtKB	Region	186	236	.	.	.	Note=Necessary for the association to nascent RNAPII transcripts and nuclear localization;status=By similarity	
+A5A6M3	UniProtKB	Region	333	391	.	.	.	Note=Necessary for RNA-binding;status=By similarity	
+P13405	UniProtKB	Region	367	764	.	.	.	Note=Pocket%3B binds T and E1A;status=By similarity	
+P13405	UniProtKB	Region	367	573	.	.	.	Note=Domain A;status=By similarity	
+P13405	UniProtKB	Region	574	632	.	.	.	Note=Spacer;status=By similarity	
+P13405	UniProtKB	Region	633	764	.	.	.	Note=Domain B;status=By similarity	
+P13405	UniProtKB	Region	756	921	.	.	.	Note=Interaction with LIMD1;status=By similarity	
+P13405	UniProtKB	Region	764	921	.	.	.	Note=Domain%3B mediates interaction with E4F1;status=By similarity	
+P33568	UniProtKB	Region	366	763	.	.	.	Note=Pocket%3B binds T and E1A;status=By similarity	
+P33568	UniProtKB	Region	366	572	.	.	.	Note=Domain A;status=By similarity	
+P33568	UniProtKB	Region	573	631	.	.	.	Note=Spacer;status=By similarity	
+P33568	UniProtKB	Region	632	763	.	.	.	Note=Domain B;status=By similarity	
+P33568	UniProtKB	Region	755	920	.	.	.	Note=Interaction with LIMD1;status=By similarity	
+P33568	UniProtKB	Region	763	920	.	.	.	Note=Domain C%3B mediates interaction with E4F1;status=By similarity	
+O95980	UniProtKB	Region	37	338	.	.	.	Note=5 X Knot repeats	
+Q9Z0J1	UniProtKB	Region	37	338	.	.	.	Note=5 X Knot repeats	
+A7E300	UniProtKB	Region	296	468	.	.	.	Note=Focal adhesion-targeting (FAT);status=By similarity	
+A7E300	UniProtKB	Region	635	657	.	.	.	Note=Polybasic cluster (PBR);status=By similarity	
+B9VTT2	UniProtKB	Region	273	447	.	.	.	Note=Focal adhesion-targeting (FAT);status=By similarity	
+B9VTT2	UniProtKB	Region	614	636	.	.	.	Note=Polybasic cluster (PBR);status=By similarity	
+Q96QB1	UniProtKB	Region	710	884	.	.	.	Note=Focal adhesion-targeting (FAT)	
+Q96QB1	UniProtKB	Region	1051	1073	.	.	.	Note=Polybasic cluster (PBR)	
+Q9R0Z9	UniProtKB	Region	275	448	.	.	.	Note=Focal adhesion-targeting (FAT);status=By similarity	
+Q9R0Z9	UniProtKB	Region	615	637	.	.	.	Note=Polybasic cluster (PBR);status=By similarity	
+Q63744	UniProtKB	Region	274	447	.	.	.	Note=Focal adhesion-targeting (FAT);status=By similarity	
+Q63744	UniProtKB	Region	614	636	.	.	.	Note=Polybasic cluster (PBR);status=By similarity	
+Q92737	UniProtKB	Region	1	203	.	.	.	Note=Small GTPase-like	
+Q8K5A4	UniProtKB	Region	1	203	.	.	.	Note=Small GTPase-like	
+P57059	UniProtKB	Region	584	610	.	.	.	Note=RK-rich region;status=By similarity	
+Q60670	UniProtKB	Region	586	612	.	.	.	Note=RK-rich region	
+Q9R1U5	UniProtKB	Region	586	612	.	.	.	Note=RK-rich region;status=By similarity	
+Q5BIN2	UniProtKB	Region	106	183	.	.	.	Note=DNA-binding;status=Potential	
+Q5BIN2	UniProtKB	Region	183	243	.	.	.	Note=HIV-1 integrase-binding	
+Q5BIN2	UniProtKB	Region	186	319	.	.	.	Note=2 X approximate tandem repeats	
+Q5BIN2	UniProtKB	Region	186	245	.	.	.	Note=MYC-binding;status=By similarity	
+Q5BIN2	UniProtKB	Region	304	318	.	.	.	Note=Interaction with PPP1R15A;status=By similarity	
+Q12824	UniProtKB	Region	106	183	.	.	.	Note=DNA-binding;status=Potential	
+Q12824	UniProtKB	Region	183	243	.	.	.	Note=HIV-1 integrase-binding	
+Q12824	UniProtKB	Region	186	319	.	.	.	Note=2 X approximate tandem repeats	
+Q12824	UniProtKB	Region	186	245	.	.	.	Note=MYC-binding	
+Q12824	UniProtKB	Region	304	318	.	.	.	Note=Interaction with PPP1R15A	
+Q9Z0H3	UniProtKB	Region	106	183	.	.	.	Note=DNA-binding;status=Potential	
+Q9Z0H3	UniProtKB	Region	186	319	.	.	.	Note=2 X approximate tandem repeats	
+Q9Z0H3	UniProtKB	Region	186	245	.	.	.	Note=MYC-binding;status=By similarity	
+Q9Z0H3	UniProtKB	Region	304	318	.	.	.	Note=Interaction with PPP1R15A;status=By similarity	
+Q9BT92	UniProtKB	Region	73	498	.	.	.	Note=Interaction with keratin proteins	
+Q9BT92	UniProtKB	Region	259	425	.	.	.	Note=Trichohyalin/plectin homology domain	
+Q3TVW5	UniProtKB	Region	72	457	.	.	.	Note=Interaction with keratin proteins;status=By similarity	
+Q3TVW5	UniProtKB	Region	258	424	.	.	.	Note=Trichohyalin/plectin homology domain;status=By similarity	
+Q5RE49	UniProtKB	Region	73	498	.	.	.	Note=Interaction with keratin proteins;status=By similarity	
+Q5RE49	UniProtKB	Region	259	425	.	.	.	Note=Trichohyalin/plectin homology domain;status=By similarity	
+O15164	UniProtKB	Region	754	779	.	.	.	Note=Nuclear receptor binding site (NRBS)	
+O15164	UniProtKB	Region	834	840	.	.	.	Note=Interaction with histone H3 that is not methylated at 'Lys-4' (H3K4me0)	
+O15164	UniProtKB	Region	979	980	.	.	.	Note=Interaction with histone H3 that is acetylated at 'Lys-23' (H3K23ac)	
+Q64127	UniProtKB	Region	755	780	.	.	.	Note=Nuclear receptor binding site (NRBS)	
+Q64127	UniProtKB	Region	835	841	.	.	.	Note=Interaction with histone H3 that is not methylated at 'Lys-4' (H3K4me0);status=By similarity	
+P49815	UniProtKB	Region	1	400	.	.	.	Note=Required for interaction with TSC1	
+A1A4I9	UniProtKB	Region	1	212	.	.	.	Note=Required for E3 UFM1-protein ligase activity;status=By similarity	
+O94874	UniProtKB	Region	1	212	.	.	.	Note=Required for E3 UFM1-protein ligase activity	
+O94874	UniProtKB	Region	121	250	.	.	.	Note=Involved in CDK5RAP3-binding	
+Q4R367	UniProtKB	Region	1	212	.	.	.	Note=Required for E3 UFM1-protein ligase activity;status=By similarity	
+Q8CCJ3	UniProtKB	Region	1	212	.	.	.	Note=Required for E3 UFM1-protein ligase activity;status=By similarity	
+B2GV24	UniProtKB	Region	1	212	.	.	.	Note=Required for E3 UFM1-protein ligase activity;status=By similarity	
+Q5Q9Z2	UniProtKB	Region	157	166	.	.	.	Note=Interaction with Elongin BC complex;status=By similarity	
+P40337	UniProtKB	Region	14	53	.	.	.	Note=8 X 5 AA tandem repeats of G-[PAVG]-E-E-[DAYSLE]	
+P40337	UniProtKB	Region	100	155	.	.	.	Note=Involved in binding to CCT complex	
+P40337	UniProtKB	Region	157	166	.	.	.	Note=Interaction with Elongin BC complex	
+P40338	UniProtKB	Region	123	132	.	.	.	Note=Interaction with Elongin BC complex;status=By similarity	
+Q64259	UniProtKB	Region	123	132	.	.	.	Note=Interaction with Elongin BC complex;status=By similarity	
+B7ZSG3	UniProtKB	Region	332	346	.	.	.	Note=Important for interaction with target DNA;status=By similarity	
+B7ZSG3	UniProtKB	Region	358	366	.	.	.	Note=Important for interaction with target DNA;status=By similarity	
+P79958	UniProtKB	Region	328	342	.	.	.	Note=Important for interaction with target DNA;status=By similarity	
+P79958	UniProtKB	Region	354	362	.	.	.	Note=Important for interaction with target DNA;status=By similarity	
+P19544	UniProtKB	Region	367	381	.	.	.	Note=Important for interaction with target DNA	
+P19544	UniProtKB	Region	393	401	.	.	.	Note=Important for interaction with target DNA	
+P22561	UniProtKB	Region	367	381	.	.	.	Note=Important for interaction with target DNA;status=By similarity	
+P22561	UniProtKB	Region	393	401	.	.	.	Note=Important for interaction with target DNA;status=By similarity	
+O62651	UniProtKB	Region	367	381	.	.	.	Note=Important for interaction with target DNA;status=By similarity	
+O62651	UniProtKB	Region	393	401	.	.	.	Note=Important for interaction with target DNA;status=By similarity	
+P49952	UniProtKB	Region	366	380	.	.	.	Note=Important for interaction with target DNA;status=By similarity	
+P49952	UniProtKB	Region	392	400	.	.	.	Note=Important for interaction with target DNA;status=By similarity	
+P49953	UniProtKB	Region	157	171	.	.	.	Note=Important for interaction with target DNA;status=By similarity	
+P49953	UniProtKB	Region	183	191	.	.	.	Note=Important for interaction with target DNA;status=By similarity	
+B5DE03	UniProtKB	Region	334	348	.	.	.	Note=Important for interaction with target DNA;status=By similarity	
+B5DE03	UniProtKB	Region	360	368	.	.	.	Note=Important for interaction with target DNA;status=By similarity	
+Q9NZC7	UniProtKB	Region	125	414	.	.	.	Note=Interaction with MAPT;status=By similarity	
+Q9NZC7	UniProtKB	Region	209	273	.	.	.	Note=Mediates targeting to the mitochondria;status=By similarity	
+Q91WL8	UniProtKB	Region	125	414	.	.	.	Note=Interaction with MAPT	
+Q91WL8	UniProtKB	Region	209	273	.	.	.	Note=Mediates targeting to the mitochondria	
+Q5R9W5	UniProtKB	Region	125	414	.	.	.	Note=Interaction with MAPT;status=By similarity	
+Q5R9W5	UniProtKB	Region	209	273	.	.	.	Note=Mediates targeting to the mitochondria;status=By similarity	
