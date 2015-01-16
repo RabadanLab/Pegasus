@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="lib/java-getopt-1.0.13.jar"/>
+	<classpathentry kind="lib" path="lib/javagene/javagene.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/BamIndexStats.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/BamToBfq.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/BuildBamIndex.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/CalculateHsMetrics.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/CleanSam.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/CollectAlignmentSummaryMetrics.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/CollectGcBiasMetrics.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/CollectInsertSizeMetrics.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/CompareSAMs.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/CreateSequenceDictionary.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/EstimateLibraryComplexity.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/FastqToSam.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/FixMateInformation.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/MarkDuplicates.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/MeanQualityByCycle.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/MergeBamAlignment.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/MergeSamFiles.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/NormalizeFasta.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/picard-1.31.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/QualityScoreDistribution.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/ReplaceSamHeader.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/RevertSam.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/sam-1.31.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/SamFormatConverter.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/SamToFastq.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/SortSam.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/ValidateSamFile.jar"/>
+	<classpathentry kind="lib" path="lib/picard-tools-1.31/ViewSam.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

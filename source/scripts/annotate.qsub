@@ -1,0 +1,28 @@
+#!/bin/bash
+#$ -S /bin/sh
+#$ -l mem=4G,time=10::
+#$ -cwd
+
+echo [Directory] `pwd`	
+echo [Machine] `uname -n`
+echo [Start] `date`
+echo [args] $*
+
+time1=$( date "+%s" )
+
+
+
+output_file=$1
+input_file=$2
+tmp_folder=$3
+basedir=$4
+
+echo "Running..."
+echo "sh $basedir/scripts/MultiFusionSequenceFromGTF_wrap.sh -r $basedir/hg19.fa -g $basedir/Homo_sapiens.GRCh37.60.chr.gtf -s $basedir/scripts -j $basedir/jars -o $output_file -t $tmp_folder -i $input_file"
+sh $basedir/scripts/MultiFusionSequenceFromGTF_wrap.sh -r $basedir/hg19.fa -g $basedir/Homo_sapiens.GRCh37.60.chr.gtf -s $basedir/scripts -j $basedir/jars -o $output_file -t $tmp_folder -i $input_file
+
+time2=$( date "+%s" )
+echo [deltat] $(( $time2 - $time1 ))
+echo [End] Fri Dec  9 16:03:50 EST 2011
+
+
