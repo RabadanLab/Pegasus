@@ -1,0 +1,209 @@
+REQUIREMENTS
+
+Pegasus requires the following software packages to be installed on your system:
+- JAVA
+- PERL
+- PYTHON 2.7 with the following libraries: 
+      - numpy_1.8
+      - pandas_0.12
+      - scikit-learn_0.14
+      
+All the python libraries are included into the ANACONDA package.
+( https://store.continuum.io/cshop/anaconda )
+
+- Report from fusion detection tools. Version supported:
+      - chimerascan 0.4.5
+      - defuse 0.4.3
+      - bellerophontes 0.4.0* 
+
+
+
+
+
+INSTALL
+
+In order to install Pegasus, download, untar and unzip the Pegasus_dist.0.3.tgz tarbal into the install folder:
+
+tar xvzf Pegasus_dist.0.3.tgz
+
+Make sure that the following files/folders are correctly set up in the Pegasus install folder:
+
+/path/to/Pegasus/resources
+/path/to/Pegasus/scripts
+/path/to/Pegasus/results
+/path/to/Pegasus/jars
+
+Please note that the following files have to be downloaded separately and added to the install folder:
+
+/path/to/Pegasus/hg19.fa
+/path/to/Pegasus/hg19.fa.fai
+/path/to/Pegasus/Homo_sapiens.GRCh37.60.chr.gtf
+
+The dimension of these files is considerable and authors decided to provide them separately. You can find this files in Pegasus web site.
+
+Note that you can create your own hg19 and GTF file with the standard format (FASTA or GTF file), but it is essential for the chromosome names be indicated with the prefix  “chr” (ex. chr1 for chromosome 1, chr2 for chromosome 2…chrX for chromosome X, etc.).
+Moreover, the file hg19.fa.fai is the indexed fasta file that can be produced with the following samtools command:
+
+samtools faidx hg19.fa
+
+
+
+
+
+RUNNING PEGASUS
+
+In order to run Pegasus you need to go through the following configuration steps:
+
+- Input Configuration: the input of Pegasus is the list of the reports from fusion detection tools (deFuse, chimeraScan, etc). You can specify the list of samples in a tab separated text file with the following fields:
+sample_path: path to the fusion detection tool report for a specific sample.
+sample_name: name of the sample. Sometimes, for the same disease one can have different samples.
+sample_type: type of sample. In this field, specify the type of sample. You can add different sample type into Pegasus database. Pegasus will analyze a specific sample type, but it will check if the fusion is reported in other disease sample types that you previously loaded in the database. 
+fusion_program:  fusion detection tool used to generate the report (options: defuse|chimerascan|bellerophontes|texfuse).
+
+Example:
+# sample_path	sample_name	sample_type	fusion_program
+/path/to/Pegasus/sample1/results.tsv	sample1	sample_type	defuse
+
+
+- Pegasus Configuration File: it is a tab separated file where the first field is a keyword and the second field is the corresponding value. The minimum configuration requires the following keywords to be specified:
+
+pegasus_folder  /path/to/Pegasus
+hg      /path/to/Pegasus/hg19.fa
+hg_fai  /path/to/Pegasus/hg19.fa.fai
+gtf_file        /path/to/Pegasus/Homo_sapiens.GRCh37.60.chr.gtf
+script  /path/to/Pegasus/scripts
+jar     /path/to/Pegasus/jars
+sample_type     sample type
+
+where:
+pegasus_folder: path to the Pegasus installation folder.
+hg: path to human genome.
+hg_fai: path to the index of human genome.
+gtf_file: path to the GTF file of human genome.
+script: path to the script folder in Pegasus installation folder.
+jar : path to the script folder in Pegasus installation folder.
+sample_type: sample type as in data configuration file.
+
+If you have an SGE cluster system, specify the header of how to run jobs on your cluster. For example:
+sge_param       " -S /bin/sh -l mem=4G,time=10:: -cwd "
+
+It is highly recommended to use mem and time parameters not very far from the ones indicated in the example of configuration.
+
+- Run Pegasus: you can run Pegasus from the Pegasus folder with the following command:
+perl scripts/pegasus.pl [options]
+the options are:
+
+-s data_input_file: path to data input configuration file (mandatory). 
+-d config_file: path to Pegasus configuration file (mandatory).
+-k keepDB: 1 the database is cleaned, 0 otherwise (optional, default 1).
+-p sge: 1 run on a SGE system, 0 otherwise (optional, default 0)
+-o log_folder: path to a log folder (mandatory).
+
+Example of running Pegasus:
+> perl scripts/pegasus.pl -s data.txt -d pegasus_config.txt -o logs -p 0
+
+this command will run Pegasus without an SGE system and will delete the fusion internal database.
+
+> perl scripts/pegasus.pl -s data.txt -d pegasus_config.txt -o logs -p 1
+
+this command will run Pegasus with an SGE system and will delete the fusion internal database.
+
+> perl scripts/pegasus.pl -s data.txt -d pegasus_config.txt -o logs -p 1 –k 1
+
+this command will run Pegasus with an SGE system and will not delete the fusion internal database.
+
+In Pegasus tarball you also find an example of data configuration file (data.txt) and Pegasus configuration file (pegasus_config.txt).
+
+note: Pegasus is designed to be interrupted in any stage. Running Pegasus a second time will imply that the already implemented steps will be skipped. To start Pegasus from scratch remove the content of the logs and results folder.
+Es. :
+
+rm -r /path/to/Pegasus/logs/*
+rm -r /path/to/Pegasus/results/*
+
+
+
+
+
+OUTPUT
+
+Pegasus report will be available on the file pegasus.output.txt that contains the following fields:
+
+DriverScore: Pegasus Driver Score, the value spans from 0 to 1, where 0 is low oncogenicity and 1 high oncogenicity.
+FusionID: unique fusion identification number.
+Sample_Name: sample name as indicated in the data.txt file.
+Program: fusion detection program as indicated in data.txt file.
+Tot/span_reads: total number of reads encompassing the breakpoint as indicated in the fusion detection tool report.
+Split_reads: total number of split reads detecting the junction breakpoint.
+Chr1: chromosome of five prime gene.
+Chr2: chromosome of three prime gene.
+Gene_Start1: genomic starting position of the five prime gene.
+Gene_End1: genomic ending position of the five prime gene.
+Gene_Start2: genomic starting position of the three prime gene.
+Gene_End2: genomic ending position of the three prime gene.
+Strand1: strand of the five prime gene.
+Strand2: strand of the three prime gene.
+Gene_Name1: gene symbol of the five prime gene.
+Gene_Name2: gene symbol of the three prime gene.
+Gene_Breakpoint1: genomic coordinate of the five prime gene breakpoint.
+Gene_Breakpoint2: genomic coordinate of the three prime gene breakpoint.
+Gene_ID1: official id of the five prime gene.
+Gene_ID2: official id of the three prime gene.
+Sample_Type: sample type as indicated in the data.txt file.
+Sample_occurrency_list: list of sample names where the fusion exactly occurs (same breakpoint coordinates).
+Sample_Type_occurency_list: list of sample types where the fusion exactly occurs (same breakpoint coordinates).
+Kinase_info: information about the presence of a kinase in the fusion (3p_KINASE, 5p_KINASE, BOTH_KINASE, NO_KINASE).
+Transcript_ID1: transcript id of the five prime gene.
+Transcript_ID2: transcript id of the three prime gene.
+Reading_Frame_Info: information about the reading frame. Possible values are in-frame and frame-shifted.
+Protein_Start1: starting position of the fused amino acid sequence of the five prime gene.
+Protein_End1: position of the breakpoint in the amino acid sequence of the five prime gene. 
+Protein_Start2: position of the breakpoint in the amino acid sequence of the three prime gene. 
+Protein_End2: ending position of the fused amino acid sequence of the three prime gene.
+Protein_Sequence: Fused amino acid sequence.
+Exon_Gene1: exon number where the breakpoint of the five prime gene falls.
+Exon_Gene2: exon number where the breakpoint of the three prime gene falls.
+Breakpoint_Region1: region where the breakpoint of the five prime gene falls (3p_UTR, 5p_UTR, CDS, Intron).
+Breakpoint_Region2: region where the breakpoint of the three prime gene falls (3p_UTR, 5p_UTR, CDS, Intron).
+Conserved_Domain1: list of retained domains of five prime gene.
+Lost_Domain1: list of disrupted domains of five prime gene.
+Conserved_Domain2: list of retained domains of three prime gene.
+Lost_Domain2: list of disrupted domains of three prime gene.
+
+
+
+
+
+
+SINGLE MODULE RUNNING
+You can run each module of Pegasus separately. You can find a tutorial in the Pegasus tarball Pegasus*.HowTo.pdf.
+
+
+
+
+
+
+DATASET
+
+In the Pegasus tarball, you can find some test data set deFuse- and chimeraScan-like report:
+
+/path/to/Pegasus/TestData/chimerascan/chimeras_ good.bedpe
+/path/to/Pegasus/TestData/chimerascan/chimeras_bad.bedpe
+/path/to/Pegasus/TestData/defuse/defuse_good.tsv
+/path/to/Pegasus/TestData/defuse/defuse_bad.tsv
+
+The files with the label “good” contain fusions that are known to be oncogenic according to the literature and that Pegasus should compute high score. Conversely, “bad” refers to fusions from normal reactive lymph nodes for with Pegasus should provide a lower score.
+
+
+
+
+
+
+* note: 
+- defuse is still under development and the last version do not report the
+  genes in the 5' - 3' order. Moreover, some of the column in the report have
+  been removed. We strongly suggest to use defuse 0.4.3 or lower, or to convert
+  the output reformatting the columns accordingly.
+- bellerophontes is still under development and for this reason the report
+  is constantly changing. However, the report can be converted easily into the
+  format of either defuse or chimerascan.
+
