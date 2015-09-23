@@ -2,7 +2,7 @@ import cPickle
 import argparse
 import numpy as np
 import pandas as pd
-from sklearn import ensemble
+from sklearn import ensemble, tree
 
 parser = argparse.ArgumentParser(description='ML module for Pegasus')
 parser.add_argument('-i','--infile', help='path to the transcript annotation report', required=True)
@@ -11,19 +11,14 @@ parser.add_argument('-o','--outfile', help='path to the desired final Pegasus re
 parser.add_argument('-l','--logdir', help='directory for writing log file', required=True)
 args = vars(parser.parse_args())
 
-report_in = args['infile']
-classifier = args['modelfile']
-report_out = args['outfile']
-log_dir = args['logdir']
-
-f_log = open(log_dir + '/log_classify', 'w')
+f_log = open(args['logdir'] + '/log_classify', 'w')
 f_log.write('START\n')
-f_log.write('classifier located at {0}\n'.format(classifier))
-f_log.write('reading input file from {0}\n'.format(report_in))
-x_input = pd.read_csv(report_in, header=0, sep='\t')
+f_log.write('classifier located at {0}\n'.format(args['modelfile']))
+f_log.write('reading input file from {0}\n'.format(args['infile']))
+x_input = pd.read_csv(args['infile'], header=0, sep='\t')
 f_log.write('successfully loaded input file with shape {0}\n'.format(x_input.shape))
-clf = cPickle.load(open(classifier))
-f_log.write('successfully loaded classifier')
+clf = cPickle.load(open(args['modelfile']))
+f_log.write('successfully loaded classifier\n')
 
 features = ['5p-kinase', '3p-kinase', 'in-frame', 'premature stop codon', 
             '5p-intron', '3p-intron', '5p-BPR intergenic', '5p-BPR CDS', '3p-BPR intergenic', '3p-BPR CDS']
@@ -68,11 +63,11 @@ full = pd.merge(mini, domains, left_index=True, right_index=True)
 X = full.values
 f_log.write('successfully built feature space matrix with shape {0}\n'.format(X.shape))
 y = clf.predict_proba(X)[:,1]
-f_log.write('successfully applied classifier to feature space')
+f_log.write('successfully applied classifier to feature space\n')
 df1 = pd.DataFrame(y, index=x_input.index, columns=['DriverScore'])
 df2 = x_input[x_input.columns[:39]]
 df_final = pd.merge(df1, df2, left_index=True, right_index=True)
-df_final.to_csv(report_out, sep='\t', index=False, float_format='%1.4f')
-f_log.write('final report written to {0}\n'.format(report_out))
+df_final.to_csv(args['outfile'], sep='\t', index=False, float_format='%1.4f')
+f_log.write('final report written to {0}\n'.format(args['outfile']))
 f_log.write('END')
 f_log.close()
