@@ -118,6 +118,7 @@ die "Log folder $log_folder does not exist" if ! -e $log_folder;
 die "Output folder $out_folder does not exist" if ! -e $out_folder;
 
 $config{'script'}=$config{'pegasus_folder'}."/source/scripts";
+$config{'resources'}=$config{'pegasus_folder'}."/resources";
 $config{'jar'}=$config{'pegasus_folder'}."/jars";
 
 # Checking FASTA and GTF reference file
@@ -400,7 +401,8 @@ if(! -e $log_folder."/Wrapper_final_report.job")
 	$cmd   = "perl ".$config{'script'}."/wrapper_finalreport.pl -s ";
 	$cmd  .= $config{'script'}." -d ";
 	$cmd  .= $out_folder."/ -i ";
-	$cmd  .= $out_folder."/final_results_forXLS.txt -l ";
+	$cmd  .= $out_folder."/final_results_forXLS.txt -r ";
+	$cmd  .= $config{'resources'}." -l ";
 	$cmd  .= $log_folder."/Wrapper_final_report.log -o ";
 	$cmd  .= $out_folder."/final_results_forXLS.ML.input.txt ";
 	$cmd  .= " >> ".$log_folder."/Wrapper_final_report.log 2>> ".$log_folder."/Wrapper_final_report.log";
