@@ -18,8 +18,8 @@ tmp_folder=$3
 basedir=$4
 
 echo "Running..."
-echo "sh $basedir/scripts/MultiFusionSequenceFromGTF_wrap.sh -r $basedir/hg19.fa -g $basedir/Homo_sapiens.GRCh37.60.chr.gtf -s $basedir/scripts -j $basedir/jars -o $output_file -t $tmp_folder -i $input_file"
-sh $basedir/scripts/MultiFusionSequenceFromGTF_wrap.sh -r $basedir/hg19.fa -g $basedir/Homo_sapiens.GRCh37.60.chr.gtf -s $basedir/scripts -j $basedir/jars -o $output_file -t $tmp_folder -i $input_file
+echo "sh ${basedir}/source/scripts/MultiFusionSequenceFromGTF_wrap.sh -r ${basedir}/hg19.fa -g ${basedir}/Homo_sapiens.GRCh37.60.chr.gtf -s ${basedir}/source/scripts -j ${basedir}/jars -o $output_file -t $tmp_folder -i $input_file"
+sh ${basedir}/source/scripts/MultiFusionSequenceFromGTF_wrap.sh -r ${basedir}/hg19.fa -g ${basedir}/Homo_sapiens.GRCh37.60.chr.gtf -s ${basedir}/source/scripts -j ${basedir}/jars -o $output_file -t $tmp_folder -i $input_file
 
 time2=$( date "+%s" )
 echo [deltat] $(( $time2 - $time1 ))

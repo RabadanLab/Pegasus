@@ -9,6 +9,7 @@ use File::Basename;
 my $data_input_file;
 my $config_file;
 my $log_folder;
+my $out_folder;
 my $sge = 0;
 my $cmd = "";
 my $res = 0;
@@ -20,7 +21,8 @@ GetOptions (
 	'd=s' => \$config_file, 
 	'k=s' => \$keepDB, 
 	'p=i' => \$sge, 
-	'o=s' => \$log_folder
+	'o=s' => \$out_folder, 
+	'l=s' => \$log_folder
 );  
 
 # 1 is true, 0 false
@@ -30,6 +32,12 @@ my $p_fail;
 if(!defined($data_input_file))
 {
         print STDERR "Error - $0: data input file not specified\n";
+		$p_fail=1;
+}
+
+if(!defined($out_folder))
+{
+        print STDERR "Error - $0: output folder option not specified\n";
 		$p_fail=1;
 }
 
@@ -92,8 +100,8 @@ die "pegasus_folder parameter not specified in configuration file" if !defined($
 die "hg parameter not specified in configuration file" if !defined($config{'hg'});
 die "hg_fai parameter not specified in configuration file" if !defined($config{'hg_fai'});
 die "gtf_file parameter not specified in configuration file" if !defined($config{'gtf_file'});
-die "script parameter not specified in configuration file" if !defined($config{'script'});
-die "jar parameter not specified in configuration file" if !defined($config{'jar'});
+#die "script parameter not specified in configuration file" if !defined($config{'script'});
+#die "jar parameter not specified in configuration file" if !defined($config{'jar'});
 die "sample_type parameter not specified in configuration file" if !defined($config{'sample_type'});
 die "sge_param parameter not specified in configuration file" if !defined($config{'sge_param'});
 
@@ -106,8 +114,11 @@ die "Human genome reference index file is empty" if -z $config{'hg_fai'};
 die "Human genome reference GTF file not found at $config{'gtf_file'}" if ! -e $config{'gtf_file'};
 die "Human genome reference GTF file is empty" if -z $config{'gtf_file'};
 
+die "Log folder $log_folder does not exist" if ! -e $log_folder;
+die "Output folder $out_folder does not exist" if ! -e $out_folder;
 
-
+$config{'script'}=$config{'pegasus_folder'}."/source/scripts";
+$config{'jar'}=$config{'pegasus_folder'}."/jars";
 
 # Checking FASTA and GTF reference file
 if(! -e $log_folder."/InputChecking.job")
@@ -239,13 +250,13 @@ if(! -e $log_folder."/QueryFusionDatabase.job")
 {
 	$cmd  = "java -Xmx1024m -jar ".$config{'jar'}."/QueryFusionDatabase.jar -t FUSIONS_COMPLETE_ID -c all_with_kinases ";
 	$cmd .= "-s ".$config{'sample_type'}." -d ".$config{'pegasus_folder'}."/resources/hsqldb-2.2.7/hsqldb/mydb";
-	$cmd .= " > ".$config{'pegasus_folder'}."/results/samples_info.txt 2>> ".$log_folder."/QueryFusionDatabase.log";
+	$cmd .= " > ".$out_folder."/samples_info.txt 2>> ".$log_folder."/QueryFusionDatabase.log";
 	printf STDERR "[".`date | tr '\n' ' '`."] Unifying reports for sample type %s\n", $config{'sample_type'};
 	printf LOG "[".`date | tr '\n' ' '`."] $cmd\n\n";
 	$res = system($cmd);
 	die "Error running QueryFusionDatabase.jar. Exit code $res." if $res!=0;
-	die "Error Running QueryFusionDatabase.jar . samples_info.txt file not generated." if ! -e $config{'pegasus_folder'}."/results/samples_info.txt";
-	die "Error Running QueryFusionDatabase.jar . samples_info.txt is empty." if -z $config{'pegasus_folder'}."/results/samples_info.txt";
+	die "Error Running QueryFusionDatabase.jar . samples_info.txt file not generated." if ! -e $out_folder."/samples_info.txt";
+	die "Error Running QueryFusionDatabase.jar . samples_info.txt is empty." if -z $out_folder."/samples_info.txt";
 	checkpoint($log_folder."/QueryFusionDatabase.job");
 }
 else
@@ -270,14 +281,14 @@ else
 
 if(! -e $log_folder."/format_forInframeAnalysis.job")
 {
-	$cmd  = "sh ".$config{'script'}."/format_forInframeAnalysis.sh ".$config{'pegasus_folder'}."/results/samples_info.txt ";
-	$cmd .= "sort -u > ".$config{'pegasus_folder'}."/results/samples_info.formatted.sorted.txt";
+	$cmd  = "sh ".$config{'script'}."/format_forInframeAnalysis.sh ".$out_folder."/samples_info.txt ";
+	$cmd .= "sort -u > ".$out_folder."/samples_info.formatted.sorted.txt";
 	printf STDERR "[".`date | tr '\n' ' '`."] Preparing the environment for annotation\n";
 	printf LOG "[".`date | tr '\n' ' '`."] $cmd\n\n";
 	$res = system($cmd);
 	die "Error running format_forInframeAnalysis.sh . Exit code $res." if $res!=0;
-	die "Error Running format_forInframeAnalysis.sh . samples_info.formatted.sorted.txt file not generated." if ! -e $config{'pegasus_folder'}."/results/samples_info.formatted.sorted.txt";
-	die "Error Running format_forInframeAnalysis.sh . samples_info.formatted.sorted.txt is empty." if -z $config{'pegasus_folder'}."/results/samples_info.formatted.sorted.txt";
+	die "Error Running format_forInframeAnalysis.sh . samples_info.formatted.sorted.txt file not generated." if ! -e $out_folder."/samples_info.formatted.sorted.txt";
+	die "Error Running format_forInframeAnalysis.sh . samples_info.formatted.sorted.txt is empty." if -z $out_folder."/samples_info.formatted.sorted.txt";
 	checkpoint($log_folder."/format_forInframeAnalysis.job");
 }
 else
@@ -302,36 +313,37 @@ if(! -e $log_folder."/RunAnnotation.job")
 	{
 		printf STDERR "[".`date | tr '\n' ' '`."] Preparing the environment for SGE running\n";
 		
-		$cmd  = "mkdir -p ".$config{'pegasus_folder'}."/split.folder.input ";
+		$cmd  = "mkdir -p ".$out_folder."/split.folder.input ";
 		printf LOG "[".`date | tr '\n' ' '`."] $cmd\n\n";
 		system($cmd);
 
-		$cmd  = "mkdir -p ".$config{'pegasus_folder'}."/split.folder.output ";
+		$cmd  = "mkdir -p ".$out_folder."/split.folder.output ";
 		printf LOG "[".`date | tr '\n' ' '`."] $cmd\n\n";
 		system($cmd);
 
 		$cmd   = "sh ".$config{'script'}."/split.sh ";
-		$cmd  .= $config{'pegasus_folder'}."/results/samples_info.formatted.sorted.txt split.folder.input 10";
+		$cmd  .= $out_folder."/samples_info.formatted.sorted.txt ".$out_folder."/split.folder.input 10";
 		printf LOG "[".`date | tr '\n' ' '`."] $cmd\n\n";
 		system($cmd);
 
 		printf STDERR "[".`date | tr '\n' ' '`."] Annotating fusions on SGE system\n";
 		
 		$cmd   = "sh ".$config{'script'}."/run_annotate.sh ";
-		$cmd  .= $config{'pegasus_folder'}."/split.folder.input ";
-		$cmd  .= $config{'pegasus_folder'}."/split.folder.output ";
+		$cmd  .= $out_folder."/split.folder.input ";
+		$cmd  .= $out_folder."/split.folder.output ";
 		$cmd  .= $config{'pegasus_folder'}." ";
+		$cmd  .= $log_folder." ";
 		$cmd  .= " ".$config{'sge_param'}." " ;
 		$cmd .= " > ".$log_folder."/RunAnnotation.log 2>> ".$log_folder."/RunAnnotation.log";
 		printf LOG "[".`date | tr '\n' ' '`."] $cmd\n\n";
 		system($cmd);
 
-		$cmd   = "cat ".$config{'pegasus_folder'}."/split.folder.output/* >  ";
-		$cmd  .= $config{'pegasus_folder'}."/results/samples_info.annotated.txt ";
+		$cmd   = "cat ".$out_folder."/split.folder.output/* >  ";
+		$cmd  .= $out_folder."/samples_info.annotated.txt ";
 		printf LOG "[".`date | tr '\n' ' '`."] $cmd\n\n";
 		$res = system($cmd);
-		die "Error Running RunAnnotation procedure . samples_info.annotated.txt file not generated." if ! -e $config{'pegasus_folder'}."/results/samples_info.annotated.txt";
-		die "Error Running RunAnnotation procedure . samples_info.annotated.txt is empty." if -z $config{'pegasus_folder'}."/results/samples_info.annotated.txt";
+		die "Error Running RunAnnotation procedure . samples_info.annotated.txt file not generated." if ! -e $out_folder."/samples_info.annotated.txt";
+		die "Error Running RunAnnotation procedure . samples_info.annotated.txt is empty." if -z $out_folder."/samples_info.annotated.txt";
 		checkpoint($log_folder."/RunAnnotation.job");
 
 	}
@@ -343,14 +355,14 @@ if(! -e $log_folder."/RunAnnotation.job")
 		$cmd  .= $config{'gtf_file'}." -s ";
 		$cmd  .= $config{'script'}." -j ";
 		$cmd  .= $config{'jar'}." -o ";
-		$cmd  .= $config{'pegasus_folder'}."/results/samples_info.annotated.txt -t ";
+		$cmd  .= $out_folder."/samples_info.annotated.txt -t ";
 		$cmd  .= $config{'pegasus_folder'}."/tmp -i ";
-		$cmd  .= $config{'pegasus_folder'}."/results/samples_info.formatted.sorted.txt ";
+		$cmd  .= $out_folder."/samples_info.formatted.sorted.txt ";
 		$cmd  .= " > ".$log_folder."/RunAnnotation.log 2>> ".$log_folder."/RunAnnotation.log";
 		printf LOG "[".`date | tr '\n' ' '`."] $cmd\n\n";
 		$res = system($cmd);
-		die "Error Running RunAnnotation procedure . samples_info.annotated.txt file not generated." if ! -e $config{'pegasus_folder'}."/results/samples_info.annotated.txt";
-		die "Error Running RunAnnotation procedure . samples_info.annotated.txt is empty." if -z $config{'pegasus_folder'}."/results/samples_info.annotated.txt";
+		die "Error Running RunAnnotation procedure . samples_info.annotated.txt file not generated." if ! -e $out_folder."/samples_info.annotated.txt";
+		die "Error Running RunAnnotation procedure . samples_info.annotated.txt is empty." if -z $out_folder."/samples_info.annotated.txt";
 		checkpoint($log_folder."/RunAnnotation.job");		
 	}
 }
@@ -373,30 +385,30 @@ if(! -e $log_folder."/Wrapper_final_report.job")
 	printf STDERR "[".`date | tr '\n' ' '`."] Preparing files for ML module\n";
 		
 	$cmd   = "perl ".$config{'script'}."/merge_res_commonFormat.pl -i ";
-	$cmd  .= $config{'pegasus_folder'}."/results/samples_info.txt -r ";
-	$cmd  .= $config{'pegasus_folder'}."/results/samples_info.annotated.txt |  cut -f1-23,28- | cut -f1-26,28- > ";
-	$cmd  .= $config{'pegasus_folder'}."/results/final_results_forXLS.txt";
+	$cmd  .= $out_folder."/samples_info.txt -r ";
+	$cmd  .= $out_folder."/samples_info.annotated.txt |  cut -f1-23,28- | cut -f1-26,28- > ";
+	$cmd  .= $out_folder."/final_results_forXLS.txt";
 	$cmd .= " 2>> ".$log_folder."/Merge_format.log";
 	print LOG "[".`date | tr '\n' ' '`."] $cmd\n\n";
 	$res = system($cmd);
 	die "Error running merge_res_commonFormat.pl. Exit code $res." if $res!=0;
-	die "Error Running merge_res_commonFormat.pl . final_results_forXLS.txt file not generated." if ! -e $config{'pegasus_folder'}."/results/final_results_forXLS.txt";
-	die "Error Running merge_res_commonFormat.pl . final_results_forXLS.txt is empty." if -z $config{'pegasus_folder'}."/results/final_results_forXLS.txt";
+	die "Error Running merge_res_commonFormat.pl . final_results_forXLS.txt file not generated." if ! -e $out_folder."/final_results_forXLS.txt";
+	die "Error Running merge_res_commonFormat.pl . final_results_forXLS.txt is empty." if -z $out_folder."/final_results_forXLS.txt";
 	checkpoint($log_folder."/Merge_format.job");
 
 
 	$cmd   = "perl ".$config{'script'}."/wrapper_finalreport.pl -s ";
 	$cmd  .= $config{'script'}." -d ";
-	$cmd  .= $config{'pegasus_folder'}."/results -i ";
-	$cmd  .= $config{'pegasus_folder'}."/results/final_results_forXLS.txt -l ";
+	$cmd  .= $out_folder."/ -i ";
+	$cmd  .= $out_folder."/final_results_forXLS.txt -l ";
 	$cmd  .= $log_folder."/Wrapper_final_report.log -o ";
-	$cmd  .= $config{'pegasus_folder'}."/results/final_results_forXLS.ML.input.txt ";
+	$cmd  .= $out_folder."/final_results_forXLS.ML.input.txt ";
 	$cmd  .= " >> ".$log_folder."/Wrapper_final_report.log 2>> ".$log_folder."/Wrapper_final_report.log";
 	print LOG "[".`date | tr '\n' ' '`."] $cmd\n\n";
 	$res = system($cmd);
 	die "Error running wrapper_finalreport.pl . Exit code $res." if $res!=0;
-	die "Error Running wrapper_finalreport.pl . final_results_forXLS.ML.input.txt file not generated." if ! -e $config{'pegasus_folder'}."/results/final_results_forXLS.ML.input.txt";
-	die "Error Running wrapper_finalreport.pl . final_results_forXLS.ML.input.txt is empty." if -z $config{'pegasus_folder'}."/results/final_results_forXLS.ML.input.txt";
+	die "Error Running wrapper_finalreport.pl . final_results_forXLS.ML.input.txt file not generated." if ! -e $out_folder."/final_results_forXLS.ML.input.txt";
+	die "Error Running wrapper_finalreport.pl . final_results_forXLS.ML.input.txt is empty." if -z $out_folder."/final_results_forXLS.ML.input.txt";
 	checkpoint($log_folder."/Wrapper_final_report.job");
 }
 else
@@ -420,10 +432,10 @@ if(! -e $log_folder."/ML_module.job")
 	printf STDERR "[".`date | tr '\n' ' '`."] Running ML module\n";
 
 	$cmd   = "python ".$config{'script'}."/classify.py -i ";
-	$cmd  .= $config{'pegasus_folder'}."/results/final_results_forXLS.ML.input.txt -m ";
-	$cmd  .= $config{'pegasus_folder'}."/learn/model/trained_gb.pk -o ";
+	$cmd  .= $out_folder."/final_results_forXLS.ML.input.txt -m ";
+	$cmd  .= $config{'pegasus_folder'}."/learn/models/trained_model_gbm.pk -o ";
 	$cmd  .= $config{'pegasus_folder'}."/pegasus.output.txt -l ";
-	$cmd  .= $config{'script'}."/logs ";
+	$cmd  .= $log_folder." ";
 	$cmd  .= " >> ".$log_folder."/ML_module.log 2>> ".$log_folder."/ML_module.log";
 	print LOG "[".`date | tr '\n' ' '`."] $cmd\n\n";
 	$res = system($cmd);
@@ -464,8 +476,9 @@ sub printHelp
 	print "\t-s data_input_file: path to data input configuration file (mandatory)\n"; 
 	print "\t-d config_file: path to Pegasus configuration file (mandatory)\n"; 
 	print "\t-k keepDB: 1 the database is cleaned, 0 otherwise (optional, default 1)\n"; 
-	print "\t-i sge: 1 run on a SGE system, 0 otherwise (optional, default 0)\n"; 
-	print "\t-o log_folder: path to a log folder (mandatory)\n"; 
+	print "\t-p sge: 1 run on a SGE system, 0 otherwise (optional, default 0)\n"; 
+	print "\t-l log_folder: path to a log folder (mandatory)\n"; 
+	print "\t-o output folder: path to a output folder (mandatory)\n"; 
 }
 
 sub checkpoint
