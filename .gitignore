@@ -1,6 +1,4 @@
-resources/hsqldb-2.2.7/hsqldb/mydb.data
-resources/hsqldb-2.2.7/hsqldb/mydb.properties
-resources/hsqldb-2.2.7/hsqldb/mydb.script
+resources/
 hg19.fa
 hg19.fa.fai
 Homo_sapiens.GRCh37.60.chr.gtf
