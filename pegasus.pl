@@ -322,7 +322,7 @@ if(! -e $log_folder."/RunAnnotation.job")
 		printf LOG "[".`date | tr '\n' ' '`."] $cmd\n\n";
 		system($cmd);
 
-		$cmd   = "sh ".$config{'script'}."/split.sh ";
+		$cmd   = $config{'script'}."/split.sh ";
 		$cmd  .= $out_folder."/samples_info.formatted.sorted.txt ".$out_folder."/split.folder.input 10";
 		printf LOG "[".`date | tr '\n' ' '`."] $cmd\n\n";
 		system($cmd);

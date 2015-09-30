@@ -1,3 +1,5 @@
+#!/bin/bash
+
 fileinput=$1
 splitted_dir=$2
 n_split=$3
