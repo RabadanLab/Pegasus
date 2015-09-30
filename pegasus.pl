@@ -334,6 +334,8 @@ if(! -e $log_folder."/RunAnnotation.job")
 		$cmd  .= $out_folder."/split.folder.output ";
 		$cmd  .= $config{'pegasus_folder'}." ";
 		$cmd  .= $log_folder." ";
+		$cmd  .= $config{'hg'}." ";
+		$cmd  .= $config{'gtf_file'}." ";
 		$cmd  .= " ".$config{'sge_param'}." " ;
 		$cmd .= " > ".$log_folder."/RunAnnotation.log 2>> ".$log_folder."/RunAnnotation.log";
 		printf LOG "[".`date | tr '\n' ' '`."] $cmd\n\n";

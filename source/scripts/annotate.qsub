@@ -15,10 +15,12 @@ output_file=$1
 input_file=$2
 tmp_folder=$3
 basedir=$4
+ref_file=$5
+gtf_file=$6
 
 echo "Running..."
-echo "${basedir}/source/scripts/MultiFusionSequenceFromGTF_wrap.sh -r ${basedir}/hg19.fa -g ${basedir}/Homo_sapiens.GRCh37.60.chr.gtf -s ${basedir}/source/scripts -j ${basedir}/jars -o $output_file -t $tmp_folder -i $input_file"
-${basedir}/source/scripts/MultiFusionSequenceFromGTF_wrap.sh -r ${basedir}/hg19.fa -g ${basedir}/Homo_sapiens.GRCh37.60.chr.gtf -s ${basedir}/source/scripts -j ${basedir}/jars -o $output_file -t $tmp_folder -i $input_file
+echo "${basedir}/source/scripts/MultiFusionSequenceFromGTF_wrap.sh -r $ref_file -g $gtf_file -s ${basedir}/source/scripts -j ${basedir}/jars -o $output_file -t $tmp_folder -i $input_file"
+${basedir}/source/scripts/MultiFusionSequenceFromGTF_wrap.sh -r $ref_file -g $gtf_file -s ${basedir}/source/scripts -j ${basedir}/jars -o $output_file -t $tmp_folder -i $input_file
 
 time2=$( date "+%s" )
 echo [deltat] $(( $time2 - $time1 ))
