@@ -357,7 +357,7 @@ if(! -e $log_folder."/RunAnnotation.job")
 		$cmd  .= $config{'script'}." -j ";
 		$cmd  .= $config{'jar'}." -o ";
 		$cmd  .= $out_folder."/samples_info.annotated.txt -t ";
-		$cmd  .= $config{'pegasus_folder'}."/tmp -i ";
+		$cmd  .= $out_folder."/tmp -i ";
 		$cmd  .= $out_folder."/samples_info.formatted.sorted.txt ";
 		$cmd  .= " > ".$log_folder."/RunAnnotation.log 2>> ".$log_folder."/RunAnnotation.log";
 		printf LOG "[".`date | tr '\n' ' '`."] $cmd\n\n";
@@ -436,14 +436,14 @@ if(! -e $log_folder."/ML_module.job")
 	$cmd   = "python ".$config{'script'}."/classify.py -i ";
 	$cmd  .= $out_folder."/final_results_forXLS.ML.input.txt -m ";
 	$cmd  .= $config{'pegasus_folder'}."/learn/models/trained_model_gbm.pk -o ";
-	$cmd  .= $config{'pegasus_folder'}."/pegasus.output.txt -l ";
+	$cmd  .= $out_folder."/pegasus.output.txt -l ";
 	$cmd  .= $log_folder." ";
 	$cmd  .= " >> ".$log_folder."/ML_module.log 2>> ".$log_folder."/ML_module.log";
 	print LOG "[".`date | tr '\n' ' '`."] $cmd\n\n";
 	$res = system($cmd);
 	die "Error running classify.py . Exit code $res check ".$log_folder."/ML_module.log for further details." if $res!=0;
-	die "Error Running classify.py . pegasus.output.txt file not generated." if ! -e $config{'pegasus_folder'}."/pegasus.output.txt";
-	die "Error Running classify.py . pegasus.output.txt is empty." if -z $config{'pegasus_folder'}."/pegasus.output.txt";
+	die "Error Running classify.py . pegasus.output.txt file not generated." if ! -e $out_folder."/pegasus.output.txt";
+	die "Error Running classify.py . pegasus.output.txt is empty." if -z $out_folder."/pegasus.output.txt";
 	checkpoint($log_folder."/ML_module.job");
 }
 else

@@ -69,5 +69,5 @@ df2 = x_input[x_input.columns[:39]]
 df_final = pd.merge(df1, df2, left_index=True, right_index=True)
 df_final.to_csv(args['outfile'], sep='\t', index=False, float_format='%1.4f')
 f_log.write('final report written to {0}\n'.format(args['outfile']))
-f_log.write('END')
+f_log.write('END\n')
 f_log.close()
