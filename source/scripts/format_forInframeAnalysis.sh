@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # fusion_file_list=resources/overlap_new_ALCL_tab_formatted.txt
 fusion_file_list=$1
 #cat fusion_file_list |grep $2 | grep $3| awk '

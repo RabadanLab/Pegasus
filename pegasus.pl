@@ -282,7 +282,7 @@ else
 
 if(! -e $log_folder."/format_forInframeAnalysis.job")
 {
-	$cmd  = "sh ".$config{'script'}."/format_forInframeAnalysis.sh ".$out_folder."/samples_info.txt ";
+	$cmd  = $config{'script'}."/format_forInframeAnalysis.sh ".$out_folder."/samples_info.txt ";
 	$cmd .= "sort -u > ".$out_folder."/samples_info.formatted.sorted.txt";
 	printf STDERR "[".`date | tr '\n' ' '`."] Preparing the environment for annotation\n";
 	printf LOG "[".`date | tr '\n' ' '`."] $cmd\n\n";
@@ -329,7 +329,7 @@ if(! -e $log_folder."/RunAnnotation.job")
 
 		printf STDERR "[".`date | tr '\n' ' '`."] Annotating fusions on SGE system\n";
 		
-		$cmd   = "sh ".$config{'script'}."/run_annotate.sh ";
+		$cmd   = $config{'script'}."/run_annotate.sh ";
 		$cmd  .= $out_folder."/split.folder.input ";
 		$cmd  .= $out_folder."/split.folder.output ";
 		$cmd  .= $config{'pegasus_folder'}." ";
@@ -351,7 +351,7 @@ if(! -e $log_folder."/RunAnnotation.job")
 	else
 	{
 		printf STDERR "[".`date | tr '\n' ' '`."] Annotating fusions\n";
-		$cmd   = "sh ".$config{'script'}."/MultiFusionSequenceFromGTF_wrap.sh -r ";
+		$cmd   = $config{'script'}."/MultiFusionSequenceFromGTF_wrap.sh -r ";
 		$cmd  .= $config{'hg'}." -g ";
 		$cmd  .= $config{'gtf_file'}." -s ";
 		$cmd  .= $config{'script'}." -j ";
