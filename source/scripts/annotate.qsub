@@ -1,6 +1,5 @@
 #!/bin/bash
 #$ -S /bin/sh
-#$ -l mem=4G,time=10::
 #$ -cwd
 
 echo [Directory] `pwd`	
