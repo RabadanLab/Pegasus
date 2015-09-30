@@ -2,9 +2,9 @@
 
 if [ $#	== 5 ];	then 
 
-	split_in=$( readlink -m $1 )
-	split_out=$( readlink -m $2 )
-	basedir=$( readlink -m $3 )
+	split_in=$1
+	split_out=$2
+	basedir=$3
 	log_dir=$4
 	sge_params=$5
 
