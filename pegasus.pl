@@ -437,7 +437,7 @@ if(! -e $log_folder."/ML_module.job")
 
 	$cmd   = "python ".$config{'script'}."/classify.py -i ";
 	$cmd  .= $out_folder."/final_results_forXLS.ML.input.txt -m ";
-	$cmd  .= $config{'pegasus_folder'}."/learn/models/trained_model_gbm.pk -o ";
+	$cmd  .= $config{'pegasus_folder'}."/learn/models/trained_model_gbc.pk -o ";
 	$cmd  .= $out_folder."/pegasus.output.txt -l ";
 	$cmd  .= $log_folder." ";
 	$cmd  .= " >> ".$log_folder."/ML_module.log 2>> ".$log_folder."/ML_module.log";

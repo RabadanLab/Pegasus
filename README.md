@@ -27,6 +27,12 @@ This software is maintained by Francesco Abate and Sakellarios Zairis.
 ---
 
 Clone this repository and do not alter the directory structure.
+Locally re-train the classifier as follows:
+```bash
+$ cd learn
+$ python train_model.py
+```
+This should overwrite the pickle files in learn/models/ and ensure compatibility with your present version of scikit-learn later in the pipeline.
 The wrapper for running the pipeline is pegasus.pl and its command line arguments can be seen by executing the file.
 Each run of Pegasus will require a configuration file based on the template provided, as well as the creation of a data specification file.
 An example of the data specification file can be found in sample_pipeline_input/data_spec.txt.
