@@ -79,6 +79,11 @@ public class LoadFusionReport {
 					insertBellerophontesRecord(fusion_report_line, sample_name, sample_type, fusion_table);
 				}
 				
+				if(fusion_program.compareTo("general")==0)
+				{
+					insertGeneralFusionRecord(fusion_report_line, sample_name, sample_type, fusion_table);
+				}
+				
 				count_fusion++;
 			}
 			int loaded_fusion = CountLoadedFusions(fusion_program, sample_name, sample_type, fusion_table);
@@ -270,6 +275,99 @@ public class LoadFusionReport {
 		String gene_name2 = fusion_report_fields[13];
 		String gene_id1_field = fusion_report_fields[10];
 		String gene_id2_field = fusion_report_fields[11];
+		String genomic_break_pos1 = gene_strand1.compareTo("+")==0 ? gene_end1 : gene_start1;
+		String genomic_break_pos2 = gene_strand2.compareTo("+")==0 ? gene_start2 : gene_end2;
+		String gene_ids1 = "";
+		String gene_ids2 = "";
+		
+		String[] gene_ids1_field = gene_id1_field.split(",");
+		for (String gene_ids1_comma : gene_ids1_field)
+		{
+			gene_ids1 += gene_ids1_comma.split(":")[0] + "|";
+		}
+
+		String[] gene_ids2_field = gene_id2_field.split(",");
+		for (String gene_ids2_comma : gene_ids2_field)
+		{
+			gene_ids2 += gene_ids2_comma.split(":")[0] + "|";
+		}
+
+		String query = 
+	        "INSERT INTO " + fusion_table + "(" +
+	        "Sample_name," +
+	        "program," +
+	        "tot_count," +
+	        "splitr_count," +
+	        "gene_chromosome1," +
+	        "gene_chromosome2," +
+	        "gene_start1," +
+	        "gene_end1," +
+	        "gene_start2," +
+	        "gene_end2," +
+	        "gene_strand1," +
+	        "gene_strand2," +
+	        "gene_name1," +
+	        "gene_name2," +
+	        "gene_id1," +
+	        "gene_id2," +
+	        "genomic_break_pos1," +
+	        "genomic_break_pos2," +
+	        "sample_type" +
+	        ") VALUES(" +
+	        "'" + sample_name + "', " +
+	        "'" + program + "', " +
+	        "'" + tot_count + "', " +
+	        "'" + splitr_count + "', " +
+	        "'" + gene_chromosome1 + "', " +
+	        "'" + gene_chromosome2 + "', " +
+	        "'" + gene_start1 + "', " +
+	        "'" + gene_end1 + "', " +
+	        "'" + gene_start2 + "', " +
+	        "'" + gene_end2 + "', " +
+	        "'" + gene_strand1 + "', " +
+	        "'" + gene_strand2 + "', " +
+	        "'" + gene_name1 + "', " +
+	        "'" + gene_name2 + "', " +
+	        "'" + gene_ids1.toString() + "', " +
+	        "'" + gene_ids2.toString() + "', " +
+	        "'" + genomic_break_pos1 + "', " +
+	        "'" + genomic_break_pos2 + "', " +
+	        "'" + sample_type + "'" +
+	        ")";
+		
+        try {
+			this.update(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.err.println("Error executing query:\n" + query);
+			e.printStackTrace();
+		}		
+	}
+	
+	public void insertGeneralFusionRecord(
+			String record, 
+			String sample_name,
+			String sample_type, 
+			String fusion_table
+	)
+	{
+		String[] fusion_report_fields = record.split("\t");
+		
+		String program = "general";
+		String tot_count = fusion_report_fields[13];
+		String splitr_count = fusion_report_fields[12];
+		String gene_chromosome1 = fusion_report_fields[3].replaceAll("chr", "");
+		String gene_chromosome2 = fusion_report_fields[7].replaceAll("chr", "");		
+		String gene_start1 = fusion_report_fields[8];
+		String gene_end1 = fusion_report_fields[9];
+		String gene_start2 = fusion_report_fields[11];
+		String gene_end2 = fusion_report_fields[12];
+		String gene_strand1 = fusion_report_fields[2];
+		String gene_strand2 = fusion_report_fields[6];
+		String gene_name1 = fusion_report_fields[0];
+		String gene_name2 = fusion_report_fields[4];
+		String gene_id1_field = fusion_report_fields[1];
+		String gene_id2_field = fusion_report_fields[5];
 		String genomic_break_pos1 = gene_strand1.compareTo("+")==0 ? gene_end1 : gene_start1;
 		String genomic_break_pos2 = gene_strand2.compareTo("+")==0 ? gene_start2 : gene_end2;
 		String gene_ids1 = "";
