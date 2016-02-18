@@ -10,9 +10,9 @@ This software is maintained by Francesco Abate and Sakellarios Zairis.
 - java
 - perl
 - python 2.7.x 
-    - numpy 1.8 or higher
-    - pandas 0.12 or higher
-    - scikit-learn 0.16
+    - numpy
+    - pandas
+    - scikit-learn
 - output reports from one of the following fusion detection tools
     - chimerascan 0.4.5
     - defuse 0.4.3
@@ -20,7 +20,7 @@ This software is maintained by Francesco Abate and Sakellarios Zairis.
 - human genome and annotation files (hg19)
     - hg19.fa
     - hg19.fa.fai
-    - Homo_sapiens.GRCh37.60.chr.gtf
+    - Ensembl Homo_sapiens.GRCh37.60.chr.gtf
 
 
 ### Setup: ###

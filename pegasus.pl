@@ -14,6 +14,7 @@ my $sge = 0;
 my $cmd = "";
 my $res = 0;
 my $keepDB = 0;
+my $clf_model = "gbc";
 my %config = ();
 
 GetOptions (
@@ -22,56 +23,53 @@ GetOptions (
 	'k=s' => \$keepDB, 
 	'p=i' => \$sge, 
 	'o=s' => \$out_folder, 
-	'l=s' => \$log_folder
+	'l=s' => \$log_folder,
+        'm=s' => \$clf_model
 );  
 
-# 1 is true, 0 false
-my $p_fail;
-
+my $p_fail = 0;
 
 if(!defined($data_input_file))
 {
         print STDERR "Error - $0: data input file not specified\n";
-		$p_fail=1;
+	$p_fail=1;
 }
 
 if(!defined($out_folder))
 {
         print STDERR "Error - $0: output folder option not specified\n";
-		$p_fail=1;
-}
-
-if(!defined($sge))
-{
-        print STDERR "Error - $0: SGE option not specified\n";
-		$p_fail=1;
-}
-
-if($sge<0 || $sge>1)
-{
-        print STDERR "Error - $0: sge parameter allows only 0 and 1 values\n";
-		$p_fail=1;
+	$p_fail=1;
 }
 
 if(!defined($config_file))
 {
         print STDERR "Error - $0: configuration file not specified\n";
-		$p_fail=1;
+	$p_fail=1;
 }
 
 if(!defined($log_folder))
 {
         print STDERR "Error - $0: log folder not specified\n";
-		$p_fail=1;
+	$p_fail=1;
+}
+
+if($sge<0 || $sge>1)
+{
+        print STDERR "Error - $0: sge parameter allows only 0 and 1 values\n";
+	$p_fail=1;
+}
+
+if(!($clf_model eq "gbc" || $clf_model eq "rfc"))
+{
+        print STDERR "Error - $0: model parameter must be in {gbc, rfc}\n";
+        $p_fail=1;        
 }
 
 if ($p_fail)
 {
-	printHelp();
-	exit(255);
+        printHelp();
+        exit(255);
 }
-
-
 
 open LOG, ">>".$log_folder."/Pegasus.log" or die "INFO - $0: Error opening Pegasus log file. \n";
 
@@ -209,7 +207,7 @@ if(! -e $log_folder."/LoadFusionReport.job")
 		my $sample_type = $fields[2];
 		my $fusion_program = $fields[3];
 
-		if ($fusion_program eq "defuse" || $fusion_program eq "chimerascan" || $fusion_program eq "bellerophontes")
+		if ($fusion_program eq "general" || $fusion_program eq "defuse" || $fusion_program eq "chimerascan" || $fusion_program eq "bellerophontes")
 		{
 			printf LOG "[".`date | tr '\n' ' '`."] $line - elaborated\n\n";
 		}
@@ -435,9 +433,9 @@ if(! -e $log_folder."/ML_module.job")
 {
 	printf STDERR "[".`date | tr '\n' ' '`."] Running ML module\n";
 
-	$cmd   = "python ".$config{'script'}."/classify.py -i ";
+        $cmd   = "python ".$config{'script'}."/classify.py -i ";
 	$cmd  .= $out_folder."/final_results_forXLS.ML.input.txt -m ";
-	$cmd  .= $config{'pegasus_folder'}."/learn/models/trained_model_gbc.pk -o ";
+	$cmd  .= $config{'pegasus_folder'}."/learn/models/trained_model_".$clf_model.".pk -o ";
 	$cmd  .= $out_folder."/pegasus.output.txt -l ";
 	$cmd  .= $log_folder." ";
 	$cmd  .= " >> ".$log_folder."/ML_module.log 2>> ".$log_folder."/ML_module.log";

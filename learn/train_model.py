@@ -9,8 +9,10 @@ print '[ loading training data ] {}'.format(datetime.utcnow())
 
 x_train_pos = pd.read_csv('../resources/data_training/X_chimerDB.txt', header=0, sep='\t')
 x_train_neg_chimera = pd.read_csv('../resources/data_training/X_chimerDB_frameshifted.txt', header=0, sep='\t')
+neg_first = 0
+neg_last = 1500
 x_train_neg_RLN = pd.read_csv('../resources/data_training/X_reactiveLN.txt', header=0, sep='\t')
-x_train_neg = pd.concat([x_train_neg_chimera, x_train_neg_RLN.ix[:1500,:]], axis=0, ignore_index=True)
+x_train_neg = pd.concat([x_train_neg_chimera, x_train_neg_RLN.ix[neg_first:neg_last,:]], axis=0, ignore_index=True)
 
 print '[ {} positive training examples, {} negative training examples ] {}'.format(x_train_pos.shape[0], x_train_neg.shape[0], datetime.utcnow())
 
@@ -94,10 +96,13 @@ X_train = np.concatenate((full_train_pos.values, full_train_neg.values), axis=0)
 y_train = np.squeeze(np.concatenate((np.ones((len(full_train_pos),1)), np.zeros((len(full_train_neg),1)))))
 
 print '[ fitting classifiers ] {}'.format(datetime.utcnow())
+#svc = svm.SVC(C=1.0, kernel='rbf', gamma='auto', probability=True).fit(X_train, y_train)
 gbc = ensemble.GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=5).fit(X_train, y_train)
 rfc = ensemble.RandomForestClassifier(n_estimators=100).fit(X_train, y_train)
 
 print '[ serializing fitted models ] {}'.format(datetime.utcnow())
+#with open('models/trained_model_svc.pk','wb') as fh_svc:
+#    cPickle.dump(svc, fh_svc)
 with open('models/trained_model_gbc.pk','wb') as fh_gbc:
     cPickle.dump(gbc, fh_gbc)
 with open('models/trained_model_rfc.pk','wb') as fh_rfc:

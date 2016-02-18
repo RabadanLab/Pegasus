@@ -2,7 +2,7 @@ import cPickle
 import argparse
 import numpy as np
 import pandas as pd
-from sklearn import ensemble, tree
+from sklearn import ensemble
 
 parser = argparse.ArgumentParser(description='ML module for Pegasus')
 parser.add_argument('-i','--infile', help='path to the transcript annotation report', required=True)
