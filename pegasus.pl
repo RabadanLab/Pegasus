@@ -441,7 +441,7 @@ if(! -e $log_folder."/ML_module.job")
 
         $cmd   = "python ".$config{'script'}."/classify.py -i ";
 	$cmd  .= $out_folder."/final_results_forXLS.ML.input.txt -m ";
-	$cmd  .= $config{'pegasus_folder'}."/learn/models/trained_model_".$clf_model.".pk -o ";
+	$cmd  .= $config{'pegasus_folder'}."/learn/trained_model_".$clf_model.".pk -o ";
 	$cmd  .= $out_folder."/pegasus.output.txt -l ";
 	$cmd  .= $log_folder." ";
 	$cmd  .= " >> ".$log_folder."/ML_module.log 2>> ".$log_folder."/ML_module.log";
@@ -482,7 +482,7 @@ sub printHelp
 {
 	print "Pegasus Usage:\n";
 	print "\t-c config_file: path to Pegasus configuration file (mandatory)\n"; 
-	print "\t-d data_input_file: path to data input configuration file (mandatory)\n"; 
+	print "\t-d data_input_file: path to data specification file (mandatory)\n"; 
 	print "\t-l log_folder: path to a log folder (mandatory)\n"; 
 	print "\t-o output_folder: path to a output folder (mandatory)\n"; 
 	print "\t-p parallelization_sge: 1 run on a SGE system, 0 otherwise (optional, default 0)\n"; 

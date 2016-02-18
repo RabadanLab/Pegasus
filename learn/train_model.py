@@ -103,9 +103,9 @@ rfc = ensemble.RandomForestClassifier(n_estimators=100).fit(X_train, y_train)
 print '[ serializing fitted models ] {}'.format(datetime.now().strftime("%I:%M%p %B %d, %Y"))
 #with open('models/trained_model_svc.pk','wb') as fh_svc:
 #    cPickle.dump(svc, fh_svc)
-with open('models/trained_model_gbc.pk','wb') as fh_gbc:
+with open('trained_model_gbc.pk','wb') as fh_gbc:
     cPickle.dump(gbc, fh_gbc)
-with open('models/trained_model_rfc.pk','wb') as fh_rfc:
+with open('trained_model_rfc.pk','wb') as fh_rfc:
     cPickle.dump(rfc, fh_rfc)
 
 print '------------------------------'

@@ -5,3 +5,4 @@ Homo_sapiens.GRCh37.60.chr.gtf
 *.pyc
 .DS_Store
 *Icon
+*.pk
