@@ -18,50 +18,56 @@ my $clf_model = "gbc";
 my %config = ();
 
 GetOptions (
-	's=s' => \$data_input_file,
-	'd=s' => \$config_file, 
-	'k=s' => \$keepDB, 
-	'p=i' => \$sge, 
-	'o=s' => \$out_folder, 
+	'c=s' => \$config_file, 
+	'd=s' => \$data_input_file,
 	'l=s' => \$log_folder,
+	'o=s' => \$out_folder, 
+	'p=i' => \$sge, 
+	'k=i' => \$keepDB, 
         'm=s' => \$clf_model
 );  
 
 my $p_fail = 0;
 
-if(!defined($data_input_file))
-{
-        print STDERR "Error - $0: data input file not specified\n";
-	$p_fail=1;
-}
-
-if(!defined($out_folder))
-{
-        print STDERR "Error - $0: output folder option not specified\n";
-	$p_fail=1;
-}
-
 if(!defined($config_file))
 {
-        print STDERR "Error - $0: configuration file not specified\n";
+        print STDERR "Error - $0: config_file not specified\n";
+	$p_fail=1;
+}
+
+if(!defined($data_input_file))
+{
+        print STDERR "Error - $0: data_input_file not specified\n";
 	$p_fail=1;
 }
 
 if(!defined($log_folder))
 {
-        print STDERR "Error - $0: log folder not specified\n";
+        print STDERR "Error - $0: log_folder not specified\n";
+	$p_fail=1;
+}
+
+if(!defined($out_folder))
+{
+        print STDERR "Error - $0: output_folder option not specified\n";
 	$p_fail=1;
 }
 
 if($sge<0 || $sge>1)
 {
-        print STDERR "Error - $0: sge parameter allows only 0 and 1 values\n";
+        print STDERR "Error - $0: parallelization_sge parameter allows only 0 and 1 values\n";
+	$p_fail=1;
+}
+
+if($keepDB<0 || $keepDB>1)
+{
+        print STDERR "Error - $0: keepDB parameter allows only 0 and 1 values\n";
 	$p_fail=1;
 }
 
 if(!($clf_model eq "gbc" || $clf_model eq "rfc"))
 {
-        print STDERR "Error - $0: model parameter must be in {gbc, rfc}\n";
+        print STDERR "Error - $0: model_classification parameter must be in {gbc, rfc}\n";
         $p_fail=1;        
 }
 
@@ -475,12 +481,13 @@ close(LOG);
 sub printHelp
 {
 	print "Pegasus Usage:\n";
-	print "\t-s data_input_file: path to data input configuration file (mandatory)\n"; 
-	print "\t-d config_file: path to Pegasus configuration file (mandatory)\n"; 
-	print "\t-k keepDB: 1 the database is cleaned, 0 otherwise (optional, default 1)\n"; 
-	print "\t-p sge: 1 run on a SGE system, 0 otherwise (optional, default 0)\n"; 
+	print "\t-c config_file: path to Pegasus configuration file (mandatory)\n"; 
+	print "\t-d data_input_file: path to data input configuration file (mandatory)\n"; 
 	print "\t-l log_folder: path to a log folder (mandatory)\n"; 
-	print "\t-o output folder: path to a output folder (mandatory)\n"; 
+	print "\t-o output_folder: path to a output folder (mandatory)\n"; 
+	print "\t-p parallelization_sge: 1 run on a SGE system, 0 otherwise (optional, default 0)\n"; 
+	print "\t-k keepDB: 1 the database is cleaned, 0 otherwise (optional, default 1)\n"; 
+	print "\t-m model_classification: gbc for gradient boosting, rfc for random forest (optional, default gbc)\n"; 
 }
 
 sub checkpoint

@@ -51,7 +51,7 @@ Construct a properly formatted data specification file for the samples to be ana
 A sample invocation of Pegasus from the command line would look like this:
 
 ```bash
-$ pegasus.pl -s data_spec.txt -d config.txt -l log_folder -o output_folder
+$ pegasus.pl -c config.txt -d data_spec.txt -l log_folder -o output_folder
 ```
 Pegasus is designed to be interrupted at any stage.
 When re-running or re-starting the pipeline a second time it is understood that all previously completed steps will be skipped.
