@@ -360,8 +360,8 @@ public class LoadFusionReport {
 		String gene_chromosome2 = fusion_report_fields[7].replaceAll("chr", "");		
 		String gene_start1 = fusion_report_fields[8];
 		String gene_end1 = fusion_report_fields[9];
-		String gene_start2 = fusion_report_fields[11];
-		String gene_end2 = fusion_report_fields[12];
+		String gene_start2 = fusion_report_fields[10];
+		String gene_end2 = fusion_report_fields[11];
 		String gene_strand1 = fusion_report_fields[2];
 		String gene_strand2 = fusion_report_fields[6];
 		String gene_name1 = fusion_report_fields[0];

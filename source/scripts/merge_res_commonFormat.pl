@@ -211,6 +211,33 @@ while(my $line = <IN>)
 			$g2_bp++;
 		}	
 	}
+	elsif($program eq "general")
+	{
+		if($g1_strand eq "+")
+		{
+			$g1_bp=$g1_stop;
+			$g1_stop++;
+			$g1_bp++;
+		}
+		else
+		{
+			$g1_bp=$g1_start;
+			$g1_start++;
+			$g1_bp++;
+		}
+		if($g2_strand eq "+")
+		{
+			$g2_bp=$g2_start;
+			$g2_start++;
+			$g2_bp++;
+		}
+		else
+		{
+			$g2_bp=$g2_stop;
+			$g2_stop++;
+			$g2_bp++;
+		}	
+	}
 	else
 	{
 		$g1_bp = $fields[15];

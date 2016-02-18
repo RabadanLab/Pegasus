@@ -4,3 +4,5 @@ candidates/chimerascan_benign.bedpe	patient2	normal_tissue	chimerascan
 candidates/bellerophontes_oncogenic.txt	patient3	tumor_tissue	bellerophontes
 candidates/defuse_oncogenic.tsv	patient4	tumor_tissue	defuse
 candidates/defuse_benign.tsv	patient5	normal_tissue	defuse
+candidates/general_benign.txt	patient6	normal_tissue	general
+candidates/general_oncogenic.txt	patient7	tumor_tissue	general
