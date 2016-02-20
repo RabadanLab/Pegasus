@@ -20,7 +20,7 @@ Pegasus has been successfully deployed in the following selected projects:
     - numpy
     - pandas
     - scikit-learn
-- output reports from one of the following fusion detection tools
+- output reports from one of the following specifically supported packages, or the ability to format the results of a different fusion detection tool into the "general" input file.
     - chimerascan 0.4.5
     - defuse 0.4.3
     - bellerophontes 0.4.0
@@ -57,6 +57,9 @@ Copy the sample configuration file to the directory of your run and modify the r
 3. set the sample_type to be analyzed by Pegasus (this string is matched to a descriptor field in the data_spec.txt input file)
 
 Construct a properly formatted data specification file for the samples to be analyzed in the run.
+If using the "general" input format for fusion candidates, follow the examples included in sample_pipeline_input/candidates.
+Care must be taken, when constructing a general input file, to correctly identify the start/end points of the 5p and 3p partners with respect to the breakpoint.
+We use the term "split reads" to mean the number of reads actually containing the breakpoint.
 A sample invocation of Pegasus from the command line would look like this:
 
 ```bash
