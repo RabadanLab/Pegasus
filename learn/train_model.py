@@ -96,13 +96,10 @@ X_train = np.concatenate((full_train_pos.values, full_train_neg.values), axis=0)
 y_train = np.squeeze(np.concatenate((np.ones((len(full_train_pos),1)), np.zeros((len(full_train_neg),1)))))
 
 print '[ fitting classifiers ] {}'.format(datetime.now().strftime("%I:%M%p %B %d, %Y"))
-#svc = svm.SVC(C=1.0, kernel='rbf', gamma='auto', probability=True).fit(X_train, y_train)
-gbc = ensemble.GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=5).fit(X_train, y_train)
+gbc = ensemble.GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=20).fit(X_train, y_train)
 rfc = ensemble.RandomForestClassifier(n_estimators=100).fit(X_train, y_train)
 
 print '[ serializing fitted models ] {}'.format(datetime.now().strftime("%I:%M%p %B %d, %Y"))
-#with open('models/trained_model_svc.pk','wb') as fh_svc:
-#    cPickle.dump(svc, fh_svc)
 with open('trained_model_gbc.pk','wb') as fh_gbc:
     cPickle.dump(gbc, fh_gbc)
 with open('trained_model_rfc.pk','wb') as fh_rfc:
