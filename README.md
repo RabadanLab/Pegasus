@@ -1,7 +1,7 @@
 ## Pegasus : annotation and prediction of oncogenic gene fusions in RNAseq ##
 
 This software is maintained by Francesco Abate and Sakellarios Zairis.
-
+Please cite our [paper](http://bmcsystbiol.biomedcentral.com/articles/10.1186/s12918-014-0097-z) if you use this tool in your analysis.
 
 ### Requirements: ###
 ---
@@ -28,10 +28,12 @@ This software is maintained by Francesco Abate and Sakellarios Zairis.
 
 Clone this repository and do not alter the directory structure.
 Locally re-train the classifier as follows:
+
 ```bash
 $ cd learn
 $ python train_model.py
 ```
+
 This should overwrite the pickle files in learn/models/ and ensure compatibility with your present version of scikit-learn later in the pipeline.
 The wrapper for running the pipeline is pegasus.pl and its command line arguments can be seen by executing the file.
 Each run of Pegasus will require a configuration file based on the template provided, as well as the creation of a data specification file.
@@ -53,6 +55,7 @@ A sample invocation of Pegasus from the command line would look like this:
 ```bash
 $ pegasus.pl -c config.txt -d data_spec.txt -l log_folder -o output_folder
 ```
+
 Pegasus is designed to be interrupted at any stage.
 When re-running or re-starting the pipeline a second time it is understood that all previously completed steps will be skipped.
 To effect a complete re-run from the first step, remove the contents of the log and output folders and then invoke pegasus.pl.
