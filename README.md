@@ -4,10 +4,10 @@ This software is maintained by Francesco Abate and Sakellarios Zairis.
 Please cite our [paper](http://bmcsystbiol.biomedcentral.com/articles/10.1186/s12918-014-0097-z) if you use this tool in your analysis.
 Pegasus has been successfully deployed in the following selected projects:
 
-- Transforming Fusions of FGFR and TACC Genes in Human Glioblastoma, Science 2012
+- Transforming fusions of FGFR and TACC genes in human glioblastoma, Science 2012
 - The integrated landscape of driver genomic alterations in glioblastoma, Nature Genetics 2013 
 - Recurrent mutations in epigenetic regulators, RHOA and FYN kinase in peripheral T cell lymphomas, Nature Genetics 2014
-- Convergent Mutations and Kinase Fusions Lead to Oncogenic STAT3 Activation in Anaplastic Large Cell Lymphoma, Cancer Cell 2015
+- Convergent mutations and kinase fusions lead to oncogenic STAT3 activation in anaplastic large cell lymphoma, Cancer Cell 2015
 
 
 ### Requirements: ###
